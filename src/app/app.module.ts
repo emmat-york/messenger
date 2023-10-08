@@ -8,6 +8,8 @@ import { appStore } from "./store/store";
 import { AuthEffects } from "./store/effects/auth.effects";
 import { HttpClientModule } from "@angular/common/http";
 import { LetDirective } from "@ngrx/component";
+import { AuthModule } from "./pages/auth/module/auth.module";
+import { MessengerModule } from "./pages/messanger/module/messenger.module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,7 +20,9 @@ import { LetDirective } from "@ngrx/component";
     StoreModule.forRoot(appStore),
     EffectsModule.forRoot([AuthEffects]),
     LetDirective,
+    AuthModule,
+    MessengerModule,
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
