@@ -7,6 +7,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { appStore } from "./store/store";
 import { AuthEffects } from "./store/effects/auth.effects";
 import { HttpClientModule } from "@angular/common/http";
+import { LetDirective } from "@ngrx/component";
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,6 +17,7 @@ import { HttpClientModule } from "@angular/common/http";
     HttpClientModule,
     StoreModule.forRoot(appStore),
     EffectsModule.forRoot([AuthEffects]),
+    LetDirective,
   ],
   bootstrap: [AppComponent],
 })
