@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { of } from "rxjs";
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-root',

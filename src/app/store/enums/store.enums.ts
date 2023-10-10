@@ -1,3 +1,3 @@
 export enum Keys {
-    Auth = 'Auth',
+  Auth = 'Auth',
 }

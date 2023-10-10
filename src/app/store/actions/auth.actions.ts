@@ -1,4 +1,4 @@
-import { createAction } from "@ngrx/store";
+import { createAction } from '@ngrx/store';
 
 // Sign Up
 export const signUpRequest = createAction('[Auth] signUpRequest');

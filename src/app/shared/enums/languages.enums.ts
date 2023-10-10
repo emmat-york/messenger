@@ -1,4 +1,4 @@
 export enum Languages {
-    En = 'en',
-    Ru = 'ru',
+  En = 'en',
+  Ru = 'ru',
 }
