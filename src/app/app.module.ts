@@ -12,7 +12,8 @@ import { AuthModule } from './pages/auth/module/auth.module';
 import { MessengerModule } from './pages/messanger/module/messenger.module';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { Languages } from './shared/enums/languages.enums';
+import { Languages } from './shared/enums/languages.enum';
+import { IconModule } from './shared/pipes/icon/icon.module';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -38,6 +39,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       },
       defaultLanguage: Languages.En,
     }),
+    IconModule,
   ],
   bootstrap: [AppComponent],
 })

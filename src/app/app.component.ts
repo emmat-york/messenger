@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { of } from 'rxjs';
+import { Icon } from './shared/enums/icons.enum';
 
 @Component({
   selector: 'app-root',
@@ -9,4 +10,5 @@ import { of } from 'rxjs';
 })
 export class AppComponent {
   title$ = of('The app');
+  icon = Icon;
 }
