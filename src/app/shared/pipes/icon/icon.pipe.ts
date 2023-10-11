@@ -5,12 +5,13 @@ import { FileExtensions } from '../../enums/file-extensions.enum';
 
 @Pipe({
   name: 'appIcon',
+  standalone: true,
 })
 export class IconPipe implements PipeTransform {
   transform(name: Icon): string {
-    const builder = new PathBuilder();
-    builder.setFirstLvl('icons').setName(name).setExtension(FileExtensions.Svg);
-
-    return builder.path;
+    return new PathBuilder()
+      .setFirstLvl('icons')
+      .setName(name)
+      .setExtension(FileExtensions.Svg).path;
   }
 }

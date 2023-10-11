@@ -1,6 +1,4 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { of } from 'rxjs';
-import { Icon } from './shared/enums/icons.enum';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +6,4 @@ import { Icon } from './shared/enums/icons.enum';
   styleUrls: ['app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {
-  title$ = of('The app');
-  icon = Icon;
-}
+export class AppComponent {}
