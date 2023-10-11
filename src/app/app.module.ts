@@ -7,12 +7,10 @@ import { EffectsModule } from '@ngrx/effects';
 import { appStore } from './store/store';
 import { AuthEffects } from './store/effects/auth.effects';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { LetDirective } from '@ngrx/component';
-import { AuthModule } from './pages/auth/module/auth.module';
-import { MessengerModule } from './pages/messanger/module/messenger.module';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { Languages } from './shared/enums/languages.enum';
+import { RouterOutlet } from '@angular/router';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -24,11 +22,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    RouterOutlet,
     StoreModule.forRoot(appStore),
     EffectsModule.forRoot([AuthEffects]),
-    LetDirective,
-    AuthModule,
-    MessengerModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
