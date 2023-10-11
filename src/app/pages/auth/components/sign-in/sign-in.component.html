@@ -1,1 +1,31 @@
-<p>sing in works</p>
+<form [formGroup]="formGroup" (ngSubmit)="onSignIn()">
+  <div class="control-container">
+    <app-label [for]="signInKey.Login">
+      {{ 'auth.logIn' | translate }}
+    </app-label>
+
+    <app-text-input
+      [formControlName]="signInKey.Login"
+      [id]="signInKey.Login"
+    ></app-text-input>
+
+    <app-error-message *ngIf="true">error</app-error-message>
+  </div>
+
+  <div class="control-container">
+    <app-label [for]="signInKey.Password">
+      {{ 'auth.password' | translate }}
+    </app-label>
+
+    <app-text-input
+      [formControlName]="signInKey.Password"
+      [id]="signInKey.Password"
+    ></app-text-input>
+
+    <app-error-message *ngIf="true">error</app-error-message>
+  </div>
+
+  <button [disabled]="formGroup.invalid || formGroup.disabled" type="submit">
+    {{ 'auth.signIn.signIn' | translate }}
+  </button>
+</form>

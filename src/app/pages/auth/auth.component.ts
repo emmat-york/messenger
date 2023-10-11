@@ -11,6 +11,4 @@ import { RouterOutlet } from '@angular/router';
   providers: [AuthFacade],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AuthComponent {
-  constructor(private authFacade: AuthFacade) {}
-}
+export class AuthComponent {}
