@@ -4,13 +4,14 @@ import {
   FormsModule,
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-text-input',
   standalone: true,
   templateUrl: 'text-input.component.html',
   styleUrls: ['text-input.component.scss'],
-  imports: [FormsModule],
+  imports: [FormsModule, NgClass],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -22,6 +23,7 @@ import {
 })
 export class TextInputComponent implements ControlValueAccessor {
   @Input() id!: string;
+  @Input() classes!: string | string[] | Record<string, boolean> | undefined;
   value = '';
   disabled = false;
 

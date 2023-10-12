@@ -1,1 +1,4 @@
-export enum ValidatorKeys {}
+export enum ValidatorKeys {
+  required = 'required',
+  minlength = 'minlength',
+}

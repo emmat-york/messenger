@@ -24,7 +24,7 @@ import { BaseForm } from '../../../../shared/utils/base-form/base-form.util';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SignInComponent extends BaseForm implements OnInit {
+export class SignInComponent extends BaseForm<SignInKey> implements OnInit {
   signInKey = SignInKey;
 
   constructor(private authFacade: AuthFacade) {

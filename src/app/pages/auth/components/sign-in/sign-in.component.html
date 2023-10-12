@@ -5,11 +5,14 @@
     </app-label>
 
     <app-text-input
+      [classes]="getControlStateClasses(signInKey.Login)"
       [formControlName]="signInKey.Login"
       [id]="signInKey.Login"
     ></app-text-input>
 
-    <app-error-message *ngIf="true">error</app-error-message>
+    <app-error-message *ngIf="hasError(signInKey.Login)">
+      {{ getErrorMessage(signInKey.Login) }}
+    </app-error-message>
   </div>
 
   <div class="control-container">
@@ -18,11 +21,14 @@
     </app-label>
 
     <app-text-input
+      [classes]="getControlStateClasses(signInKey.Password)"
       [formControlName]="signInKey.Password"
       [id]="signInKey.Password"
     ></app-text-input>
 
-    <app-error-message *ngIf="true">error</app-error-message>
+    <app-error-message *ngIf="hasError(signInKey.Password)">
+      {{ getErrorMessage(signInKey.Password) }}
+    </app-error-message>
   </div>
 
   <button [disabled]="formGroup.invalid || formGroup.disabled" type="submit">
