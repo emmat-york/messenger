@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Action, Store } from '@ngrx/store';
-import { AuthCredentials } from '../../../pages/auth/interfaces/auth.interfaces';
+import { AuthCredentials } from '../../interfaces/auth.interfaces';
 import * as selectors from '../../../store/selectors/auth.selectors';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class AuthFacade {
   isAuth$ = this.store.select(selectors.isAuth);
 

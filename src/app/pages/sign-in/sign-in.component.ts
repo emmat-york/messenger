@@ -1,13 +1,14 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { SignInKey } from './enums/sign-in.enums';
-import { TextInputComponent } from '../../../../shared/components/text-input/text-input.component';
+import { TextInputComponent } from '../../shared/components/text-input/text-input.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { LabelComponent } from '../../../../shared/components/label/label.component';
-import { ErrorMessageComponent } from '../../../../shared/components/error-message/error-message.component';
+import { LabelComponent } from '../../shared/components/label/label.component';
+import { ErrorMessageComponent } from '../../shared/components/error-message/error-message.component';
 import { NgIf } from '@angular/common';
-import { AuthFacade } from '../../../../shared/services/facades/auth.facade';
-import { BaseForm } from '../../../../shared/utils/base-form/base-form.util';
+import { AuthFacade } from '../../shared/services/facades/auth.facade';
+import { BaseForm } from '../../shared/utils/base-form/base-form.util';
+import { CustomValidators } from '../../shared/utils/validators/validators.util';
 
 @Component({
   selector: 'app-sign-in',
@@ -45,10 +46,14 @@ export class SignInComponent extends BaseForm<SignInKey> implements OnInit {
 
   private initFormGroup(): void {
     this.formGroup = this.formBuilder.group({
-      [SignInKey.Login]: ['', [Validators.required]],
+      [SignInKey.Login]: ['', [Validators.required, CustomValidators.email()]],
       [SignInKey.Password]: [
         '',
-        [Validators.required, Validators.minLength(12)],
+        [
+          Validators.required,
+          CustomValidators.password(),
+          Validators.minLength(12),
+        ],
       ],
     });
   }
