@@ -29,7 +29,7 @@ export class FormExtension<FormKeys extends string> {
       return null;
     }
 
-    return this.getControl(name).errors ? 'invalid' : 'valid';
+    return this.getControl(name).valid ? 'valid' : 'invalid';
   }
 
   protected getErrorMessage(name: FormKeys): string | null {
