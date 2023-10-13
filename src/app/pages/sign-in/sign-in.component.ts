@@ -9,7 +9,7 @@ import { NgIf } from '@angular/common';
 import { AuthFacade } from '../../shared/services/facades/auth.facade';
 import { FormGroupExtension } from '../../shared/utils/form-group-extension/form-group-extension.util';
 import { CustomValidators } from '../../shared/utils/validators/validators.util';
-import { ControlStateClasses } from '../../shared/utils/form-group-extension/interfaces/form-group-extension.interfaces';
+import { ControlStateClasses } from '../../shared/components/text-input/interfaces/text-input.interfaces';
 
 @Component({
   selector: 'app-sign-in',
