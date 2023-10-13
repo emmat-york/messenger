@@ -2,22 +2,25 @@ import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { inject } from '@angular/core';
 import { ERROR_MESSAGES } from '../../constants/error-messages.constants';
 import { ValidatorKeys } from '../../enums/validator-keys.enum';
-import { ControlStateClasses } from './interfaces/form-extension.interfaces';
+import {
+  ControlStateClasses,
+  ErrorState,
+} from './interfaces/form-extension.interfaces';
 
-export class FormExtension<FormKey extends string, ErrorState> {
+export class FormExtension<FormKeys extends string> {
   protected formGroup!: FormGroup;
-  protected errorState!: ErrorState;
+  protected errorState!: ErrorState<FormKeys>;
   protected formBuilder = inject(FormBuilder);
 
-  protected getControl(name: FormKey): AbstractControl {
+  protected getControl(name: FormKeys): AbstractControl {
     return this.formGroup.controls[name];
   }
 
-  protected hasError(name: FormKey): boolean {
+  protected hasError(name: FormKeys): boolean {
     return this.getControl(name).touched && !!this.getControl(name).errors;
   }
 
-  protected getControlStateClasses(name: FormKey): ControlStateClasses | null {
+  protected getControlStateClasses(name: FormKeys): ControlStateClasses | null {
     if (!this.getControl(name).touched) {
       return null;
     }
@@ -25,7 +28,7 @@ export class FormExtension<FormKey extends string, ErrorState> {
     return this.getControl(name).errors ? 'invalid' : 'valid';
   }
 
-  protected getErrorMessage(name: FormKey): string | null {
+  protected getErrorMessage(name: FormKeys): string | null {
     const errors = this.getControl(name).errors;
 
     if (errors) {
