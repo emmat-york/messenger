@@ -2,9 +2,9 @@ import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { inject } from '@angular/core';
 import { ERROR_MESSAGES } from '../../constants/error-messages.constants';
 import { ValidatorKeys } from '../../enums/validator-keys.enum';
-import { ControlStateClasses } from './interfaces/form-group-extension.interfaces';
+import { ControlStateClasses } from './interfaces/form-extension.interfaces';
 
-export class FormGroupExtension<FormKey extends string, ErrorState> {
+export class FormExtension<FormKey extends string, ErrorState> {
   protected formGroup!: FormGroup;
   protected errorState!: ErrorState;
   protected formBuilder = inject(FormBuilder);

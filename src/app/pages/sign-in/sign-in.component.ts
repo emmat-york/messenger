@@ -7,7 +7,7 @@ import { LabelComponent } from '../../shared/components/label/label.component';
 import { ErrorMessageComponent } from '../../shared/components/error-message/error-message.component';
 import { NgIf } from '@angular/common';
 import { AuthFacade } from '../../shared/services/facades/auth.facade';
-import { FormGroupExtension } from '../../shared/utils/form-group-extension/form-group-extension.util';
+import { FormExtension } from '../../shared/utils/form-extension/form-extension.util';
 import { CustomValidators } from '../../shared/utils/validators/validators.util';
 import { SignInErrorState } from './interfaces/sign-in.interfaces';
 
@@ -27,7 +27,7 @@ import { SignInErrorState } from './interfaces/sign-in.interfaces';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignInComponent
-  extends FormGroupExtension<SignInKey, SignInErrorState>
+  extends FormExtension<SignInKey, SignInErrorState>
   implements OnInit
 {
   signInKey = SignInKey;
