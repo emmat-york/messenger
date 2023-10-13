@@ -9,6 +9,7 @@ import { NgIf } from '@angular/common';
 import { AuthFacade } from '../../shared/services/facades/auth.facade';
 import { FormGroupExtension } from '../../shared/utils/form-group-extension/form-group-extension.util';
 import { CustomValidators } from '../../shared/utils/validators/validators.util';
+import { ControlStateClasses } from '../../shared/utils/form-group-extension/interfaces/form-group-extension.interfaces';
 
 @Component({
   selector: 'app-sign-in',
@@ -45,6 +46,14 @@ export class SignInComponent
     }
 
     this.authFacade.signIn(this.formGroup.value);
+  }
+
+  getControlStateClasses(name: SignInKey): ControlStateClasses | null {
+    if (!this.getControl(name).touched) {
+      return null;
+    }
+
+    return this.getControl(name).errors ? 'invalid' : 'valid';
   }
 
   private initFormGroup(): void {
