@@ -33,7 +33,7 @@ export class SignInComponent
   signInKey = SignInKey;
 
   constructor(
-    private translateService: TranslateService,
+    private translate: TranslateService,
     private authFacade: AuthFacade,
   ) {
     super();
