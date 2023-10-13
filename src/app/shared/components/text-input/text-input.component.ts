@@ -23,7 +23,7 @@ import { NgClass } from '@angular/common';
 })
 export class TextInputComponent implements ControlValueAccessor {
   @Input() id!: string;
-  @Input() classes!: string | string[] | Record<string, boolean> | undefined;
+  @Input() classes!: string | string[] | Record<string, boolean> | null;
   value = '';
   disabled = false;
 

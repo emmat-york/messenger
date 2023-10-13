@@ -7,7 +7,7 @@ import { LabelComponent } from '../../shared/components/label/label.component';
 import { ErrorMessageComponent } from '../../shared/components/error-message/error-message.component';
 import { NgIf } from '@angular/common';
 import { AuthFacade } from '../../shared/services/facades/auth.facade';
-import { BaseForm } from '../../shared/utils/base-form/base-form.util';
+import { FormGroupExtension } from '../../shared/utils/form-group-extension/form-group-extension.util';
 import { CustomValidators } from '../../shared/utils/validators/validators.util';
 
 @Component({
@@ -25,7 +25,10 @@ import { CustomValidators } from '../../shared/utils/validators/validators.util'
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SignInComponent extends BaseForm<SignInKey> implements OnInit {
+export class SignInComponent
+  extends FormGroupExtension<SignInKey>
+  implements OnInit
+{
   signInKey = SignInKey;
 
   constructor(private authFacade: AuthFacade) {

@@ -4,10 +4,10 @@ import { SrcBuilder } from '../../utils/src-builder/src-builder.util';
 import { FileExtensions } from '../../enums/file-extensions.enum';
 
 @Pipe({
-  name: 'appSrc',
+  name: 'appIcon',
   standalone: true,
 })
-export class SrcPipe implements PipeTransform {
+export class IconPipe implements PipeTransform {
   transform(name: Icon): string {
     return new SrcBuilder()
       .setFolderOne('icons')

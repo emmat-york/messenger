@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { AuthCredentials } from '../../interfaces/auth.interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -8,15 +9,17 @@ import { Injectable } from '@angular/core';
 export class AuthApiService {
   constructor(private httpClient: HttpClient) {}
 
-  signUp$(credentials: {}): Observable<any> {
+  signUp$(credentials: AuthCredentials): Observable<null> {
+    console.log(credentials);
     return of(null);
   }
 
-  singIn$(credentials: {}): Observable<any> {
+  singIn$(credentials: AuthCredentials): Observable<null> {
+    console.log(credentials);
     return of(null);
   }
 
-  singOut$(): Observable<any> {
+  singOut$(): Observable<null> {
     return of(null);
   }
 }
