@@ -45,7 +45,7 @@ export class SignInComponent
   }
 
   onSignIn(): void {
-    if (this.formGroup.invalid || this.formGroup.disabled) {
+    if (!this.isSubmittable) {
       return;
     }
 

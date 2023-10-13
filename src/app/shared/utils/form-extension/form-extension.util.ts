@@ -38,4 +38,8 @@ export class FormExtension<FormKeys extends string> {
 
     return null;
   }
+
+  protected isSubmittable(): boolean {
+    return this.formGroup.valid || this.formGroup.enabled;
+  }
 }
