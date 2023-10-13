@@ -1,4 +1,4 @@
-import { inject, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MessengerComponent } from './pages/messanger/messenger.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
@@ -7,7 +7,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { MainComponent } from './pages/messanger/components/main/main.component';
 import { PersonalInfoComponent } from './pages/messanger/components/personal-info/personal-info.component';
 import { SettingsComponent } from './pages/messanger/components/settings/settings.component';
-import { AuthGuardToken } from './shared/constants/tokens.constants';
+import { AuthGuardFn } from './shared/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -18,7 +18,7 @@ const routes: Routes = [
   {
     path: 'messenger',
     component: MessengerComponent,
-    canActivate: [() => inject(AuthGuardToken)],
+    canActivate: [AuthGuardFn],
     children: [
       {
         path: '',

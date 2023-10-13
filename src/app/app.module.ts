@@ -10,10 +10,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { Languages } from './shared/enums/languages.enum';
-import { Router, RouterOutlet } from '@angular/router';
-import { AuthGuardToken } from './shared/constants/tokens.constants';
-import { AuthGuardFn } from './shared/guards/auth.guard';
-import { AuthFacade } from './shared/services/facades/auth.facade';
+import { RouterOutlet } from '@angular/router';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -36,13 +33,6 @@ export function HttpLoaderFactory(http: HttpClient) {
       },
       defaultLanguage: Languages.En,
     }),
-  ],
-  providers: [
-    {
-      provide: AuthGuardToken,
-      useFactory: AuthGuardFn,
-      deps: [AuthFacade, Router],
-    },
   ],
   bootstrap: [AppComponent],
 })
