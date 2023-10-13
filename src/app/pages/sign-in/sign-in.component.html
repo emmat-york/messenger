@@ -1,7 +1,9 @@
-<form [formGroup]="formGroup" (ngSubmit)="onSignIn()">
+<form class="form-group" [formGroup]="formGroup" (ngSubmit)="onSignIn()">
+  <h1 class="heading">{{ 'Auth.SignIn' | translate }}</h1>
+
   <div class="control-container">
     <app-label [for]="signInKey.Login">
-      {{ 'auth.logIn' | translate }}
+      {{ 'Auth.Login' | translate }}
     </app-label>
 
     <app-text-input
@@ -17,7 +19,7 @@
 
   <div class="control-container">
     <app-label [for]="signInKey.Password">
-      {{ 'auth.password' | translate }}
+      {{ 'Auth.Password' | translate }}
     </app-label>
 
     <app-text-input
@@ -32,6 +34,6 @@
   </div>
 
   <button [disabled]="formGroup.invalid || formGroup.disabled" type="submit">
-    {{ 'auth.signIn.signIn' | translate }}
+    {{ 'Auth.Submit' | translate }}
   </button>
 </form>

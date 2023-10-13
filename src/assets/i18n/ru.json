@@ -1,9 +1,8 @@
 {
-  "auth": {
-    "signIn": {
-      "signIn": "Вход"
-    },
-    "logIn": "Логин",
-    "password": "Пароль"
+  "Auth": {
+    "SignIn": "Логин",
+    "Login": "Логин",
+    "Password": "Пароль",
+    "Submit": "Отправить"
   }
 }
