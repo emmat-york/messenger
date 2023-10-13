@@ -6,7 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { LabelComponent } from '../../shared/components/label/label.component';
 import { ErrorMessageComponent } from '../../shared/components/error-message/error-message.component';
 import { NgIf } from '@angular/common';
-import { AuthFacade } from '../../shared/services/facades/auth.facade';
+import { AuthFacade } from '../../shared/services/facade/auth.facade';
 import { FormExtension } from '../../shared/utils/form-extension/form-extension.util';
 import { CustomValidators } from '../../shared/utils/validators/validators.util';
 import { SignInErrorState } from './interfaces/sign-in.interfaces';

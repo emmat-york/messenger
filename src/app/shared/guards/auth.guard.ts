@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
-import { AuthFacade } from '../services/facades/auth.facade';
+import { AuthFacade } from '../services/facade/auth.facade';
 import { inject } from '@angular/core';
 
 export const AuthGuardFn = (): Observable<boolean> => {
