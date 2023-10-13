@@ -12,6 +12,10 @@ export class FormExtension<FormKeys extends string> {
   protected errorState!: ErrorState<FormKeys>;
   protected formBuilder = inject(FormBuilder);
 
+  protected get isSubmittable(): boolean {
+    return this.formGroup.valid || this.formGroup.enabled;
+  }
+
   protected getControl(name: FormKeys): AbstractControl {
     return this.formGroup.controls[name];
   }
@@ -37,9 +41,5 @@ export class FormExtension<FormKeys extends string> {
     }
 
     return null;
-  }
-
-  protected isSubmittable(): boolean {
-    return this.formGroup.valid || this.formGroup.enabled;
   }
 }
