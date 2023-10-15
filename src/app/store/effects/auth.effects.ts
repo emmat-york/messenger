@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AuthApiService } from '../../shared/services/api/auth.service';
 import { map, switchMap } from 'rxjs';
+import { SignInKeys } from '../../pages/sign-in/enums/sign-in.enums';
 import * as actions from '../actions/auth.actions';
-import { SignInKey } from '../../pages/sign-in/enums/sign-in.enums';
 
 @Injectable()
 export class AuthEffects {
@@ -12,8 +12,8 @@ export class AuthEffects {
       ofType(actions.signUpRequest),
       switchMap(() => {
         return this.authApiService.signUp$({
-          [SignInKey.Login]: '',
-          [SignInKey.Password]: '',
+          [SignInKeys.Login]: '',
+          [SignInKeys.Password]: '',
         });
       }),
       map(() => {
@@ -27,8 +27,8 @@ export class AuthEffects {
       ofType(actions.signInRequest),
       switchMap(() => {
         return this.authApiService.singIn$({
-          [SignInKey.Login]: '',
-          [SignInKey.Password]: '',
+          [SignInKeys.Login]: '',
+          [SignInKeys.Password]: '',
         });
       }),
       map(() => {

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule, Validators } from '@angular/forms';
-import { SignInKey } from './enums/sign-in.enums';
+import { SignInKeys } from './enums/sign-in.enums';
 import { TextInputComponent } from '../../shared/components/text-input/text-input.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { LabelComponent } from '../../shared/components/label/label.component';
@@ -29,10 +29,10 @@ import { MIN_PASSWORD_LENGTH } from '../../shared/constants/auth.constants';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignInComponent
-  extends FormExtension<SignInKey>
+  extends FormExtension<SignInKeys>
   implements OnInit
 {
-  signInKey = SignInKey;
+  signInKeys = SignInKeys;
 
   constructor(private authFacade: AuthFacade) {
     super();
@@ -53,8 +53,8 @@ export class SignInComponent
 
   private initFormGroup(): void {
     this.formGroup = this.formBuilder.group({
-      [SignInKey.Login]: ['', [Validators.required, CustomValidators.email()]],
-      [SignInKey.Password]: [
+      [SignInKeys.Login]: ['', [Validators.required, CustomValidators.email()]],
+      [SignInKeys.Password]: [
         '',
         [
           Validators.required,
@@ -79,11 +79,11 @@ export class SignInComponent
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(state => {
         this.errorState = {
-          [SignInKey.Login]: {
+          [SignInKeys.Login]: {
             [ValidatorKeys.required]: state['Validation.required'],
             [ValidatorKeys.email]: state['Validation.email'],
           },
-          [SignInKey.Password]: {
+          [SignInKeys.Password]: {
             [ValidatorKeys.required]: state['Validation.required'],
             [ValidatorKeys.password]: state['Validation.password'],
             [ValidatorKeys.minlength]: state['Validation.minlength'],

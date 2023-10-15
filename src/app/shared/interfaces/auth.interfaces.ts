@@ -1,6 +1,6 @@
-import { SignInKey } from '../../pages/sign-in/enums/sign-in.enums';
+import { SignInKeys } from '../../pages/sign-in/enums/sign-in.enums';
 
 export interface AuthCredentials {
-  [SignInKey.Login]: string;
-  [SignInKey.Password]: string;
+  [SignInKeys.Login]: string;
+  [SignInKeys.Password]: string;
 }

@@ -4,34 +4,34 @@
   </header>
 
   <div class="control-container">
-    <app-label [for]="signInKey.Login">
+    <app-label [for]="signInKeys.Login">
       {{ 'Auth.Login' | translate }}
     </app-label>
 
     <app-text-input
-      [classes]="getControlStateClasses(signInKey.Login)"
-      [formControlName]="signInKey.Login"
-      [id]="signInKey.Login"
+      [classes]="getControlStateClasses(signInKeys.Login)"
+      [formControlName]="signInKeys.Login"
+      [id]="signInKeys.Login"
     ></app-text-input>
 
-    <app-error-message *ngIf="hasError(signInKey.Login)">
-      {{ getErrorMessage(signInKey.Login) }}
+    <app-error-message *ngIf="hasError(signInKeys.Login)">
+      {{ getErrorMessage(signInKeys.Login) }}
     </app-error-message>
   </div>
 
   <div class="control-container">
-    <app-label [for]="signInKey.Password">
+    <app-label [for]="signInKeys.Password">
       {{ 'Auth.Password' | translate }}
     </app-label>
 
     <app-text-input
-      [classes]="getControlStateClasses(signInKey.Password)"
-      [formControlName]="signInKey.Password"
-      [id]="signInKey.Password"
+      [classes]="getControlStateClasses(signInKeys.Password)"
+      [formControlName]="signInKeys.Password"
+      [id]="signInKeys.Password"
     ></app-text-input>
 
-    <app-error-message *ngIf="hasError(signInKey.Password)">
-      {{ getErrorMessage(signInKey.Password) }}
+    <app-error-message *ngIf="hasError(signInKeys.Password)">
+      {{ getErrorMessage(signInKeys.Password) }}
     </app-error-message>
   </div>
 
