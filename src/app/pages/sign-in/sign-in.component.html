@@ -1,5 +1,7 @@
 <form class="form-group" [formGroup]="formGroup" (ngSubmit)="onSignIn()">
-  <h1 class="heading">{{ 'Auth.SignIn' | translate }}</h1>
+  <header class="header">
+    <h1 class="heading">{{ 'Auth.SignIn' | translate }}</h1>
+  </header>
 
   <div class="control-container">
     <app-label [for]="signInKey.Login">

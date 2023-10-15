@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { SignInKey } from './enums/sign-in.enums';
 import { TextInputComponent } from '../../shared/components/text-input/text-input.component';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { LabelComponent } from '../../shared/components/label/label.component';
 import { ErrorMessageComponent } from '../../shared/components/error-message/error-message.component';
 import { NgIf } from '@angular/common';
@@ -10,6 +10,8 @@ import { AuthFacade } from '../../shared/services/facade/auth.facade';
 import { FormExtension } from '../../shared/utils/form-extension/form-extension.util';
 import { CustomValidators } from '../../shared/utils/validators/validators.util';
 import { ValidatorKeys } from '../../shared/enums/validator-keys.enum';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { MIN_PASSWORD_LENGTH } from '../../shared/constants/auth.constants';
 
 @Component({
   selector: 'app-sign-in',
@@ -32,10 +34,7 @@ export class SignInComponent
 {
   signInKey = SignInKey;
 
-  constructor(
-    private translate: TranslateService,
-    private authFacade: AuthFacade,
-  ) {
+  constructor(private authFacade: AuthFacade) {
     super();
   }
 
@@ -60,23 +59,36 @@ export class SignInComponent
         [
           Validators.required,
           CustomValidators.password(),
-          Validators.minLength(12),
+          Validators.minLength(MIN_PASSWORD_LENGTH),
         ],
       ],
     });
   }
 
   private setErrorState(): void {
-    this.errorState = {
-      [SignInKey.Login]: {
-        [ValidatorKeys.required]: 'required',
-        [ValidatorKeys.email]: 'email',
-      },
-      [SignInKey.Password]: {
-        [ValidatorKeys.required]: 'required',
-        [ValidatorKeys.password]: 'password',
-        [ValidatorKeys.minlength]: 'minLength',
-      },
-    };
+    this.translate
+      .stream(
+        [
+          'Validation.required',
+          'Validation.minlength',
+          'Validation.password',
+          'Validation.email',
+        ],
+        { minlength: MIN_PASSWORD_LENGTH },
+      )
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(messages => {
+        this.errorState = {
+          [SignInKey.Login]: {
+            [ValidatorKeys.required]: messages['Validation.required'],
+            [ValidatorKeys.email]: messages['Validation.email'],
+          },
+          [SignInKey.Password]: {
+            [ValidatorKeys.required]: messages['Validation.required'],
+            [ValidatorKeys.password]: messages['Validation.password'],
+            [ValidatorKeys.minlength]: messages['Validation.minlength'],
+          },
+        };
+      });
   }
 }

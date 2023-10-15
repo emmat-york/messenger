@@ -4,5 +4,12 @@
     "Login": "Login",
     "Password": "Password",
     "Submit": "Submit"
+  },
+  "Validation": {
+    "required": "This field is required",
+    "minlength": "Min length must be greater than {{minPasswordLength}}",
+    "email": "Incorrect email",
+    "password": "Incorrect password",
+    "unknown": "Unknown error"
   }
 }

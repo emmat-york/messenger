@@ -1,16 +1,18 @@
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
-import { inject } from '@angular/core';
-import { ERROR_MESSAGES } from '../../constants/error-messages.constants';
+import { DestroyRef, inject } from '@angular/core';
 import { ValidatorKeys } from '../../enums/validator-keys.enum';
 import {
   ControlStateClasses,
   ErrorState,
 } from './interfaces/form-extension.interfaces';
+import { TranslateService } from '@ngx-translate/core';
 
 export class FormExtension<FormKeys extends string> {
   protected formGroup!: FormGroup;
   protected errorState!: ErrorState<FormKeys>;
+  protected translate = inject(TranslateService);
   protected formBuilder = inject(FormBuilder);
+  protected destroyRef = inject(DestroyRef);
 
   protected get isSubmittable(): boolean {
     return this.formGroup.valid || this.formGroup.enabled;
@@ -40,7 +42,7 @@ export class FormExtension<FormKeys extends string> {
 
     if (errors) {
       const errorKey = Object.keys(errors)[0] as ValidatorKeys;
-      return ERROR_MESSAGES[errorKey];
+      return this.errorState[name][errorKey] || 'Unknown error';
     }
 
     return null;

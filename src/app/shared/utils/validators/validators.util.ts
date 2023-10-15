@@ -1,6 +1,5 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { ValidatorKeys } from '../../enums/validator-keys.enum';
-import { ERROR_MESSAGES } from '../../constants/error-messages.constants';
 
 export abstract class CustomValidators {
   static email(): ValidatorFn {
@@ -9,14 +8,14 @@ export abstract class CustomValidators {
         return null;
       }
 
-      return { [ValidatorKeys.email]: ERROR_MESSAGES[ValidatorKeys.email] };
+      return { [ValidatorKeys.email]: true };
     };
   }
 
   static password(): ValidatorFn {
     return ({ value }: AbstractControl): ValidationErrors | null => {
       const error = {
-        [ValidatorKeys.password]: ERROR_MESSAGES[ValidatorKeys.password],
+        [ValidatorKeys.password]: true,
       };
 
       if (!value.match(/[0-9]/)) {
