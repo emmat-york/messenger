@@ -3,10 +3,12 @@ import * as actions from '../actions/auth.actions';
 
 export interface AuthState {
   isAuth: boolean;
+  errorMessage: string | null;
 }
 
 const initialState: AuthState = {
   isAuth: false,
+  errorMessage: null,
 };
 
 export const authReducer = createReducer(
@@ -22,5 +24,8 @@ export const authReducer = createReducer(
   on(actions.signOutResponse, state => ({
     ...state,
     isAuth: false,
+  })),
+  on(actions.setErrorMessage, state => ({
+    ...state,
   })),
 );

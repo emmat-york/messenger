@@ -77,16 +77,16 @@ export class SignInComponent
         { minlength: MIN_PASSWORD_LENGTH },
       )
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(messages => {
+      .subscribe(state => {
         this.errorState = {
           [SignInKey.Login]: {
-            [ValidatorKeys.required]: messages['Validation.required'],
-            [ValidatorKeys.email]: messages['Validation.email'],
+            [ValidatorKeys.required]: state['Validation.required'],
+            [ValidatorKeys.email]: state['Validation.email'],
           },
           [SignInKey.Password]: {
-            [ValidatorKeys.required]: messages['Validation.required'],
-            [ValidatorKeys.password]: messages['Validation.password'],
-            [ValidatorKeys.minlength]: messages['Validation.minlength'],
+            [ValidatorKeys.required]: state['Validation.required'],
+            [ValidatorKeys.password]: state['Validation.password'],
+            [ValidatorKeys.minlength]: state['Validation.minlength'],
           },
         };
       });

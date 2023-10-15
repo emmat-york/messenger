@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-error-message',
+  selector: 'app-dropdown',
   standalone: true,
-  template: '<ng-content></ng-content>',
-  styles: [''],
+  templateUrl: 'dropdown.component.html',
+  styleUrls: ['dropdown.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ErrorMessageComponent {}
+export class DropdownComponent {}

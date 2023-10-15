@@ -11,3 +11,6 @@ export const signInResponse = createAction('[Auth] signInResponse');
 // Sign Out
 export const signOutRequest = createAction('[Auth] signOutRequest');
 export const signOutResponse = createAction('[Auth] signOutResponse');
+
+// Common
+export const setErrorMessage = createAction('[Auth] setErrorMessage');
