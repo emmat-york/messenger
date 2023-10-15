@@ -21,15 +21,18 @@ export class FormExtension<FormKeys extends string> {
   }
 
   protected hasError(name: FormKeys): boolean {
-    return this.getControl(name).touched && !!this.getControl(name).errors;
+    const control = this.getControl(name);
+    return control.touched && control.invalid;
   }
 
   protected getControlStateClasses(name: FormKeys): ControlStateClasses | null {
-    if (!this.getControl(name).touched) {
+    const control = this.getControl(name);
+
+    if (!control.touched) {
       return null;
     }
 
-    return this.getControl(name).valid ? 'valid' : 'invalid';
+    return control.valid ? 'valid' : 'invalid';
   }
 
   protected getErrorMessage(name: FormKeys): string | null {
