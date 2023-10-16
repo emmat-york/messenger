@@ -13,19 +13,20 @@ const initialState: AuthState = {
 
 export const authReducer = createReducer(
   initialState,
-  on(actions.signUpResponse, state => ({
+  on(actions.signUpResponse, (state, { response }) => ({
     ...state,
     isAuth: true,
   })),
-  on(actions.signInResponse, state => ({
+  on(actions.signInResponse, (state, { response }) => ({
     ...state,
     isAuth: true,
   })),
-  on(actions.signOutResponse, state => ({
+  on(actions.signOutResponse, (state, { response }) => ({
     ...state,
     isAuth: false,
   })),
-  on(actions.setErrorMessage, state => ({
+  on(actions.setErrorMessage, (state, { errorMessage }) => ({
     ...state,
+    errorMessage,
   })),
 );

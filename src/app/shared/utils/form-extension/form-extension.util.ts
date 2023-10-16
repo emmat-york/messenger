@@ -27,7 +27,7 @@ export class FormExtension<FormKeys extends string> {
   protected getStateClasses(controlName: FormKeys): ControlStateClasses | null {
     const control = this.getControl(controlName);
 
-    if (!control.touched) {
+    if (control.untouched) {
       return null;
     }
 

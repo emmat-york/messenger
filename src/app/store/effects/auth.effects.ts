@@ -17,7 +17,7 @@ export class AuthEffects {
         });
       }),
       map(() => {
-        return actions.signUpResponse();
+        return actions.signUpResponse({ response: {} });
       }),
     );
   });
@@ -32,7 +32,7 @@ export class AuthEffects {
         });
       }),
       map(() => {
-        return actions.signInResponse();
+        return actions.signInResponse({ response: {} });
       }),
     );
   });
@@ -44,7 +44,7 @@ export class AuthEffects {
         return this.authApiService.singOut$();
       }),
       map(() => {
-        return actions.signOutResponse();
+        return actions.signOutResponse({ response: {} });
       }),
     );
   });

@@ -1,16 +1,37 @@
-import { createAction } from '@ngrx/store';
+import { createAction, props } from '@ngrx/store';
+import { AuthCredentials } from '../../shared/interfaces/auth.interfaces';
 
 // Sign Up
-export const signUpRequest = createAction('[Auth] signUpRequest');
-export const signUpResponse = createAction('[Auth] signUpResponse');
+export const signUpRequest = createAction(
+  '[Auth] signUpRequest',
+  props<{ credentials: AuthCredentials }>(),
+);
+
+export const signUpResponse = createAction(
+  '[Auth] signUpResponse',
+  props<{ response: any }>(),
+);
 
 // Sign In
-export const signInRequest = createAction('[Auth] signInRequest');
-export const signInResponse = createAction('[Auth] signInResponse');
+export const signInRequest = createAction(
+  '[Auth] signInRequest',
+  props<{ credentials: AuthCredentials }>(),
+);
+
+export const signInResponse = createAction(
+  '[Auth] signInResponse',
+  props<{ response: any }>(),
+);
 
 // Sign Out
 export const signOutRequest = createAction('[Auth] signOutRequest');
-export const signOutResponse = createAction('[Auth] signOutResponse');
+export const signOutResponse = createAction(
+  '[Auth] signOutResponse',
+  props<{ response: any }>(),
+);
 
 // Common
-export const setErrorMessage = createAction('[Auth] setErrorMessage');
+export const setErrorMessage = createAction(
+  '[Auth] setErrorMessage',
+  props<{ errorMessage: string | null }>(),
+);
