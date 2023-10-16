@@ -17,7 +17,6 @@ import { Option } from '../dropdown/interfaces/dropdown.interfaces';
   standalone: true,
   template: '<app-dropdown [options]="options" [formControl]="control"></app-dropdown>',
   imports: [DropdownComponent, ReactiveFormsModule],
-  styles: [':host { display: block }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LanguageSwitcherComponent implements OnInit {

@@ -13,6 +13,8 @@ import { ValidatorKeys } from '../../shared/enums/validator-keys.enum';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MIN_PASSWORD_LENGTH } from '../../shared/constants/auth.constants';
 import { LanguageSwitcherComponent } from '../../shared/components/language-switcher/language-switcher.component';
+import { RouterLink } from '@angular/router';
+import { ButtonComponent } from '../../shared/components/button/button.component';
 
 @Component({
   selector: 'app-sign-in',
@@ -28,6 +30,8 @@ import { LanguageSwitcherComponent } from '../../shared/components/language-swit
     NgIf,
     AsyncPipe,
     LanguageSwitcherComponent,
+    RouterLink,
+    ButtonComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

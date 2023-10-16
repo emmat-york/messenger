@@ -1,5 +1,6 @@
 {
   "Auth": {
+    "SignUp": "SignUp",
     "SignIn": "SignIn",
     "Login": "Login",
     "Password": "Password",
