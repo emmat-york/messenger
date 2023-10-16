@@ -9,6 +9,7 @@ import * as actions from '../../../store/actions/auth.actions';
 })
 export class AuthFacade {
   isAuth$ = this.store.select(selectors.isAuth);
+  errorMessage$ = this.store.select(selectors.errorMessage);
 
   constructor(private store: Store) {}
 

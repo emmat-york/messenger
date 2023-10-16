@@ -3,6 +3,10 @@
     <h1 class="heading">{{ 'Auth.SignIn' | translate }}</h1>
   </header>
 
+  <app-error-message *ngIf="errorMessage$ | async as errorMessage">
+    {{ errorMessage }}
+  </app-error-message>
+
   <div class="control-container">
     <app-label [for]="signInKeys.Login">
       {{ 'Auth.Login' | translate }}
@@ -35,7 +39,7 @@
     </app-error-message>
   </div>
 
-  <button [disabled]="formGroup.invalid || formGroup.disabled" type="submit">
+  <button [disabled]="isSubmittable" type="submit">
     {{ 'Auth.Submit' | translate }}
   </button>
 </form>
