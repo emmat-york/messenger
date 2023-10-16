@@ -9,7 +9,7 @@
     </app-label>
 
     <app-text-input
-      [classes]="getControlStateClasses(signInKeys.Login)"
+      [classes]="getStateClasses(signInKeys.Login)"
       [formControlName]="signInKeys.Login"
       [id]="signInKeys.Login"
     ></app-text-input>
@@ -25,7 +25,7 @@
     </app-label>
 
     <app-text-input
-      [classes]="getControlStateClasses(signInKeys.Password)"
+      [classes]="getStateClasses(signInKeys.Password)"
       [formControlName]="signInKeys.Password"
       [id]="signInKeys.Password"
     ></app-text-input>

@@ -28,10 +28,7 @@ import { MIN_PASSWORD_LENGTH } from '../../shared/constants/auth.constants';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SignInComponent
-  extends FormExtension<SignInKeys>
-  implements OnInit
-{
+export class SignInComponent extends FormExtension<SignInKeys> implements OnInit {
   signInKeys = SignInKeys;
 
   constructor(private authFacade: AuthFacade) {

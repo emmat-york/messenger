@@ -30,11 +30,7 @@ export abstract class CustomValidators {
         return error;
       }
 
-      if (
-        !value.match(
-          /[~\`\!\@\#\$\%\^\&\*\(\)\-\_\+\=\{\}\|\;\:\"\<\>\,\.\?\/\\]/,
-        )
-      ) {
+      if (!value.match(/[~\`\!\@\#\$\%\^\&\*\(\)\-\_\+\=\{\}\|\;\:\"\<\>\,\.\?\/\\]/)) {
         return error;
       }
 

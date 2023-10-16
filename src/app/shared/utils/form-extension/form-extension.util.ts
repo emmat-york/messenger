@@ -1,10 +1,7 @@
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { DestroyRef, inject } from '@angular/core';
 import { ValidatorKeys } from '../../enums/validator-keys.enum';
-import {
-  ControlStateClasses,
-  ErrorState,
-} from './interfaces/form-extension.interfaces';
+import { ControlStateClasses, ErrorState } from './interfaces/form-extension.interfaces';
 import { TranslateService } from '@ngx-translate/core';
 
 export class FormExtension<FormKeys extends string> {
@@ -18,17 +15,17 @@ export class FormExtension<FormKeys extends string> {
     return this.formGroup.valid || this.formGroup.enabled;
   }
 
-  protected getControl(name: FormKeys): AbstractControl {
-    return this.formGroup.controls[name];
+  protected getControl(controlName: FormKeys): AbstractControl {
+    return this.formGroup.controls[controlName];
   }
 
-  protected hasError(name: FormKeys): boolean {
-    const control = this.getControl(name);
+  protected hasError(controlName: FormKeys): boolean {
+    const control = this.getControl(controlName);
     return control.touched && control.invalid;
   }
 
-  protected getControlStateClasses(name: FormKeys): ControlStateClasses | null {
-    const control = this.getControl(name);
+  protected getStateClasses(controlName: FormKeys): ControlStateClasses | null {
+    const control = this.getControl(controlName);
 
     if (!control.touched) {
       return null;
@@ -37,14 +34,14 @@ export class FormExtension<FormKeys extends string> {
     return control.valid ? 'valid' : 'invalid';
   }
 
-  protected getErrorMessage(name: FormKeys): string | null {
-    const errors = this.getControl(name).errors;
+  protected getErrorMessage(controlName: FormKeys): string | null {
+    const control = this.getControl(controlName);
 
-    if (errors) {
-      const errorKey = Object.keys(errors)[0] as ValidatorKeys;
-      return this.errorState[name][errorKey] || 'Unknown error';
+    if (control.valid) {
+      return null;
     }
 
-    return null;
+    const errorKey = Object.keys(control.errors || {})[0] as ValidatorKeys;
+    return this.errorState[controlName][errorKey] || 'Unknown error';
   }
 }
