@@ -12,6 +12,7 @@ import { CustomValidators } from '../../shared/utils/validators/validators.util'
 import { ValidatorKeys } from '../../shared/enums/validator-keys.enum';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MIN_PASSWORD_LENGTH } from '../../shared/constants/auth.constants';
+import { LanguageSwitcherComponent } from '../../shared/components/language-switcher/language-switcher.component';
 
 @Component({
   selector: 'app-sign-in',
@@ -26,6 +27,7 @@ import { MIN_PASSWORD_LENGTH } from '../../shared/constants/auth.constants';
     ErrorMessageComponent,
     NgIf,
     AsyncPipe,
+    LanguageSwitcherComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -1,1 +1,17 @@
-<p>Dropdown works</p>
+<section appClickOutside (clickOutside)="onClickOutSide()">
+  <button
+    class="dropdown-button"
+    type="button"
+    [disabled]="disabled"
+    (click)="onDropdownClick()"
+    (blur)="onDropdownBlur()"
+  >
+    {{ selectedValue }}
+  </button>
+
+  <ul *ngIf="isDropdownShown">
+    <li class="option" *ngFor="let option of options" (click)="onOptionClick(option)">
+      {{ option.title }}
+    </li>
+  </ul>
+</section>
