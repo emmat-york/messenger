@@ -1,3 +1,5 @@
+@use 'src/assets/styles/variables';
+
 :host {
   display: flex;
   justify-content: center;
@@ -9,10 +11,12 @@
 .form-group {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  width: 340px;
+  height: 520px;
+  width: 360px;
   padding: 20px;
+  box-shadow: 8px 8px 16px map-get(variables.$wb-palette, 20);
 }
 
 .header {
@@ -20,13 +24,22 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin-bottom: 30px;
 }
 
-.heading {
-
+.controls {
+  width: 100%;
 }
 
 .control-container {
+  width: 100%;
   margin-bottom: 20px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.submit-button {
+  width: 100%;
 }

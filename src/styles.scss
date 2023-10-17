@@ -1,3 +1,5 @@
+@use 'assets/styles/variables';
+
 * {
   box-sizing: border-box;
 }
@@ -18,6 +20,10 @@ h6 {
   margin: 0;
 }
 
+body {
+  font-family: variables.$montserrat;
+}
+
 ul,
 ol {
   margin: 0;
@@ -26,4 +32,8 @@ ol {
 
 li {
   list-style: none;
+}
+
+button {
+  cursor: pointer;
 }

@@ -1,47 +1,53 @@
 <form class="form-group" [formGroup]="formGroup" (ngSubmit)="onSignIn()">
   <header class="header">
     <app-language-switcher></app-language-switcher>
-    <h1 class="heading">{{ 'Auth.SignIn' | translate }}</h1>
-    <app-button routerLink="/sign-up">{{ 'Auth.SignUp' | translate }}</app-button>
+
+    <h1>{{ 'Auth.SignIn' | translate }}</h1>
+
+    <app-button variant="secondary" routerLink="/sign-up">
+      {{ 'Auth.SignUp' | translate }}
+    </app-button>
   </header>
 
-  <app-error-message *ngIf="errorMessage$ | async as errorMessage">
-    {{ errorMessage }}
-  </app-error-message>
-
-  <div class="control-container">
-    <app-label [for]="signInKeys.Login">
-      {{ 'Auth.Login' | translate }}
-    </app-label>
-
-    <app-text-input
-      [classes]="getStateClasses(signInKeys.Login)"
-      [formControlName]="signInKeys.Login"
-      [id]="signInKeys.Login"
-    ></app-text-input>
-
-    <app-error-message *ngIf="hasError(signInKeys.Login)">
-      {{ getErrorMessage(signInKeys.Login) }}
+  <div class="controls">
+    <app-error-message *ngIf="errorMessage$ | async as errorMessage">
+      {{ errorMessage }}
     </app-error-message>
+
+    <div class="control-container">
+      <app-label class="label" [for]="signInKeys.Login">
+        {{ 'Auth.Login' | translate }}
+      </app-label>
+
+      <app-text-input
+        [classes]="getStateClasses(signInKeys.Login)"
+        [formControlName]="signInKeys.Login"
+        [id]="signInKeys.Login"
+      ></app-text-input>
+
+      <app-error-message *ngIf="hasError(signInKeys.Login)">
+        {{ getErrorMessage(signInKeys.Login) }}
+      </app-error-message>
+    </div>
+
+    <div class="control-container">
+      <app-label class="label" [for]="signInKeys.Password">
+        {{ 'Auth.Password' | translate }}
+      </app-label>
+
+      <app-text-input
+        [classes]="getStateClasses(signInKeys.Password)"
+        [formControlName]="signInKeys.Password"
+        [id]="signInKeys.Password"
+      ></app-text-input>
+
+      <app-error-message *ngIf="hasError(signInKeys.Password)">
+        {{ getErrorMessage(signInKeys.Password) }}
+      </app-error-message>
+    </div>
   </div>
 
-  <div class="control-container">
-    <app-label [for]="signInKeys.Password">
-      {{ 'Auth.Password' | translate }}
-    </app-label>
-
-    <app-text-input
-      [classes]="getStateClasses(signInKeys.Password)"
-      [formControlName]="signInKeys.Password"
-      [id]="signInKeys.Password"
-    ></app-text-input>
-
-    <app-error-message *ngIf="hasError(signInKeys.Password)">
-      {{ getErrorMessage(signInKeys.Password) }}
-    </app-error-message>
-  </div>
-
-  <app-button [disabled]="isSubmittable" type="submit">
+  <app-button class="submit-button" [disabled]="isSubmittable" type="submit">
     {{ 'Auth.Submit' | translate }}
   </app-button>
 </form>

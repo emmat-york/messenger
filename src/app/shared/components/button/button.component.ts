@@ -1,15 +1,24 @@
-import { Component, Input } from '@angular/core';
-import { ButtonType, ButtonVariants } from './interfaces/button.interfaces';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ButtonType, ButtonVariant } from './interfaces/button.interfaces';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-button',
   standalone: true,
-  template: `<button [type]="type" [disabled]="disabled">
+  template: ` <button
+    class="button"
+    [ngClass]="variant"
+    [type]="type"
+    [disabled]="disabled"
+  >
     <ng-content></ng-content>
   </button>`,
+  styleUrls: ['button.component.scss'],
+  imports: [NgClass],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonComponent {
   @Input() type: ButtonType = 'button';
-  @Input() variant: ButtonVariants = 'secondary';
+  @Input() variant: ButtonVariant = 'primary';
   @Input() disabled = false;
 }

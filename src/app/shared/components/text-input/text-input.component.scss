@@ -1,26 +1,32 @@
+@use 'src/assets/styles/variables';
+
 :host {
   display: block;
+  width: 100%;
 }
 
 .text-input {
+  display: block;
+  height: 36px;
+  width: 100%;
   padding: 0;
-  border: 2px solid grey;
+  border: none;
   outline: none;
+  border-bottom: 1px solid map-get(variables.$wb-palette, 20);
 
   &.valid {
-    border-color: green;
+    border-color: map-get(variables.$system-palette, success);
   }
 
   &.invalid {
-    border-color: red;
+    border-color: map-get(variables.$system-palette, error);
   }
 
   &:focus:not(&.valid, &.invalid, &:disabled) {
-    border-color: blue;
+    border-color: map-get(variables.$blue-palette, 40);
   }
 
   &:disabled {
-    border-color: darkgray;
-    background-color: silver;
+    cursor: not-allowed;
   }
 }
