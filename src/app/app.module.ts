@@ -12,10 +12,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { Languages } from './shared/enums/languages.enum';
 import { RouterOutlet } from '@angular/router';
 
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
-}
-
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -28,7 +24,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
+        useFactory: (http: HttpClient) => new TranslateHttpLoader(http),
         deps: [HttpClient],
       },
       defaultLanguage: Languages.En,
