@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { AuthApiService } from '../../shared/services/api/auth.service';
+import { AuthApiService } from '../../shared/services/api/auth/auth-api.service';
 import { map, switchMap } from 'rxjs';
 import { SignInKeys } from '../../pages/sign-in/enums/sign-in.enums';
 import * as actions from '../actions/auth.actions';
