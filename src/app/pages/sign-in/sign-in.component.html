@@ -6,32 +6,32 @@
       {{ errorMessage }}
     </app-error-message>
 
-    <div class="control-container">
+    <div class="control">
       <app-label class="label" [for]="signInKeys.Login">
         {{ 'Auth.Login' | translate }}
       </app-label>
 
-      <app-text-input
+      <app-input
         [classes]="getStateClasses(signInKeys.Login)"
         [formControlName]="signInKeys.Login"
         [id]="signInKeys.Login"
-      ></app-text-input>
+      ></app-input>
 
       <app-error-message *ngIf="hasError(signInKeys.Login)">
         {{ getErrorMessage(signInKeys.Login) }}
       </app-error-message>
     </div>
 
-    <div class="control-container">
+    <div class="control">
       <app-label class="label" [for]="signInKeys.Password">
         {{ 'Auth.Password' | translate }}
       </app-label>
 
-      <app-text-input
+      <app-input
         [classes]="getStateClasses(signInKeys.Password)"
         [formControlName]="signInKeys.Password"
         [id]="signInKeys.Password"
-      ></app-text-input>
+      ></app-input>
 
       <app-error-message *ngIf="hasError(signInKeys.Password)">
         {{ getErrorMessage(signInKeys.Password) }}

@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { SignInKeys } from './enums/sign-in.enums';
-import { TextInputComponent } from '../../shared/components/text-input/text-input.component';
+import { InputComponent } from '../../shared/components/form/input/input.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { LabelComponent } from '../../shared/components/label/label.component';
-import { ErrorMessageComponent } from '../../shared/components/error-message/error-message.component';
+import { LabelComponent } from '../../shared/components/form/label/label.component';
+import { ErrorMessageComponent } from '../../shared/components/form/error-message/error-message.component';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { AuthFacade } from '../../shared/services/facade/auth.facade';
 import { FormExtension } from '../../shared/utils/form-extension/form-extension.util';
@@ -23,7 +23,7 @@ import { ButtonComponent } from '../../shared/components/button/button.component
   styleUrls: ['sign-in.component.scss'],
   imports: [
     ReactiveFormsModule,
-    TextInputComponent,
+    InputComponent,
     TranslateModule,
     LabelComponent,
     ErrorMessageComponent,

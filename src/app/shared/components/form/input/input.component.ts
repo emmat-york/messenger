@@ -3,21 +3,21 @@ import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/f
 import { NgClass } from '@angular/common';
 
 @Component({
-  selector: 'app-text-input',
+  selector: 'app-input',
   standalone: true,
-  templateUrl: 'text-input.component.html',
-  styleUrls: ['text-input.component.scss'],
+  templateUrl: 'input.component.html',
+  styleUrls: ['input.component.scss'],
   imports: [FormsModule, NgClass],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: TextInputComponent,
+      useExisting: InputComponent,
       multi: true,
     },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TextInputComponent implements ControlValueAccessor {
+export class InputComponent implements ControlValueAccessor {
   @Input() id!: string;
   @Input() classes!: string | string[] | Record<string, boolean> | null;
   value = '';
