@@ -11,6 +11,7 @@ import { Languages } from '../../enums/languages.enum';
 import { TranslateService } from '@ngx-translate/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Option } from '../dropdown/interfaces/dropdown.interfaces';
+import { distinctUntilChanged } from 'rxjs';
 
 @Component({
   selector: 'app-language-switcher',
@@ -23,11 +24,11 @@ export class LanguageSwitcherComponent implements OnInit {
   control = new FormControl(this.translate.currentLang);
   options: Option[] = [
     {
-      title: 'English',
+      title: 'Languages.English',
       value: Languages.En,
     },
     {
-      title: 'Russian',
+      title: 'Languages.Russian',
       value: Languages.Ru,
     },
   ];
@@ -43,7 +44,7 @@ export class LanguageSwitcherComponent implements OnInit {
 
   private subscribeToLanguageChanges(): void {
     this.control.valueChanges
-      .pipe(takeUntilDestroyed(this.destroyRef))
+      .pipe(distinctUntilChanged(), takeUntilDestroyed(this.destroyRef))
       .subscribe(language => {
         this.translate.use(language || Languages.En);
       });

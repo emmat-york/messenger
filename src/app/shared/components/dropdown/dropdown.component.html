@@ -6,7 +6,7 @@
     (click)="onDropdownClick()"
     (blur)="onDropdownBlur()"
   >
-    <span class="value">{{ 'Languages.' + selectedValue | translate }}</span>
+    <span class="value">{{ selectedValue | translate }}</span>
     <img
       [class.expanded]="isDropdownShown"
       [src]="icon.ExpandMore | appIcon"
@@ -16,7 +16,7 @@
 
   <ul class="option-list" *ngIf="isDropdownShown">
     <li class="option" *ngFor="let option of options" (click)="onOptionClick(option)">
-      {{ 'Languages.' + option.title | translate }}
+      {{ option.title | translate }}
     </li>
   </ul>
 </section>
