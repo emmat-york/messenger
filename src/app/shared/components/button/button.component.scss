@@ -4,13 +4,6 @@
   width: 100%;
   padding: 8px 16px;
   font-family: variables.$montserrat;
-  border: none;
-  outline: none;
-  cursor: pointer;
-
-  &:disabled {
-    cursor: not-allowed;
-  }
 }
 
 .primary {
@@ -23,7 +16,6 @@
 
   &:disabled {
     background-color: map-get(variables.$wb-palette, 20);
-    cursor: not-allowed;
   }
 }
 
@@ -37,6 +29,5 @@
 
   &:disabled {
     background-color: map-get(variables.$blue-palette, 20);
-    cursor: not-allowed;
   }
 }

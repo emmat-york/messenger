@@ -1,9 +1,7 @@
 <form class="form-group" [formGroup]="formGroup" (ngSubmit)="onSignIn()">
   <header class="header">
     <app-language-switcher></app-language-switcher>
-
     <h1>{{ 'Auth.SignIn' | translate }}</h1>
-
     <app-button variant="secondary" routerLink="/sign-up">
       {{ 'Auth.SignUp' | translate }}
     </app-button>
@@ -47,7 +45,7 @@
     </div>
   </div>
 
-  <app-button class="submit-button" [disabled]="isSubmittable" type="submit">
+  <app-button class="submit-button" [disabled]="!isSubmittable" type="submit">
     {{ 'Auth.Submit' | translate }}
   </app-button>
 </form>

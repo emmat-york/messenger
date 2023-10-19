@@ -5,4 +5,5 @@ export enum Icon {
   LogOut = 'logout',
   Search = 'search',
   Settings = 'settings',
+  ExpandMore = 'expand-more',
 }

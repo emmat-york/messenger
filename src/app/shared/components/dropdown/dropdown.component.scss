@@ -1,7 +1,41 @@
-.dropdown-button {
+@use 'src/assets/styles/variables';
 
+:host {
+  position: relative;
+  display: inline-block;
+  color: map-get(variables.$wb-palette, 50);
+}
+
+.dropdown-button {
+  display: flex;
+  align-items: center;
+  padding: 8px 10px 8px 16px;
+  border: 1px solid map-get(variables.$wb-palette, 20);
+}
+
+.value {
+  margin-right: 10px;
+  font-family: variables.$montserrat;
+  color: inherit;
+}
+
+.expanded {
+  rotate: 180deg;
+}
+
+.option-list {
+  position: absolute;
+  width: 100%;
+  border: 1px solid map-get(variables.$wb-palette, 20);
 }
 
 .option {
+  padding: 2px 0;
+  text-align: center;
+  border-bottom: 1px solid map-get(variables.$wb-palette, 20);
+  cursor: pointer;
 
+  &:last-child {
+    border-bottom: none;
+  }
 }

@@ -4,6 +4,9 @@ import { NgForOf, NgIf } from '@angular/common';
 import { ClickOutsideDirective } from '../../directives/click-outside/click-outside.directive';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Option } from './interfaces/dropdown.interfaces';
+import { Icon } from '../../enums/icons.enum';
+import { IconPipe } from '../../pipes/icon/icon.pipe';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dropdown',
@@ -17,7 +20,7 @@ import { Option } from './interfaces/dropdown.interfaces';
       multi: true,
     },
   ],
-  imports: [NgIf, NgForOf, ClickOutsideDirective],
+  imports: [NgIf, NgForOf, ClickOutsideDirective, IconPipe, TranslateModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DropdownComponent implements ControlValueAccessor, OnInit {
@@ -27,6 +30,7 @@ export class DropdownComponent implements ControlValueAccessor, OnInit {
   selectedValue = '';
   isDropdownShown = false;
   disabled = false;
+  icon = Icon;
 
   onChange(value: string): void {}
   onBlur(): void {}

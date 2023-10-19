@@ -8,9 +8,13 @@
   },
   "Validation": {
     "required": "This field is required",
-    "minlength": "Min length must be greater than {{minPasswordLength}}",
+    "minlength": "Min length must be greater than {{minlength}}",
     "email": "Incorrect email",
     "password": "Incorrect password",
     "unknown": "Unknown error"
+  },
+  "Languages": {
+    "English": "English",
+    "Russian": "Russian"
   }
 }

@@ -12,7 +12,7 @@ export class FormExtension<FormKeys extends string> {
   protected destroyRef = inject(DestroyRef);
 
   protected get isSubmittable(): boolean {
-    return this.formGroup.valid || this.formGroup.enabled;
+    return this.formGroup.valid && this.formGroup.enabled;
   }
 
   protected getControl(controlName: FormKeys): AbstractControl {
@@ -37,11 +37,11 @@ export class FormExtension<FormKeys extends string> {
   protected getErrorMessage(controlName: FormKeys): string | null {
     const control = this.getControl(controlName);
 
-    if (control.valid) {
+    if (!control.errors) {
       return null;
     }
 
-    const errorKey = Object.keys(control.errors || {})[0] as ValidatorKeys;
+    const errorKey = Object.keys(control.errors)[0] as ValidatorKeys;
     return this.errorState[controlName][errorKey] || 'Unknown error';
   }
 }
