@@ -50,6 +50,7 @@ export class DropdownComponent implements ControlValueAccessor, OnInit {
   onOptionClick(option: Option): void {
     this.onChange(option.value);
     this.selectedValue = option.title;
+    this.isDropdownShown = false;
   }
 
   onDropdownBlur(): void {

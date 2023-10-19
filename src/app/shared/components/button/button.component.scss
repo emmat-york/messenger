@@ -1,7 +1,10 @@
 @use 'src/assets/styles/variables';
 
+:host {
+  display: inline-block;
+}
+
 .button {
-  width: 100%;
   padding: 8px 16px;
   font-family: variables.$montserrat;
 }
@@ -29,5 +32,18 @@
 
   &:disabled {
     background-color: map-get(variables.$blue-palette, 20);
+  }
+}
+
+.tertiary {
+  color: map-get(variables.$blue-palette, 30);
+  text-decoration: underline;
+
+  &:hover:not(&:disabled) {
+    color: map-get(variables.$blue-palette, 20);
+  }
+
+  &:disabled {
+    color: map-get(variables.$wb-palette, 40);
   }
 }

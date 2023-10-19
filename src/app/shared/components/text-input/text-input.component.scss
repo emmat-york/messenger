@@ -12,7 +12,7 @@
   padding: 0;
   border: none;
   outline: none;
-  border-bottom: 1px solid map-get(variables.$wb-palette, 20);
+  border-bottom: 1.5px solid map-get(variables.$wb-palette, 20);
 
   &.valid {
     border-color: map-get(variables.$system-palette, success);

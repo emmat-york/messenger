@@ -1,11 +1,5 @@
 <form class="form-group" [formGroup]="formGroup" (ngSubmit)="onSignIn()">
-  <header class="header">
-    <app-language-switcher></app-language-switcher>
-    <h1>{{ 'Auth.SignIn' | translate }}</h1>
-    <app-button variant="secondary" routerLink="/sign-up">
-      {{ 'Auth.SignUp' | translate }}
-    </app-button>
-  </header>
+  <h1>{{ 'Auth.SignIn' | translate }}</h1>
 
   <div class="controls">
     <app-error-message *ngIf="errorMessage$ | async as errorMessage">
@@ -43,9 +37,15 @@
         {{ getErrorMessage(signInKeys.Password) }}
       </app-error-message>
     </div>
+
+    <app-button class="sign-up-button" variant="tertiary" routerLink="/sign-up">
+      {{ 'Auth.SignUp' | translate }}
+    </app-button>
   </div>
 
-  <app-button class="submit-button" [disabled]="!isSubmittable" type="submit">
+  <app-button [disabled]="!isSubmittable" type="submit">
     {{ 'Auth.Submit' | translate }}
   </app-button>
 </form>
+
+<app-language-switcher class="language-switcher"></app-language-switcher>
