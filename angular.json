@@ -25,7 +25,12 @@
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/styles.scss"],
-            "scripts": []
+            "fileReplacements": [
+              {
+                "replace": "src/environments/environment.dev.ts",
+                "replaceWith": "src/environments/environment.prod.ts"
+              }
+            ]
           },
           "configurations": {
             "production": {

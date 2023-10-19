@@ -5,12 +5,12 @@ import {
   Inject,
   OnInit,
 } from '@angular/core';
-import { DropdownComponent } from '../dropdown/dropdown.component';
+import { DropdownComponent } from '../form/dropdown/dropdown.component';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Languages } from '../../enums/languages.enum';
 import { TranslateService } from '@ngx-translate/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Option } from '../dropdown/interfaces/dropdown.interfaces';
+import { Option } from '../form/dropdown/interfaces/dropdown.interfaces';
 import { distinctUntilChanged } from 'rxjs';
 
 @Component({

@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { DEFAULT_INDEX } from './constants/dropdown.constants';
 import { NgForOf, NgIf } from '@angular/common';
-import { ClickOutsideDirective } from '../../directives/click-outside/click-outside.directive';
+import { ClickOutsideDirective } from '../../../directives/click-outside/click-outside.directive';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Option } from './interfaces/dropdown.interfaces';
-import { Icon } from '../../enums/icons.enum';
-import { IconPipe } from '../../pipes/icon/icon.pipe';
+import { Icon } from '../../../enums/icons.enum';
+import { IconPipe } from '../../../pipes/icon/icon.pipe';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
