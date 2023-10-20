@@ -1,4 +1,5 @@
 import { FileExtensions } from '../../enums/file-extensions.enum';
+import { Folders } from '../../pipes/icon/interfaces/icon.interfaces';
 
 export class SrcBuilder {
   private _folderOne = '';
@@ -8,29 +9,29 @@ export class SrcBuilder {
   private _folderFive = '';
   private _name = '';
   private _extension = '.svg';
-  private readonly _baseFolder = 'assets/';
+  private readonly _baseFolder = 'assets/icons/';
 
-  setFolderOne(folder: string): SrcBuilder {
+  setFolderOne(folder: Folders): SrcBuilder {
     this._folderOne = folder + '/';
     return this;
   }
 
-  setFolderTwo(folder: string): SrcBuilder {
+  setFolderTwo(folder: Folders): SrcBuilder {
     this._folderTwo = folder + '/';
     return this;
   }
 
-  setFolderThree(folder: string): SrcBuilder {
+  setFolderThree(folder: Folders): SrcBuilder {
     this._folderThree = folder + '/';
     return this;
   }
 
-  setFolderFour(folder: string): SrcBuilder {
+  setFolderFour(folder: Folders): SrcBuilder {
     this._folderFour = folder + '/';
     return this;
   }
 
-  setFolderFive(folder: string): SrcBuilder {
+  setFolderFive(folder: Folders): SrcBuilder {
     this._folderFive = folder + '/';
     return this;
   }

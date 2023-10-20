@@ -1,15 +1,15 @@
 <header class="header">
   <ng-container [ngSwitch]="type">
     <ng-template ngSwitchCase="success">
-      <img [src]="icon.Close | appIcon" alt="success" />
+      <img [src]="icon.Success | appIcon" alt="success" />
     </ng-template>
 
     <ng-template ngSwitchCase="warning">
-      <img [src]="icon.Close | appIcon" alt="warning" />
+      <img [src]="icon.Warning | appIcon" alt="warning" />
     </ng-template>
 
     <ng-template ngSwitchCase="error">
-      <img [src]="icon.Close | appIcon" alt="error" />
+      <img [src]="icon.Error | appIcon" alt="error" />
     </ng-template>
   </ng-container>
 

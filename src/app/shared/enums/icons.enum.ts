@@ -6,4 +6,7 @@ export enum Icon {
   Search = 'search',
   Settings = 'settings',
   ExpandMore = 'expand-more',
+  Success = 'success',
+  Warning = 'warning',
+  Error = 'error',
 }
