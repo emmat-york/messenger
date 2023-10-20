@@ -15,7 +15,6 @@ import { MIN_PASSWORD_LENGTH } from '../../shared/constants/auth.constants';
 import { LanguageSwitcherComponent } from '../../shared/components/language-switcher/language-switcher.component';
 import { RouterLink } from '@angular/router';
 import { ButtonComponent } from '../../shared/components/button/button.component';
-import { NotificationService } from '../../shared/services/app/notification/notification.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -43,20 +42,13 @@ export class SignInComponent
   errorMessage$ = this.authFacade.errorMessage$;
   signInKeys = SignInKeys;
 
-  constructor(
-    private authFacade: AuthFacade,
-    private notification: NotificationService,
-  ) {
+  constructor(private authFacade: AuthFacade) {
     super();
   }
 
   ngOnInit(): void {
     this.setErrorState();
     this.initFormGroup();
-
-    this.notification.showSuccess(
-      'sdfasdfasdfasd as sd as dasd fasdf dsaf asdfasdfasdasdfasdfasdf',
-    );
   }
 
   ngOnDestroy(): void {
