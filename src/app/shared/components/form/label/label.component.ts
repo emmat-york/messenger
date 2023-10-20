@@ -4,7 +4,6 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   selector: 'app-label',
   standalone: true,
   template: '<label [for]="for"><ng-content></ng-content></label>',
-  styles: [''],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LabelComponent {

@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'app-error-message',
   standalone: true,
   template: '<ng-content></ng-content>',
-  styles: [':host { color: red }'],
+  styleUrls: ['error-message.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ErrorMessageComponent {}

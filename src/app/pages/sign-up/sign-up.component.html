@@ -1,1 +1,51 @@
-<p>sign up works</p>
+<form class="form-group" [formGroup]="formGroup" (ngSubmit)="onSignUp()">
+  <h1>{{ 'Auth.SignUp' | translate }}</h1>
+
+  <div class="controls">
+    <app-error-message *ngIf="errorMessage$ | async as errorMessage">
+      {{ errorMessage }}
+    </app-error-message>
+
+    <div class="control">
+      <app-label class="label" [for]="signUpKeys.Login">
+        {{ 'Auth.Login' | translate }}
+      </app-label>
+
+      <app-input
+        [classes]="getStateClasses(signUpKeys.Login)"
+        [formControlName]="signUpKeys.Login"
+        [id]="signUpKeys.Login"
+      ></app-input>
+
+      <app-error-message *ngIf="hasError(signUpKeys.Login)">
+        {{ getErrorMessage(signUpKeys.Login) }}
+      </app-error-message>
+    </div>
+
+    <div class="control">
+      <app-label class="label" [for]="signUpKeys.Password">
+        {{ 'Auth.Password' | translate }}
+      </app-label>
+
+      <app-input
+        [classes]="getStateClasses(signUpKeys.Password)"
+        [formControlName]="signUpKeys.Password"
+        [id]="signUpKeys.Password"
+      ></app-input>
+
+      <app-error-message *ngIf="hasError(signUpKeys.Password)">
+        {{ getErrorMessage(signUpKeys.Password) }}
+      </app-error-message>
+    </div>
+
+    <app-button class="sign-up-button" variant="tertiary" routerLink="/sign-in">
+      {{ 'Auth.SignIn' | translate }}
+    </app-button>
+  </div>
+
+  <app-button [disabled]="!isSubmittable" type="submit">
+    {{ 'Auth.Submit' | translate }}
+  </app-button>
+</form>
+
+<app-language-switcher class="language-switcher"></app-language-switcher>

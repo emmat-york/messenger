@@ -1,0 +1,5 @@
+@use '../../../../../assets/styles/variables';
+
+:host {
+  color: map-get(variables.$system-palette, error);
+}
