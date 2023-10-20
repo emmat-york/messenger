@@ -17,13 +17,10 @@ export class IconPipe implements PipeTransform {
         .setExtension(FileExtensions.Svg).path;
     }
 
-    const foldersState: Record<Folders, string> = {
-      flags: new SrcBuilder()
-        .setFolderOne('flags')
-        .setName(name)
-        .setExtension(FileExtensions.Svg).path,
-    } as Record<Folders, string>;
+    const foldersState: Record<Folders, SrcBuilder> = {
+      flags: new SrcBuilder().setFolderOne('flags').setExtension(FileExtensions.Svg),
+    } as Record<Folders, SrcBuilder>;
 
-    return foldersState[folder];
+    return foldersState[folder].setName(name).path;
   }
 }
