@@ -1,0 +1,35 @@
+@use 'src/assets/styles/variables';
+
+:host {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  padding: 8px 16px;
+  border: 1px solid map-get(variables.$wb-palette, 20);
+}
+
+.close-button {
+  padding: 0;
+  margin-left: auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.success {
+  color: map-get(variables.$system-palette, success);
+}
+
+.warning {
+  color: map-get(variables.$system-palette, warning);
+}
+
+.error {
+  color: map-get(variables.$system-palette, error);
+}

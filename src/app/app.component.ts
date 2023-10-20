@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  ViewContainerRef,
+} from '@angular/core';
+import { NotificationService } from './shared/services/app/notification/notification.service';
 
 @Component({
   selector: 'app-root',
@@ -13,4 +19,17 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {}
+export class AppComponent implements AfterViewInit {
+  constructor(
+    private viewContainerRef: ViewContainerRef,
+    private notificationService: NotificationService,
+  ) {}
+
+  ngAfterViewInit(): void {
+    this.setViewRefForNotificationService();
+  }
+
+  private setViewRefForNotificationService(): void {
+    this.notificationService.viewRef = this.viewContainerRef;
+  }
+}
