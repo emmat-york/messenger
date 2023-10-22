@@ -1,7 +1,8 @@
 import { Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
-import { AuthFacade } from '../services/facade/auth.facade';
+import { AuthFacade } from '../../shared/services/facade/auth.facade';
 import { inject } from '@angular/core';
+import { AppRoutes } from '../enums/routing.enums';
 
 export const AuthGuardFn = (): Observable<boolean> => {
   const authFacade = inject(AuthFacade);
@@ -13,7 +14,7 @@ export const AuthGuardFn = (): Observable<boolean> => {
         return true;
       }
 
-      router.navigate(['sign-in']);
+      router.navigate([AppRoutes.signIn]);
       return false;
     }),
   );
