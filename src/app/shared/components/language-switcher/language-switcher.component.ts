@@ -46,7 +46,11 @@ export class LanguageSwitcherComponent implements OnInit {
     this.control.valueChanges
       .pipe(distinctUntilChanged(), takeUntilDestroyed(this.destroyRef))
       .subscribe(language => {
-        this.translate.use(language || Languages.En);
+        if (!language) {
+          return;
+        }
+
+        this.translate.use(language);
       });
   }
 }

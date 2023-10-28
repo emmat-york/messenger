@@ -11,6 +11,7 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { Languages } from './shared/enums/languages.enum';
 import { RouterOutlet } from '@angular/router';
+import { NotificationService } from './shared/services/app/notification/notification.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -39,6 +40,7 @@ import { RouterOutlet } from '@angular/router';
       multi: true,
       deps: [TranslateService],
     },
+    NotificationService,
   ],
   bootstrap: [AppComponent],
 })

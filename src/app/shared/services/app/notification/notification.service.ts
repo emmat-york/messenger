@@ -2,18 +2,16 @@ import { Injectable, ViewContainerRef } from '@angular/core';
 import { NotificationComponent } from '../../../components/notification/notification.component';
 import { ModalConfig } from '../../../components/notification/interfaces/notification.interfaces';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class NotificationService {
-  private _viewRef!: ViewContainerRef;
-  private timeOut = 50000;
+  private _viewRef: ViewContainerRef | undefined;
+  private timeOut = 5000;
 
   set viewRef(ref: ViewContainerRef) {
     this._viewRef = ref;
   }
 
-  get viewRef(): ViewContainerRef {
+  get viewRef(): ViewContainerRef | undefined {
     return this._viewRef;
   }
 
@@ -30,6 +28,12 @@ export class NotificationService {
   }
 
   private openModal({ message, type }: ModalConfig): void {
+    if (!this.viewRef) {
+      throw new Error(
+        'Please, first of all set viewRef in order to use NotificationService!',
+      );
+    }
+
     const modalRef =
       this.viewRef.createComponent<NotificationComponent>(NotificationComponent);
 
