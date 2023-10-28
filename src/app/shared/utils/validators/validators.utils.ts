@@ -20,17 +20,13 @@ export abstract class CustomValidators {
 
       if (!value.match(/[0-9]/)) {
         return error;
-      }
-
-      if (!value.match(/[A-Z]/)) {
+      } else if (!value.match(/[A-Z]/)) {
         return error;
-      }
-
-      if (!value.match(/[a-z]/)) {
+      } else if (!value.match(/[a-z]/)) {
         return error;
-      }
-
-      if (!value.match(/[~\`\!\@\#\$\%\^\&\*\(\)\-\_\+\=\{\}\|\;\:\"\<\>\,\.\?\/\\]/)) {
+      } else if (
+        !value.match(/[~\`\!\@\#\$\%\^\&\*\(\)\-\_\+\=\{\}\|\;\:\"\<\>\,\.\?\/\\]/)
+      ) {
         return error;
       }
 

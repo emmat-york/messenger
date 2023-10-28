@@ -7,10 +7,9 @@ import { LabelComponent } from '../../shared/components/form/label/label.compone
 import { ErrorMessageComponent } from '../../shared/components/form/error-message/error-message.component';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { AuthFacade } from '../../shared/services/facade/auth.facade';
-import { FormExtension } from '../../shared/utils/form-extension/form-extension.util';
-import { CustomValidators } from '../../shared/utils/validators/validators.util';
+import { FormExtension } from '../../shared/utils/form-extension/form-extension.utils';
+import { CustomValidators } from '../../shared/utils/validators/validators.utils';
 import { ValidatorKeys } from '../../shared/enums/validator-keys.enum';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MIN_PASSWORD_LENGTH } from '../../shared/constants/auth.constants';
 import { LanguageSwitcherComponent } from '../../shared/components/language-switcher/language-switcher.component';
 import { RouterLink } from '@angular/router';
@@ -47,8 +46,8 @@ export class SignInComponent
   }
 
   ngOnInit(): void {
-    this.setErrorState();
     this.initFormGroup();
+    this.setErrorState();
   }
 
   ngOnDestroy(): void {
@@ -78,29 +77,18 @@ export class SignInComponent
   }
 
   private setErrorState(): void {
-    this.translate
-      .stream(
-        [
-          'Validation.required',
-          'Validation.minlength',
-          'Validation.password',
-          'Validation.email',
-        ],
-        { minlength: MIN_PASSWORD_LENGTH },
-      )
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(state => {
-        this.errorState = {
-          [SignInKeys.Login]: {
-            [ValidatorKeys.required]: state['Validation.required'],
-            [ValidatorKeys.email]: state['Validation.email'],
-          },
-          [SignInKeys.Password]: {
-            [ValidatorKeys.required]: state['Validation.required'],
-            [ValidatorKeys.password]: state['Validation.password'],
-            [ValidatorKeys.minlength]: state['Validation.minlength'],
-          },
-        };
-      });
+    this.errorState = {
+      [SignInKeys.Login]: {
+        [ValidatorKeys.required]: this.translate.instant('Validation.required'),
+        [ValidatorKeys.email]: this.translate.instant('Validation.email'),
+      },
+      [SignInKeys.Password]: {
+        [ValidatorKeys.required]: this.translate.instant('Validation.required'),
+        [ValidatorKeys.password]: this.translate.instant('Validation.password'),
+        [ValidatorKeys.minlength]: this.translate.instant('Validation.minlength', {
+          [ValidatorKeys.minlength]: MIN_PASSWORD_LENGTH,
+        }),
+      },
+    };
   }
 }

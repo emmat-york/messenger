@@ -5,10 +5,10 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-not-found',
   standalone: true,
-  template: ` <div class="not-found">
+  template: ` <section class="not-found">
     <h1>Page not found</h1>
     <app-button variant="tertiary" routerLink="/">Get back</app-button>
-  </div>`,
+  </section>`,
   styles: [
     `
       :host {

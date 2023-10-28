@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Icon } from '../../enums/icons.enum';
-import { SrcBuilder } from '../../utils/src-builder/src-builder.util';
+import { SrcBuilder } from '../../utils/src-builder/src-builder.utils';
 import { FileExtensions } from '../../enums/file-extensions.enum';
 import { Folders } from './interfaces/icon.interfaces';
 

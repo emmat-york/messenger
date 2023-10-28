@@ -3,12 +3,14 @@ import { DestroyRef, inject } from '@angular/core';
 import { ValidatorKeys } from '../../enums/validator-keys.enum';
 import { ControlStateClasses, ErrorState } from './interfaces/form-extension.interfaces';
 import { TranslateService } from '@ngx-translate/core';
+import { FIRST_ERROR_INDEX } from '../../constants/auth.constants';
 
 export class FormExtension<FormKeys extends string> {
   protected formGroup!: FormGroup;
   protected errorState!: ErrorState<FormKeys>;
-  protected translate = inject(TranslateService);
+
   protected formBuilder = inject(FormBuilder);
+  protected translate = inject(TranslateService);
   protected destroyRef = inject(DestroyRef);
 
   protected get isSubmittable(): boolean {
@@ -41,7 +43,7 @@ export class FormExtension<FormKeys extends string> {
       return null;
     }
 
-    const errorKey = Object.keys(control.errors)[0] as ValidatorKeys;
+    const errorKey = Object.keys(control.errors)[FIRST_ERROR_INDEX] as ValidatorKeys;
     return this.errorState[controlName][errorKey] || 'Unknown error';
   }
 }
