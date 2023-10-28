@@ -7,7 +7,7 @@ import { FIRST_ERROR_INDEX } from '../../constants/auth.constants';
 
 export class FormExtension<FormKeys extends string> {
   protected formGroup!: FormGroup;
-  protected errorState!: ErrorState<FormKeys>;
+  protected errorState: ErrorState<FormKeys> | undefined;
 
   protected formBuilder = inject(FormBuilder);
   protected translate = inject(TranslateService);
@@ -37,6 +37,12 @@ export class FormExtension<FormKeys extends string> {
   }
 
   protected getErrorMessage(controlName: FormKeys): string | null {
+    if (!this.errorState) {
+      throw new Error(
+        'In order to use getErrorMessage method you gotta set errorState property!',
+      );
+    }
+
     const control = this.getControl(controlName);
 
     if (!control.errors) {
