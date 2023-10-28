@@ -30,7 +30,7 @@ export class NotificationService {
   private openModal({ message, type }: ModalConfig): void {
     if (!this.viewRef) {
       throw new Error(
-        'Please, first of all set viewRef in order to use NotificationService!',
+        "In order to use NotificationService you gotta set 'viewRef' property!",
       );
     }
 

@@ -39,7 +39,7 @@ export class FormExtension<FormKeys extends string> {
   protected getErrorMessage(controlName: FormKeys): string | null {
     if (!this.errorState) {
       throw new Error(
-        'In order to use getErrorMessage method you gotta set errorState property!',
+        "In order to use 'getErrorMessage' method you gotta set 'errorState' property!",
       );
     }
 
