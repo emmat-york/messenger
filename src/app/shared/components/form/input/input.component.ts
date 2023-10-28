@@ -20,6 +20,8 @@ import { NgClass } from '@angular/common';
 export class InputComponent implements ControlValueAccessor {
   @Input() id!: string;
   @Input() classes!: string | string[] | Record<string, boolean> | null;
+  @Input() placeholder = '';
+
   value = '';
   disabled = false;
 

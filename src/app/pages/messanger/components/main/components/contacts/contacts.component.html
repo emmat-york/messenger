@@ -1,1 +1,14 @@
-<p>contacts works</p>
+<app-input
+  class="input"
+  [formControl]="filterControl"
+  placeholder="Search..."
+></app-input>
+
+<ul class="contact-list">
+  <li
+    class="contact"
+    *ngFor="let contact of contacts | appContactsFilter: filterControl.value"
+  >
+    <app-contact [contact]="contact"></app-contact>
+  </li>
+</ul>

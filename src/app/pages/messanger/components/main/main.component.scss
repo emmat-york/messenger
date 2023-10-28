@@ -1,3 +1,19 @@
+@use 'src/assets/styles/variables';
+
+$chat-block-width-percents: 70%;
+
 :host {
-  display: block;
+  display: flex;
+  height: 100%;
+}
+
+.contacts {
+  width: calc(100% - $chat-block-width-percents);
+  padding: 20px;
+  border-right: 1px solid map-get(variables.$wb-palette, 20);
+}
+
+.chat-block {
+  padding: 20px;
+  width: $chat-block-width-percents;
 }
