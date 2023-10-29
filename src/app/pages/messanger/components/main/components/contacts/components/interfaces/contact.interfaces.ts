@@ -8,5 +8,5 @@ export interface Contact {
 export interface Message {
   id: number;
   message: string;
-  date: string;
+  date: Date;
 }

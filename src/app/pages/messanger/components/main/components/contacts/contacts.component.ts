@@ -25,10 +25,128 @@ export class ContactsComponent {
     {
       id: 1,
       userName: 'popSmoke 1',
-      avatar: '',
-      messages: [{ id: 1, message: 'message', date: '2020-01-01' }],
+      avatar: 'assets/icons/system/avatar.svg',
+      messages: [{ id: 1, message: 'message', date: new Date() }],
+    },
+    {
+      id: 1,
+      userName: 'popSmoke 1',
+      avatar: 'assets/icons/system/avatar.svg',
+      messages: [{ id: 1, message: 'message', date: new Date() }],
+    },
+    {
+      id: 1,
+      userName: 'popSmoke 1',
+      avatar: 'assets/icons/system/avatar.svg',
+      messages: [{ id: 1, message: 'message', date: new Date() }],
+    },
+    {
+      id: 1,
+      userName: 'popSmoke 1',
+      avatar: 'assets/icons/system/avatar.svg',
+      messages: [{ id: 1, message: 'message', date: new Date() }],
+    },
+    {
+      id: 1,
+      userName: 'popSmoke 1',
+      avatar: 'assets/icons/system/avatar.svg',
+      messages: [{ id: 1, message: 'message', date: new Date() }],
+    },
+    {
+      id: 1,
+      userName: 'popSmoke 1',
+      avatar: 'assets/icons/system/avatar.svg',
+      messages: [{ id: 1, message: 'message', date: new Date() }],
+    },
+    {
+      id: 1,
+      userName: 'popSmoke 1',
+      avatar: 'assets/icons/system/avatar.svg',
+      messages: [{ id: 1, message: 'message', date: new Date() }],
+    },
+    {
+      id: 1,
+      userName: 'popSmoke 1',
+      avatar: 'assets/icons/system/avatar.svg',
+      messages: [{ id: 1, message: 'message', date: new Date() }],
+    },
+    {
+      id: 1,
+      userName: 'popSmoke 1',
+      avatar: 'assets/icons/system/avatar.svg',
+      messages: [{ id: 1, message: 'message', date: new Date() }],
+    },
+    {
+      id: 1,
+      userName: 'popSmoke 1',
+      avatar: 'assets/icons/system/avatar.svg',
+      messages: [{ id: 1, message: 'message', date: new Date() }],
+    },
+    {
+      id: 1,
+      userName: 'popSmoke 1',
+      avatar: 'assets/icons/system/avatar.svg',
+      messages: [{ id: 1, message: 'message', date: new Date() }],
+    },
+    {
+      id: 1,
+      userName: 'popSmoke 1',
+      avatar: 'assets/icons/system/avatar.svg',
+      messages: [{ id: 1, message: 'message', date: new Date() }],
+    },
+    {
+      id: 1,
+      userName: 'popSmoke 1',
+      avatar: 'assets/icons/system/avatar.svg',
+      messages: [{ id: 1, message: 'message', date: new Date() }],
+    },
+    {
+      id: 1,
+      userName: 'popSmoke 1',
+      avatar: 'assets/icons/system/avatar.svg',
+      messages: [{ id: 1, message: 'message', date: new Date() }],
+    },
+    {
+      id: 1,
+      userName: 'popSmoke 1',
+      avatar: 'assets/icons/system/avatar.svg',
+      messages: [{ id: 1, message: 'message', date: new Date() }],
+    },
+    {
+      id: 1,
+      userName: 'popSmoke 1',
+      avatar: 'assets/icons/system/avatar.svg',
+      messages: [{ id: 1, message: 'message', date: new Date() }],
+    },
+    {
+      id: 1,
+      userName: 'popSmoke 1',
+      avatar: 'assets/icons/system/avatar.svg',
+      messages: [{ id: 1, message: 'message', date: new Date() }],
+    },
+    {
+      id: 1,
+      userName: 'popSmoke 1',
+      avatar: 'assets/icons/system/avatar.svg',
+      messages: [{ id: 1, message: 'message', date: new Date() }],
+    },
+    {
+      id: 1,
+      userName: 'popSmoke 1',
+      avatar: 'assets/icons/system/avatar.svg',
+      messages: [{ id: 1, message: 'message', date: new Date() }],
+    },
+    {
+      id: 1,
+      userName: 'popSmoke 1',
+      avatar: 'assets/icons/system/avatar.svg',
+      messages: [{ id: 1, message: 'message', date: new Date() }],
     },
   ];
 
   filterControl = new FormControl('');
+
+  onContactSelect(id: number): void {
+    console.log(id);
+  }
 }

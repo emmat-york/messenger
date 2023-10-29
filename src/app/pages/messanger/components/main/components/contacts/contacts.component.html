@@ -9,6 +9,6 @@
     class="contact"
     *ngFor="let contact of contacts | appContactsFilter: filterControl.value"
   >
-    <app-contact [contact]="contact"></app-contact>
+    <app-contact [contact]="contact" (click)="onContactSelect(contact.id)"></app-contact>
   </li>
 </ul>

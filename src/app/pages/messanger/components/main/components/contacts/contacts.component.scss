@@ -5,11 +5,12 @@
 }
 
 .input {
-  margin-bottom: 20px;
+
 }
 
 .contact-list {
-
+  height: calc(100vh - #{variables.$header-height} - 36px);
+  overflow-y: scroll;
 }
 
 .contact {

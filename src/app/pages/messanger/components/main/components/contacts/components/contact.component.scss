@@ -1,4 +1,30 @@
+@use 'src/assets/styles/variables';
+
+$avatar-width: 48px;
+$indent: 10px;
+
 :host {
-  display: block;
+  display: flex;
   padding: 10px;
+
+  &:hover {
+    background-color: map-get(variables.$wb-palette, 20);
+    cursor: pointer;
+  }
+}
+
+.avatar {
+  margin-right: $indent;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: calc(100% - $avatar-width - $indent);
+}
+
+.top-block {
+  display: flex;
+  justify-content: space-between;
 }

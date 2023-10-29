@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Icon } from '../../enums/icons.enum';
 import { SrcBuilder } from '../../utils/src-builder/src-builder.utils';
 import { FileExtensions } from '../../enums/file-extensions.enum';
 import { Folders } from './interfaces/icon.interfaces';
@@ -9,7 +8,7 @@ import { Folders } from './interfaces/icon.interfaces';
   standalone: true,
 })
 export class IconPipe implements PipeTransform {
-  transform(name: Icon, folder?: Folders): string {
+  transform(name: string, folder?: Folders): string {
     if (!folder) {
       return new SrcBuilder()
         .setFolderOne('system')

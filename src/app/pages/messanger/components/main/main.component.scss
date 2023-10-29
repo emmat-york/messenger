@@ -1,6 +1,6 @@
 @use 'src/assets/styles/variables';
 
-$chat-block-width-percents: 70%;
+$chat-block-width: 75%;
 
 :host {
   display: flex;
@@ -8,12 +8,10 @@ $chat-block-width-percents: 70%;
 }
 
 .contacts {
-  width: calc(100% - $chat-block-width-percents);
-  padding: 20px;
+  width: calc(100% - $chat-block-width);
   border-right: 1px solid map-get(variables.$wb-palette, 20);
 }
 
 .chat-block {
-  padding: 20px;
-  width: $chat-block-width-percents;
+  width: $chat-block-width;
 }
