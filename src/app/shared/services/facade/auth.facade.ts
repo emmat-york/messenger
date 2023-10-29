@@ -8,8 +8,8 @@ import * as actions from '../../../store/actions/auth.actions';
   providedIn: 'root',
 })
 export class AuthFacade {
-  isAuth$ = this.store.select(selectors.isAuth);
   errorMessage$ = this.store.select(selectors.errorMessage);
+  isAuth$ = this.store.select(selectors.isAuth);
 
   constructor(private store: Store) {}
 
@@ -20,6 +20,8 @@ export class AuthFacade {
   signIn(credentials: AuthCredentials): void {
     this.dispatch(actions.signInRequest({ credentials }));
   }
+
+  signOut(): void {}
 
   setErrorMessage(errorMessage: string | null): void {
     this.dispatch(actions.setErrorMessage({ errorMessage }));

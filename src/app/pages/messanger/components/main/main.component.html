@@ -1,4 +1,9 @@
-<app-contacts class="contacts"></app-contacts>
+<app-contacts
+  *ngIf="contacts$ | async as contacts"
+  class="contacts"
+  [contacts]="contacts"
+  (setSelectedContactId)="setSelectedContactId($event)"
+></app-contacts>
 
 <section class="chat-block">
   <app-history></app-history>

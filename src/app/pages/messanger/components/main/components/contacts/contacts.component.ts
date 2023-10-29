@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { InputComponent } from '../../../../../../shared/components/form/input/input.component';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ContactComponent } from './components/contact.component';
@@ -21,132 +27,13 @@ import { Contact } from './components/interfaces/contact.interfaces';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactsComponent {
-  @Input() contacts: Contact[] = [
-    {
-      id: 1,
-      userName: 'popSmoke 1',
-      avatar: 'assets/icons/system/avatar.svg',
-      messages: [{ id: 1, message: 'message', date: new Date() }],
-    },
-    {
-      id: 1,
-      userName: 'popSmoke 1',
-      avatar: 'assets/icons/system/avatar.svg',
-      messages: [{ id: 1, message: 'message', date: new Date() }],
-    },
-    {
-      id: 1,
-      userName: 'popSmoke 1',
-      avatar: 'assets/icons/system/avatar.svg',
-      messages: [{ id: 1, message: 'message', date: new Date() }],
-    },
-    {
-      id: 1,
-      userName: 'popSmoke 1',
-      avatar: 'assets/icons/system/avatar.svg',
-      messages: [{ id: 1, message: 'message', date: new Date() }],
-    },
-    {
-      id: 1,
-      userName: 'popSmoke 1',
-      avatar: 'assets/icons/system/avatar.svg',
-      messages: [{ id: 1, message: 'message', date: new Date() }],
-    },
-    {
-      id: 1,
-      userName: 'popSmoke 1',
-      avatar: 'assets/icons/system/avatar.svg',
-      messages: [{ id: 1, message: 'message', date: new Date() }],
-    },
-    {
-      id: 1,
-      userName: 'popSmoke 1',
-      avatar: 'assets/icons/system/avatar.svg',
-      messages: [{ id: 1, message: 'message', date: new Date() }],
-    },
-    {
-      id: 1,
-      userName: 'popSmoke 1',
-      avatar: 'assets/icons/system/avatar.svg',
-      messages: [{ id: 1, message: 'message', date: new Date() }],
-    },
-    {
-      id: 1,
-      userName: 'popSmoke 1',
-      avatar: 'assets/icons/system/avatar.svg',
-      messages: [{ id: 1, message: 'message', date: new Date() }],
-    },
-    {
-      id: 1,
-      userName: 'popSmoke 1',
-      avatar: 'assets/icons/system/avatar.svg',
-      messages: [{ id: 1, message: 'message', date: new Date() }],
-    },
-    {
-      id: 1,
-      userName: 'popSmoke 1',
-      avatar: 'assets/icons/system/avatar.svg',
-      messages: [{ id: 1, message: 'message', date: new Date() }],
-    },
-    {
-      id: 1,
-      userName: 'popSmoke 1',
-      avatar: 'assets/icons/system/avatar.svg',
-      messages: [{ id: 1, message: 'message', date: new Date() }],
-    },
-    {
-      id: 1,
-      userName: 'popSmoke 1',
-      avatar: 'assets/icons/system/avatar.svg',
-      messages: [{ id: 1, message: 'message', date: new Date() }],
-    },
-    {
-      id: 1,
-      userName: 'popSmoke 1',
-      avatar: 'assets/icons/system/avatar.svg',
-      messages: [{ id: 1, message: 'message', date: new Date() }],
-    },
-    {
-      id: 1,
-      userName: 'popSmoke 1',
-      avatar: 'assets/icons/system/avatar.svg',
-      messages: [{ id: 1, message: 'message', date: new Date() }],
-    },
-    {
-      id: 1,
-      userName: 'popSmoke 1',
-      avatar: 'assets/icons/system/avatar.svg',
-      messages: [{ id: 1, message: 'message', date: new Date() }],
-    },
-    {
-      id: 1,
-      userName: 'popSmoke 1',
-      avatar: 'assets/icons/system/avatar.svg',
-      messages: [{ id: 1, message: 'message', date: new Date() }],
-    },
-    {
-      id: 1,
-      userName: 'popSmoke 1',
-      avatar: 'assets/icons/system/avatar.svg',
-      messages: [{ id: 1, message: 'message', date: new Date() }],
-    },
-    {
-      id: 1,
-      userName: 'popSmoke 1',
-      avatar: 'assets/icons/system/avatar.svg',
-      messages: [{ id: 1, message: 'message', date: new Date() }],
-    },
-    {
-      id: 1,
-      userName: 'popSmoke 1',
-      avatar: 'assets/icons/system/avatar.svg',
-      messages: [{ id: 1, message: 'message', date: new Date() }],
-    },
-  ];
+  @Input() contacts!: Contact[];
+
+  @Output() setSelectedContactId = new EventEmitter<number>();
 
   filterControl = new FormControl('');
 
   onContactSelect(id: number): void {
-    console.log(id);
+    this.setSelectedContactId.emit(id);
   }
 }

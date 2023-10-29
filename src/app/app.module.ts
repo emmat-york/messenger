@@ -7,11 +7,11 @@ import { EffectsModule } from '@ngrx/effects';
 import { appStore } from './store/store';
 import { AuthEffects } from './store/effects/auth.effects';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { NotificationService } from './shared/services/app/notification/notification.service';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { Languages } from './shared/enums/languages.enum';
 import { RouterOutlet } from '@angular/router';
-import { NotificationService } from './shared/services/app/notification/notification.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -37,8 +37,8 @@ import { NotificationService } from './shared/services/app/notification/notifica
       useFactory: (translate: TranslateService) => {
         return () => translate.get('Auth.SignUp');
       },
-      multi: true,
       deps: [TranslateService],
+      multi: true,
     },
     NotificationService,
   ],
