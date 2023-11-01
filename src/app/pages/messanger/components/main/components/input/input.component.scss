@@ -1,4 +1,7 @@
+@use 'src/assets/styles/variables';
+
 :host {
   display: block;
   height: 36px;
+  background-color: map-get(variables.$wb-palette, 10);
 }

@@ -1,1 +1,5 @@
-<p>history works</p>
+<ul class="message-list" *ngIf="messages">
+  <li class="message" *ngFor="let message of messages">
+    <app-message [message]="message" [avatar]="avatar"></app-message>
+  </li>
+</ul>

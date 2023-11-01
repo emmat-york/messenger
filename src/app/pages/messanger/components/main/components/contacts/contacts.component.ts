@@ -8,7 +8,7 @@ import {
 import { InputComponent } from '../../../../../../shared/components/form/input/input.component';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ContactComponent } from './components/contact.component';
-import { NgForOf } from '@angular/common';
+import { NgForOf, NgIf } from '@angular/common';
 import { ContactsFilterPipe } from './pipes/contacts-filter.pipe';
 import { Contact } from './components/interfaces/contact.interfaces';
 
@@ -23,17 +23,18 @@ import { Contact } from './components/interfaces/contact.interfaces';
     ContactComponent,
     NgForOf,
     ContactsFilterPipe,
+    NgIf,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactsComponent {
-  @Input() contacts!: Contact[];
+  @Input() contacts!: Contact[] | null;
 
-  @Output() setSelectedContactId = new EventEmitter<number>();
+  @Output() setSelectedContactId = new EventEmitter<Contact>();
 
   filterControl = new FormControl('');
 
-  onContactSelect(id: number): void {
-    this.setSelectedContactId.emit(id);
+  onContactSelect(contact: Contact): void {
+    this.setSelectedContactId.emit(contact);
   }
 }

@@ -1,6 +1,9 @@
-import { Injectable } from '@angular/core';
+import { DestroyRef, Inject, Injectable } from '@angular/core';
 import { Action, Store } from '@ngrx/store';
-import { UserState } from '../../../store/reducers/user.reducer';
+import { Contact } from '../../../pages/messanger/components/main/components/contacts/components/interfaces/contact.interfaces';
+import { UserData } from '../../../pages/messanger/components/main/interfaces/main.interfaces';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { combineLatest, map, Observable } from 'rxjs';
 import * as selectors from '../../../store/selectors/user.selectors';
 import * as actions from '../../../store/actions/user.actions';
 
@@ -8,12 +11,31 @@ import * as actions from '../../../store/actions/user.actions';
   providedIn: 'root',
 })
 export class UserFacade {
-  contacts$ = this.store.select(selectors.contacts);
+  mainVM$: Observable<{
+    selectedContact: Contact | null;
+    contacts: Contact[] | null;
+  }> = combineLatest([
+    this.store.select(selectors.selectedContact),
+    this.store.select(selectors.contacts),
+  ]).pipe(
+    map(([selectedContact, contacts]) => ({
+      selectedContact,
+      contacts,
+    })),
+    takeUntilDestroyed(this.destroyRef),
+  );
 
-  constructor(private store: Store) {}
+  constructor(
+    @Inject(DestroyRef) private destroyRef: DestroyRef,
+    private store: Store,
+  ) {}
 
-  setUserState(userState: UserState): void {
-    this.dispatch(actions.setUser({ userState }));
+  setUserState(userData: UserData): void {
+    this.dispatch(actions.setUser({ userData }));
+  }
+
+  setSelectedContact(contact: Contact): void {
+    this.dispatch(actions.setSelectedContact({ contact }));
   }
 
   private dispatch(action: Action): void {

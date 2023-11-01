@@ -4,19 +4,30 @@ import { HistoryComponent } from './components/history/history.component';
 import { InputComponent } from './components/input/input.component';
 import { UserFacade } from '../../../../shared/services/facade/user.facade';
 import { AsyncPipe, NgIf } from '@angular/common';
+import { LetDirective } from '@ngrx/component';
+import { Contact } from './components/contacts/components/interfaces/contact.interfaces';
 
 @Component({
   selector: 'app-main',
   standalone: true,
   templateUrl: 'main.component.html',
   styleUrls: ['main.component.scss'],
-  imports: [ContactsComponent, HistoryComponent, InputComponent, AsyncPipe, NgIf],
+  imports: [
+    ContactsComponent,
+    HistoryComponent,
+    InputComponent,
+    AsyncPipe,
+    NgIf,
+    LetDirective,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainComponent {
-  contacts$ = this.userFacade.contacts$;
+  mainVM$ = this.userFacade.mainVM$;
 
   constructor(private userFacade: UserFacade) {}
 
-  setSelectedContactId(id: number): void {}
+  setSelectedContact(contact: Contact): void {
+    this.userFacade.setSelectedContact(contact);
+  }
 }

@@ -1,11 +1,22 @@
-<app-contacts
-  *ngIf="contacts$ | async as contacts"
-  class="contacts"
-  [contacts]="contacts"
-  (setSelectedContactId)="setSelectedContactId($event)"
-></app-contacts>
+<ng-container *ngrxLet="mainVM$; let mainVM">
+  <app-contacts
+    class="contacts"
+    [contacts]="mainVM.contacts"
+    (setSelectedContactId)="setSelectedContact($event)"
+  ></app-contacts>
 
-<section class="chat-block">
-  <app-history></app-history>
-  <app-input></app-input>
-</section>
+  <section
+    *ngIf="mainVM.contacts && mainVM.selectedContact; else noSelectedContact"
+    class="chat-block"
+  >
+    <app-history
+      [messages]="mainVM.selectedContact.messages"
+      [avatar]="mainVM.selectedContact.avatar"
+    ></app-history>
+    <app-input></app-input>
+  </section>
+</ng-container>
+
+<ng-template #noSelectedContact>
+  <span>select any contact to start chatting...</span>
+</ng-template>

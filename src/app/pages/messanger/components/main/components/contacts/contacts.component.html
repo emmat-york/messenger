@@ -4,11 +4,11 @@
   placeholder="Search..."
 ></app-input>
 
-<ul class="contact-list">
+<ul class="contact-list" *ngIf="contacts">
   <li
     class="contact"
     *ngFor="let contact of contacts | appContactsFilter: filterControl.value"
   >
-    <app-contact [contact]="contact" (click)="onContactSelect(contact.id)"></app-contact>
+    <app-contact [contact]="contact" (click)="onContactSelect(contact)"></app-contact>
   </li>
 </ul>

@@ -3,22 +3,33 @@ import { Contact } from '../../pages/messanger/components/main/components/contac
 import * as actions from '../actions/user.actions';
 
 export interface UserState {
-  id: number;
-  userName: string;
-  phone: string;
-  avatar: string;
-  contacts: Contact[];
-  settings: any;
+  id: number | null;
+  userName: string | null;
+  phone: string | null;
+  avatar: string | null;
+  contacts: Contact[] | null;
+  settings: any | null;
+  selectedContact: Contact | null;
 }
 
-let initialState: UserState | undefined;
+const initialState: UserState = {
+  id: null,
+  userName: null,
+  phone: null,
+  avatar: null,
+  contacts: null,
+  settings: null,
+  selectedContact: null,
+};
 
 export const userReducer = createReducer(
   initialState,
-  on(actions.setUser, (state, { userState }) => {
-    return {
-      ...state,
-      ...userState,
-    };
-  }),
+  on(actions.setUser, (state, { userData }) => ({
+    ...state,
+    ...userData,
+  })),
+  on(actions.setSelectedContact, (state, { contact }) => ({
+    ...state,
+    selectedContact: contact,
+  })),
 );

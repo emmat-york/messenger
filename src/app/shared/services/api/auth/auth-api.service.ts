@@ -2,8 +2,8 @@ import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { AuthCredentials } from '../../../interfaces/auth.interfaces';
 import { HttpClient } from '@angular/common/http';
-import { UserState } from '../../../../store/reducers/user.reducer';
 import { CONTACTS } from '../../../../mocks/mocks';
+import { UserData } from '../../../../pages/messanger/components/main/interfaces/main.interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +11,7 @@ import { CONTACTS } from '../../../../mocks/mocks';
 export class AuthApiService {
   constructor(private httpClient: HttpClient) {}
 
-  signUp$(credentials: AuthCredentials): Observable<UserState> {
+  signUp$(credentials: AuthCredentials): Observable<UserData> {
     return of({
       id: 1,
       userName: 'Andrew Filimonchyk',
@@ -22,7 +22,7 @@ export class AuthApiService {
     });
   }
 
-  singIn$(credentials: AuthCredentials): Observable<UserState> {
+  singIn$(credentials: AuthCredentials): Observable<UserData> {
     return of({
       id: 1,
       userName: 'Andrew Filimonchyk',

@@ -12,6 +12,8 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { Languages } from './shared/enums/languages.enum';
 import { RouterOutlet } from '@angular/router';
+import { AuthFacade } from './shared/services/facade/auth.facade';
+import { UserFacade } from './shared/services/facade/user.facade';
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,10 +36,14 @@ import { RouterOutlet } from '@angular/router';
   providers: [
     {
       provide: APP_INITIALIZER,
-      useFactory: (translate: TranslateService) => {
+      useFactory: (
+        translate: TranslateService,
+        authFacade: AuthFacade,
+        userFacade: UserFacade,
+      ) => {
         return () => translate.get('Auth.SignUp');
       },
-      deps: [TranslateService],
+      deps: [TranslateService, AuthFacade, UserFacade],
       multi: true,
     },
     NotificationService,

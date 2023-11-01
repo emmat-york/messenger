@@ -5,7 +5,7 @@ import { userReducer, UserState } from './reducers/user.reducer';
 
 interface AppStore {
   [Keys.Auth]: ActionReducer<AuthState>;
-  [Keys.User]: ActionReducer<UserState | undefined>;
+  [Keys.User]: ActionReducer<UserState>;
 }
 
 export const appStore: AppStore = {

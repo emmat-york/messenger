@@ -27,8 +27,8 @@ export class AuthEffects {
     return this.actions$.pipe(
       ofType(actions.signInRequest),
       switchMap(({ credentials }) => this.authApiService.singIn$(credentials)),
-      map(userState => {
-        this.userFacade.setUserState(userState);
+      map(userData => {
+        this.userFacade.setUserState(userData);
         this.router.navigate([AppRoutes.messenger]);
         return actions.signInResponse({ response: {} });
       }),

@@ -3,8 +3,14 @@
 :host {
   display: block;
   height: calc(100vh - #{variables.$header-height} - 36px);
-  background-image: url('~src/assets/images/background.png');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  padding: 0 10px;
+}
+
+.message-list {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.message:not(.message:last-child) {
+  margin-bottom: 5px;
 }

@@ -19,7 +19,7 @@ const routes: Routes = [
   {
     path: AppRoutes.messenger,
     component: MessengerComponent,
-    canActivate: [AuthGuardFn],
+    // canActivate: [AuthGuardFn],
     children: [
       {
         path: '',
