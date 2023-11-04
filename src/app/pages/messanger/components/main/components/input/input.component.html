@@ -1,1 +1,11 @@
-<p>input works</p>
+<input
+  class="input"
+  [ngModel]="text"
+  [disabled]="isLoading"
+  (ngModelChange)="onInput($event)"
+  type="text"
+/>
+
+<button class="send-button" type="button" (click)="onSendMessage()">
+  <img [src]="'send' | appIcon" width="32" alt="send" />
+</button>

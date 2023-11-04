@@ -13,6 +13,7 @@ $chat-block-width: 75%;
 }
 
 .chat-block {
+  position: relative;
   width: $chat-block-width;
   background-image: url('~src/assets/images/background.png');
   background-position: center;

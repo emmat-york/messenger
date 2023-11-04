@@ -5,14 +5,12 @@
 }
 
 .input {
-
 }
 
 .contact-list {
-  height: calc(100vh - #{variables.$header-height} - 36px);
+  height: calc(100vh - 36px);
   overflow-y: scroll;
 }
 
 .contact {
-
 }

@@ -35,10 +35,20 @@ li {
 }
 
 button {
+  padding: 0;
   background-color: transparent;
   border: none;
   outline: none;
   cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+input {
+  border: none;
+  outline: none;
 
   &:disabled {
     cursor: not-allowed;

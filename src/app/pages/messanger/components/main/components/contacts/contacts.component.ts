@@ -31,11 +31,11 @@ export class ContactsComponent {
   @Input() selectedContactId!: number | undefined;
   @Input() contacts!: Contact[] | null;
 
-  @Output() setSelectedContactId = new EventEmitter<Contact>();
+  @Output() setSelectedContact = new EventEmitter<Contact>();
 
   filterControl = new FormControl('');
 
   onContactSelect(contact: Contact): void {
-    this.setSelectedContactId.emit(contact);
+    this.setSelectedContact.emit(contact);
   }
 }

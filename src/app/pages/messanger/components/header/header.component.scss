@@ -1,7 +1,0 @@
-@use 'src/assets/styles/variables';
-
-:host {
-  display: block;
-  height: variables.$header-height;
-  border-bottom: 1px solid map-get(variables.$wb-palette, 20);
-}

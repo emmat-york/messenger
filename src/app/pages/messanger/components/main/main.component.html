@@ -3,18 +3,24 @@
     class="contacts"
     [selectedContactId]="mainVM.selectedContact?.id"
     [contacts]="mainVM.contacts"
-    (setSelectedContactId)="setSelectedContact($event)"
+    (setSelectedContact)="setSelectedContact($event)"
   ></app-contacts>
 
-  <section
-    *ngIf="mainVM.contacts && mainVM.selectedContact; else noSelectedContact"
-    class="chat-block"
-  >
-    <app-history [selectedContact]="mainVM.selectedContact"></app-history>
-    <app-input></app-input>
+  <section class="chat-block">
+    <ng-container
+      *ngIf="mainVM.contacts && mainVM.selectedContact; else noSelectedContact"
+    >
+      <app-history [selectedContact]="mainVM.selectedContact"></app-history>
+      <app-chat-input
+        *ngrxLet="inputText$; let inputText"
+        [inputText]="inputText"
+        (setInputText)="setInputText($event)"
+        (sendMessage)="sendMessage()"
+      ></app-chat-input>
+    </ng-container>
   </section>
 </ng-container>
 
 <ng-template #noSelectedContact>
-  <span>select any contact to start chatting...</span>
+  <app-no-selected-contact></app-no-selected-contact>
 </ng-template>

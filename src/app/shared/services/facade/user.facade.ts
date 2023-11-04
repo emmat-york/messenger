@@ -34,7 +34,7 @@ export class UserFacade {
     this.dispatch(actions.setUser({ userData }));
   }
 
-  setSelectedContact(contact: Contact): void {
+  setSelectedContact(contact: Contact | null): void {
     this.dispatch(actions.setSelectedContact({ contact }));
   }
 

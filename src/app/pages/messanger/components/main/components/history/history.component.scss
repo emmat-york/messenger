@@ -2,7 +2,7 @@
 
 :host {
   display: block;
-  height: calc(100vh - #{variables.$header-height} - 36px);
+  height: calc(100vh - #{variables.$chat-input-height});
 }
 
 .message-list {
