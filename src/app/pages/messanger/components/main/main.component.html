@@ -1,6 +1,7 @@
 <ng-container *ngrxLet="mainVM$; let mainVM">
   <app-contacts
     class="contacts"
+    [selectedContactId]="mainVM.selectedContact?.id"
     [contacts]="mainVM.contacts"
     (setSelectedContactId)="setSelectedContact($event)"
   ></app-contacts>
@@ -9,10 +10,7 @@
     *ngIf="mainVM.contacts && mainVM.selectedContact; else noSelectedContact"
     class="chat-block"
   >
-    <app-history
-      [messages]="mainVM.selectedContact.messages"
-      [avatar]="mainVM.selectedContact.avatar"
-    ></app-history>
+    <app-history [selectedContact]="mainVM.selectedContact"></app-history>
     <app-input></app-input>
   </section>
 </ng-container>

@@ -14,6 +14,7 @@ import { Languages } from './shared/enums/languages.enum';
 import { RouterOutlet } from '@angular/router';
 import { AuthFacade } from './shared/services/facade/auth.facade';
 import { UserFacade } from './shared/services/facade/user.facade';
+import { CONTACTS } from './mocks/mocks';
 
 @NgModule({
   declarations: [AppComponent],
@@ -41,6 +42,15 @@ import { UserFacade } from './shared/services/facade/user.facade';
         authFacade: AuthFacade,
         userFacade: UserFacade,
       ) => {
+        userFacade.setUserState({
+          id: 1,
+          userName: 'Andrew Filimonchyk',
+          phone: '+48 696 761 073',
+          avatar: '',
+          contacts: CONTACTS,
+          settings: {},
+        });
+
         return () => translate.get('Auth.SignUp');
       },
       deps: [TranslateService, AuthFacade, UserFacade],

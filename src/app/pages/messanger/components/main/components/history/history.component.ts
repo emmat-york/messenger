@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { NgForOf, NgIf } from '@angular/common';
-import { Message } from '../contacts/components/interfaces/contact.interfaces';
+import { Contact } from '../contacts/components/interfaces/contact.interfaces';
 import { MessageComponent } from './components/message/message.component';
+import { NgForOf, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-history',
@@ -12,6 +12,5 @@ import { MessageComponent } from './components/message/message.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HistoryComponent {
-  @Input() messages!: Message[];
-  @Input() avatar!: string;
+  @Input() selectedContact!: Contact;
 }

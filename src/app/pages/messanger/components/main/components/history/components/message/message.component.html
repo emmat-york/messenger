@@ -1,6 +1,6 @@
-<img [src]="avatar" alt="avatar" />
+<img class="avatar" [src]="avatar" alt="avatar" />
 
 <div class="message-block">
-  <span>{{ message.message }}</span>
-  <span>{{ message.date | date }}</span>
+  <span class="message-text">{{ message.message }}</span>
+  <span class="message-date">{{ message.date | date: 'h:mm a' }}</span>
 </div>

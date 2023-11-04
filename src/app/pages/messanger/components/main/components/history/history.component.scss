@@ -3,11 +3,11 @@
 :host {
   display: block;
   height: calc(100vh - #{variables.$header-height} - 36px);
-  padding: 0 10px;
 }
 
 .message-list {
   height: 100%;
+  padding: 10px;
   overflow-y: auto;
 }
 

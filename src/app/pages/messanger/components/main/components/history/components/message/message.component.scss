@@ -3,3 +3,27 @@
 :host {
   display: flex;
 }
+
+.avatar {
+  margin-right: 5px;
+}
+
+.message-block {
+  display: flex;
+  max-width: 500px;
+  padding: 7px;
+  border-radius: 10px 20px 20px 2px;
+  background-color: map-get(variables.$wb-palette, 10);
+}
+
+.message-text {
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.message-date {
+  display: flex;
+  align-items: flex-end;
+  font-size: 12px;
+  color: map-get(variables.$wb-palette, 30);
+}

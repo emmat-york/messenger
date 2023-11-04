@@ -6,10 +6,14 @@ $indent: 10px;
 :host {
   display: flex;
   padding: 10px;
+  cursor: pointer;
 
-  &:hover {
+  &.selected {
+    background-color: map-get(variables.$blue-palette, 10);
+  }
+
+  &:hover:not(.selected) {
     background-color: map-get(variables.$wb-palette, 20);
-    cursor: pointer;
   }
 }
 

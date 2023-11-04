@@ -28,6 +28,7 @@ import { Contact } from './components/interfaces/contact.interfaces';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactsComponent {
+  @Input() selectedContactId!: number | undefined;
   @Input() contacts!: Contact[] | null;
 
   @Output() setSelectedContactId = new EventEmitter<Contact>();
