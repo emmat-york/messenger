@@ -18,8 +18,8 @@ import { IconPipe } from '../../../../../../shared/pipes/icon/icon.pipe';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputComponent {
-  @Input() set inputText(inputText: string) {
-    this.text = inputText;
+  @Input() set inputText(text: string) {
+    this.text = text;
   }
   @Input() isLoading!: boolean;
 
@@ -27,10 +27,6 @@ export class InputComponent {
   @Output() sendMessage = new EventEmitter<void>();
 
   text = '';
-
-  constructor() {
-    console.log('InputComponent');
-  }
 
   @HostListener('document:keydown.enter') onEnterKeydown(): void {
     this.onSendMessage();

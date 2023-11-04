@@ -15,6 +15,7 @@ import { RouterOutlet } from '@angular/router';
 import { AuthFacade } from './shared/services/facade/auth.facade';
 import { UserFacade } from './shared/services/facade/user.facade';
 import { CONTACTS } from './mocks/mocks';
+import { ChatEffects } from './store/effects/chat.effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +25,7 @@ import { CONTACTS } from './mocks/mocks';
     HttpClientModule,
     RouterOutlet,
     StoreModule.forRoot(appStore),
-    EffectsModule.forRoot([AuthEffects]),
+    EffectsModule.forRoot([AuthEffects, ChatEffects]),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

@@ -1,4 +1,4 @@
-import { DestroyRef, Inject, Injectable } from '@angular/core';
+import { DestroyRef, inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AuthApiService } from '../../shared/services/api/auth/auth-api.service';
 import { UserFacade } from '../../shared/services/facade/user.facade';
@@ -48,10 +48,11 @@ export class AuthEffects {
   });
 
   constructor(
-    @Inject(DestroyRef) private destroyRef: DestroyRef,
     private actions$: Actions,
     private authApiService: AuthApiService,
     private userFacade: UserFacade,
     private router: Router,
   ) {}
+
+  private destroyRef = inject(DestroyRef);
 }
