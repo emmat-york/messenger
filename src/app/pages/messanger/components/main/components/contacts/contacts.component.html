@@ -1,13 +1,17 @@
 <app-input
   class="input"
-  [formControl]="filterControl"
   placeholder="Search..."
+  [formControl]="filterControl"
 ></app-input>
 
-<ul *ngIf="contacts" class="contact-list">
+<ul class="contact-list">
   <li
     class="contact"
-    *ngFor="let contact of contacts | appContactsFilter: filterControl.value"
+    #contactList
+    *ngFor="
+      let contact of contacts | appContactsFilter: filterControl.value;
+      trackBy: trackBy
+    "
   >
     <app-contact
       [class.selected]="contact.id === selectedContactId"
@@ -16,3 +20,10 @@
     ></app-contact>
   </li>
 </ul>
+
+<app-scroll-circle
+  class="scroll-circle"
+  type="up"
+  *ngIf="isScrollCircleShown"
+  (click)="onScrollUp()"
+></app-scroll-circle>

@@ -43,7 +43,7 @@ export class HistoryComponent implements AfterViewInit {
     this.subscribeToScroll();
   }
 
-  scrollDown(): void {
+  onScrollDown(): void {
     this.renderer2.setProperty(
       this.messageList.nativeElement,
       'scrollTop',

@@ -1,6 +1,7 @@
 @use 'src/assets/styles/variables';
 
 :host {
+  position: relative;
   display: block;
 }
 
@@ -13,4 +14,11 @@
 }
 
 .contact {
+}
+
+.scroll-circle {
+  position: absolute;
+  right: 25px;
+  bottom: 10px;
+  box-shadow: 5px 5px 15px map-get(variables.$wb-palette, 20);
 }

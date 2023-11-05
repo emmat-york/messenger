@@ -1,6 +1,7 @@
 <ng-container *ngrxLet="mainVM$; let mainVM">
   <app-contacts
     class="contacts"
+    *ngIf="mainVM.contacts"
     [selectedContactId]="mainVM.selectedContact?.id"
     [contacts]="mainVM.contacts"
     (setSelectedContact)="setSelectedContact($event)"
