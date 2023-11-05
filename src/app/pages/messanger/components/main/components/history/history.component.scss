@@ -1,6 +1,7 @@
 @use 'src/assets/styles/variables';
 
 :host {
+  position: relative;
   display: block;
   height: calc(100vh - #{variables.$chat-input-height});
 }
@@ -9,8 +10,15 @@
   height: 100%;
   padding: 10px;
   overflow-y: auto;
+  scroll-behavior: smooth;
 }
 
 .message:not(.message:last-child) {
   margin-bottom: 5px;
+}
+
+.scroll-circle {
+  position: absolute;
+  right: 25px;
+  bottom: 10px;
 }

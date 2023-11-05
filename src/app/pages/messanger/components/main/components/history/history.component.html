@@ -1,5 +1,11 @@
-<ul class="message-list">
+<ul #messageList class="message-list">
   <li class="message" *ngFor="let message of selectedContact.messages">
     <app-message [message]="message" [avatar]="selectedContact.avatar"></app-message>
   </li>
 </ul>
+
+<app-scroll-circle
+  class="scroll-circle"
+  *ngIf="isScrollCircleShown"
+  (click)="scrollDown()"
+></app-scroll-circle>

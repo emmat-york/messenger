@@ -11,6 +11,7 @@
       *ngIf="mainVM.contacts && mainVM.selectedContact; else noSelectedContact"
     >
       <app-history [selectedContact]="mainVM.selectedContact"></app-history>
+
       <app-chat-input
         *ngrxLet="inputText$; let inputText"
         [inputText]="inputText"
