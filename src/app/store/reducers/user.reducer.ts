@@ -1,5 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { Contact } from '../../pages/messanger/components/main/components/contacts/components/interfaces/contact.interfaces';
+import { Languages } from 'src/app/shared/enums/languages.enum';
 import * as actions from '../actions/user.actions';
 
 export interface UserState {
@@ -7,9 +8,10 @@ export interface UserState {
   userName: string | null;
   phone: string | null;
   avatar: string | null;
-  contacts: Contact[] | null;
+  contacts: Contact[];
   settings: any | null;
   selectedContact: Contact | null;
+  language: Languages;
 }
 
 const initialState: UserState = {
@@ -17,9 +19,10 @@ const initialState: UserState = {
   userName: null,
   phone: null,
   avatar: null,
-  contacts: null,
+  contacts: [],
   settings: null,
   selectedContact: null,
+  language: Languages.En,
 };
 
 export const userReducer = createReducer(
@@ -31,5 +34,9 @@ export const userReducer = createReducer(
   on(actions.setSelectedContact, (state, { contact }) => ({
     ...state,
     selectedContact: contact,
+  })),
+  on(actions.setLanguage, (state, { language }) => ({
+    ...state,
+    language,
   })),
 );

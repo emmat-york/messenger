@@ -16,6 +16,7 @@ import { AuthFacade } from './shared/services/facade/auth.facade';
 import { UserFacade } from './shared/services/facade/user.facade';
 import { CONTACTS } from './mocks/mocks';
 import { ChatEffects } from './store/effects/chat.effects';
+import { switchMap, tap } from 'rxjs';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,7 +33,6 @@ import { ChatEffects } from './store/effects/chat.effects';
         useFactory: (http: HttpClient) => new TranslateHttpLoader(http),
         deps: [HttpClient],
       },
-      defaultLanguage: Languages.En,
     }),
   ],
   providers: [
@@ -51,7 +51,7 @@ import { ChatEffects } from './store/effects/chat.effects';
           contacts: CONTACTS,
           settings: {},
         });
-
+          
         return () => translate.get('Auth.SignUp');
       },
       deps: [TranslateService, AuthFacade, UserFacade],

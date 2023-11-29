@@ -12,4 +12,5 @@
   border-radius: 20px;
   background-color: rgba(map-get(variables.$wb-palette, 50), 0.25);
   color: map-get(variables.$wb-palette, 10);
+  pointer-events: none;
 }

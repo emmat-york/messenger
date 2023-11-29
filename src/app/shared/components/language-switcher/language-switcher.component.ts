@@ -11,7 +11,7 @@ import { Languages } from '../../enums/languages.enum';
 import { TranslateService } from '@ngx-translate/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Option } from '../form/dropdown/interfaces/dropdown.interfaces';
-import { distinctUntilChanged } from 'rxjs';
+import { distinctUntilChanged, filter } from 'rxjs';
 
 @Component({
   selector: 'app-language-switcher',
@@ -44,13 +44,7 @@ export class LanguageSwitcherComponent implements OnInit {
 
   private subscribeToLanguageChanges(): void {
     this.control.valueChanges
-      .pipe(distinctUntilChanged(), takeUntilDestroyed(this.destroyRef))
-      .subscribe(language => {
-        if (!language) {
-          return;
-        }
-
-        this.translate.use(language);
-      });
+      .pipe(filter(Boolean), distinctUntilChanged(), takeUntilDestroyed(this.destroyRef))
+      .subscribe(language => this.translate.use(language));
   }
 }

@@ -6,6 +6,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { combineLatest, map, Observable } from 'rxjs';
 import * as selectors from '../../../store/selectors/user.selectors';
 import * as actions from '../../../store/actions/user.actions';
+import { Languages } from '../../enums/languages.enum';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,7 @@ import * as actions from '../../../store/actions/user.actions';
 export class UserFacade {
   mainVM$: Observable<{
     selectedContact: Contact | null;
-    contacts: Contact[] | null;
+    contacts: Contact[];
   }> = combineLatest([
     this.store.select(selectors.selectedContact),
     this.store.select(selectors.contacts),
@@ -36,6 +37,10 @@ export class UserFacade {
 
   setSelectedContact(contact: Contact | null): void {
     this.dispatch(actions.setSelectedContact({ contact }));
+  }
+  
+  setLanguage(language: Languages): void {
+    this.dispatch(actions.setLanguage({ language }));
   }
 
   private dispatch(action: Action): void {
