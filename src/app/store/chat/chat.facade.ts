@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Action, Store } from '@ngrx/store';
-import * as selectors from '../../../store/selectors/chat.selectors';
-import * as actions from '../../../store/actions/chat.actions';
+import * as selectors from './chat.selectors';
+import * as actions from './chat.actions';
 
 @Injectable({
   providedIn: 'root',

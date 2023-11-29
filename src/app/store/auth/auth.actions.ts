@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { AuthCredentials } from '../../shared/interfaces/auth.interfaces';
+import { AuthCredentials } from '../../shared/interfaces/auth.interface';
 
 // Sign Up
 export const signUpRequest = createAction(

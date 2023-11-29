@@ -16,11 +16,11 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ContactComponent } from './components/contact.component';
 import { NgForOf, NgIf } from '@angular/common';
 import { ContactsFilterPipe } from './pipes/contacts-filter.pipe';
-import { Contact } from './components/interfaces/contact.interfaces';
+import { Contact } from './components/interfaces/contact.interface';
 import { ScrollCircleComponent } from '../scroll-circle/scroll-circle.component';
 import { debounceTime, fromEvent } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ScrollEvent } from '../history/interfaces/history.interfaces';
+import { ScrollEvent } from '../history/interfaces/history.interface';
 
 @Component({
   selector: 'app-contacts',

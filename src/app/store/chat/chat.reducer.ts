@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import * as actions from '../actions/chat.actions';
+import * as actions from './chat.actions';
 
 export interface ChatState {
   inputText: string;

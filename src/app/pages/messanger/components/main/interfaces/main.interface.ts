@@ -1,4 +1,4 @@
-import { Contact } from '../components/contacts/components/interfaces/contact.interfaces';
+import { Contact } from '../components/contacts/components/interfaces/contact.interface';
 
 export interface UserData {
   id: number;

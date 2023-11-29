@@ -1,12 +1,12 @@
 import { DestroyRef, Inject, Injectable } from '@angular/core';
 import { Action, Store } from '@ngrx/store';
-import { Contact } from '../../../pages/messanger/components/main/components/contacts/components/interfaces/contact.interfaces';
-import { UserData } from '../../../pages/messanger/components/main/interfaces/main.interfaces';
+import { Contact } from '../../pages/messanger/components/main/components/contacts/components/interfaces/contact.interface';
+import { UserData } from '../../pages/messanger/components/main/interfaces/main.interface';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Languages } from '../../shared/enums/languages.enum';
 import { combineLatest, map, Observable } from 'rxjs';
-import * as selectors from '../../../store/selectors/user.selectors';
-import * as actions from '../../../store/actions/user.actions';
-import { Languages } from '../../enums/languages.enum';
+import * as selectors from './user.selectors';
+import * as actions from './user.actions';
 
 @Injectable({
   providedIn: 'root',

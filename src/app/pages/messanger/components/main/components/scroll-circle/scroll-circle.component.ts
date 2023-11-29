@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { ScrollType } from './interfaces/scroll-circle.interfaces';
+import { ScrollType } from './interfaces/scroll-circle.interface';
 import { IconPipe } from '../../../../../../shared/pipes/icon/icon.pipe';
 import { NgClass } from '@angular/common';
 

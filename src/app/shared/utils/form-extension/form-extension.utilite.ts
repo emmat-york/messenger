@@ -1,9 +1,9 @@
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { DestroyRef, inject } from '@angular/core';
 import { ValidatorKeys } from '../../enums/validator-keys.enum';
-import { ControlStateClasses, ErrorState } from './interfaces/form-extension.interfaces';
+import { ControlStateClasses, ErrorState } from './interfaces/form-extension.interface';
 import { TranslateService } from '@ngx-translate/core';
-import { FIRST_ERROR_INDEX } from '../../constants/auth.constants';
+import { FIRST_ERROR_INDEX } from '../../constants/auth.constant';
 
 export class FormExtension<FormKeys extends string> {
   protected formGroup!: FormGroup;

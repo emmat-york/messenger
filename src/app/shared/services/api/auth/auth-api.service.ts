@@ -1,9 +1,9 @@
 import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { AuthCredentials } from '../../../interfaces/auth.interfaces';
+import { AuthCredentials } from '../../../interfaces/auth.interface';
 import { HttpClient } from '@angular/common/http';
 import { CONTACTS } from '../../../../mocks/mocks';
-import { UserData } from '../../../../pages/messanger/components/main/interfaces/main.interfaces';
+import { UserData } from '../../../../pages/messanger/components/main/interfaces/main.interface';
 
 @Injectable({
   providedIn: 'root',

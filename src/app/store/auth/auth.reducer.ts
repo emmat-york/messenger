@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import * as actions from '../actions/auth.actions';
+import * as actions from './auth.actions';
 
 export interface AuthState {
   isAuth: boolean;

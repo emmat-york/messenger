@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { Keys } from '../enums/store.enums';
-import { UserState } from '../reducers/user.reducer';
+import { UserState } from './user.reducer';
+import { Keys } from '../store';
 
 const futureSelector = createFeatureSelector<UserState>(Keys.User);
 

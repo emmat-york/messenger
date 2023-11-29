@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { ButtonType, ButtonVariant } from './interfaces/button.interfaces';
+import { ButtonType, ButtonVariant } from './interfaces/button.interface';
 import { NgClass } from '@angular/common';
 
 @Component({

@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { Keys } from '../enums/store.enums';
-import { ChatState } from '../reducers/chat.reducer';
+import { ChatState } from './chat.reducer';
+import { Keys } from '../store';
 
 export const featureSelector = createFeatureSelector<ChatState>(Keys.Chat);
 

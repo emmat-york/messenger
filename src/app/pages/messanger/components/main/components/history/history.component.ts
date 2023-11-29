@@ -10,13 +10,13 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { Contact } from '../contacts/components/interfaces/contact.interfaces';
+import { Contact } from '../contacts/components/interfaces/contact.interface';
 import { MessageComponent } from './components/message/message.component';
 import { NgForOf, NgIf } from '@angular/common';
 import { ScrollCircleComponent } from '../scroll-circle/scroll-circle.component';
 import { debounceTime, fromEvent } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ScrollEvent } from './interfaces/history.interfaces';
+import { ScrollEvent } from './interfaces/history.interface';
 
 @Component({
   selector: 'app-history',

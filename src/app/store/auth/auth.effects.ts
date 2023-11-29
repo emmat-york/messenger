@@ -1,12 +1,11 @@
-import { DestroyRef, inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AuthApiService } from '../../shared/services/api/auth/auth-api.service';
-import { UserFacade } from '../../shared/services/facade/user.facade';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { AppRoutes } from '../../routing/enums/routing.enums';
+import { UserFacade } from '../user/user.facade';
+import { AppRoutes } from '../../routing/enums/routing.enum';
 import { Router } from '@angular/router';
 import { map, switchMap } from 'rxjs';
-import * as actions from '../actions/auth.actions';
+import * as actions from './auth.actions';
 
 @Injectable()
 export class AuthEffects {
@@ -19,7 +18,6 @@ export class AuthEffects {
         this.router.navigate([AppRoutes.messenger]);
         return actions.signUpResponse({ response: {} });
       }),
-      takeUntilDestroyed(this.destroyRef),
     );
   });
 
@@ -32,7 +30,6 @@ export class AuthEffects {
         this.router.navigate([AppRoutes.messenger]);
         return actions.signInResponse({ response: {} });
       }),
-      takeUntilDestroyed(this.destroyRef),
     );
   });
 
@@ -43,7 +40,6 @@ export class AuthEffects {
       map(() => {
         return actions.signOutResponse({ response: {} });
       }),
-      takeUntilDestroyed(this.destroyRef),
     );
   });
 
@@ -53,6 +49,4 @@ export class AuthEffects {
     private userFacade: UserFacade,
     private router: Router,
   ) {}
-
-  private destroyRef = inject(DestroyRef);
 }

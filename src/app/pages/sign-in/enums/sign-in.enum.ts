@@ -1,4 +1,4 @@
-export enum SignInKeys {
+export enum SignInKey {
   Login = 'login',
   Password = 'password',
 }

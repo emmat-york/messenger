@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
-import { Contact } from '../../pages/messanger/components/main/components/contacts/components/interfaces/contact.interfaces';
+import { Contact } from '../../pages/messanger/components/main/components/contacts/components/interfaces/contact.interface';
 import { Languages } from 'src/app/shared/enums/languages.enum';
-import * as actions from '../actions/user.actions';
+import * as actions from './user.actions';
 
 export interface UserState {
   id: number | null;

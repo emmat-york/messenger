@@ -2,11 +2,11 @@ import { ChangeDetectionStrategy, Component, HostListener } from '@angular/core'
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { HistoryComponent } from './components/history/history.component';
 import { InputComponent } from './components/input/input.component';
-import { UserFacade } from '../../../../shared/services/facade/user.facade';
+import { UserFacade } from '../../../../store/user/user.facade';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { LetDirective } from '@ngrx/component';
-import { Contact } from './components/contacts/components/interfaces/contact.interfaces';
-import { ChatFacade } from '../../../../shared/services/facade/chat.facade';
+import { Contact } from './components/contacts/components/interfaces/contact.interface';
+import { ChatFacade } from '../../../../store/chat/chat.facade';
 import { NoSelectedContactComponent } from './components/no-selected-contact/no-selected-contact.component';
 import { take } from 'rxjs';
 

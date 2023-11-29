@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Contact } from '../components/interfaces/contact.interfaces';
+import { Contact } from '../components/interfaces/contact.interface';
 
 @Pipe({
   name: 'appContactsFilter',

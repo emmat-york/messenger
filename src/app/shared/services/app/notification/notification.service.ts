@@ -1,6 +1,6 @@
 import { Injectable, ViewContainerRef } from '@angular/core';
 import { NotificationComponent } from '../../../components/notification/notification.component';
-import { ModalConfig } from '../../../components/notification/interfaces/notification.interfaces';
+import { ModalConfig } from '../../../components/notification/interfaces/notification.interface';
 
 @Injectable()
 export class NotificationService {

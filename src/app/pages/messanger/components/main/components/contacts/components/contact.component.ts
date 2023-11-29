@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { Contact, Message } from './interfaces/contact.interfaces';
+import { Contact, Message } from './interfaces/contact.interface';
 import { DatePipe } from '@angular/common';
 
 @Component({

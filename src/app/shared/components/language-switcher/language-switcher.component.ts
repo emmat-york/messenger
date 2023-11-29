@@ -10,7 +10,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Languages } from '../../enums/languages.enum';
 import { TranslateService } from '@ngx-translate/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Option } from '../form/dropdown/interfaces/dropdown.interfaces';
+import { Option } from '../form/dropdown/interfaces/dropdown.interface';
 import { distinctUntilChanged, filter } from 'rxjs';
 
 @Component({

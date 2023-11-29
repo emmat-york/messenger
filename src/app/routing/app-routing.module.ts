@@ -8,7 +8,7 @@ import { ChatComponent } from '../pages/messanger/components/main/main.component
 import { PersonalInfoComponent } from '../pages/messanger/components/personal-info/personal-info.component';
 import { SettingsComponent } from '../pages/messanger/components/settings/settings.component';
 import { AuthGuardFn } from './guards/auth.guard';
-import { AppRoutes } from './enums/routing.enums';
+import { AppRoutes } from './enums/routing.enum';
 
 const routes: Routes = [
   {

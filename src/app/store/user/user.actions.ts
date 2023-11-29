@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import { UserData } from '../../pages/messanger/components/main/interfaces/main.interfaces';
-import { Contact } from '../../pages/messanger/components/main/components/contacts/components/interfaces/contact.interfaces';
+import { UserData } from '../../pages/messanger/components/main/interfaces/main.interface';
+import { Contact } from '../../pages/messanger/components/main/components/contacts/components/interfaces/contact.interface';
 import { Languages } from 'src/app/shared/enums/languages.enum';
 
 export const setUser = createAction('[User] setUser', props<{ userData: UserData }>());

@@ -1,8 +1,13 @@
 import { ActionReducer } from '@ngrx/store';
-import { Keys } from './enums/store.enums';
-import { authReducer, AuthState } from './reducers/auth.reducer';
-import { userReducer, UserState } from './reducers/user.reducer';
-import { chatReducer, ChatState } from './reducers/chat.reducer';
+import { authReducer, AuthState } from './auth/auth.reducer';
+import { userReducer, UserState } from './user/user.reducer';
+import { chatReducer, ChatState } from './chat/chat.reducer';
+
+export enum Keys {
+  Auth = 'auth',
+  User = 'user',
+  Chat = 'chat',
+}
 
 interface AppStore {
   [Keys.Auth]: ActionReducer<AuthState>;

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { Notification, NotificationType } from './interfaces/notification.interfaces';
+import { Notification, NotificationType } from './interfaces/notification.interface';
 import { NgClass, NgSwitch, NgSwitchCase, TitleCasePipe } from '@angular/common';
 import { IconPipe } from '../../pipes/icon/icon.pipe';
 import { Icon } from '../../enums/icons.enum';

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Action, Store } from '@ngrx/store';
-import { AuthCredentials } from '../../interfaces/auth.interfaces';
-import * as selectors from '../../../store/selectors/auth.selectors';
-import * as actions from '../../../store/actions/auth.actions';
+import { AuthCredentials } from '../../shared/interfaces/auth.interface';
+import * as selectors from './auth.selectors';
+import * as actions from './auth.actions';
 
 @Injectable({
   providedIn: 'root',

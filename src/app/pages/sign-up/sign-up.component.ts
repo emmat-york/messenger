@@ -5,12 +5,12 @@ import { ErrorMessageComponent } from '../../shared/components/form/error-messag
 import { InputComponent } from '../../shared/components/form/input/input.component';
 import { LabelComponent } from '../../shared/components/form/label/label.component';
 import { LanguageSwitcherComponent } from '../../shared/components/language-switcher/language-switcher.component';
-import { AuthFacade } from '../../shared/services/facade/auth.facade';
+import { AuthFacade } from '../../store/auth/auth.facade';
 import { ReactiveFormsModule, Validators } from '@angular/forms';
-import { CustomValidators } from '../../shared/utils/validators/validators.utils';
-import { MIN_PASSWORD_LENGTH } from '../../shared/constants/auth.constants';
+import { CustomValidators } from '../../shared/utils/validators/validators.utilite';
+import { MIN_PASSWORD_LENGTH } from '../../shared/constants/auth.constant';
 import { ValidatorKeys } from '../../shared/enums/validator-keys.enum';
-import { FormExtension } from '../../shared/utils/form-extension/form-extension.utils';
+import { FormExtension } from '../../shared/utils/form-extension/form-extension.utilite';
 import { SignUpKeys } from './enums/sign-up.enums';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
