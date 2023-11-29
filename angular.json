@@ -63,10 +63,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "telegram:build:production"
+              "buildTarget": "telegram:build:production"
             },
             "development": {
-              "browserTarget": "telegram:build:development"
+              "buildTarget": "telegram:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -74,7 +74,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "telegram:build"
+            "buildTarget": "telegram:build"
           }
         },
         "test": {

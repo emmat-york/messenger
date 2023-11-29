@@ -9,14 +9,12 @@ import { AuthEffects } from './store/effects/auth.effects';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NotificationService } from './shared/services/app/notification/notification.service';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { Languages } from './shared/enums/languages.enum';
 import { RouterOutlet } from '@angular/router';
 import { AuthFacade } from './shared/services/facade/auth.facade';
 import { UserFacade } from './shared/services/facade/user.facade';
 import { CONTACTS } from './mocks/mocks';
 import { ChatEffects } from './store/effects/chat.effects';
-import { switchMap, tap } from 'rxjs';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 @NgModule({
   declarations: [AppComponent],
