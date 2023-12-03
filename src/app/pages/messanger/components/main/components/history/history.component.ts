@@ -5,7 +5,7 @@ import {
   Component,
   DestroyRef,
   ElementRef,
-  inject,
+  Inject,
   Input,
   Renderer2,
   ViewChild,
@@ -28,13 +28,12 @@ import { ScrollEvent } from './interfaces/history.interface';
 })
 export class HistoryComponent implements AfterViewInit {
   @Input() selectedContact!: Contact;
+  @Input() isScrollCircleShown!: boolean;
 
   @ViewChild('messageList') messageList!: ElementRef<HTMLUListElement>;
-  isScrollCircleShown = true;
-
-  private destroyRef = inject(DestroyRef);
 
   constructor(
+    @Inject(DestroyRef) private destroyRef: DestroyRef,
     private changeDetectorRef: ChangeDetectorRef,
     private renderer2: Renderer2,
   ) {}

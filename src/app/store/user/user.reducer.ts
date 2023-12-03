@@ -1,26 +1,17 @@
-import { createReducer, on } from '@ngrx/store';
 import { Contact } from '../../pages/messanger/components/main/components/contacts/components/interfaces/contact.interface';
+import { UserData } from 'src/app/pages/messanger/components/main/interfaces/main.interface';
 import { Languages } from 'src/app/shared/enums/languages.enum';
+import { createReducer, on } from '@ngrx/store';
 import * as actions from './user.actions';
 
 export interface UserState {
-  id: number | null;
-  userName: string | null;
-  phone: string | null;
-  avatar: string | null;
-  contacts: Contact[];
-  settings: any | null;
+  userData: UserData | null;
   selectedContact: Contact | null;
   language: Languages;
 }
 
 const initialState: UserState = {
-  id: null,
-  userName: null,
-  phone: null,
-  avatar: null,
-  contacts: [],
-  settings: null,
+  userData: null,
   selectedContact: null,
   language: Languages.En,
 };

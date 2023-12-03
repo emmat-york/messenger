@@ -4,4 +4,4 @@ import { Keys } from '../store';
 
 export const featureSelector = createFeatureSelector<ChatState>(Keys.Chat);
 
-export const inputText = createSelector(featureSelector, state => state.inputText);
+export const inputText = createSelector(featureSelector, state => state.input);

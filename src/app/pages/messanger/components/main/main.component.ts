@@ -27,8 +27,9 @@ import { take } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChatComponent {
+  selectedContact$ = this.userFacade.selectedContact$;
   inputText$ = this.chatFacade.inputText$;
-  mainVM$ = this.userFacade.mainVM$;
+  userData$ = this.userFacade.userData$;
 
   constructor(
     private userFacade: UserFacade,
@@ -36,7 +37,7 @@ export class ChatComponent {
   ) {}
 
   @HostListener('document:keydown.escape') onEscKeydown(): void {
-    this.mainVM$.pipe(take(1)).subscribe(({ selectedContact }) => {
+    this.selectedContact$.pipe(take(1)).subscribe((selectedContact) => {
       if (!selectedContact) {
         return;
       }
@@ -49,8 +50,8 @@ export class ChatComponent {
     this.userFacade.setSelectedContact(contact);
   }
 
-  setInputText(text: string): void {
-    this.chatFacade.setInputText(text);
+  setInput(text: string): void {
+    this.chatFacade.setInput(text);
   }
 
   sendMessage(): void {

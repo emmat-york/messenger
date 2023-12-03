@@ -1,8 +1,8 @@
 import { createAction, props } from '@ngrx/store';
 
-export const setInputText = createAction(
-  '[Chat] setInputText',
-  props<{ inputText: string }>(),
+export const setInput = createAction(
+  '[Chat] setInput',
+  props<{ input: string }>(),
 );
 
 export const sendMessage = createAction('[Chat] sendMessage');

@@ -4,7 +4,7 @@ import { Keys } from '../store';
 
 const futureSelector = createFeatureSelector<UserState>(Keys.User);
 
-export const contacts = createSelector(futureSelector, state => state.contacts);
+export const userData = createSelector(futureSelector, state => state.userData);
 export const selectedContact = createSelector(
   futureSelector,
   state => state.selectedContact,

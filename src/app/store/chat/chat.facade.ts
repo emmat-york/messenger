@@ -11,8 +11,8 @@ export class ChatFacade {
 
   constructor(private store: Store) {}
 
-  setInputText(inputText: string): void {
-    this.dispatch(actions.setInputText({ inputText }));
+  setInput(input: string): void {
+    this.dispatch(actions.setInput({ input }));
   }
 
   sendMessage(): void {

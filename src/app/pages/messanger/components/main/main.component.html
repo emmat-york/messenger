@@ -1,27 +1,29 @@
-<ng-container *ngrxLet="mainVM$; let mainVM">
-  <app-contacts
-    class="contacts"
-    *ngIf="mainVM.contacts"
-    [selectedContactId]="mainVM.selectedContact?.id"
-    [contacts]="mainVM.contacts"
-    (setSelectedContact)="setSelectedContact($event)"
-  ></app-contacts>
-
-  <section class="chat-block">
-    <ng-container
-      *ngIf="mainVM.contacts && mainVM.selectedContact; else noSelectedContact"
-    >
-      <app-history [selectedContact]="mainVM.selectedContact"></app-history>
-
-      <app-chat-input
-        *ngrxLet="inputText$; let inputText"
-        [inputText]="inputText"
-        (setInputText)="setInputText($event)"
-        (sendMessage)="sendMessage()"
-      ></app-chat-input>
-    </ng-container>
-  </section>
-</ng-container>
+<ng-container *ngrxLet="selectedContact$; let selectedContact">
+  <ng-container *ngrxLet="userData$; let userData">
+    <app-contacts
+      class="contacts"
+      *ngIf="userData"
+      [selectedContactId]="selectedContact?.id"
+      [contacts]="userData.contacts"
+      (setSelectedContact)="setSelectedContact($event)"
+    ></app-contacts>
+  
+    <section class="chat-block">
+      <ng-container
+        *ngIf="userData?.contacts && selectedContact; else noSelectedContact"
+      >
+        <app-history [selectedContact]="selectedContact"></app-history>
+  
+        <app-chat-input
+          *ngrxLet="inputText$; let inputText"
+          [inputText]="inputText"
+          (setInputText)="setInput($event)"
+          (sendMessage)="sendMessage()"
+        ></app-chat-input>
+      </ng-container>
+    </section>
+  </ng-container>
+</ng-container> 
 
 <ng-template #noSelectedContact>
   <app-no-selected-contact></app-no-selected-contact>
