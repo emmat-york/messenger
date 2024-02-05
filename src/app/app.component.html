@@ -1,1 +1,3 @@
-<router-outlet></router-outlet>
+<main class="main" [ngClass]="theme$ | ngrxPush">
+  <router-outlet></router-outlet>
+</main>
