@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Action, Store} from "@ngrx/store";
-import {setInput} from "./chat.action";
+import {sendMessage, setInput} from "./chat.action";
 import {chatVM} from "./chat.feature";
 
 @Injectable({
@@ -13,6 +13,10 @@ export class ChatFacade {
 
   setInput(input: string): void {
     this.dispatch(setInput({ input }));
+  }
+
+  sendMessage(): void {
+    this.dispatch(sendMessage());
   }
 
   private dispatch(action: Action): void {

@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component} from "@angular/core";
+import {ChangeDetectionStrategy, Component, Input} from "@angular/core";
 
 @Component({
   selector: 'chat-body',
@@ -7,4 +7,6 @@ import {ChangeDetectionStrategy, Component} from "@angular/core";
   styleUrl: 'chat-body.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ChatBodyComponent {}
+export class ChatBodyComponent {
+  @Input() messages: any [] = [];
+}
