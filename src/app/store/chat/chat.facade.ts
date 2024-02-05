@@ -1,13 +1,13 @@
 import {Injectable} from "@angular/core";
 import {Action, Store} from "@ngrx/store";
 import {setInput} from "./chat.action";
-import {selectInput} from "./chat.selector";
+import {chatVM} from "./chat.feature";
 
 @Injectable({
   providedIn: 'root',
 })
 export class ChatFacade {
-  input$ = this.store.select(selectInput);
+  chatVM$ = this.store.select(chatVM);
 
   constructor(private readonly store: Store) {}
 

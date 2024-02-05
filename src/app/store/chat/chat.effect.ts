@@ -1,9 +1,9 @@
 import {Injectable} from "@angular/core";
+import {Store} from "@ngrx/store";
 
 @Injectable({
   providedIn: 'root',
 })
 export class ChatEffect {
-  constructor() {
-  }
+  constructor(private readonly store: Store) {}
 }
