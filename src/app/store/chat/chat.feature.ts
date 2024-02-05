@@ -8,14 +8,14 @@ const INITIAL_STATE: ChatState = {
   messages: [],
 };
 
-const chatReducer = createReducer(INITIAL_STATE, on(setInput, (state, { input }): ChatState => ({
+const reducer = createReducer(INITIAL_STATE, on(setInput, (state, { input }): ChatState => ({
     ...state,
     input,
 })));
 
 export const chatFeature = createFeature({
   name: chatFeatureKey,
-  reducer: chatReducer,
+  reducer,
   extraSelectors: ({ selectInput, selectMessages }) => ({
     chatVM: createSelector(selectInput, selectMessages, (input, messages) => ({
       input,
