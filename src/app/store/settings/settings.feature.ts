@@ -1,8 +1,8 @@
 import {createFeature, createReducer} from "@ngrx/store";
 
-interface SettingsState {}
+interface State {}
 
-const initialState: SettingsState = {};
+const initialState: State = {};
 
 const reducer = createReducer(initialState);
 

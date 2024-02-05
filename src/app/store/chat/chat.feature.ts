@@ -1,17 +1,17 @@
 import {createFeature, createReducer, createSelector, on} from "@ngrx/store";
 import {setInput} from "./chat.action";
 
-interface ChatState {
+interface State {
   input: string;
   messages: any[];
 }
 
-const initialState: ChatState = {
+const initialState: State = {
   input: '',
   messages: [],
 };
 
-const reducer = createReducer(initialState, on(setInput, (state, { input }): ChatState => ({
+const reducer = createReducer(initialState, on(setInput, (state, { input }): State => ({
     ...state,
     input,
 })));
