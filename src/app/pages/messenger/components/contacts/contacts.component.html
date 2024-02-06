@@ -1,5 +1,16 @@
+<div class="menu">
+  <button class="menu-button" type="button">
+    <img class="menu-icon" src="assets/icons/system/menu.svg" alt="menu" />
+  </button>
+  <span class="">Chats</span>
+</div>
+
+<div class="input-container">
+  <input class="input" [formControl]="control" type="text" />
+</div>
+
 <ul class="contact-list">
-  <li class="contact">
-    <contact></contact>
+  <li *ngFor="let contact of contacts | contactFilter: control.value" class="contact">
+    <contact [contact]="contact"></contact>
   </li>
 </ul>

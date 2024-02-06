@@ -3,6 +3,30 @@
   height: 100%;
 }
 
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 10px;
+}
+
+.menu-button {
+  height: 24px;
+  width: 24px;
+}
+
+.input-container {
+  padding: 0 10px;
+  margin-bottom: 20px;
+}
+
+.input {
+  width: 100%;
+  border-bottom: 1px solid gainsboro;
+}
+
 .contact-list {
-  height: 100%;
+  height: calc(100% - 83px);
+  padding: 10px;
+  overflow-y: scroll;
 }

@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component} from "@angular/core";
+import {ChangeDetectionStrategy, Component, Input} from "@angular/core";
 
 @Component({
   selector: 'contact',
@@ -7,4 +7,6 @@ import {ChangeDetectionStrategy, Component} from "@angular/core";
   styleUrl: 'contact.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ContactComponent {}
+export class ContactComponent {
+  @Input() contact!: any;
+}

@@ -11,7 +11,7 @@ import {
 import {FormControl, ReactiveFormsModule} from "@angular/forms";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {distinctUntilChanged, map} from "rxjs";
-import {getPreparedInputValue} from "./helpers/chat-input.helper";
+import {getTrimmedString} from "../../../../../../shared/helpers/input.helper";
 
 @Component({
   selector: 'chat-input',
@@ -46,7 +46,7 @@ export class ChatInputComponent implements OnInit {
   }
 
   private subscribeToInput(): void {
-    this.control.valueChanges.pipe(map((input) => getPreparedInputValue(input)), distinctUntilChanged(), takeUntilDestroyed(this.destroyRef)).subscribe((input) => {
+    this.control.valueChanges.pipe(map((input) => getTrimmedString(input)), distinctUntilChanged(), takeUntilDestroyed(this.destroyRef)).subscribe((input) => {
       this.setInput.emit(input);
     });
   }
