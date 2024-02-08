@@ -1,6 +1,6 @@
-import {ChangeDetectionStrategy, Component} from "@angular/core";
-import {ContactsComponent} from "./components/contacts/contacts.component";
-import {ChatComponent} from "./components/chat/chat.component";
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ContactsComponent } from './components/contacts/contacts.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 @Component({
   selector: 'messenger',

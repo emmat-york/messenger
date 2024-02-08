@@ -1,5 +1,5 @@
-import {AuthService} from "../../api/auth/auth.service";
-import {Injectable} from "@angular/core";
+import { AuthService } from '../../api/auth/auth.service';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',

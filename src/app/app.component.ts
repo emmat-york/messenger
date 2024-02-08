@@ -1,9 +1,15 @@
-import {ChangeDetectionStrategy, Component, DestroyRef, Inject, OnInit} from '@angular/core';
-import {RouterOutlet} from '@angular/router';
-import {SettingsFacade} from "./store/settings/settings.facade";
-import {DOCUMENT, NgClass} from "@angular/common";
-import {PushPipe} from "@ngrx/component";
-import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  Inject,
+  OnInit,
+} from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { SettingsFacade } from './store/settings/settings.facade';
+import { DOCUMENT, NgClass } from '@angular/common';
+import { PushPipe } from '@ngrx/component';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-root',
@@ -25,8 +31,10 @@ export class AppComponent implements OnInit {
   }
 
   private subscribeToTheme(): void {
-    this.settingsFacade.theme$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((theme) => {
-      this.document.body.setAttribute('class', theme);
-    });
+    this.settingsFacade.theme$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(theme => {
+        this.document.body.setAttribute('class', theme);
+      });
   }
 }

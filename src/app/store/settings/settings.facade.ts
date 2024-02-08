@@ -1,6 +1,6 @@
-import {Injectable} from "@angular/core";
-import {Action, Store} from "@ngrx/store";
-import {AppTheme, selectTheme} from "./settings.feature";
+import { Injectable } from '@angular/core';
+import { Action, Store } from '@ngrx/store';
+import { AppTheme, selectTheme } from './settings.feature';
 import * as action from './settings.action';
 
 @Injectable({

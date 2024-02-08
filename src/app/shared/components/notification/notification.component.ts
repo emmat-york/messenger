@@ -4,15 +4,15 @@ import { NgClass, NgSwitch, NgSwitchCase, TitleCasePipe } from '@angular/common'
 import { IconPipe } from '../../pipes/icon/icon.pipe';
 
 @Component({
-    selector: 'notification',
-    standalone: true,
-    templateUrl: 'notification.component.html',
-    styleUrls: ['notification.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NgClass, NgSwitch, TitleCasePipe, NgSwitchCase, IconPipe],
+  selector: 'notification',
+  standalone: true,
+  templateUrl: 'notification.component.html',
+  styleUrls: ['notification.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [NgClass, NgSwitch, TitleCasePipe, NgSwitchCase, IconPipe],
 })
 export class NotificationComponent implements Notification {
-    @Input() type: NotificationType = 'success';
-    @Input() message = '';
-    @Input() closeAction(): void {}
+  @Input() type: NotificationType = 'success';
+  @Input() message = '';
+  @Input() closeAction(): void {}
 }

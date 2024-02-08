@@ -1,9 +1,9 @@
-import {Routes} from '@angular/router';
-import {RegistrationComponent} from "./pages/registration/registration.component";
-import {NotFoundComponent} from "./pages/not-found/not-found.component";
-import {LoginComponent} from "./pages/login/login.component";
-import {MessengerComponent} from "./pages/messenger/messenger.component";
-import {SettingsComponent} from "./pages/settings/settings.component";
+import { Routes } from '@angular/router';
+import { RegistrationComponent } from './pages/registration/registration.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { LoginComponent } from './pages/login/login.component';
+import { MessengerComponent } from './pages/messenger/messenger.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 export const routes: Routes = [
   {

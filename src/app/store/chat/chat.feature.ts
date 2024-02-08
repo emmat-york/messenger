@@ -1,4 +1,4 @@
-import {createFeature, createReducer, createSelector, on} from "@ngrx/store";
+import { createFeature, createReducer, createSelector, on } from '@ngrx/store';
 import * as action from './chat.action';
 
 interface State {
@@ -11,10 +11,16 @@ const initialState: State = {
   messages: [],
 };
 
-const reducer = createReducer(initialState, on(action.setInput, (state, { input }): State => ({
-    ...state,
-    input,
-})));
+const reducer = createReducer(
+  initialState,
+  on(
+    action.setInput,
+    (state, { input }): State => ({
+      ...state,
+      input,
+    }),
+  ),
+);
 
 export const chatFeature = createFeature({
   name: 'chatFeatureKey',
@@ -23,7 +29,7 @@ export const chatFeature = createFeature({
     chatVM: createSelector(selectInput, selectMessages, (input, messages) => ({
       input,
       messages,
-    }))
+    })),
   }),
 });
 

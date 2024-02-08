@@ -6,12 +6,12 @@ import {
   Inject,
   Input,
   OnInit,
-  Output
-} from "@angular/core";
-import {FormControl, ReactiveFormsModule} from "@angular/forms";
-import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
-import {distinctUntilChanged, map} from "rxjs";
-import {getTrimmedString} from "../../../../../../shared/helpers/input.helper";
+  Output,
+} from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { distinctUntilChanged, map } from 'rxjs';
+import { getTrimmedString } from '../../../../../../shared/helpers/input.helper';
 
 @Component({
   selector: 'chat-input',
@@ -24,7 +24,7 @@ import {getTrimmedString} from "../../../../../../shared/helpers/input.helper";
 export class ChatInputComponent implements OnInit {
   @Input() set input(input: string) {
     this.control.patchValue(input, { emitEvent: false });
-  };
+  }
 
   @Output() setInput = new EventEmitter<string>();
   @Output() sendMessage = new EventEmitter<void>();
@@ -46,8 +46,14 @@ export class ChatInputComponent implements OnInit {
   }
 
   private subscribeToInput(): void {
-    this.control.valueChanges.pipe(map((input) => getTrimmedString(input)), distinctUntilChanged(), takeUntilDestroyed(this.destroyRef)).subscribe((input) => {
-      this.setInput.emit(input);
-    });
+    this.control.valueChanges
+      .pipe(
+        map(input => getTrimmedString(input)),
+        distinctUntilChanged(),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe(input => {
+        this.setInput.emit(input);
+      });
   }
 }

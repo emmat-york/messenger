@@ -1,4 +1,4 @@
 export enum FileExtensions {
-    Svg = '.svg',
-    Png = '.png',
+  Svg = '.svg',
+  Png = '.png',
 }

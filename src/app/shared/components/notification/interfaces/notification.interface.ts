@@ -1,12 +1,12 @@
 export interface Notification {
-    type: NotificationType;
-    message: string;
-    closeAction: () => void;
+  type: NotificationType;
+  message: string;
+  closeAction: () => void;
 }
 
 export type NotificationType = 'success' | 'warning' | 'error';
 
 export interface ModalConfig {
-    message: string;
-    type: NotificationType;
+  message: string;
+  type: NotificationType;
 }

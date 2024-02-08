@@ -3,53 +3,53 @@ import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/f
 import { NgClass } from '@angular/common';
 
 @Component({
-    selector: 'app-input',
-    standalone: true,
-    templateUrl: 'input.component.html',
-    styleUrls: ['input.component.scss'],
-    imports: [FormsModule, NgClass],
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: InputComponent,
-            multi: true,
-        },
-    ],
-    changeDetection: ChangeDetectionStrategy.OnPush,
+  selector: 'app-input',
+  standalone: true,
+  templateUrl: 'input.component.html',
+  styleUrls: ['input.component.scss'],
+  imports: [FormsModule, NgClass],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: InputComponent,
+      multi: true,
+    },
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputComponent implements ControlValueAccessor {
-    @Input() id!: string;
-    @Input() classes!: string | string[] | Record<string, boolean> | null;
-    @Input() placeholder = '';
+  @Input() id!: string;
+  @Input() classes!: string | string[] | Record<string, boolean> | null;
+  @Input() placeholder = '';
 
-    value = '';
-    disabled = false;
+  value = '';
+  disabled = false;
 
-    onChange(value: string): void {}
-    onBlur(): void {}
+  onChange(value: string): void {}
+  onBlur(): void {}
 
-    onInputChange(value: string): void {
-        this.value = value;
-        this.onChange(value);
-    }
+  onInputChange(value: string): void {
+    this.value = value;
+    this.onChange(value);
+  }
 
-    onInputBlur(): void {
-        this.onBlur();
-    }
+  onInputBlur(): void {
+    this.onBlur();
+  }
 
-    writeValue(value: string | null): void {
-        this.value = value || '';
-    }
+  writeValue(value: string | null): void {
+    this.value = value || '';
+  }
 
-    setDisabledState(disabled: boolean): void {
-        this.disabled = disabled;
-    }
+  setDisabledState(disabled: boolean): void {
+    this.disabled = disabled;
+  }
 
-    registerOnChange(fn: (_: string) => void): void {
-        this.onChange = fn;
-    }
+  registerOnChange(fn: (_: string) => void): void {
+    this.onChange = fn;
+  }
 
-    registerOnTouched(fn: any): void {
-        this.onBlur = fn;
-    }
+  registerOnTouched(fn: any): void {
+    this.onBlur = fn;
+  }
 }

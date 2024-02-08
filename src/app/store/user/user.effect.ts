@@ -1,5 +1,5 @@
-import {Store} from "@ngrx/store";
-import {Injectable} from "@angular/core";
+import { Store } from '@ngrx/store';
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class UserEffect {

@@ -1,9 +1,9 @@
-import {ChangeDetectionStrategy, Component} from "@angular/core";
-import {ChatFacade} from "../../../../store/chat/chat.facade";
-import {ChatBodyComponent} from "./components/chat-body/chat-body.component";
-import {ChatInputComponent} from "./components/chat-input/chat-input.component";
-import {LetDirective} from "@ngrx/component";
-import {Observable} from "rxjs";
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChatFacade } from '../../../../store/chat/chat.facade';
+import { ChatBodyComponent } from './components/chat-body/chat-body.component';
+import { ChatInputComponent } from './components/chat-input/chat-input.component';
+import { LetDirective } from '@ngrx/component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'chat',
@@ -11,11 +11,7 @@ import {Observable} from "rxjs";
   templateUrl: 'chat.component.html',
   styleUrl: 'chat.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    ChatBodyComponent,
-    ChatInputComponent,
-    LetDirective,
-  ],
+  imports: [ChatBodyComponent, ChatInputComponent, LetDirective],
 })
 export class ChatComponent {
   chatVM$: Observable<{ input: string; messages: any[] }> = this.chatFacade.chatVM$;

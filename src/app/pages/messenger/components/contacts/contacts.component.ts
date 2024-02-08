@@ -1,9 +1,9 @@
-import {ChangeDetectionStrategy, Component} from "@angular/core";
-import {ContactComponent} from "./components/contact/contact.component";
-import {FormControl, ReactiveFormsModule} from "@angular/forms";
-import {UserFacade} from "../../../../store/user/user.facade";
-import {NgForOf} from "@angular/common";
-import {ContactsFilterPipe} from "./pipes/contacts-filter.pipe";
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ContactComponent } from './components/contact/contact.component';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { UserFacade } from '../../../../store/user/user.facade';
+import { NgForOf } from '@angular/common';
+import { ContactsFilterPipe } from './pipes/contacts-filter.pipe';
 
 @Component({
   selector: 'contacts',
@@ -16,40 +16,40 @@ import {ContactsFilterPipe} from "./pipes/contacts-filter.pipe";
 export class ContactsComponent {
   contacts = [
     {
-      name: 'Andrew'
+      name: 'Andrew',
     },
     {
-      name: 'Pavel'
+      name: 'Pavel',
     },
     {
-      name: 'Oleg'
+      name: 'Oleg',
     },
     {
-      name: 'Leha'
+      name: 'Leha',
     },
     {
-      name: 'Marina'
+      name: 'Marina',
     },
     {
-      name: 'Vitaliy'
+      name: 'Vitaliy',
     },
     {
-      name: 'Andrew'
+      name: 'Andrew',
     },
     {
-      name: 'Pavel'
+      name: 'Pavel',
     },
     {
-      name: 'Oleg'
+      name: 'Oleg',
     },
     {
-      name: 'Leha'
+      name: 'Leha',
     },
     {
-      name: 'Marina'
+      name: 'Marina',
     },
     {
-      name: 'Vitaliy'
+      name: 'Vitaliy',
     },
   ];
 
