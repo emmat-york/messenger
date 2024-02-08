@@ -1,0 +1,33 @@
+:host {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  padding: 8px 16px;
+  border: 1px solid green;
+}
+
+.close-button {
+  padding: 0;
+  margin-left: auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.success {
+  color: green;
+}
+
+.warning {
+  color: green;
+}
+
+.error {
+  color: green;
+}

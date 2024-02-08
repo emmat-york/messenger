@@ -1,0 +1,25 @@
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.input {
+  display: block;
+  height: 36px;
+  width: 100%;
+  padding: 0;
+  border-bottom: 1.5px solid red;
+
+  &.valid {
+    border-color: red;
+  }
+
+  &.invalid {
+    border-color: red;
+  }
+
+  &:focus:not(&.valid, &.invalid, &:disabled) {
+    border-color: red;
+  }
+}

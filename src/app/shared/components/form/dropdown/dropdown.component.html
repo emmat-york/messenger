@@ -1,0 +1,22 @@
+<div appClickOutside (clickOutside)="onClickOutSide()">
+    <button
+            class="dropdown-button"
+            type="button"
+            [disabled]="disabled"
+            (click)="onDropdownClick()"
+            (blur)="onDropdownBlur()"
+    >
+        <span class="title">{{ selectedValueTitle }}</span>
+        <img
+                [class.expanded]="isDropdownShown"
+                src=""
+                alt=""
+        />
+    </button>
+
+    <ul class="option-list" *ngIf="isDropdownShown">
+        <li class="option" *ngFor="let option of options" (click)="onOptionClick(option)">
+            {{ option.title }}
+        </li>
+    </ul>
+</div>

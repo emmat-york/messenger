@@ -1,0 +1,39 @@
+
+:host {
+  position: relative;
+  display: inline-block;
+  color: black;
+}
+
+.dropdown-button {
+  display: flex;
+  align-items: center;
+  padding: 8px 10px 8px 16px;
+  border: 1px solid black;
+}
+
+.title {
+  margin-right: 10px;
+  color: inherit;
+}
+
+.expanded {
+  rotate: 180deg;
+}
+
+.option-list {
+  position: absolute;
+  width: 100%;
+  border: 1px solid black;
+}
+
+.option {
+  padding: 2px 0;
+  text-align: center;
+  border-bottom: 1px solid black;
+  cursor: pointer;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
