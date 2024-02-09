@@ -1,7 +1,10 @@
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { inject } from '@angular/core';
 import { ValidatorKeys } from '../../enums/validator-keys.enum';
-import { ControlStateClasses, ErrorState } from './interfaces/form-extension.interface';
+import {
+  ControlStateClasses,
+  ErrorState,
+} from './interfaces/form-extension.interface';
 
 export class FormExtension<FormKeys extends string> {
   protected formGroup!: FormGroup;

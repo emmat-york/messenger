@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { SettingsFacade } from '../../store/settings/settings.facade';
 
 @Component({
-  selector: 'settings',
+  selector: 'app-settings',
   standalone: true,
   templateUrl: 'settings.component.html',
   styleUrl: 'settings.component.scss',

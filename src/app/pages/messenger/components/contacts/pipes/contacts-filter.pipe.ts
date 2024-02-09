@@ -6,12 +6,17 @@ import { getTrimmedString } from '../../../../../shared/helpers/input.helper';
   standalone: true,
 })
 export class ContactsFilterPipe implements PipeTransform {
-  transform(contacts: { name: string }[], search: string | null): { name: string }[] {
+  transform(
+    contacts: { name: string }[],
+    search: string | null,
+  ): { name: string }[] {
     if (!search) {
       return contacts;
     }
 
     const lowSearch = getTrimmedString(search).toLowerCase();
-    return contacts.filter(({ name }) => name.toLowerCase().includes(lowSearch));
+    return contacts.filter(({ name }) =>
+      name.toLowerCase().includes(lowSearch),
+    );
   }
 }

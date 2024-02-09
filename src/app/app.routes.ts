@@ -4,6 +4,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { LoginComponent } from './pages/login/login.component';
 import { MessengerComponent } from './pages/messenger/messenger.component';
 import { SettingsComponent } from './pages/settings/settings.component';
+import { canActivateMessenger } from './guards/messenger.guard';
+import { canActivateAuth } from './guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -14,18 +16,22 @@ export const routes: Routes = [
   {
     path: 'messenger',
     component: MessengerComponent,
+    canActivate: [canActivateMessenger],
   },
   {
-    path: 'setting',
+    path: 'settings',
     component: SettingsComponent,
+    canActivate: [canActivateMessenger],
   },
   {
     path: 'registration',
     component: RegistrationComponent,
+    canActivate: [canActivateAuth],
   },
   {
     path: 'login',
     component: LoginComponent,
+    canActivate: [canActivateAuth],
   },
   {
     path: '**',

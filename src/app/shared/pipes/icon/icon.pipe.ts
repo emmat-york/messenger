@@ -17,7 +17,9 @@ export class IconPipe implements PipeTransform {
     }
 
     const foldersState: Record<Folders, SrcBuilder> = {
-      flags: new SrcBuilder().setFolderOne('flags').setExtension(FileExtensions.Svg),
+      flags: new SrcBuilder()
+        .setFolderOne('flags')
+        .setExtension(FileExtensions.Svg),
     } as Record<Folders, SrcBuilder>;
 
     return foldersState[folder].setName(name).path;

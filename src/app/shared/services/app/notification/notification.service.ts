@@ -34,8 +34,9 @@ export class NotificationService {
       );
     }
 
-    const modalRef =
-      this.viewRef.createComponent<NotificationComponent>(NotificationComponent);
+    const modalRef = this.viewRef.createComponent<NotificationComponent>(
+      NotificationComponent,
+    );
 
     modalRef.instance.type = type;
     modalRef.instance.message = message;

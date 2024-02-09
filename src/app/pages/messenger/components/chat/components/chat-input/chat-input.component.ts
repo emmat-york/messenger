@@ -14,7 +14,7 @@ import { distinctUntilChanged, map } from 'rxjs';
 import { getTrimmedString } from '../../../../../../shared/helpers/input.helper';
 
 @Component({
-  selector: 'chat-input',
+  selector: 'app-chat-input',
   standalone: true,
   templateUrl: 'chat-input.component.html',
   styleUrl: 'chat-input.component.scss',

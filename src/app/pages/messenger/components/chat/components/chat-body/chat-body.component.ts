@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'chat-body',
+  selector: 'app-chat-body',
   standalone: true,
   templateUrl: 'chat-body.component.html',
   styleUrl: 'chat-body.component.scss',

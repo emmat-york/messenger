@@ -11,7 +11,11 @@
   </button>
 
   <ul class="option-list" *ngIf="isDropdownShown">
-    <li class="option" *ngFor="let option of options" (click)="onOptionClick(option)">
+    <li
+      class="option"
+      *ngFor="let option of options"
+      (click)="onOptionClick(option)"
+    >
       {{ option.title }}
     </li>
   </ul>

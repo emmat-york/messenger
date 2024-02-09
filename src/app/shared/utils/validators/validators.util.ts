@@ -25,7 +25,9 @@ export abstract class CustomValidators {
       } else if (!value.match(/[a-z]/)) {
         return error;
       } else if (
-        !value.match(/[~\`\!\@\#\$\%\^\&\*\(\)\-\_\+\=\{\}\|\;\:\"\<\>\,\.\?\/\\]/)
+        !value.match(
+          /[~\`\!\@\#\$\%\^\&\*\(\)\-\_\+\=\{\}\|\;\:\"\<\>\,\.\?\/\\]/,
+        )
       ) {
         return error;
       }

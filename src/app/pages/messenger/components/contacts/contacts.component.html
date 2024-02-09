@@ -10,7 +10,10 @@
 </div>
 
 <ul class="contact-list">
-  <li *ngFor="let contact of contacts | contactFilter: control.value" class="contact">
+  <li
+    *ngFor="let contact of contacts | contactFilter: control.value"
+    class="contact"
+  >
     <contact [contact]="contact"></contact>
   </li>
 </ul>

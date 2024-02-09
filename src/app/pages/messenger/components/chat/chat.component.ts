@@ -6,7 +6,7 @@ import { LetDirective } from '@ngrx/component';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'chat',
+  selector: 'app-chat',
   standalone: true,
   templateUrl: 'chat.component.html',
   styleUrl: 'chat.component.html',
@@ -14,7 +14,8 @@ import { Observable } from 'rxjs';
   imports: [ChatBodyComponent, ChatInputComponent, LetDirective],
 })
 export class ChatComponent {
-  chatVM$: Observable<{ input: string; messages: any[] }> = this.chatFacade.chatVM$;
+  chatVM$: Observable<{ input: string; messages: any[] }> =
+    this.chatFacade.chatVM$;
 
   constructor(private readonly chatFacade: ChatFacade) {}
 
