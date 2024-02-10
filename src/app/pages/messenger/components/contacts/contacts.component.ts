@@ -6,7 +6,7 @@ import { NgForOf } from '@angular/common';
 import { ContactsFilterPipe } from './pipes/contacts-filter.pipe';
 
 @Component({
-  selector: 'contacts',
+  selector: 'app-contacts',
   standalone: true,
   templateUrl: 'contacts.component.html',
   styleUrl: 'contacts.component.scss',
