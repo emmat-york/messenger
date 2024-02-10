@@ -81,17 +81,15 @@ const chatReducer = (
 
 // --- STORE ---
 class Store {
-  user: UserState | undefined;
-  chat: ChatState | undefined;
+  user!: UserState;
+  chat!: ChatState;
 
   dispatch(action: Action): void {
     this.user = userReducer(this.user, action);
     this.chat = chatReducer(this.chat, action);
   }
 
-  select(
-    fn: (state: Store) => UserState | ChatState | undefined,
-  ): UserState | ChatState | undefined {
+  select(fn: (state: Store) => UserState | ChatState): UserState | ChatState {
     return fn(this);
   }
 }
