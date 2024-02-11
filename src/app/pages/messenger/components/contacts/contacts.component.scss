@@ -1,33 +1,59 @@
+@import '../../../../../assets/styles/variables';
+
 :host {
   display: block;
   height: 100%;
+  border-right: 1.5px solid map-get($colorful-palette, darkGrey);
 }
 
-.menu {
+.search-bar {
   display: flex;
   align-items: center;
-  gap: 20px;
-  padding: 10px;
+  margin-bottom: 8px;
+  padding: 8px 0;
 }
 
 .menu-button {
   height: 24px;
   width: 24px;
+  margin: 0 16px;
 }
 
-.input-container {
-  padding: 0 10px;
-  margin-bottom: 20px;
+.label {
+  position: relative;
+  height: 40px;
+  width: 100%;
+  margin-right: 16px;
+
+  &:before {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    transform: translateY(-50%);
+    content: url('../../../../../assets/icons/system/search.svg');
+    width: 24px;
+    height: 24px;
+  }
 }
 
 .input {
-  width: 100%;
-  border: 1px solid gainsboro;
-  border-radius: 6px;
+  height: inherit;
+  width: inherit;
+  padding-left: 56px;
+  font-family: $inter;
+  font-size: 16px;
+  line-height: 20px;
+  border-radius: 22px;
+  background-color: map-get($colorful-palette, lightGrey);
+  color: map-get($colorful-palette, navyGrey);
 }
 
 .contact-list {
   height: calc(100% - 83px);
-  padding: 10px;
-  overflow-y: scroll;
+  overflow-y: auto;
+}
+
+.contact {
+  padding: 12px 16px;
+  cursor: pointer;
 }
