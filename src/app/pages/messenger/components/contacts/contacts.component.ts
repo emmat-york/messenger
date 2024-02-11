@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ContactComponent } from './components/contact/contact.component';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { UserFacade } from '../../../../store/user/user.facade';
-import { ContactsFilterPipe } from './pipes/contacts-filter.pipe';
+import { ArrayFilterPipe } from '../../../../shared/pipes/array-filter/array-filter.pipe';
 import { IconPipe } from '../../../../shared/pipes/icon/icon.pipe';
 
 @Component({
@@ -11,12 +11,7 @@ import { IconPipe } from '../../../../shared/pipes/icon/icon.pipe';
   templateUrl: 'contacts.component.html',
   styleUrl: 'contacts.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    ContactComponent,
-    ReactiveFormsModule,
-    ContactsFilterPipe,
-    IconPipe,
-  ],
+  imports: [ContactComponent, ReactiveFormsModule, ArrayFilterPipe, IconPipe],
 })
 export class ContactsComponent {
   contacts = [

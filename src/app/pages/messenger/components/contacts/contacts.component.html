@@ -15,10 +15,10 @@
 </div>
 
 <ul class="contact-list">
-  @for (contact of contacts | contactFilter: control.value; track contact.name)
+  @for (contact of contacts | arrayFilter: control.value: 'name'; track contact.name)
   {
   <li>
-    <app-contact [contact]="contact"></app-contact>
+    <app-contact [class.selected]="false" [contact]="contact"></app-contact>
   </li>
   }
 </ul>
