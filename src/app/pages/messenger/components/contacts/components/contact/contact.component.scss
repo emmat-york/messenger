@@ -1,3 +1,45 @@
+@import '../../../../../../../assets/styles/variables';
+
 :host {
-  display: block;
+  display: flex;
+  gap: 16px;
+  padding: 12px 16px;
+
+  &:hover {
+    background-color: map-get($colorful-palette, lightGrey);
+    cursor: pointer;
+  }
+}
+
+.contact-info {
+  width: 100%;
+  font-family: $inter;
+}
+
+.name-and-date {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.name {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  color: map-get($colorful-palette, richBlack);
+}
+
+.date {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: map-get($colorful-palette, navyGrey);
+}
+
+.message {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  color: map-get($colorful-palette, navyGrey);
 }

@@ -1,6 +1,6 @@
 <div class="search-bar">
   <button class="menu-button" type="button">
-    <img src="assets/icons/system/menu.svg" alt="menu" />
+    <img [src]="'menu' | icon" alt="menu" />
   </button>
 
   <label class="label" for="contact-search-input-bar">
@@ -17,8 +17,8 @@
 <ul class="contact-list">
   @for (contact of contacts | contactFilter: control.value; track contact.name)
   {
-  <li class="contact">
-    <contact [contact]="contact"></contact>
+  <li>
+    <app-contact [contact]="contact"></app-contact>
   </li>
   }
 </ul>

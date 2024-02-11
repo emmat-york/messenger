@@ -1,1 +1,10 @@
-<p>{{ contact.name }}</p>
+<img [src]="contact.avatar" alt="avatar" />
+
+<div class="contact-info">
+    <div class="name-and-date">
+        <h3 class="name">{{ contact.name }}</h3>
+        <span class="date">{{ contact.lastMessage.date |  date:'shortTime' }}</span>
+    </div>
+
+    <div class="message">{{ contact.lastMessage.message }}</div>
+</div>
