@@ -4,6 +4,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { UserFacade } from '../../../../store/user/user.facade';
 import { ArrayFilterPipe } from '../../../../shared/pipes/array-filter/array-filter.pipe';
 import { IconPipe } from '../../../../shared/pipes/icon/icon.pipe';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-contacts',
@@ -11,7 +12,13 @@ import { IconPipe } from '../../../../shared/pipes/icon/icon.pipe';
   templateUrl: 'contacts.component.html',
   styleUrl: 'contacts.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ContactComponent, ReactiveFormsModule, ArrayFilterPipe, IconPipe],
+  imports: [
+    ContactComponent,
+    ReactiveFormsModule,
+    ArrayFilterPipe,
+    IconPipe,
+    NgOptimizedImage,
+  ],
 })
 export class ContactsComponent {
   contacts = [

@@ -1,5 +1,8 @@
 <ng-container *ngrxLet="chatVM$; let chatVM">
+  <app-chat-top-bar></app-chat-top-bar>
+
   <app-chat-body [messages]="chatVM.messages"></app-chat-body>
+
   <app-chat-input
     [input]="chatVM.input"
     (setInput)="setInput($event)"

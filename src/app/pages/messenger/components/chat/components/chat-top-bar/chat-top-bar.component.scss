@@ -1,0 +1,19 @@
+@import "../../../../../../../assets/styles/variables";
+
+:host {
+  display: flex;
+  padding: 8px 16px;
+  background-color: map-get($colorful-palette, white);
+}
+
+.avatar {
+  margin-right: 16px;
+}
+
+.name {
+  font-family: $inter;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  color: map-get($colorful-palette, richBlack);
+}

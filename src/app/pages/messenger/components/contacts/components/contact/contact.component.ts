@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-contact',
@@ -7,7 +7,7 @@ import { DatePipe } from '@angular/common';
   templateUrl: 'contact.component.html',
   styleUrl: 'contact.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [DatePipe],
+  imports: [DatePipe, NgOptimizedImage],
 })
 export class ContactComponent {
   @Input() contact!: any;

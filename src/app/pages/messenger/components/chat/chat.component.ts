@@ -4,14 +4,20 @@ import { ChatBodyComponent } from './components/chat-body/chat-body.component';
 import { ChatInputComponent } from './components/chat-input/chat-input.component';
 import { LetDirective } from '@ngrx/component';
 import { Observable } from 'rxjs';
+import { ChatTopBarComponent } from './components/chat-top-bar/chat-top-bar.component';
 
 @Component({
   selector: 'app-chat',
   standalone: true,
   templateUrl: 'chat.component.html',
-  styleUrl: 'chat.component.html',
+  styleUrl: 'chat.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ChatBodyComponent, ChatInputComponent, LetDirective],
+  imports: [
+    ChatBodyComponent,
+    ChatInputComponent,
+    LetDirective,
+    ChatTopBarComponent,
+  ],
 })
 export class ChatComponent {
   chatVM$: Observable<{ input: string; messages: any[] }> =
