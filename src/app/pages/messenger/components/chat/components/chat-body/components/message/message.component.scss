@@ -1,0 +1,10 @@
+@import '../../../../../../../../../assets/styles/variables';
+
+:host {
+  display: block;
+  height: 30px;
+  width: fit-content;
+  padding: 8px;
+  border-radius: 12px;
+  background-color: map-get($colorful-palette, white);
+}

@@ -12,6 +12,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { distinctUntilChanged, map } from 'rxjs';
 import { getTrimmedString } from '../../../../../../shared/helpers/input.helper';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-chat-input',
@@ -19,7 +20,7 @@ import { getTrimmedString } from '../../../../../../shared/helpers/input.helper'
   templateUrl: 'chat-input.component.html',
   styleUrl: 'chat-input.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NgOptimizedImage],
 })
 export class ChatInputComponent implements OnInit {
   @Input() set input(input: string) {

@@ -34,7 +34,8 @@ export class ContactsComponent {
       name: 'Pavel',
       avatar: 'assets/icons/system/avatar.svg',
       lastMessage: {
-        message: "You: i don't remember anything 😄",
+        message:
+          "You: i don't remember anything 😄 You: i don't remember anything",
         date: new Date(),
       },
     },

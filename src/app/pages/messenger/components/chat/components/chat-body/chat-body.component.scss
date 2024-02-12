@@ -1,3 +1,13 @@
 :host {
-  display: block;
+  flex: 1 1 auto;
+  padding: 0 16px;
+  overflow: auto;
+}
+
+.message {
+  margin-bottom: 16px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }

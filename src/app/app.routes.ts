@@ -1,9 +1,5 @@
 import { Routes } from '@angular/router';
-import { RegistrationComponent } from './pages/registration/registration.component';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { LoginComponent } from './pages/login/login.component';
 import { MessengerComponent } from './pages/messenger/messenger.component';
-import { SettingsComponent } from './pages/settings/settings.component';
 import { canActivateMessenger } from './guards/messenger.guard';
 import { canActivateAuth } from './guards/auth.guard';
 
@@ -20,21 +16,31 @@ export const routes: Routes = [
   },
   {
     path: 'settings',
-    component: SettingsComponent,
+    loadComponent: () =>
+      import('./pages/settings/settings.component').then(
+        c => c.SettingsComponent,
+      ),
     canActivate: [canActivateMessenger],
   },
   {
     path: 'registration',
-    component: RegistrationComponent,
+    loadComponent: () =>
+      import('./pages/registration/registration.component').then(
+        c => c.RegistrationComponent,
+      ),
     canActivate: [canActivateAuth],
   },
   {
     path: 'login',
-    component: LoginComponent,
+    loadComponent: () =>
+      import('./pages/login/login.component').then(c => c.LoginComponent),
     canActivate: [canActivateAuth],
   },
   {
     path: '**',
-    component: NotFoundComponent,
+    loadComponent: () =>
+      import('./pages/not-found/not-found.component').then(
+        c => c.NotFoundComponent,
+      ),
   },
 ];

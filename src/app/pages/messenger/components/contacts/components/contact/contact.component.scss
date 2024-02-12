@@ -1,22 +1,31 @@
 @import '../../../../../../../assets/styles/variables';
 
+$avatar-width: 48px;
+$avatar-indent: 16px;
+
 :host {
   display: flex;
-  gap: 16px;
+  gap: $avatar-indent;
   padding: 12px 16px;
+  cursor: pointer;
 
   &.selected {
-    background-color: map-get($colorful-palette, lightGrey);
+    background-color: map-get($colorful-palette, blue);
+
+    & > .name,
+    .date,
+    .message {
+      color: map-get($colorful-palette, white);
+    }
   }
 
-  &:hover {
+  &:hover:not(.selected) {
     background-color: map-get($colorful-palette, lightGrey);
-    cursor: pointer;
   }
 }
 
 .contact-info {
-  width: 100%;
+  width: calc(100% - #{$avatar-width} - #{$avatar-indent});
   font-family: $inter;
 }
 
@@ -46,4 +55,7 @@
   font-weight: 400;
   line-height: 18px;
   color: map-get($colorful-palette, navyGrey);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
