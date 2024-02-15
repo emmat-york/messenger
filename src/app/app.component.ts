@@ -6,10 +6,10 @@ import {
   OnInit,
 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { SettingsFacade } from './store/settings/settings.facade';
-import { DOCUMENT, NgClass } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { PushPipe } from '@ngrx/component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { SocketService } from './shared/services/api/socket/socket.service';
 
 @Component({
   selector: 'app-root',
@@ -22,19 +22,17 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 export class AppComponent implements OnInit {
   constructor(
     @Inject(DestroyRef) private readonly destroyRef: DestroyRef,
-    @Inject(DOCUMENT) private readonly document: Document,
-    private readonly settingsFacade: SettingsFacade,
+    private readonly socketService: SocketService,
   ) {}
 
   ngOnInit(): void {
-    this.subscribeToTheme();
+    this.subscribeToMessage();
   }
 
-  private subscribeToTheme(): void {
-    this.settingsFacade.theme$
+  private subscribeToMessage(): void {
+    this.socketService
+      .getMessage$()
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(theme => {
-        this.document.body.setAttribute('class', theme);
-      });
+      .subscribe(data => {});
   }
 }

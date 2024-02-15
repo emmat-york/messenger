@@ -1,17 +1,24 @@
-import { createFeature, createReducer, on } from '@ngrx/store';
+import { createFeature, createReducer, createSelector, on } from '@ngrx/store';
+import { UserData } from './user.interface';
 import * as action from './user.action';
 
 interface State {
-  userData: object | null;
+  userData: UserData | null;
+  selectedUserId: number | null;
 }
 
 const initialState: State = {
   userData: null,
+  selectedUserId: null,
 };
 
 const reducer = createReducer(
   initialState,
   on(action.setUserData, (state, { userData }) => ({ ...state, userData })),
+  on(action.setSelectedUserId, (state, { selectedUserId }) => ({
+    ...state,
+    selectedUserId,
+  })),
 );
 
 export const userFeature = createFeature({
@@ -19,4 +26,12 @@ export const userFeature = createFeature({
   reducer,
 });
 
-export const { selectUserData } = userFeature;
+const { selectUserData, selectSelectedUserId } = userFeature;
+export const selectUserVM = createSelector(
+  selectUserData,
+  selectSelectedUserId,
+  (userData, selectedUserId) => ({
+    userData,
+    selectedUserId,
+  }),
+);

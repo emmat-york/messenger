@@ -14,12 +14,11 @@
   </label>
 </div>
 
-<ul class="contact-list">
-  @for (contact of contacts | arrayFilter: control.value: 'name'; let index =
-  $index; track contact.name) {
-  <li>
+<ul class="contact-list" *ngrxLet="userVM$; let userVM">
+  @for (contact of (userVM.userData?.contacts || []) | arrayFilter: control.value: 'userName'; track contact.userName) {
+  <li (click)="setSelectedUserId(contact.id)">
     <app-contact
-      [class.selected]="index === 3"
+      [class.selected]="contact.id === userVM.selectedUserId"
       [contact]="contact"
     ></app-contact>
   </li>

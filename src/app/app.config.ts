@@ -15,12 +15,13 @@ import { AuthUserService } from './shared/services/app/auth-user/auth-user.servi
 import { UserFacade } from './store/user/user.facade';
 import { EMPTY, Observable, tap } from 'rxjs';
 import { UserService } from './shared/services/api/user/user.service';
+import { UserData } from './store/user/user.interface';
 
 function initializeAppFactory(
   authUserService: AuthUserService,
   userService: UserService,
   userFacade: UserFacade,
-): () => Observable<object | never> {
+): () => Observable<UserData | never> {
   return () => {
     if (authUserService.isAuth) {
       return userService

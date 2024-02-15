@@ -1,13 +1,16 @@
 import { createFeature, createReducer, createSelector, on } from '@ngrx/store';
+import { Message } from './chat.interface';
 import * as action from './chat.action';
 
 interface State {
   input: string;
-  messages: any[];
+  roomId: string | null;
+  messages: Message[];
 }
 
 const initialState: State = {
   input: '',
+  roomId: null,
   messages: [],
 };
 

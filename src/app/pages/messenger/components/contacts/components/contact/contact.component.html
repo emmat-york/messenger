@@ -2,9 +2,9 @@
 
 <div class="contact-info">
   <div class="name-and-date">
-    <h3 class="name">{{ contact.name }}</h3>
-    <span class="date">{{ contact.lastMessage.date | date: 'shortTime' }}</span>
+    <h3 class="name">{{ contact.userName }}</h3>
+    <span class="date">{{ '01-01-2020' | date: 'shortTime' }}</span>
   </div>
 
-  <div class="message">{{ contact.lastMessage.message }}</div>
+  <div class="message">{{ '' }}</div>
 </div>
