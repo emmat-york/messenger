@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { distinctUntilChanged, map } from 'rxjs';
+import { distinctUntilChanged } from 'rxjs';
 import { getTrimmedString } from '../../../../../../shared/helpers/input.helper';
 import { NgOptimizedImage } from '@angular/common';
 
@@ -30,7 +30,7 @@ export class ChatInputComponent implements OnInit {
   @Output() setInput = new EventEmitter<string>();
   @Output() sendMessage = new EventEmitter<void>();
 
-  control = new FormControl('');
+  control = new FormControl('', { nonNullable: true });
 
   constructor(@Inject(DestroyRef) private readonly destroyRef: DestroyRef) {}
 
@@ -48,13 +48,7 @@ export class ChatInputComponent implements OnInit {
 
   private subscribeToInput(): void {
     this.control.valueChanges
-      .pipe(
-        map(input => getTrimmedString(input)),
-        distinctUntilChanged(),
-        takeUntilDestroyed(this.destroyRef),
-      )
-      .subscribe(input => {
-        this.setInput.emit(input);
-      });
+      .pipe(distinctUntilChanged(), takeUntilDestroyed(this.destroyRef))
+      .subscribe(input => this.setInput.emit(getTrimmedString(input)));
   }
 }

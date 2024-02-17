@@ -6,6 +6,8 @@ import { ArrayFilterPipe } from '../../../../shared/pipes/array-filter/array-fil
 import { IconPipe } from '../../../../shared/pipes/icon/icon.pipe';
 import { NgIf, NgOptimizedImage } from '@angular/common';
 import { LetDirective } from '@ngrx/component';
+import { SocketService } from '../../../../shared/services/api/socket/socket.service';
+import { Contact } from '../../../../store/user/user.interface';
 
 @Component({
   selector: 'app-contacts',
@@ -28,9 +30,20 @@ export class ContactsComponent {
 
   control = new FormControl<string>('', { nonNullable: true });
 
-  constructor(private readonly userFacade: UserFacade) {}
+  constructor(
+    private readonly socketService: SocketService,
+    private readonly userFacade: UserFacade,
+  ) {}
 
-  setSelectedUserId(id: number): void {
-    this.userFacade.setSelectedUserId(id);
+  setSelectedUserId(
+    selectedContactId: number | undefined,
+    contact: Contact,
+  ): void {
+    if (selectedContactId === contact.id) {
+      return;
+    }
+
+    this.socketService.joinRoom(contact.userName, contact.roomId);
+    this.userFacade.setSelectedContact(contact);
   }
 }

@@ -1,7 +1,7 @@
 import { selectUserVM } from './user.feature';
 import { Injectable } from '@angular/core';
 import { Action, Store } from '@ngrx/store';
-import { UserData } from './user.interface';
+import { Contact, UserData } from './user.interface';
 import * as action from './user.action';
 
 @Injectable()
@@ -14,8 +14,8 @@ export class UserFacade {
     this.dispatch(action.setUserData({ userData }));
   }
 
-  setSelectedUserId(selectedUserId: number | null): void {
-    this.dispatch(action.setSelectedUserId({ selectedUserId }));
+  setSelectedContact(selectedContact: Contact | null): void {
+    this.dispatch(action.setSelectedContact({ selectedContact }));
   }
 
   private dispatch(action: Action): void {

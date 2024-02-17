@@ -11,12 +11,5 @@ export interface Contact {
   userName: string;
   phoneNumber: string;
   avatar: string;
-  roomId: {
-    [id: string]: string;
-  };
-}
-
-export interface UserVM {
-  userData: UserData | null;
-  selectedUserId: number | null;
+  roomId: string;
 }

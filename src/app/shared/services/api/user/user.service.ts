@@ -19,30 +19,7 @@ export class UserService {
           phoneNumber: '+375259273423',
           userName: 'Pavel',
           avatar: 'assets/icons/system/avatar.svg',
-          roomId: {
-            1: 'room-1',
-            2: 'room-2',
-          },
-        },
-        {
-          id: 3,
-          phoneNumber: '+375259273424',
-          userName: 'Roman',
-          avatar: 'assets/icons/system/avatar.svg',
-          roomId: {
-            1: 'room-1',
-            2: 'room-2',
-          },
-        },
-        {
-          id: 4,
-          phoneNumber: '+375259273425',
-          userName: 'Sergei',
-          avatar: 'assets/icons/system/avatar.svg',
-          roomId: {
-            1: 'room-1',
-            2: 'room-2',
-          },
+          roomId: 'room-1',
         },
       ],
     });

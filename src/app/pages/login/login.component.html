@@ -1,1 +1,5 @@
-<p>login</p>
+<form [formGroup]="formGroup" (ngSubmit)="onLogin()">
+    <input [formControlName]="loginFormKey.Phone" type="text" placeholder="Enter your phone number..." />
+
+    <app-button type="submit">Login</app-button>
+</form>

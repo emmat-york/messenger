@@ -16,9 +16,9 @@
 
 <ul class="contact-list" *ngrxLet="userVM$; let userVM">
   @for (contact of (userVM.userData?.contacts || []) | arrayFilter: control.value: 'userName'; track contact.userName) {
-  <li (click)="setSelectedUserId(contact.id)">
+  <li (click)="setSelectedUserId(userVM.selectedContact?.id, contact)">
     <app-contact
-      [class.selected]="contact.id === userVM.selectedUserId"
+      [class.selected]="contact.id === userVM.selectedContact?.id"
       [contact]="contact"
     ></app-contact>
   </li>

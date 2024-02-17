@@ -1,9 +1,11 @@
 export interface Message {
+  userId: number;
+  message: string;
   userName: string;
-  messageText: string;
-  createDate: Date;
-  editDate: Date;
-  likeData: Like[];
+  roomId: string;
+  creationDate: Date;
+  editDate: Date | null;
+  likes: Like[];
 }
 
 export interface Like {

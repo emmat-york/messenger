@@ -3,7 +3,6 @@ import { ChatFacade } from '../../../../store/chat/chat.facade';
 import { ChatBodyComponent } from './components/chat-body/chat-body.component';
 import { ChatInputComponent } from './components/chat-input/chat-input.component';
 import { LetDirective } from '@ngrx/component';
-import { Observable } from 'rxjs';
 import { ChatTopBarComponent } from './components/chat-top-bar/chat-top-bar.component';
 
 @Component({
@@ -13,15 +12,14 @@ import { ChatTopBarComponent } from './components/chat-top-bar/chat-top-bar.comp
   styleUrl: 'chat.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    ChatBodyComponent,
-    ChatInputComponent,
-    LetDirective,
     ChatTopBarComponent,
+    ChatInputComponent,
+    ChatBodyComponent,
+    LetDirective,
   ],
 })
 export class ChatComponent {
-  chatVM$: Observable<{ input: string; messages: any[] }> =
-    this.chatFacade.chatVM$;
+  chatVM$ = this.chatFacade.chatVM$;
 
   constructor(private readonly chatFacade: ChatFacade) {}
 

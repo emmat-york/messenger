@@ -23,6 +23,11 @@ const reducer = createReducer(
       input,
     }),
   ),
+  on(action.resetInput, (state): State => ({ ...state, input: '' })),
+  on(action.setMessage, (state, { message }) => ({
+    ...state,
+    messages: [...state.messages, message],
+  })),
 );
 
 export const chatFeature = createFeature({

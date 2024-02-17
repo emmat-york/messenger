@@ -1,0 +1,16 @@
+@use 'src/assets/styles/variables';
+
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: map-get(variables.$wb-palette, 10);
+  cursor: pointer;
+}
+
+.up {
+  transform: rotate(180deg);
+}

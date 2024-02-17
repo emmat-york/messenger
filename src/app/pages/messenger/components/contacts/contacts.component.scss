@@ -3,7 +3,7 @@
 :host {
   display: block;
   height: 100%;
-  border-right: 1.5px solid map-get($colorful-palette, darkGrey);
+  border-right: 1px solid map-get($colorful-palette, darkGrey);
 }
 
 .search-bar {
