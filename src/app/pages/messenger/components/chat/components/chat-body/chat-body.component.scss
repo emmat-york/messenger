@@ -1,7 +1,10 @@
 :host {
   flex: 1 1 auto;
-  padding: 16px;
   overflow: auto;
+}
+
+.message-list {
+  padding: 16px;
 }
 
 .message {
@@ -10,4 +13,10 @@
   &:last-child {
     margin-bottom: 0;
   }
+}
+
+.scroll-circle {
+  position: absolute;
+  right: 28px;
+  bottom: 62px;
 }

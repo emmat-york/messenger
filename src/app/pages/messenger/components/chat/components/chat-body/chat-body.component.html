@@ -1,7 +1,13 @@
-<ul>
+<ul class="message-list">
   @for (message of messages; track message.id) {
   <li class="message">
     <app-message></app-message>
   </li>
   }
 </ul>
+
+<app-scroll-circle
+  class="scroll-circle"
+  *ngIf="isScrollCircleShown"
+  (click)="onScrollDown()"
+></app-scroll-circle>
