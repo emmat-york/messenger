@@ -25,7 +25,21 @@ export class AuthUserService {
   }
 
   get token(): string | null {
-    return localStorage.getItem(AUTH_TOKEN_KEY);
+    const expiresDate = localStorage.getItem(AUTH_TOKEN_EXPIRES_DATE_KEY);
+    const token = localStorage.getItem(AUTH_TOKEN_KEY);
+
+    if (!token || !expiresDate) {
+      return null;
+    }
+
+    const expiresDateInMilliseconds = Number(expiresDate) * 1000;
+    const currentDate = new Date().getDate();
+
+    if (currentDate > expiresDateInMilliseconds) {
+      return null;
+    }
+
+    return token;
   }
 
   registration$(
