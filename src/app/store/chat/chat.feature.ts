@@ -4,13 +4,13 @@ import * as action from './chat.action';
 
 interface State {
   input: string;
-  roomId: string | null;
+  currentRoomId: string | null;
   messages: Message[];
 }
 
 const initialState: State = {
   input: '',
-  roomId: null,
+  currentRoomId: null,
   messages: [],
 };
 

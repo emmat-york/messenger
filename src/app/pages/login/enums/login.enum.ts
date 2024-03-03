@@ -1,3 +1,4 @@
 export enum LoginFormKey {
-  Phone = 'phone',
+  Email = 'email',
+  Password = 'password',
 }

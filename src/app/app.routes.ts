@@ -3,19 +3,27 @@ import { MessengerComponent } from './pages/messenger/messenger.component';
 import { canActivateMessenger } from './guards/messenger.guard';
 import { canActivateAuth } from './guards/auth.guard';
 
+export enum AppPages {
+  Messenger = 'messenger',
+  Settings = 'settings',
+  Registration = 'registration',
+  Login = 'login',
+  NotFound = '**',
+}
+
 export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'messenger',
+    redirectTo: AppPages.Messenger,
   },
   {
-    path: 'messenger',
+    path: AppPages.Messenger,
     component: MessengerComponent,
     canActivate: [canActivateMessenger],
   },
   {
-    path: 'settings',
+    path: AppPages.Settings,
     loadComponent: () =>
       import('./pages/settings/settings.component').then(
         c => c.SettingsComponent,
@@ -23,7 +31,7 @@ export const routes: Routes = [
     canActivate: [canActivateMessenger],
   },
   {
-    path: 'registration',
+    path: AppPages.Registration,
     loadComponent: () =>
       import('./pages/registration/registration.component').then(
         c => c.RegistrationComponent,
@@ -31,13 +39,13 @@ export const routes: Routes = [
     canActivate: [canActivateAuth],
   },
   {
-    path: 'login',
+    path: AppPages.Login,
     loadComponent: () =>
       import('./pages/login/login.component').then(c => c.LoginComponent),
     canActivate: [canActivateAuth],
   },
   {
-    path: '**',
+    path: AppPages.NotFound,
     loadComponent: () =>
       import('./pages/not-found/not-found.component').then(
         c => c.NotFoundComponent,

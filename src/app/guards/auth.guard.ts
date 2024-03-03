@@ -1,6 +1,7 @@
 import { inject } from '@angular/core';
 import { AuthUserService } from '../shared/services/app/auth-user/auth-user.service';
 import { Router } from '@angular/router';
+import { AppPages } from '../app.routes';
 
 export function canActivateAuth(): boolean {
   const authUserService = inject(AuthUserService);
@@ -10,6 +11,6 @@ export function canActivateAuth(): boolean {
     return true;
   }
 
-  router.navigate(['/messenger']);
+  router.navigate([AppPages.Messenger]);
   return false;
 }

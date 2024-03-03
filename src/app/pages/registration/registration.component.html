@@ -1,1 +1,36 @@
-<p>registration</p>
+<form class="form-group" [formGroup]="formGroup" (ngSubmit)="onRegistration()">
+  <div>
+    <app-label [for]="registrationFormKey.Email">Email</app-label>
+
+    <app-input
+      [formControlName]="registrationFormKey.Email"
+      [id]="registrationFormKey.Email"
+    ></app-input>
+
+    <app-error-message></app-error-message>
+  </div>
+
+  <div>
+    <app-label [for]="registrationFormKey.Password">Password</app-label>
+
+    <app-input
+      [formControlName]="registrationFormKey.Password"
+      [id]="registrationFormKey.Password"
+    ></app-input>
+
+    <app-error-message></app-error-message>
+  </div>
+
+  <div>
+    <app-label [for]="registrationFormKey.UserName">User name</app-label>
+
+    <app-input
+      [formControlName]="registrationFormKey.UserName"
+      [id]="registrationFormKey.UserName"
+    ></app-input>
+
+    <app-error-message></app-error-message>
+  </div>
+
+  <app-button type="submit">Submit</app-button>
+</form>

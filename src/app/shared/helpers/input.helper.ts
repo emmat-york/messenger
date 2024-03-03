@@ -1,3 +1,5 @@
-export const getTrimmedString = (rawInput: string | null): string => {
+export const getTrimmedString = (
+  rawInput: string | null | undefined,
+): string => {
   return (rawInput || '').trim();
 };

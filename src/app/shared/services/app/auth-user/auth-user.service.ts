@@ -1,13 +1,18 @@
 import { AuthService } from '../../api/auth/auth.service';
-import { DestroyRef, Inject, Injectable } from '@angular/core';
+import { DestroyRef, Injectable } from '@angular/core';
 import { AUTH_TOKEN_KEY } from './contants/auth-user.constant';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Observable, tap } from 'rxjs';
+import {
+  RegistrationCredentials,
+  RegistrationResponse,
+} from '../../api/auth/interfaces/auth.interface';
 
 @Injectable()
 export class AuthUserService {
   constructor(
-    @Inject(DestroyRef) private readonly destroyRef: DestroyRef,
     private readonly authService: AuthService,
+    private readonly destroyRef: DestroyRef,
   ) {}
 
   get isAuth(): boolean {
@@ -18,16 +23,19 @@ export class AuthUserService {
     return 'sdafasdfasdfadsfasdfasdf';
   }
 
+  registration$(
+    credentials: RegistrationCredentials,
+  ): Observable<RegistrationResponse> {
+    return this.authService.registration$(credentials).pipe(
+      tap(({ idToken }) => {
+        this.setToken(idToken);
+      }),
+    );
+  }
+
   login(credentials: any): void {
     this.authService
       .login$(credentials)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(() => {});
-  }
-
-  registration(credentials: any): void {
-    this.authService
-      .registration$(credentials)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => {});
   }

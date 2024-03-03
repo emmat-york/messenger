@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   DestroyRef,
-  Inject,
   OnInit,
 } from '@angular/core';
 import {
@@ -12,10 +11,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { LoginFormKey } from './enums/login.enum';
-import { LoginForm } from './interfaces/login.interface';
 import { ButtonComponent } from '../../shared/components/button/button.component';
 import { AuthService } from '../../shared/services/api/auth/auth.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { MIN_PASSWORD_LENGTH } from '../../shared/constants/form.constant';
+import { LoginFormGroup } from './interfaces/login.interface';
 
 @Component({
   selector: 'app-login',
@@ -26,13 +26,14 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   imports: [ReactiveFormsModule, ButtonComponent],
 })
 export class LoginComponent implements OnInit {
-  formGroup!: FormGroup<LoginForm>;
+  formGroup!: FormGroup<LoginFormGroup>;
+  isLoading = false;
 
   readonly loginFormKey = LoginFormKey;
 
   constructor(
-    @Inject(DestroyRef) private readonly destroyRef: DestroyRef,
     private readonly authService: AuthService,
+    private readonly destroyRef: DestroyRef,
     private readonly fb: FormBuilder,
   ) {}
 
@@ -42,14 +43,18 @@ export class LoginComponent implements OnInit {
 
   onLogin(): void {
     this.authService
-      .login$(this.formGroup.getRawValue().phone)
+      .login$(this.formGroup.getRawValue())
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => {});
   }
 
   private initForm(): void {
     this.fb.nonNullable.group({
-      [LoginFormKey.Phone]: ['', [Validators.required]],
+      [LoginFormKey.Email]: ['', [Validators.required]],
+      [LoginFormKey.Password]: [
+        '',
+        [Validators.required, Validators.minLength(MIN_PASSWORD_LENGTH)],
+      ],
     });
   }
 }

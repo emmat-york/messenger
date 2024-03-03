@@ -30,8 +30,8 @@ export class ChatBodyComponent implements AfterViewInit {
   constructor(
     private readonly viewRef: ViewContainerRef,
     private readonly cdRef: ChangeDetectorRef,
+    private readonly destroyRef: DestroyRef,
     private readonly renderer2: Renderer2,
-    private destroyRef: DestroyRef,
   ) {}
 
   ngAfterViewInit(): void {
