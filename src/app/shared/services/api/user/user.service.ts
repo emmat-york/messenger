@@ -7,7 +7,7 @@ import { UserData } from '../../../../store/user/user.interface';
 export class UserService {
   constructor(private readonly httpClient: HttpClient) {}
 
-  getUserData$(token: string): Observable<UserData> {
+  getUserData$(uuid: string): Observable<UserData> {
     return of({
       id: 1,
       phoneNumber: '12345678',

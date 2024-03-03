@@ -29,6 +29,9 @@ import { finalize } from 'rxjs';
 import { Router } from '@angular/router';
 import { AppPages } from '../../app.routes';
 import { AuthUserService } from '../../shared/services/app/auth-user/auth-user.service';
+import { CustomValidators } from '../../shared/utils/validators/validators.util';
+import { REGISTRATION_ERROR_STATE } from './constants/registration.constant';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-registration',
@@ -42,19 +45,21 @@ import { AuthUserService } from '../../shared/services/app/auth-user/auth-user.s
     InputComponent,
     ErrorMessageComponent,
     ButtonComponent,
+    NgIf,
   ],
 })
 export class RegistrationComponent implements OnInit {
   formGroup!: FormGroup<RegistrationFormGroup>;
   isLoading = false;
 
+  readonly errorState = REGISTRATION_ERROR_STATE;
   readonly registrationFormKey = RegistrationFormKey;
 
   constructor(
     private readonly authUserService: AuthUserService,
     private readonly cdRef: ChangeDetectorRef,
+    private readonly formBuilder: FormBuilder,
     private readonly destroyRef: DestroyRef,
-    private readonly fb: FormBuilder,
     private readonly router: Router,
   ) {}
 
@@ -101,11 +106,18 @@ export class RegistrationComponent implements OnInit {
   }
 
   private initForm(): void {
-    this.fb.nonNullable.group({
-      [RegistrationFormKey.Email]: ['', [Validators.required]],
+    this.formBuilder.nonNullable.group({
+      [RegistrationFormKey.Email]: [
+        '',
+        [Validators.required, CustomValidators.email()],
+      ],
       [RegistrationFormKey.Password]: [
         '',
-        [Validators.required, Validators.minLength(MIN_PASSWORD_LENGTH)],
+        [
+          Validators.required,
+          Validators.minLength(MIN_PASSWORD_LENGTH),
+          CustomValidators.password(),
+        ],
       ],
       [RegistrationFormKey.UserName]: [
         '',

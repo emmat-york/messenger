@@ -25,7 +25,7 @@ function initializeAppFactory(
   return () => {
     if (authUserService.isAuth) {
       return userService
-        .getUserData$(authUserService.token!)
+        .getUserData$('')
         .pipe(tap(userData => userFacade.setUserData(userData)));
     }
 

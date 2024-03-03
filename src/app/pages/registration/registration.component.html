@@ -7,7 +7,11 @@
       [id]="registrationFormKey.Email"
     ></app-input>
 
-    <app-error-message></app-error-message>
+    <app-error-message
+      *ngIf="formGroup.controls[registrationFormKey.Email].errors as errors"
+      [controlErrorState]="errorState[registrationFormKey.Email]"
+      [controlErrors]="errors"
+    ></app-error-message>
   </div>
 
   <div>
