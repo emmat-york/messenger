@@ -3,12 +3,10 @@ import {
   ChangeDetectorRef,
   Component,
   DestroyRef,
-  OnInit,
 } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
-  FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
@@ -19,9 +17,7 @@ import {
   SLEEPY_OPTIONS,
 } from '../../shared/constants/form.constant';
 import { RegistrationFormKey } from './enums/registration.enum';
-import { RegistrationFormGroup } from './interfaces/registration.interface';
 import { getTrimmedString } from '../../shared/helpers/input.helper';
-import { LabelComponent } from '../../shared/components/form/label/label.component';
 import { InputComponent } from '../../shared/components/form/input/input.component';
 import { ErrorMessageComponent } from '../../shared/components/form/error-message/error-message.component';
 import { ButtonComponent } from '../../shared/components/button/button.component';
@@ -30,7 +26,10 @@ import { Router } from '@angular/router';
 import { AppPages } from '../../app.routes';
 import { AuthUserService } from '../../shared/services/app/auth-user/auth-user.service';
 import { CustomValidators } from '../../shared/utils/validators/validators.util';
-import { REGISTRATION_ERROR_STATE } from './constants/registration.constant';
+import {
+  REGISTRATION_ERROR_STATE,
+  REGISTRATION_LABELS,
+} from './constants/registration.constant';
 import { NgIf } from '@angular/common';
 
 @Component({
@@ -41,19 +40,37 @@ import { NgIf } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
-    LabelComponent,
     InputComponent,
     ErrorMessageComponent,
     ButtonComponent,
     NgIf,
   ],
 })
-export class RegistrationComponent implements OnInit {
-  formGroup!: FormGroup<RegistrationFormGroup>;
+export class RegistrationComponent {
+  formGroup = this.formBuilder.nonNullable.group({
+    [RegistrationFormKey.Email]: [
+      '',
+      [Validators.required, CustomValidators.email()],
+    ],
+    [RegistrationFormKey.Password]: [
+      '',
+      [
+        Validators.required,
+        Validators.minLength(MIN_PASSWORD_LENGTH),
+        CustomValidators.password(),
+      ],
+    ],
+    [RegistrationFormKey.UserName]: [
+      '',
+      [Validators.required, Validators.minLength(MIN_USER_NAME_LENGTH)],
+    ],
+  });
+
   isLoading = false;
 
-  readonly errorState = REGISTRATION_ERROR_STATE;
   readonly registrationFormKey = RegistrationFormKey;
+  readonly errorState = REGISTRATION_ERROR_STATE;
+  readonly labels = REGISTRATION_LABELS;
 
   constructor(
     private readonly authUserService: AuthUserService,
@@ -62,10 +79,6 @@ export class RegistrationComponent implements OnInit {
     private readonly destroyRef: DestroyRef,
     private readonly router: Router,
   ) {}
-
-  ngOnInit(): void {
-    this.initForm();
-  }
 
   onRegistration(): void {
     if (this.formGroup.disabled || this.isLoading) {
@@ -103,26 +116,5 @@ export class RegistrationComponent implements OnInit {
         );
       },
     );
-  }
-
-  private initForm(): void {
-    this.formBuilder.nonNullable.group({
-      [RegistrationFormKey.Email]: [
-        '',
-        [Validators.required, CustomValidators.email()],
-      ],
-      [RegistrationFormKey.Password]: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(MIN_PASSWORD_LENGTH),
-          CustomValidators.password(),
-        ],
-      ],
-      [RegistrationFormKey.UserName]: [
-        '',
-        [Validators.required, Validators.minLength(MIN_USER_NAME_LENGTH)],
-      ],
-    });
   }
 }

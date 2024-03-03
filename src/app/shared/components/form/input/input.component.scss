@@ -8,17 +8,17 @@
   height: 36px;
   width: 100%;
   padding: 0;
-  border-bottom: 1.5px solid red;
+  border-bottom: 1.5px solid black;
 
-  &.valid {
-    border-color: red;
+  &.valid:not(&.invalid, &:focus, &:disabled) {
+    border-color: green;
   }
 
   &.invalid {
     border-color: red;
   }
 
-  &:focus:not(&.valid, &.invalid, &:disabled) {
-    border-color: red;
+  &:focus:not(&.invalid, &:disabled) {
+    border-color: blue;
   }
 }

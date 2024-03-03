@@ -21,3 +21,9 @@ export const REGISTRATION_ERROR_STATE: RegistrationErrorState = {
     [ValidatorKeys.minlength]: `User name min length should be ${MIN_USER_NAME_LENGTH} symbols`,
   },
 };
+
+export const REGISTRATION_LABELS = {
+  [RegistrationFormKey.Email]: 'Email',
+  [RegistrationFormKey.Password]: 'Password',
+  [RegistrationFormKey.UserName]: 'User name',
+};

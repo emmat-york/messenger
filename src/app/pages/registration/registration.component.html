@@ -1,40 +1,26 @@
 <form class="form-group" [formGroup]="formGroup" (ngSubmit)="onRegistration()">
-  <div>
-    <app-label [for]="registrationFormKey.Email">Email</app-label>
+  <h2 class="heading">Registration</h2>
 
-    <app-input
-      [formControlName]="registrationFormKey.Email"
-      [id]="registrationFormKey.Email"
-    ></app-input>
+  <app-input
+    [errorState]="errorState[registrationFormKey.Email]"
+    [formControlName]="registrationFormKey.Email"
+    [label]="labels[registrationFormKey.Email]"
+    [id]="registrationFormKey.Email"
+  ></app-input>
 
-    <app-error-message
-      *ngIf="formGroup.controls[registrationFormKey.Email].errors as errors"
-      [controlErrorState]="errorState[registrationFormKey.Email]"
-      [controlErrors]="errors"
-    ></app-error-message>
-  </div>
+  <app-input
+    [errorState]="errorState[registrationFormKey.Password]"
+    [formControlName]="registrationFormKey.Password"
+    [label]="labels[registrationFormKey.Password]"
+    [id]="registrationFormKey.Password"
+  ></app-input>
 
-  <div>
-    <app-label [for]="registrationFormKey.Password">Password</app-label>
-
-    <app-input
-      [formControlName]="registrationFormKey.Password"
-      [id]="registrationFormKey.Password"
-    ></app-input>
-
-    <app-error-message></app-error-message>
-  </div>
-
-  <div>
-    <app-label [for]="registrationFormKey.UserName">User name</app-label>
-
-    <app-input
-      [formControlName]="registrationFormKey.UserName"
-      [id]="registrationFormKey.UserName"
-    ></app-input>
-
-    <app-error-message></app-error-message>
-  </div>
+  <app-input
+    [errorState]="errorState[registrationFormKey.UserName]"
+    [formControlName]="registrationFormKey.UserName"
+    [label]="labels[registrationFormKey.UserName]"
+    [id]="registrationFormKey.UserName"
+  ></app-input>
 
   <app-button type="submit">Submit</app-button>
 </form>
