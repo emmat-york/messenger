@@ -3,12 +3,6 @@ export interface RegistrationCredentials {
   password: string;
 }
 
-export interface RegistrationRequestBody {
-  email: string; // The email for the user to create
-  password: string; // The password for the user to create
-  returnSecureToken: true; // Whether to return an ID and refresh token. Should always be true.
-}
-
 export interface RegistrationResponse {
   idToken: string; // A Firebase Auth ID token for the newly created user.
   email: string; //	The email for the newly created user.
@@ -18,7 +12,21 @@ export interface RegistrationResponse {
 }
 
 export interface RegistrationErrorResponse {
-  EMAIL_EXISTS: string; // The email address is already in use by another account.
-  OPERATION_NOT_ALLOWED: string; // Password sign-in is disabled for this project.
-  TOO_MANY_ATTEMPTS_TRY_LATER: string; // We have blocked all requests from this device due to unusual activity. Try again later.
+  error: {
+    code: number;
+    errors: {
+      message: RegistrationErrorMessages;
+      domain: string;
+      reason: string;
+    }[];
+    message: RegistrationErrorMessages;
+  };
+  EMAIL_EXISTS: string;
+  OPERATION_NOT_ALLOWED: string;
+  TOO_MANY_ATTEMPTS_TRY_LATER: string;
 }
+
+type RegistrationErrorMessages =
+  | 'EMAIL_EXISTS' // The email address is already in use by another account.
+  | 'OPERATION_NOT_ALLOWED' // Password sign-in is disabled for this project.
+  | 'TOO_MANY_ATTEMPTS_TRY_LATER'; // We have blocked all requests from this device due to unusual activity. Try again later.

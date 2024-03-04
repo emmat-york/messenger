@@ -1,5 +1,4 @@
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
-import { SocketService } from '../../shared/services/api/socket/socket.service';
 import { UserFacade } from '../user/user.facade';
 import { ChatFacade } from './chat.facade';
 import { Injectable } from '@angular/core';
@@ -9,7 +8,6 @@ import * as action from './chat.action';
 @Injectable()
 export class ChatEffect {
   constructor(
-    private readonly socketService: SocketService,
     private readonly chatFacade: ChatFacade,
     private readonly userFacade: UserFacade,
     private readonly actions$: Actions,
@@ -27,15 +25,15 @@ export class ChatEffect {
           return action.unauthorized();
         }
 
-        this.socketService.sendMessage({
-          userId: userData.id,
-          roomId: selectedContact.roomId,
-          userName: userData.userName,
-          creationDate: new Date(),
-          editDate: null,
-          message: input,
-          likes: [],
-        });
+        // this.socketService.sendMessage({
+        //   userId: userData.id,
+        //   roomId: selectedContact.roomId,
+        //   userName: userData.userName,
+        //   creationDate: new Date(),
+        //   editDate: null,
+        //   message: input,
+        //   likes: [],
+        // });
 
         return action.resetInput();
       }),

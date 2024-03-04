@@ -5,12 +5,14 @@ import {
   AUTH_TOKEN_KEY,
 } from './contants/auth-user.constant';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Observable, tap } from 'rxjs';
+import { catchError, Observable, tap, throwError } from 'rxjs';
 import {
   RegistrationCredentials,
+  RegistrationErrorResponse,
   RegistrationResponse,
 } from '../../api/auth/interfaces/auth.interface';
 import { UserFacade } from '../../../../store/user/user.facade';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable()
 export class AuthUserService {
@@ -24,18 +26,20 @@ export class AuthUserService {
     return !!this.token;
   }
 
-  get token(): string | null {
+  private get token(): string | null {
     const expiresDate = localStorage.getItem(AUTH_TOKEN_EXPIRES_DATE_KEY);
     const token = localStorage.getItem(AUTH_TOKEN_KEY);
 
     if (!token || !expiresDate) {
+      this.removeToken();
       return null;
     }
 
-    const expiresDateInMilliseconds = Number(expiresDate) * 1000;
-    const currentDate = new Date().getDate();
+    const currentDate = new Date().getTime();
+    const expiresDateInMilliseconds = Number(expiresDate) * 1000 + currentDate;
 
     if (currentDate > expiresDateInMilliseconds) {
+      this.removeToken();
       return null;
     }
 
@@ -45,11 +49,13 @@ export class AuthUserService {
   registration$(
     credentials: RegistrationCredentials,
   ): Observable<RegistrationResponse> {
-    return this.authService
-      .registration$(credentials)
-      .pipe(
-        tap(({ idToken, expiresIn }) => this.setToken({ idToken, expiresIn })),
-      );
+    return this.authService.registration$(credentials).pipe(
+      catchError((errorResponse: HttpErrorResponse) => {
+        const error = errorResponse.error as RegistrationErrorResponse;
+        return throwError(() => error);
+      }),
+      tap(({ idToken, expiresIn }) => this.setToken({ idToken, expiresIn })),
+    );
   }
 
   login$(credentials: any): void {

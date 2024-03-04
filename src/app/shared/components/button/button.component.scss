@@ -8,7 +8,7 @@
 
 .primary {
   background-color: green;
-  color: green;
+  color: white;
 
   &:hover:not(&:disabled) {
     background-color: green;
@@ -21,7 +21,7 @@
 
 .secondary {
   background-color: green;
-  color: green;
+  color: white;
 
   &:hover:not(&:disabled) {
     background-color: green;
@@ -33,14 +33,14 @@
 }
 
 .tertiary {
-  color: green;
+  color: white;
   text-decoration: underline;
 
   &:hover:not(&:disabled) {
-    color: green;
+    color: white;
   }
 
   &:disabled {
-    color: green;
+    color: white;
   }
 }

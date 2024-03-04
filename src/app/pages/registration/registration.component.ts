@@ -66,8 +66,6 @@ export class RegistrationComponent {
     ],
   });
 
-  isLoading = false;
-
   readonly registrationFormKey = RegistrationFormKey;
   readonly errorState = REGISTRATION_ERROR_STATE;
   readonly labels = REGISTRATION_LABELS;
@@ -81,7 +79,7 @@ export class RegistrationComponent {
   ) {}
 
   onRegistration(): void {
-    if (this.formGroup.disabled || this.isLoading) {
+    if (this.formGroup.disabled) {
       return;
     }
 
@@ -92,14 +90,14 @@ export class RegistrationComponent {
       return;
     }
 
-    const { email, password, userName } = this.formGroup.getRawValue();
-    this.isLoading = true;
+    this.formGroup.disable(SLEEPY_OPTIONS);
+    const { email, password } = this.formGroup.getRawValue();
 
     this.authUserService
       .registration$({ email, password })
       .pipe(
         finalize(() => {
-          this.isLoading = false;
+          this.formGroup.enable(SLEEPY_OPTIONS);
           this.cdRef.markForCheck();
         }),
         takeUntilDestroyed(this.destroyRef),
