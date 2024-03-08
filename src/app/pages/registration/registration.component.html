@@ -2,25 +2,27 @@
   <h2 class="heading">Registration</h2>
 
   <app-input
-    [errorState]="errorState[registrationFormKey.Email]"
-    [formControlName]="registrationFormKey.Email"
-    [label]="labels[registrationFormKey.Email]"
-    [id]="registrationFormKey.Email"
+    [errorState]="errorState[signUpFormKey.Email]"
+    [formControlName]="signUpFormKey.Email"
+    [label]="labels[signUpFormKey.Email]"
+    [id]="signUpFormKey.Email"
   ></app-input>
 
   <app-input
-    [errorState]="errorState[registrationFormKey.Password]"
-    [formControlName]="registrationFormKey.Password"
-    [label]="labels[registrationFormKey.Password]"
-    [id]="registrationFormKey.Password"
+    [errorState]="errorState[signUpFormKey.Password]"
+    [formControlName]="signUpFormKey.Password"
+    [label]="labels[signUpFormKey.Password]"
+    [id]="signUpFormKey.Password"
   ></app-input>
 
   <app-input
-    [errorState]="errorState[registrationFormKey.UserName]"
-    [formControlName]="registrationFormKey.UserName"
-    [label]="labels[registrationFormKey.UserName]"
-    [id]="registrationFormKey.UserName"
+    [errorState]="errorState[signUpFormKey.UserName]"
+    [formControlName]="signUpFormKey.UserName"
+    [label]="labels[signUpFormKey.UserName]"
+    [id]="signUpFormKey.UserName"
   ></app-input>
 
   <app-button class="submit-button" type="submit">Submit</app-button>
+
+  <a [routerLink]="[appPages.Login]">Go to login</a>
 </form>

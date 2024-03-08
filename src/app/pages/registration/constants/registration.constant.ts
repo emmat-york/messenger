@@ -1,4 +1,4 @@
-import { RegistrationFormKey } from '../enums/registration.enum';
+import { SignUpFormKey } from '../enums/registration.enum';
 import { ValidatorKeys } from '../../../shared/enums/validator-keys.enum';
 import {
   MIN_PASSWORD_LENGTH,
@@ -7,23 +7,23 @@ import {
 import { RegistrationErrorState } from '../interfaces/registration.interface';
 
 export const REGISTRATION_ERROR_STATE: RegistrationErrorState = {
-  [RegistrationFormKey.Email]: {
+  [SignUpFormKey.Email]: {
     [ValidatorKeys.required]: 'This field is required',
     [ValidatorKeys.email]: 'Email should be valid',
   },
-  [RegistrationFormKey.Password]: {
+  [SignUpFormKey.Password]: {
     [ValidatorKeys.required]: 'This field is required',
     [ValidatorKeys.password]: 'Password should contain...',
     [ValidatorKeys.minlength]: `Password min length should be ${MIN_PASSWORD_LENGTH} symbols`,
   },
-  [RegistrationFormKey.UserName]: {
+  [SignUpFormKey.UserName]: {
     [ValidatorKeys.required]: 'This field is required',
     [ValidatorKeys.minlength]: `User name min length should be ${MIN_USER_NAME_LENGTH} symbols`,
   },
 };
 
 export const REGISTRATION_LABELS = {
-  [RegistrationFormKey.Email]: 'Email:',
-  [RegistrationFormKey.Password]: 'Password:',
-  [RegistrationFormKey.UserName]: 'User name:',
+  [SignUpFormKey.Email]: 'Email:',
+  [SignUpFormKey.Password]: 'Password:',
+  [SignUpFormKey.UserName]: 'User name:',
 };

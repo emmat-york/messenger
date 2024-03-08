@@ -11,14 +11,14 @@ import {
   RegistrationErrorResponse,
   RegistrationResponse,
 } from '../../api/auth/interfaces/auth.interface';
-import { UserFacade } from '../../../../store/user/user.facade';
 import { HttpErrorResponse } from '@angular/common/http';
+import { NotificationService } from '../notification/notification.service';
 
 @Injectable()
 export class AuthUserService {
   constructor(
+    private readonly notificationService: NotificationService,
     private readonly authService: AuthService,
-    private readonly userFacade: UserFacade,
     private readonly destroyRef: DestroyRef,
   ) {}
 
@@ -52,6 +52,8 @@ export class AuthUserService {
     return this.authService.registration$(credentials).pipe(
       catchError((errorResponse: HttpErrorResponse) => {
         const error = errorResponse.error as RegistrationErrorResponse;
+        this.notificationService.showError(error.error.message);
+
         return throwError(() => error);
       }),
       tap(({ idToken, expiresIn }) => this.setToken({ idToken, expiresIn })),

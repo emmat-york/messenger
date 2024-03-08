@@ -14,16 +14,15 @@ export interface RegistrationResponse {
 export interface RegistrationErrorResponse {
   error: {
     code: number;
-    errors: {
-      message: RegistrationErrorMessages;
-      domain: string;
-      reason: string;
-    }[];
+    errors: [
+      {
+        message: RegistrationErrorMessages;
+        domain: string;
+        reason: string;
+      },
+    ];
     message: RegistrationErrorMessages;
   };
-  EMAIL_EXISTS: string;
-  OPERATION_NOT_ALLOWED: string;
-  TOO_MANY_ATTEMPTS_TRY_LATER: string;
 }
 
 type RegistrationErrorMessages =

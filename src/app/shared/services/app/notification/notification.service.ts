@@ -2,7 +2,9 @@ import { Injectable, ViewContainerRef } from '@angular/core';
 import { NotificationComponent } from '../../../components/notification/notification.component';
 import { ModalConfig } from '../../../components/notification/interfaces/notification.interface';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class NotificationService {
   private _viewRef: ViewContainerRef | undefined;
   private timeOut = 5000;

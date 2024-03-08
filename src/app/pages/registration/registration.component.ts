@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
+  FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
@@ -16,13 +16,12 @@ import {
   MIN_USER_NAME_LENGTH,
   SLEEPY_OPTIONS,
 } from '../../shared/constants/form.constant';
-import { RegistrationFormKey } from './enums/registration.enum';
+import { SignUpFormKey } from './enums/registration.enum';
 import { getTrimmedString } from '../../shared/helpers/input.helper';
 import { InputComponent } from '../../shared/components/form/input/input.component';
-import { ErrorMessageComponent } from '../../shared/components/form/error-message/error-message.component';
 import { ButtonComponent } from '../../shared/components/button/button.component';
 import { finalize } from 'rxjs';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AppPages } from '../../app.routes';
 import { AuthUserService } from '../../shared/services/app/auth-user/auth-user.service';
 import { CustomValidators } from '../../shared/utils/validators/validators.util';
@@ -31,6 +30,7 @@ import {
   REGISTRATION_LABELS,
 } from './constants/registration.constant';
 import { NgIf } from '@angular/common';
+import { SignUpFormGroup } from './interfaces/registration.interface';
 
 @Component({
   selector: 'app-registration',
@@ -40,35 +40,37 @@ import { NgIf } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
-    InputComponent,
-    ErrorMessageComponent,
     ButtonComponent,
+    InputComponent,
+    RouterLink,
     NgIf,
   ],
 })
 export class RegistrationComponent {
-  formGroup = this.formBuilder.nonNullable.group({
-    [RegistrationFormKey.Email]: [
-      '',
-      [Validators.required, CustomValidators.email()],
-    ],
-    [RegistrationFormKey.Password]: [
-      '',
-      [
-        Validators.required,
-        Validators.minLength(MIN_PASSWORD_LENGTH),
-        CustomValidators.password(),
-      ],
-    ],
-    [RegistrationFormKey.UserName]: [
-      '',
-      [Validators.required, Validators.minLength(MIN_USER_NAME_LENGTH)],
-    ],
-  });
-
-  readonly registrationFormKey = RegistrationFormKey;
+  readonly signUpFormKey = SignUpFormKey;
   readonly errorState = REGISTRATION_ERROR_STATE;
   readonly labels = REGISTRATION_LABELS;
+  readonly appPages = AppPages;
+
+  readonly formGroup: FormGroup<SignUpFormGroup> =
+    this.formBuilder.nonNullable.group({
+      [SignUpFormKey.Email]: [
+        '',
+        [Validators.required, CustomValidators.email()],
+      ],
+      [SignUpFormKey.Password]: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(MIN_PASSWORD_LENGTH),
+          CustomValidators.password(),
+        ],
+      ],
+      [SignUpFormKey.UserName]: [
+        '',
+        [Validators.required, Validators.minLength(MIN_USER_NAME_LENGTH)],
+      ],
+    });
 
   constructor(
     private readonly authUserService: AuthUserService,
@@ -106,13 +108,8 @@ export class RegistrationComponent {
   }
 
   private removeWhiteSpaceFromFields(): void {
-    Object.values(this.formGroup.controls).forEach(
-      (control: FormControl<string>) => {
-        control.setValue(
-          getTrimmedString(control.getRawValue()),
-          SLEEPY_OPTIONS,
-        );
-      },
-    );
+    Object.values(this.formGroup.controls).forEach(control => {
+      control.setValue(getTrimmedString(control.getRawValue()), SLEEPY_OPTIONS);
+    });
   }
 }

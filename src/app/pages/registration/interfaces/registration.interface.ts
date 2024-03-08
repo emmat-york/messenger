@@ -1,24 +1,24 @@
 import { FormControl } from '@angular/forms';
-import { RegistrationFormKey } from '../enums/registration.enum';
+import { SignUpFormKey } from '../enums/registration.enum';
 import { ValidatorKeys } from '../../../shared/enums/validator-keys.enum';
 
-export interface RegistrationFormGroup {
-  [RegistrationFormKey.Email]: FormControl<string>;
-  [RegistrationFormKey.Password]: FormControl<string>;
-  [RegistrationFormKey.UserName]: FormControl<string>;
+export interface SignUpFormGroup {
+  [SignUpFormKey.Email]: FormControl<string>;
+  [SignUpFormKey.Password]: FormControl<string>;
+  [SignUpFormKey.UserName]: FormControl<string>;
 }
 
 export interface RegistrationErrorState {
-  [RegistrationFormKey.Email]: {
+  [SignUpFormKey.Email]: {
     [ValidatorKeys.required]: string;
     [ValidatorKeys.email]: string;
   };
-  [RegistrationFormKey.Password]: {
+  [SignUpFormKey.Password]: {
     [ValidatorKeys.required]: string;
     [ValidatorKeys.password]: string;
     [ValidatorKeys.minlength]: string;
   };
-  [RegistrationFormKey.UserName]: {
+  [SignUpFormKey.UserName]: {
     [ValidatorKeys.required]: string;
     [ValidatorKeys.minlength]: string;
   };
