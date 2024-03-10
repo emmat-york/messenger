@@ -1,13 +1,12 @@
 <form [formGroup]="formGroup" (ngSubmit)="onLogin()">
-  <input
-    [formControlName]="loginFormKey.Email"
-    type="text"
-    placeholder="Enter your phone number..."
-  />
+  <app-input [formControlName]="loginFormKey.Email"></app-input>
+
+  <app-input [formControlName]="loginFormKey.Password"></app-input>
 
   <app-button
     type="submit"
-    [disabled]="formGroup.disabled || formGroup.invalid || isLoading"
-    >Login</app-button
+    [disabled]="formGroup.disabled || formGroup.invalid"
   >
+    Login
+  </app-button>
 </form>

@@ -5,7 +5,6 @@ import { ValidatorKeys } from '../../../shared/enums/validator-keys.enum';
 export interface SignUpFormGroup {
   [SignUpFormKey.Email]: FormControl<string>;
   [SignUpFormKey.Password]: FormControl<string>;
-  [SignUpFormKey.UserName]: FormControl<string>;
 }
 
 export interface RegistrationErrorState {
@@ -16,10 +15,6 @@ export interface RegistrationErrorState {
   [SignUpFormKey.Password]: {
     [ValidatorKeys.required]: string;
     [ValidatorKeys.password]: string;
-    [ValidatorKeys.minlength]: string;
-  };
-  [SignUpFormKey.UserName]: {
-    [ValidatorKeys.required]: string;
     [ValidatorKeys.minlength]: string;
   };
 }

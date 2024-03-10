@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { REGISTRATION_PATH } from './constants/auth.constant';
+import { LOGIN_PATH, REGISTRATION_PATH } from './constants/auth.constant';
 import {
+  LoginCredentials,
+  LoginResponse,
   RegistrationCredentials,
   RegistrationResponse,
 } from './interfaces/auth.interface';
@@ -13,8 +15,11 @@ import {
 export class AuthService {
   constructor(private readonly httpClient: HttpClient) {}
 
-  login$(credentials: any): Observable<any> {
-    return this.httpClient.post('', credentials);
+  login$(credentials: LoginCredentials): Observable<LoginResponse> {
+    return this.httpClient.post<LoginResponse>(LOGIN_PATH, {
+      ...credentials,
+      returnSecureToken: true,
+    });
   }
 
   registration$(
@@ -24,9 +29,5 @@ export class AuthService {
       ...credentials,
       returnSecureToken: true,
     });
-  }
-
-  logOut$(): Observable<any> {
-    return this.httpClient.post('', 1);
   }
 }

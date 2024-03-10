@@ -15,14 +15,7 @@
     [id]="signUpFormKey.Password"
   ></app-input>
 
-  <app-input
-    [errorState]="errorState[signUpFormKey.UserName]"
-    [formControlName]="signUpFormKey.UserName"
-    [label]="labels[signUpFormKey.UserName]"
-    [id]="signUpFormKey.UserName"
-  ></app-input>
-
   <app-button class="submit-button" type="submit">Submit</app-button>
 
-  <a [routerLink]="[appPages.Login]">Go to login</a>
+  <a [routerLink]="['/' + appPages.Login]">Go to login</a>
 </form>

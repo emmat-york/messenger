@@ -1,25 +1,32 @@
 import { AuthService } from '../../api/auth/auth.service';
-import { DestroyRef, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   AUTH_TOKEN_EXPIRES_DATE_KEY,
   AUTH_TOKEN_KEY,
 } from './contants/auth-user.constant';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { catchError, Observable, tap, throwError } from 'rxjs';
 import {
+  LoginCredentials,
+  LoginErrorResponse,
+  LoginResponse,
   RegistrationCredentials,
-  RegistrationErrorResponse,
   RegistrationResponse,
 } from '../../api/auth/interfaces/auth.interface';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NotificationService } from '../notification/notification.service';
+import { Router } from '@angular/router';
+import { AppPages } from '../../../../app.routes';
+import {
+  getLoginErrorMessage,
+  getRegistrationErrorMessage,
+} from './helpers/auth-user.helper';
 
 @Injectable()
 export class AuthUserService {
   constructor(
     private readonly notificationService: NotificationService,
     private readonly authService: AuthService,
-    private readonly destroyRef: DestroyRef,
+    private readonly router: Router,
   ) {}
 
   get isAuth(): boolean {
@@ -51,27 +58,30 @@ export class AuthUserService {
   ): Observable<RegistrationResponse> {
     return this.authService.registration$(credentials).pipe(
       catchError((errorResponse: HttpErrorResponse) => {
-        const error = errorResponse.error as RegistrationErrorResponse;
-        this.notificationService.showError(error.error.message);
+        const message = getRegistrationErrorMessage(errorResponse);
+        this.notificationService.showError(message);
 
-        return throwError(() => error);
+        return throwError(() => message);
       }),
       tap(({ idToken, expiresIn }) => this.setToken({ idToken, expiresIn })),
     );
   }
 
-  login$(credentials: any): void {
-    this.authService
-      .login$(credentials)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(() => {});
+  login$(credentials: LoginCredentials): Observable<LoginResponse> {
+    return this.authService.login$(credentials).pipe(
+      catchError((errorResponse: HttpErrorResponse) => {
+        const message = getLoginErrorMessage(errorResponse);
+        this.notificationService.showError(message);
+
+        return throwError(() => message);
+      }),
+      tap(({ idToken, expiresIn }) => this.setToken({ idToken, expiresIn })),
+    );
   }
 
   logOut(): void {
-    this.authService
-      .logOut$()
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(() => this.removeToken());
+    this.removeToken();
+    this.router.navigate([AppPages.Login]);
   }
 
   private setToken({

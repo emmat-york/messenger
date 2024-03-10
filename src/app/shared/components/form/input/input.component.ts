@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  forwardRef,
   Injector,
   Input,
   OnInit,
@@ -27,7 +28,7 @@ import { ErrorMessageComponent } from '../error-message/error-message.component'
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: InputComponent,
+      useExisting: forwardRef(() => InputComponent),
       multi: true,
     },
   ],

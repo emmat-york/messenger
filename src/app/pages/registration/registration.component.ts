@@ -13,7 +13,6 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   MIN_PASSWORD_LENGTH,
-  MIN_USER_NAME_LENGTH,
   SLEEPY_OPTIONS,
 } from '../../shared/constants/form.constant';
 import { SignUpFormKey } from './enums/registration.enum';
@@ -47,9 +46,9 @@ import { SignUpFormGroup } from './interfaces/registration.interface';
   ],
 })
 export class RegistrationComponent {
-  readonly signUpFormKey = SignUpFormKey;
   readonly errorState = REGISTRATION_ERROR_STATE;
   readonly labels = REGISTRATION_LABELS;
+  readonly signUpFormKey = SignUpFormKey;
   readonly appPages = AppPages;
 
   readonly formGroup: FormGroup<SignUpFormGroup> =
@@ -65,10 +64,6 @@ export class RegistrationComponent {
           Validators.minLength(MIN_PASSWORD_LENGTH),
           CustomValidators.password(),
         ],
-      ],
-      [SignUpFormKey.UserName]: [
-        '',
-        [Validators.required, Validators.minLength(MIN_USER_NAME_LENGTH)],
       ],
     });
 
@@ -93,10 +88,9 @@ export class RegistrationComponent {
     }
 
     this.formGroup.disable(SLEEPY_OPTIONS);
-    const { email, password } = this.formGroup.getRawValue();
 
     this.authUserService
-      .registration$({ email, password })
+      .registration$(this.formGroup.getRawValue())
       .pipe(
         finalize(() => {
           this.formGroup.enable(SLEEPY_OPTIONS);
