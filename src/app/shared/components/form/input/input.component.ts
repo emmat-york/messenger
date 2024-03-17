@@ -35,7 +35,7 @@ import { ErrorMessageComponent } from '../error-message/error-message.component'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputComponent implements ControlValueAccessor, OnInit {
-  @Input() errorState: any;
+  @Input() errorState: any = {};
   @Input() id!: string;
   @Input() classes!: string | string[] | Record<string, boolean> | null;
   @Input() placeholder = '';

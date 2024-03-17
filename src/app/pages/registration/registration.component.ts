@@ -28,7 +28,6 @@ import {
   REGISTRATION_ERROR_STATE,
   REGISTRATION_LABELS,
 } from './constants/registration.constant';
-import { NgIf } from '@angular/common';
 import { SignUpFormGroup } from './interfaces/registration.interface';
 
 @Component({
@@ -37,13 +36,7 @@ import { SignUpFormGroup } from './interfaces/registration.interface';
   templateUrl: 'registration.component.html',
   styleUrl: 'registration.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    ReactiveFormsModule,
-    ButtonComponent,
-    InputComponent,
-    RouterLink,
-    NgIf,
-  ],
+  imports: [ReactiveFormsModule, ButtonComponent, InputComponent, RouterLink],
 })
 export class RegistrationComponent {
   readonly errorState = REGISTRATION_ERROR_STATE;

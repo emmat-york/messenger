@@ -1,12 +1,29 @@
-<form [formGroup]="formGroup" (ngSubmit)="onLogin()">
-  <app-input [formControlName]="loginFormKey.Email"></app-input>
+<form class="form-group" [formGroup]="formGroup" (ngSubmit)="onLogin()">
+  <h2 class="heading">Login</h2>
 
-  <app-input [formControlName]="loginFormKey.Password"></app-input>
+  <app-input
+    [errorState]="errorState[loginFormKey.Email]"
+    [id]="loginFormKey.Email"
+    [formControlName]="loginFormKey.Email"
+    [label]="labels[loginFormKey.Email]"
+  ></app-input>
+
+  <app-input
+    [errorState]="errorState[loginFormKey.Password]"
+    [id]="loginFormKey.Password"
+    [formControlName]="loginFormKey.Password"
+    [label]="labels[loginFormKey.Password]"
+  ></app-input>
 
   <app-button
+    [disabled]="formGroup.disabled"
+    class="submit-button"
     type="submit"
-    [disabled]="formGroup.disabled || formGroup.invalid"
   >
-    Login
+    Submit
   </app-button>
+
+  <a class="link" [routerLink]="['/' + appPages.Registration]"
+    >Go to registration</a
+  >
 </form>

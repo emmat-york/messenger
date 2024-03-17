@@ -1,6 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import {
+  LoginErrorMessages,
   LoginErrorResponse,
+  RegistrationErrorMessages,
   RegistrationErrorResponse,
 } from '../../../api/auth/interfaces/auth.interface';
 
@@ -9,7 +11,7 @@ export const getRegistrationErrorMessage = (
 ): string => {
   const errorObj = errorResponse.error as RegistrationErrorResponse;
 
-  const REGISTRATION_ERROR_MAP = {
+  const REGISTRATION_ERROR_MAP: Record<RegistrationErrorMessages, string> = {
     EMAIL_EXISTS: 'The email address is already in use by another account.',
     OPERATION_NOT_ALLOWED: 'Password sign-in is disabled for this project.',
     TOO_MANY_ATTEMPTS_TRY_LATER:
@@ -24,13 +26,10 @@ export const getLoginErrorMessage = (
 ): string => {
   const errorObj = errorResponse.error as LoginErrorResponse;
 
-  const LOGIN_ERROR_MAP = {
-    EMAIL_NOT_FOUND:
-      'There is no user record corresponding to this identifier. The user may have been deleted.',
-    INVALID_PASSWORD:
-      'The password is invalid or the user does not have a password.',
-    USER_DISABLED: 'The user account has been disabled by an administrator.',
+  const LOGIN_ERROR_MAP: Record<LoginErrorMessages, string> = {
+    INVALID_LOGIN_CREDENTIALS:
+      'You have provided invalid credentials. Please, check it and try once again.',
   };
 
-  return LOGIN_ERROR_MAP['EMAIL_NOT_FOUND'];
+  return LOGIN_ERROR_MAP[errorObj.error.message];
 };

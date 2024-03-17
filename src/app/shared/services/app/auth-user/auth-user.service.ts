@@ -7,7 +7,6 @@ import {
 import { catchError, Observable, tap, throwError } from 'rxjs';
 import {
   LoginCredentials,
-  LoginErrorResponse,
   LoginResponse,
   RegistrationCredentials,
   RegistrationResponse,

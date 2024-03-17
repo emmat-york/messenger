@@ -1,3 +1,20 @@
+import { ResponseCode } from '../../../../enums/response-code.enum';
+
+// COMMON
+interface AuthErrorResponse<T> {
+  error: {
+    code: ResponseCode;
+    errors: [
+      {
+        domain: string;
+        message: T;
+        reason: string;
+      },
+    ];
+    message: T;
+  };
+}
+
 // REGISTRATION
 export interface RegistrationCredentials {
   email: string;
@@ -12,24 +29,13 @@ export interface RegistrationResponse {
   localId: string; // The uid of the newly created user.
 }
 
-export interface RegistrationErrorResponse {
-  error: {
-    code: number;
-    errors: [
-      {
-        message: RegistrationErrorMessages;
-        domain: string;
-        reason: string;
-      },
-    ];
-    message: RegistrationErrorMessages;
-  };
-}
-
 export type RegistrationErrorMessages =
   | 'EMAIL_EXISTS'
   | 'OPERATION_NOT_ALLOWED'
   | 'TOO_MANY_ATTEMPTS_TRY_LATER';
+
+export type RegistrationErrorResponse =
+  AuthErrorResponse<RegistrationErrorMessages>;
 
 // LOGIN
 export interface LoginCredentials {
@@ -46,9 +52,6 @@ export interface LoginResponse {
   registered: boolean; // Whether the email is for an existing account.
 }
 
-export interface LoginErrorResponse {}
+export type LoginErrorMessages = 'INVALID_LOGIN_CREDENTIALS';
 
-export type LoginErrorMessages =
-  | 'EMAIL_NOT_FOUND'
-  | 'INVALID_PASSWORD'
-  | 'USER_DISABLED';
+export type LoginErrorResponse = AuthErrorResponse<LoginErrorMessages>;
