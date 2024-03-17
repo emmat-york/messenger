@@ -1,0 +1,1 @@
+export const DEFAULT_NOTIFICATION_TIME = 8000;

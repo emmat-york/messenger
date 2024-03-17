@@ -4,6 +4,7 @@ import {
   ModalConfig,
   ModalSettings,
 } from '../../../components/notification/interfaces/notification.interface';
+import { DEFAULT_NOTIFICATION_TIME } from './constants/notification.constant';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,6 @@ import {
 export class NotificationService {
   private modalRef: ComponentRef<NotificationComponent> | undefined;
   private _viewRef: ViewContainerRef | undefined;
-  private readonly timeOut = 7000;
 
   set viewRef(ref: ViewContainerRef) {
     this._viewRef = ref;
@@ -50,12 +50,16 @@ export class NotificationService {
       NotificationComponent,
     );
 
-    this.modalRef.instance.type = type;
-    this.modalRef.instance.message = message;
-    this.modalRef.instance.closeAction = () => this.modalRef?.destroy();
+    this.modalRef.setInput('type', type);
+    this.modalRef.setInput('message', message);
+    this.modalRef.setInput('closeAction', () => this.modalRef?.destroy());
+
     this.modalRef.changeDetectorRef.detectChanges();
 
-    setTimeout(() => this.destroyModalRef(), timeOut ?? this.timeOut);
+    setTimeout(
+      () => this.destroyModalRef(),
+      timeOut ?? DEFAULT_NOTIFICATION_TIME,
+    );
   }
 
   private destroyModalRef(): void {
