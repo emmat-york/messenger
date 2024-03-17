@@ -1,9 +1,14 @@
-<img
-  class="avatar"
-  ngSrc="../../../../../../../assets/icons/system/avatar.svg"
-  width="40"
-  height="40"
-  alt="avatar"
-/>
+<header class="header">
+  <img
+    [ngSrc]="'avatar' | icon"
+    class="avatar"
+    priority
+    width="40"
+    height="40"
+    alt="avatar"
+  />
 
-<h3 class="name">David Moor</h3>
+  <h3 class="name">David Moor</h3>
+</header>
+
+<button type="button" (click)="onLogOut()">Log out</button>

@@ -2,9 +2,15 @@
 
 :host {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 12px 16px;
   background-color: map-get($colorful-palette, white);
   border-bottom: 1px solid map-get($colorful-palette, darkGrey);
+}
+
+.header {
+  display: flex;
 }
 
 .avatar {
