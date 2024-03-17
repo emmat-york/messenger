@@ -1,13 +1,17 @@
-import { Injectable, ViewContainerRef } from '@angular/core';
+import { ComponentRef, Injectable, ViewContainerRef } from '@angular/core';
 import { NotificationComponent } from '../../../components/notification/notification.component';
-import { ModalConfig } from '../../../components/notification/interfaces/notification.interface';
+import {
+  ModalConfig,
+  ModalSettings,
+} from '../../../components/notification/interfaces/notification.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NotificationService {
+  private modalRef: ComponentRef<NotificationComponent> | undefined;
   private _viewRef: ViewContainerRef | undefined;
-  private timeOut = 5000;
+  private readonly timeOut = 7000;
 
   set viewRef(ref: ViewContainerRef) {
     this._viewRef = ref;
@@ -17,34 +21,45 @@ export class NotificationService {
     return this._viewRef;
   }
 
-  showSuccess(message: string): void {
-    this.openModal({ message, type: 'success' });
+  showSuccess(message: string, settings?: ModalSettings): void {
+    this.openModal({ message, type: 'success', settings });
   }
 
-  showWarning(message: string): void {
-    this.openModal({ message, type: 'warning' });
+  showWarning(message: string, settings?: ModalSettings): void {
+    this.openModal({ message, type: 'warning', settings });
   }
 
-  showError(message: string): void {
-    this.openModal({ message, type: 'error' });
+  showError(message: string, settings?: ModalSettings): void {
+    this.openModal({ message, type: 'error', settings });
   }
 
-  private openModal({ message, type }: ModalConfig): void {
+  private openModal({ message, type, settings }: ModalConfig): void {
     if (!this.viewRef) {
       throw new Error(
         "In order to use NotificationService you gotta set 'viewRef' property!",
       );
     }
 
-    const modalRef = this.viewRef.createComponent<NotificationComponent>(
+    if (this.modalRef) {
+      this.destroyModalRef();
+    }
+
+    const { timeOut } = settings || {};
+
+    this.modalRef = this.viewRef.createComponent<NotificationComponent>(
       NotificationComponent,
     );
 
-    modalRef.instance.type = type;
-    modalRef.instance.message = message;
-    modalRef.instance.closeAction = () => modalRef.destroy();
-    modalRef.changeDetectorRef.detectChanges();
+    this.modalRef.instance.type = type;
+    this.modalRef.instance.message = message;
+    this.modalRef.instance.closeAction = () => this.modalRef?.destroy();
+    this.modalRef.changeDetectorRef.detectChanges();
 
-    setTimeout(() => modalRef.destroy(), this.timeOut);
+    setTimeout(() => this.destroyModalRef(), timeOut ?? this.timeOut);
+  }
+
+  private destroyModalRef(): void {
+    this.modalRef?.destroy();
+    this.modalRef = undefined;
   }
 }

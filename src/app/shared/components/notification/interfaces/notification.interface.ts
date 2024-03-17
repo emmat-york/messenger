@@ -6,7 +6,12 @@ export interface Notification {
 
 export type NotificationType = 'success' | 'warning' | 'error';
 
+export interface ModalSettings {
+  timeOut?: number;
+}
+
 export interface ModalConfig {
   message: string;
   type: NotificationType;
+  settings?: ModalSettings;
 }

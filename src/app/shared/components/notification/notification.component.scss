@@ -6,7 +6,7 @@
   flex-direction: column;
   max-width: 300px;
   padding: 8px 16px;
-  border: 1px solid green;
+  border: 1px solid black;
 }
 
 .close-button {
@@ -20,14 +20,18 @@
   margin-bottom: 10px;
 }
 
+.heading {
+  margin-left: 8px;
+}
+
 .success {
   color: green;
 }
 
 .warning {
-  color: green;
+  color: orange;
 }
 
 .error {
-  color: green;
+  color: red;
 }

@@ -18,6 +18,7 @@ import {
 import { NgClass, NgIf } from '@angular/common';
 import { LabelComponent } from '../label/label.component';
 import { ErrorMessageComponent } from '../error-message/error-message.component';
+import { InputType } from './interfaces/input.interface';
 
 @Component({
   selector: 'app-input',
@@ -40,6 +41,7 @@ export class InputComponent implements ControlValueAccessor, OnInit {
   @Input() classes!: string | string[] | Record<string, boolean> | null;
   @Input() placeholder = '';
   @Input() label = '';
+  @Input() type: InputType = 'text';
 
   control!: FormControl<string>;
   disabled = false;

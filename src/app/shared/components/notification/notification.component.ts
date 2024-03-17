@@ -3,13 +3,9 @@ import {
   Notification,
   NotificationType,
 } from './interfaces/notification.interface';
-import {
-  NgClass,
-  NgSwitch,
-  NgSwitchCase,
-  TitleCasePipe,
-} from '@angular/common';
+import { NgClass, NgOptimizedImage, TitleCasePipe } from '@angular/common';
 import { IconPipe } from '../../pipes/icon/icon.pipe';
+import { NotificationIconPipe } from './pipes/notification-icon/notification-icon.pipe';
 
 @Component({
   selector: 'app-notification',
@@ -17,7 +13,13 @@ import { IconPipe } from '../../pipes/icon/icon.pipe';
   templateUrl: 'notification.component.html',
   styleUrls: ['notification.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [NgClass, NgSwitch, TitleCasePipe, NgSwitchCase, IconPipe],
+  imports: [
+    NgClass,
+    TitleCasePipe,
+    IconPipe,
+    NotificationIconPipe,
+    NgOptimizedImage,
+  ],
 })
 export class NotificationComponent implements Notification {
   @Input() type: NotificationType = 'success';

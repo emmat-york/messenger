@@ -1,22 +1,10 @@
 <header class="header">
-  <ng-container [ngSwitch]="type">
-    <ng-template ngSwitchCase="success">
-      <img src="" [alt]="type" />
-    </ng-template>
+  <img [ngSrc]="type | notificationIcon" width="24" height="24" [alt]="type" />
 
-    <ng-template ngSwitchCase="warning">
-      <img src="" [alt]="type" />
-    </ng-template>
-
-    <ng-template ngSwitchCase="error">
-      <img src="" [alt]="type" />
-    </ng-template>
-  </ng-container>
-
-  <h3>{{ type | titlecase }}</h3>
+  <h3 class="heading" [ngClass]="type">{{ type | titlecase }}</h3>
 
   <button class="close-button" type="button" (click)="closeAction()">
-    <img src="" alt="error" />
+    <img [ngSrc]="'close' | icon" width="24" height="24" alt="close" />
   </button>
 </header>
 
