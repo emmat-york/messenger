@@ -1,14 +1,14 @@
-import {
-  ComponentRef,
-  Injectable,
-  ViewContainerRef,
-} from '@angular/core';
+import { ComponentRef, Injectable, ViewContainerRef } from '@angular/core';
 import { NotificationComponent } from '../../../components/notification/notification.component';
 import {
   ModalConfig,
   ModalSettings,
 } from '../../../components/notification/interfaces/notification.interface';
-import { DEFAULT_NOTIFICATION_TIME } from './constants/notification.constant';
+import {
+  DEFAULT_NOTIFICATION_TIME,
+  INDENT_BETWEEN_NOTIFICATIONS,
+  VIEW_REF_ERROR_MESSAGE,
+} from './constants/notification.constant';
 
 @Injectable({
   providedIn: 'root',
@@ -25,6 +25,16 @@ export class NotificationService {
     return this._viewRef;
   }
 
+  private get previousElementsTotalHeight(): number {
+    return this.modalRefs.reduce((totalHeight, ref, index) => {
+      if (index === this.modalRefs.length - 1) {
+        return totalHeight;
+      }
+
+      return totalHeight + ref.location.nativeElement.offsetHeight;
+    }, 0);
+  }
+
   showSuccess(message: string, settings?: ModalSettings): void {
     this.openModal({ message, type: 'success', settings });
   }
@@ -39,48 +49,37 @@ export class NotificationService {
 
   private openModal({ message, type, settings }: ModalConfig): void {
     if (!this.viewRef) {
-      throw new Error(
-        "In order to use NotificationService you gotta set 'viewRef' property!",
-      );
+      throw new Error(VIEW_REF_ERROR_MESSAGE);
     }
 
+    const ref = this.viewRef.createComponent(NotificationComponent);
     const { timeOut } = settings || {};
 
-    const newModalRef = this.viewRef.createComponent<NotificationComponent>(
-      NotificationComponent,
-    );
+    ref.setInput('type', type);
+    ref.setInput('message', message);
+    ref.setInput('closeAction', () => ref.destroy());
 
-    this.modalRefs.push(newModalRef);
-
-    newModalRef.setInput('type', type);
-    newModalRef.setInput('message', message);
-    newModalRef.setInput('closeAction', () => newModalRef.destroy());
+    this.modalRefs.push(ref);
 
     if (this.modalRefs.length > 1) {
       requestAnimationFrame(() => {
-        const elementRef = newModalRef.location
-            .nativeElement as HTMLUnknownElement;
+        const element = ref.location.nativeElement as HTMLElement;
 
-        const commonHeight = this.modalRefs.reduce((totalHeight, ref, index) => {
-          if (index === this.modalRefs.length - 1) {
-            return totalHeight;
-          }
-
-          return totalHeight + ref.location.nativeElement.offsetHeight;
-        }, 0);
-
-        elementRef.style.bottom = commonHeight + this.modalRefs.length * 20 + 'px';
+        element.style.bottom =
+          this.previousElementsTotalHeight +
+          this.modalRefs.length * INDENT_BETWEEN_NOTIFICATIONS +
+          'px';
       });
     }
 
     setTimeout(
-      () => this.destroyModalRef(newModalRef),
+      () => this.destroyModalRef(ref),
       timeOut ?? DEFAULT_NOTIFICATION_TIME,
     );
   }
 
   private destroyModalRef(modalRef: ComponentRef<NotificationComponent>): void {
     this.modalRefs = this.modalRefs.filter(ref => ref !== modalRef);
-    modalRef?.destroy();
+    modalRef.destroy();
   }
 }
