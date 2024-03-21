@@ -1,4 +1,8 @@
-import { ComponentRef, Injectable, ViewContainerRef } from '@angular/core';
+import {
+  ComponentRef,
+  Injectable,
+  ViewContainerRef,
+} from '@angular/core';
 import { NotificationComponent } from '../../../components/notification/notification.component';
 import {
   ModalConfig,
@@ -10,7 +14,7 @@ import { DEFAULT_NOTIFICATION_TIME } from './constants/notification.constant';
   providedIn: 'root',
 })
 export class NotificationService {
-  private modalRef: ComponentRef<NotificationComponent> | undefined;
+  private modalRefs: ComponentRef<NotificationComponent>[] = [];
   private _viewRef: ViewContainerRef | undefined;
 
   set viewRef(ref: ViewContainerRef) {
@@ -40,30 +44,43 @@ export class NotificationService {
       );
     }
 
-    if (this.modalRef) {
-      this.destroyModalRef();
-    }
-
     const { timeOut } = settings || {};
 
-    this.modalRef = this.viewRef.createComponent<NotificationComponent>(
+    const newModalRef = this.viewRef.createComponent<NotificationComponent>(
       NotificationComponent,
     );
 
-    this.modalRef.setInput('type', type);
-    this.modalRef.setInput('message', message);
-    this.modalRef.setInput('closeAction', () => this.modalRef?.destroy());
+    this.modalRefs.push(newModalRef);
 
-    this.modalRef.changeDetectorRef.detectChanges();
+    newModalRef.setInput('type', type);
+    newModalRef.setInput('message', message);
+    newModalRef.setInput('closeAction', () => newModalRef.destroy());
+
+    if (this.modalRefs.length > 1) {
+      requestAnimationFrame(() => {
+        const elementRef = newModalRef.location
+            .nativeElement as HTMLUnknownElement;
+
+        const commonHeight = this.modalRefs.reduce((totalHeight, ref, index) => {
+          if (index === this.modalRefs.length - 1) {
+            return totalHeight;
+          }
+
+          return totalHeight + ref.location.nativeElement.offsetHeight;
+        }, 0);
+
+        elementRef.style.bottom = commonHeight + this.modalRefs.length * 20 + 'px';
+      });
+    }
 
     setTimeout(
-      () => this.destroyModalRef(),
+      () => this.destroyModalRef(newModalRef),
       timeOut ?? DEFAULT_NOTIFICATION_TIME,
     );
   }
 
-  private destroyModalRef(): void {
-    this.modalRef?.destroy();
-    this.modalRef = undefined;
+  private destroyModalRef(modalRef: ComponentRef<NotificationComponent>): void {
+    this.modalRefs = this.modalRefs.filter(ref => ref !== modalRef);
+    modalRef?.destroy();
   }
 }
