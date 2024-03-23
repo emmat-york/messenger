@@ -1,17 +1,17 @@
 import { SignUpFormKey } from '../enums/registration.enum';
 import { ValidatorKeys } from '../../../shared/enums/validator-keys.enum';
-import { MIN_PASSWORD_LENGTH } from '../../../shared/constants/form.constant';
+import {MIN_PASSWORD_LENGTH, VALIDATION_MESSAGES} from '../../../shared/constants/form.constant';
 import { RegistrationErrorState } from '../interfaces/registration.interface';
 
 export const REGISTRATION_ERROR_STATE: RegistrationErrorState = {
   [SignUpFormKey.Email]: {
-    [ValidatorKeys.required]: 'This field is required',
-    [ValidatorKeys.email]: 'Email should be valid',
+    [ValidatorKeys.required]: VALIDATION_MESSAGES[ValidatorKeys.required],
+    [ValidatorKeys.email]: VALIDATION_MESSAGES[ValidatorKeys.email],
   },
   [SignUpFormKey.Password]: {
-    [ValidatorKeys.required]: 'This field is required',
-    [ValidatorKeys.password]: 'Password should contain...',
-    [ValidatorKeys.minlength]: `Password min length should be ${MIN_PASSWORD_LENGTH} symbols`,
+    [ValidatorKeys.required]: VALIDATION_MESSAGES[ValidatorKeys.required],
+    [ValidatorKeys.password]: VALIDATION_MESSAGES[ValidatorKeys.password],
+    [ValidatorKeys.minlength]: VALIDATION_MESSAGES[ValidatorKeys.minlength](MIN_PASSWORD_LENGTH),
   },
 };
 

@@ -58,12 +58,12 @@ export class AuthUserService {
     return this.authService.registration$(credentials).pipe(
       catchError((errorResponse: HttpErrorResponse) => {
         const message = getRegistrationErrorMessage(errorResponse);
-        this.notificationService.showError(message);
+        this.notificationService.error(message);
 
         return throwError(() => message);
       }),
       tap(({ idToken, expiresIn }) => {
-        this.notificationService.showSuccess(
+        this.notificationService.success(
           'You have been successfully log in!',
         );
         this.setToken({ idToken, expiresIn });
@@ -75,12 +75,12 @@ export class AuthUserService {
     return this.authService.login$(credentials).pipe(
       catchError((errorResponse: HttpErrorResponse) => {
         const message = getLoginErrorMessage(errorResponse);
-        this.notificationService.showError(message);
+        this.notificationService.error(message);
 
         return throwError(() => message);
       }),
       tap(({ idToken, expiresIn }) => {
-        this.notificationService.showSuccess(
+        this.notificationService.success(
           'You have been successfully log in!',
         );
         this.setToken({ idToken, expiresIn });

@@ -5,7 +5,7 @@ import {
   ModalSettings,
 } from '../../../components/notification/interfaces/notification.interface';
 import {
-  DEFAULT_NOTIFICATION_TIME,
+  DEFAULT_NOTIFICATION_DURATION,
   INDENT_BETWEEN_NOTIFICATIONS,
   VIEW_REF_ERROR_MESSAGE,
 } from './constants/notification.constant';
@@ -35,15 +35,15 @@ export class NotificationService {
     }, 0);
   }
 
-  showSuccess(message: string, settings?: ModalSettings): void {
+  success(message: string, settings?: ModalSettings): void {
     this.openModal({ message, type: 'success', settings });
   }
 
-  showWarning(message: string, settings?: ModalSettings): void {
+  warning(message: string, settings?: ModalSettings): void {
     this.openModal({ message, type: 'warning', settings });
   }
 
-  showError(message: string, settings?: ModalSettings): void {
+  error(message: string, settings?: ModalSettings): void {
     this.openModal({ message, type: 'error', settings });
   }
 
@@ -74,7 +74,7 @@ export class NotificationService {
 
     setTimeout(
       () => this.destroyModalRef(ref),
-      timeOut ?? DEFAULT_NOTIFICATION_TIME,
+      timeOut ?? DEFAULT_NOTIFICATION_DURATION,
     );
   }
 
