@@ -63,9 +63,7 @@ export class AuthUserService {
         return throwError(() => message);
       }),
       tap(({ idToken, expiresIn }) => {
-        this.notificationService.success(
-          'You have been successfully log in!',
-        );
+        this.notificationService.success('You have been successfully log in!');
         this.setToken({ idToken, expiresIn });
       }),
     );
@@ -80,9 +78,7 @@ export class AuthUserService {
         return throwError(() => message);
       }),
       tap(({ idToken, expiresIn }) => {
-        this.notificationService.success(
-          'You have been successfully log in!',
-        );
+        this.notificationService.success('You have been successfully log in!');
         this.setToken({ idToken, expiresIn });
       }),
     );

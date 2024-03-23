@@ -1,6 +1,9 @@
 import { SignUpFormKey } from '../enums/registration.enum';
 import { ValidatorKeys } from '../../../shared/enums/validator-keys.enum';
-import {MIN_PASSWORD_LENGTH, VALIDATION_MESSAGES} from '../../../shared/constants/form.constant';
+import {
+  MIN_PASSWORD_LENGTH,
+  VALIDATION_MESSAGES,
+} from '../../../shared/constants/form.constant';
 import { RegistrationErrorState } from '../interfaces/registration.interface';
 
 export const REGISTRATION_ERROR_STATE: RegistrationErrorState = {
@@ -11,7 +14,8 @@ export const REGISTRATION_ERROR_STATE: RegistrationErrorState = {
   [SignUpFormKey.Password]: {
     [ValidatorKeys.required]: VALIDATION_MESSAGES[ValidatorKeys.required],
     [ValidatorKeys.password]: VALIDATION_MESSAGES[ValidatorKeys.password],
-    [ValidatorKeys.minlength]: VALIDATION_MESSAGES[ValidatorKeys.minlength](MIN_PASSWORD_LENGTH),
+    [ValidatorKeys.minlength]:
+      VALIDATION_MESSAGES[ValidatorKeys.minlength](MIN_PASSWORD_LENGTH),
   },
 };
 
