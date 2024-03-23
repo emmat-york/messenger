@@ -20,7 +20,7 @@ import {
 import { CustomValidators } from '../../shared/utils/validators/validators.util';
 import { InputComponent } from '../../shared/components/form/input/input.component';
 import { LoginFormGroup } from './interfaces/login.interface';
-import { LOGIN_ERROR_STATE, LOGIN_LABELS } from './constants/login.interface';
+import { LOGIN_ERROR_STATE, LOGIN_LABELS } from './constants/login.constant';
 import { AppPages } from '../../app.routes';
 import { AuthUserService } from '../../shared/services/app/auth-user/auth-user.service';
 import { finalize } from 'rxjs';
