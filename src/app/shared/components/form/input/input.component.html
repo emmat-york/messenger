@@ -1,14 +1,15 @@
 <app-label [for]="id">{{ label }}</app-label>
 
 <input
-  [class.invalid]="control.errors && control.touched"
-  [class.valid]="!control.errors"
+  class="input"
   [placeholder]="placeholder"
   [disabled]="disabled"
-  [ngClass]="classes"
+  [ngClass]="{
+    invalid: control.errors && control.touched,
+    valid: !control.errors
+  }"
   [ngModel]="value"
   [type]="type"
-  class="input"
   [id]="id"
   (ngModelChange)="onInputChange($event)"
   (blur)="onInputBlur()"

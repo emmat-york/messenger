@@ -15,9 +15,10 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl,
 } from '@angular/forms';
-import { NgClass, NgIf } from '@angular/common';
+import { NgClass, NgIf, NgOptimizedImage } from '@angular/common';
 import { LabelComponent } from '../label/label.component';
 import { ErrorMessageComponent } from '../error-message/error-message.component';
+import { IconPipe } from '../../../pipes/icon/icon.pipe';
 import { InputType } from './interfaces/input.interface';
 
 @Component({
@@ -25,7 +26,15 @@ import { InputType } from './interfaces/input.interface';
   standalone: true,
   templateUrl: 'input.component.html',
   styleUrls: ['input.component.scss'],
-  imports: [FormsModule, NgClass, LabelComponent, ErrorMessageComponent, NgIf],
+  imports: [
+    FormsModule,
+    NgClass,
+    LabelComponent,
+    ErrorMessageComponent,
+    NgIf,
+    NgOptimizedImage,
+    IconPipe,
+  ],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -38,7 +47,6 @@ import { InputType } from './interfaces/input.interface';
 export class InputComponent implements ControlValueAccessor, OnInit {
   @Input() errorState: any = {};
   @Input() id!: string;
-  @Input() classes!: string | string[] | Record<string, boolean> | null;
   @Input() placeholder = '';
   @Input() label = '';
   @Input() type: InputType = 'text';
