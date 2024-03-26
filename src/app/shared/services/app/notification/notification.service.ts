@@ -1,4 +1,9 @@
-import { ComponentRef, Injectable, ViewContainerRef } from '@angular/core';
+import {
+  ApplicationRef,
+  ComponentRef,
+  Injectable,
+  ViewContainerRef,
+} from '@angular/core';
 import { NotificationComponent } from '../../../components/notification/notification.component';
 import {
   ModalConfig,
@@ -7,7 +12,6 @@ import {
 import {
   DEFAULT_NOTIFICATION_DURATION,
   INDENT_BETWEEN_NOTIFICATIONS,
-  VIEW_REF_ERROR_MESSAGE,
 } from './constants/notification.constant';
 
 @Injectable({
@@ -15,14 +19,12 @@ import {
 })
 export class NotificationService {
   private modalRefs: ComponentRef<NotificationComponent>[] = [];
-  private _viewRef: ViewContainerRef | undefined;
+  private viewRef!: ViewContainerRef;
 
-  set viewRef(ref: ViewContainerRef) {
-    this._viewRef = ref;
-  }
-
-  get viewRef(): ViewContainerRef | undefined {
-    return this._viewRef;
+  constructor(private readonly appRef: ApplicationRef) {
+    requestAnimationFrame(() => {
+      this.viewRef = this.appRef.components[0].injector.get(ViewContainerRef);
+    });
   }
 
   private get previousElementsTotalHeight(): number {
@@ -48,10 +50,6 @@ export class NotificationService {
   }
 
   private openModal({ message, type, settings }: ModalConfig): void {
-    if (!this.viewRef) {
-      throw new Error(VIEW_REF_ERROR_MESSAGE);
-    }
-
     const ref = this.viewRef.createComponent(NotificationComponent);
     const { timeOut } = settings || {};
 
