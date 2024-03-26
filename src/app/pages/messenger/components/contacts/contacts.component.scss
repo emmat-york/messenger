@@ -9,8 +9,7 @@
 .search-bar {
   display: flex;
   align-items: center;
-  margin-bottom: 8px;
-  padding: 8px 0;
+  padding: 12px 0;
 }
 
 .menu-button {
@@ -21,32 +20,31 @@
 
 .label {
   position: relative;
-  height: 40px;
+  height: 32px;
   width: 100%;
   margin-right: 16px;
-
-  &:before {
-    position: absolute;
-    top: 50%;
-    left: 16px;
-    transform: translateY(-50%);
-    content: url('../../../../../assets/icons/system/search.svg');
-    width: 24px;
-    height: 24px;
-  }
 }
 
 .input {
   height: inherit;
   width: inherit;
-  padding-left: 56px;
+  padding: 12px;
   font-family: $inter;
-  font-size: 16px;
+  font-size: 13px;
   font-weight: 400;
-  line-height: 20px;
+  line-height: 18px;
   border-radius: 22px;
   background-color: map-get($colorful-palette, lightGrey);
   color: map-get($colorful-palette, navyGrey);
+
+  &:hover:not(&:focus) {
+    opacity: 0.8;
+  }
+
+  &:focus {
+    outline: 1.5px solid map-get($colorful-palette, lightGrey);
+    background-color: map-get($colorful-palette, white);
+  }
 }
 
 .contact-list {
