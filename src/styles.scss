@@ -49,3 +49,12 @@ input {
   background-color: transparent;
   outline: none;
 }
+
+button,
+input,
+a {
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
