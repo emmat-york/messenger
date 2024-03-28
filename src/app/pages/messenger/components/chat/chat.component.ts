@@ -26,7 +26,10 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   ],
 })
 export class ChatComponent {
-  readonly componentVM$ = combineLatest([this.userFacade.userVM$, this.chatFacade.chatVM$]).pipe(
+  readonly componentVM$ = combineLatest([
+    this.userFacade.userVM$,
+    this.chatFacade.chatVM$,
+  ]).pipe(
     map(([userVM, chatVM]) => ({ userVM, chatVM })),
     takeUntilDestroyed(this.destroyRef),
   );
