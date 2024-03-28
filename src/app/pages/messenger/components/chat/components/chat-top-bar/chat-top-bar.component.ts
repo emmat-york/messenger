@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
-import { IconPipe } from '../../../../../../shared/pipes/icon/icon.pipe';
 import { AuthUserService } from '../../../../../../shared/services/app/auth-user/auth-user.service';
+import { Contact } from '../../../../../../store/user/user.interface';
 
 @Component({
   selector: 'app-chat-top-bar',
@@ -9,9 +9,11 @@ import { AuthUserService } from '../../../../../../shared/services/app/auth-user
   templateUrl: 'chat-top-bar.component.html',
   styleUrl: 'chat-top-bar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [NgOptimizedImage, IconPipe],
+  imports: [NgOptimizedImage],
 })
 export class ChatTopBarComponent {
+  @Input() selectedContact!: Contact;
+
   constructor(private readonly authUserService: AuthUserService) {}
 
   onLogOut(): void {

@@ -25,7 +25,7 @@ import { NgIf } from '@angular/common';
 })
 export class ChatBodyComponent implements AfterViewInit {
   @Input() isScrollCircleShown!: boolean;
-  @Input() messages = Array(30).fill({ id: 1 });
+  @Input() messages: any[] = [];
 
   constructor(
     private readonly viewRef: ViewContainerRef,

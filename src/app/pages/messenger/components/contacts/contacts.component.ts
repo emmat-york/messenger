@@ -4,7 +4,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { UserFacade } from '../../../../store/user/user.facade';
 import { ArrayFilterPipe } from '../../../../shared/pipes/array-filter/array-filter.pipe';
 import { IconPipe } from '../../../../shared/pipes/icon/icon.pipe';
-import { NgIf, NgOptimizedImage } from '@angular/common';
+import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 import { LetDirective } from '@ngrx/component';
 import { Contact } from '../../../../store/user/user.interface';
 
@@ -22,12 +22,13 @@ import { Contact } from '../../../../store/user/user.interface';
     LetDirective,
     IconPipe,
     NgIf,
+    NgForOf,
   ],
 })
 export class ContactsComponent {
-  userVM$ = this.userFacade.userVM$;
+  readonly userVM$ = this.userFacade.userVM$;
 
-  control = new FormControl<string>('', { nonNullable: true });
+  readonly control = new FormControl<string>('', { nonNullable: true });
 
   constructor(private readonly userFacade: UserFacade) {}
 

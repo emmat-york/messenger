@@ -1,6 +1,6 @@
 <header class="header">
   <img
-    [ngSrc]="'avatar' | icon"
+    [ngSrc]="selectedContact.avatar"
     class="avatar"
     priority
     width="32"
@@ -8,7 +8,7 @@
     alt="avatar"
   />
 
-  <h3 class="name">David Moor</h3>
+  <h3 class="name">{{ selectedContact.userName }}</h3>
 </header>
 
 <button type="button" (click)="onLogOut()">Log out</button>

@@ -51,3 +51,13 @@
   height: calc(100% - 65px);
   overflow-y: auto;
 }
+
+.no-contacts {
+  font-family: $inter;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 18px;
+  border-radius: 22px;
+  text-align: center;
+  color: map-get($colorful-palette, navyGrey);
+}

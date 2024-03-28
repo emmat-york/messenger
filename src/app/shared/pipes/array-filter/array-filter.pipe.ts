@@ -7,10 +7,14 @@ import { getTrimmedString } from '../../helpers/input.helper';
 })
 export class ArrayFilterPipe implements PipeTransform {
   transform<T extends { [key: string]: any }, D extends keyof T>(
-    array: T[],
+    array: T[] | null | undefined,
     search: string | null,
     propName: D,
   ): T[] {
+    if (!array) {
+      return [];
+    }
+
     if (!search) {
       return array;
     }
