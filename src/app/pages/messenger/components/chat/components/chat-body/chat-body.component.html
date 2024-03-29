@@ -1,7 +1,7 @@
 <ul class="message-list">
   @for (message of messages; track message.id) {
   <li class="message">
-    <app-message></app-message>
+    <app-message [message]="message"></app-message>
   </li>
   }
 </ul>

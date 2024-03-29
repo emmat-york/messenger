@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {Message} from "../../../../interfaces/chat.interface";
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-message',
@@ -6,5 +8,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   templateUrl: 'message.component.html',
   styleUrl: 'message.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    DatePipe
+  ]
 })
-export class MessageComponent {}
+export class MessageComponent {
+  @Input() message!: Message;
+}

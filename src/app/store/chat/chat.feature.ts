@@ -1,16 +1,14 @@
 import { createFeature, createReducer, createSelector, on } from '@ngrx/store';
-import { Message } from './chat.interface';
+import { Message } from '../../pages/messenger/components/chat/interfaces/chat.interface';
 import * as action from './chat.action';
 
 interface State {
   input: string;
-  currentRoomId: string | null;
   messages: Message[];
 }
 
 const initialState: State = {
   input: '',
-  currentRoomId: null,
   messages: [],
 };
 
@@ -24,6 +22,13 @@ const reducer = createReducer(
     }),
   ),
   on(action.resetInput, (state): State => ({ ...state, input: '' })),
+  on(
+    action.setMessagesHistory,
+    (state, { messages }): State => ({
+      ...state,
+      messages,
+    }),
+  ),
   on(action.setMessage, (state, { message }) => ({
     ...state,
     messages: [...state.messages, message],

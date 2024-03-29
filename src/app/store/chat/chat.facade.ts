@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Action, Store } from '@ngrx/store';
 import { chatVM } from './chat.feature';
+import { Message } from '../../pages/messenger/components/chat/interfaces/chat.interface';
 import * as action from './chat.action';
-import { Message } from './chat.interface';
 
 @Injectable({
   providedIn: 'root',

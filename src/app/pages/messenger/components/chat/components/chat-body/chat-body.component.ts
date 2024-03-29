@@ -14,6 +14,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ScrollEvent } from './interfaces/chat-body.interface';
 import { ScrollCircleComponent } from '../../../scroll-circle/scroll-circle.component';
 import { NgIf } from '@angular/common';
+import { Message } from '../../interfaces/chat.interface';
 
 @Component({
   selector: 'app-chat-body',
@@ -25,7 +26,7 @@ import { NgIf } from '@angular/common';
 })
 export class ChatBodyComponent implements AfterViewInit {
   @Input() isScrollCircleShown!: boolean;
-  @Input() messages: any[] = [];
+  @Input() messages: Message[] = [];
 
   constructor(
     private readonly viewRef: ViewContainerRef,

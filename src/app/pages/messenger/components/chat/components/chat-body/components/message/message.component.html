@@ -1,1 +1,3 @@
-<p>message!</p>
+<article class="message">{{ message.message }}</article>
+
+<span class="message-date">{{ message.creationDate | date: 'shortTime' }}</span>

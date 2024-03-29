@@ -7,6 +7,7 @@ import { IconPipe } from '../../../../shared/pipes/icon/icon.pipe';
 import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 import { LetDirective } from '@ngrx/component';
 import { Contact } from '../../../../store/user/user.interface';
+import { ChatFacade } from '../../../../store/chat/chat.facade';
 
 @Component({
   selector: 'app-contacts',
@@ -30,7 +31,10 @@ export class ContactsComponent {
 
   readonly control = new FormControl<string>('', { nonNullable: true });
 
-  constructor(private readonly userFacade: UserFacade) {}
+  constructor(
+    private readonly userFacade: UserFacade,
+    private readonly chatFacade: ChatFacade,
+  ) {}
 
   setSelectedUserId(
     selectedContactId: number | undefined,

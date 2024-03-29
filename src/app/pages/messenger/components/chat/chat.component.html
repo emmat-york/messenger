@@ -4,7 +4,7 @@
       [selectedContact]="VM.userVM.selectedContact"
     ></app-chat-top-bar>
 
-    <app-chat-body></app-chat-body>
+    <app-chat-body [messages]="VM.chatVM.messages"></app-chat-body>
 
     <app-chat-input
       [input]="VM.chatVM.input"

@@ -1,42 +1,39 @@
-import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { NotificationService } from '../../shared/services/app/notification/notification.service';
 import { UserFacade } from '../user/user.facade';
 import { ChatFacade } from './chat.facade';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
+import { catchError, EMPTY, map, switchMap, throwError } from 'rxjs';
+import { ChatService } from '../../shared/services/app/chat/chat.service';
 import * as action from './chat.action';
+import * as userAction from '../user/user.action';
 
 @Injectable()
 export class ChatEffect {
   constructor(
+    private readonly notificationService: NotificationService,
+    private readonly chatService: ChatService,
     private readonly chatFacade: ChatFacade,
     private readonly userFacade: UserFacade,
     private readonly actions$: Actions,
   ) {}
 
-  sendMessage$ = createEffect(() => {
+  requestChatHistoryByRoomId$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(action.sendMessage),
-      concatLatestFrom(() => [
-        this.chatFacade.chatVM$,
-        this.userFacade.userVM$,
-      ]),
-      map(([_, { input }, { userData, selectedContact }]) => {
-        if (!userData || !selectedContact) {
-          return action.unauthorized();
+      ofType(userAction.setSelectedContact),
+      switchMap(({ selectedContact }) => {
+        if (!selectedContact) {
+          return EMPTY;
         }
 
-        // this.socketService.sendMessage({
-        //   userId: userData.id,
-        //   roomId: selectedContact.roomId,
-        //   userName: userData.userName,
-        //   creationDate: new Date(),
-        //   editDate: null,
-        //   message: input,
-        //   likes: [],
-        // });
-
-        return action.resetInput();
+        return this.chatService.getChatHistoryByRoomId$(selectedContact.roomId);
       }),
+      catchError(() => {
+        this.notificationService.error('');
+
+        return throwError(() => '');
+      }),
+      map(messages => action.setMessagesHistory({ messages })),
     );
   });
 }
