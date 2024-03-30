@@ -19,7 +19,7 @@ import { SignUpFormKey } from './enums/registration.enum';
 import { getTrimmedString } from '../../shared/helpers/input.helper';
 import { InputComponent } from '../../shared/components/form/input/input.component';
 import { ButtonComponent } from '../../shared/components/button/button.component';
-import { finalize } from 'rxjs';
+import { catchError, finalize, throwError } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
 import { AppPages } from '../../app.routes';
 import { AuthUserService } from '../../shared/services/app/auth-user/auth-user.service';
@@ -29,6 +29,9 @@ import {
   REGISTRATION_LABELS,
 } from './constants/registration.constant';
 import { SignUpFormGroup } from './interfaces/registration.interface';
+import { NgIf } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
+import { getRegistrationErrorMessage } from '../../shared/services/app/auth-user/helpers/auth-user.helper';
 
 @Component({
   selector: 'app-registration',
@@ -36,7 +39,13 @@ import { SignUpFormGroup } from './interfaces/registration.interface';
   templateUrl: 'registration.component.html',
   styleUrl: 'registration.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ReactiveFormsModule, ButtonComponent, InputComponent, RouterLink],
+  imports: [
+    ReactiveFormsModule,
+    ButtonComponent,
+    InputComponent,
+    RouterLink,
+    NgIf,
+  ],
 })
 export class RegistrationComponent {
   readonly errorState = REGISTRATION_ERROR_STATE;
@@ -59,6 +68,8 @@ export class RegistrationComponent {
         ],
       ],
     });
+
+  serverErrorMessage = '';
 
   constructor(
     private readonly authUserService: AuthUserService,
@@ -85,6 +96,12 @@ export class RegistrationComponent {
     this.authUserService
       .registration$(this.formGroup.getRawValue())
       .pipe(
+        catchError((errorResponse: HttpErrorResponse) => {
+          const message = getRegistrationErrorMessage(errorResponse);
+          this.serverErrorMessage = message;
+
+          return throwError(() => message);
+        }),
         finalize(() => {
           this.formGroup.enable(SLEEPY_OPTIONS);
           this.cdRef.markForCheck();

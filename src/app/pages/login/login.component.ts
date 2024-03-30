@@ -23,9 +23,12 @@ import { LoginFormGroup } from './interfaces/login.interface';
 import { LOGIN_ERROR_STATE, LOGIN_LABELS } from './constants/login.constant';
 import { AppPages } from '../../app.routes';
 import { AuthUserService } from '../../shared/services/app/auth-user/auth-user.service';
-import { finalize } from 'rxjs';
+import { catchError, finalize, throwError } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
 import { getTrimmedString } from '../../shared/helpers/input.helper';
+import { HttpErrorResponse } from '@angular/common/http';
+import { getLoginErrorMessage } from '../../shared/services/app/auth-user/helpers/auth-user.helper';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -33,7 +36,13 @@ import { getTrimmedString } from '../../shared/helpers/input.helper';
   templateUrl: 'login.component.html',
   styleUrl: 'login.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ReactiveFormsModule, ButtonComponent, InputComponent, RouterLink],
+  imports: [
+    ReactiveFormsModule,
+    ButtonComponent,
+    InputComponent,
+    RouterLink,
+    NgIf,
+  ],
 })
 export class LoginComponent {
   readonly errorState = LOGIN_ERROR_STATE;
@@ -52,6 +61,8 @@ export class LoginComponent {
         [Validators.required, Validators.minLength(MIN_PASSWORD_LENGTH)],
       ],
     });
+
+  serverErrorMessage = '';
 
   constructor(
     private readonly authUserService: AuthUserService,
@@ -78,6 +89,12 @@ export class LoginComponent {
     this.authUserService
       .login$(this.formGroup.getRawValue())
       .pipe(
+        catchError((errorResponse: HttpErrorResponse) => {
+          const message = getLoginErrorMessage(errorResponse);
+          this.serverErrorMessage = message;
+
+          return throwError(() => message);
+        }),
         finalize(() => {
           this.formGroup.enable(SLEEPY_OPTIONS);
           this.cdRef.markForCheck();

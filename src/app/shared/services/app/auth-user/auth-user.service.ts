@@ -4,19 +4,13 @@ import {
   AUTH_TOKEN_EXPIRES_DATE_KEY,
   AUTH_TOKEN_KEY,
 } from './contants/auth-user.constant';
-import { catchError, Observable, switchMap, tap, throwError } from 'rxjs';
+import { Observable, switchMap, tap } from 'rxjs';
 import {
   LoginCredentials,
   RegistrationCredentials,
 } from '../../api/auth/interfaces/auth.interface';
-import { HttpErrorResponse } from '@angular/common/http';
-import { NotificationService } from '../notification/notification.service';
 import { Router } from '@angular/router';
 import { AppPages } from '../../../../app.routes';
-import {
-  getLoginErrorMessage,
-  getRegistrationErrorMessage,
-} from './helpers/auth-user.helper';
 import { UserFacade } from '../../../../store/user/user.facade';
 import { UserService } from '../../api/user/user.service';
 import { UserData } from '../../../../store/user/user.interface';
@@ -24,7 +18,6 @@ import { UserData } from '../../../../store/user/user.interface';
 @Injectable()
 export class AuthUserService {
   constructor(
-    private readonly notificationService: NotificationService,
     private readonly authService: AuthService,
     private readonly userService: UserService,
     private readonly userFacade: UserFacade,
@@ -57,39 +50,21 @@ export class AuthUserService {
 
   registration$(credentials: RegistrationCredentials): Observable<UserData> {
     return this.authService.registration$(credentials).pipe(
-      catchError((errorResponse: HttpErrorResponse) => {
-        const message = getRegistrationErrorMessage(errorResponse);
-        this.notificationService.error(message);
-
-        return throwError(() => message);
-      }),
       switchMap(({ idToken, expiresIn }) => {
         this.setToken({ idToken, expiresIn });
         return this.userService.getUserData$(idToken);
       }),
-      tap(userData => {
-        this.notificationService.success("You've been successfully registered");
-        this.userFacade.setUserData(userData);
-      }),
+      tap(userData => this.userFacade.setUserData(userData)),
     );
   }
 
   login$(credentials: LoginCredentials): Observable<UserData> {
     return this.authService.login$(credentials).pipe(
-      catchError((errorResponse: HttpErrorResponse) => {
-        const message = getLoginErrorMessage(errorResponse);
-        this.notificationService.error(message);
-
-        return throwError(() => message);
-      }),
       switchMap(({ idToken, expiresIn }) => {
         this.setToken({ idToken, expiresIn });
         return this.userService.getUserData$(idToken);
       }),
-      tap(userData => {
-        this.notificationService.success("You've been successfully logged in");
-        this.userFacade.setUserData(userData);
-      }),
+      tap(userData => this.userFacade.setUserData(userData)),
     );
   }
 

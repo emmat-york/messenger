@@ -1,6 +1,10 @@
 <form class="form-group" [formGroup]="formGroup" (ngSubmit)="onRegistration()">
   <h2 class="heading">Registration</h2>
 
+  <article *ngIf="serverErrorMessage" class="server-error-message">
+    {{ serverErrorMessage }}
+  </article>
+
   <app-input
     [errorState]="errorState[signUpFormKey.Email]"
     [formControlName]="signUpFormKey.Email"

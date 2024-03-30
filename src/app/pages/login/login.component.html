@@ -1,6 +1,10 @@
 <form class="form-group" [formGroup]="formGroup" (ngSubmit)="onLogin()">
   <h2 class="heading">Login</h2>
 
+  <article *ngIf="serverErrorMessage" class="server-error-message">
+    {{ serverErrorMessage }}
+  </article>
+
   <app-input
     [errorState]="errorState[loginFormKey.Email]"
     [id]="loginFormKey.Email"
