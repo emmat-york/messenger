@@ -4,7 +4,7 @@ import { UserFacade } from '../user/user.facade';
 import { ChatFacade } from './chat.facade';
 import { Injectable } from '@angular/core';
 import { catchError, EMPTY, map, switchMap, throwError } from 'rxjs';
-import { ChatService } from '../../shared/services/app/chat/chat.service';
+import { ChatService } from '../../shared/services/api/chat/chat.service';
 import * as action from './chat.action';
 import * as userAction from '../user/user.action';
 

@@ -1,12 +1,11 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  DestroyRef,
-  EventEmitter,
-  Inject,
+  DestroyRef, ElementRef,
+  EventEmitter, HostListener,
   Input,
   OnInit,
-  Output,
+  Output, ViewChild,
 } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -24,15 +23,21 @@ import { NgOptimizedImage } from '@angular/common';
 })
 export class ChatInputComponent implements OnInit {
   @Input() set input(input: string) {
-    this.control.patchValue(input, { emitEvent: false });
+    this.control.setValue(input, { emitEvent: false });
   }
 
   @Output() setInput = new EventEmitter<string>();
   @Output() sendMessage = new EventEmitter<void>();
 
+  @ViewChild('chatInput') chatInputRef!: ElementRef<HTMLInputElement>;
+
   control = new FormControl('', { nonNullable: true });
 
-  constructor(@Inject(DestroyRef) private readonly destroyRef: DestroyRef) {}
+  constructor(private readonly destroyRef: DestroyRef) {}
+
+  @HostListener('keydown.enter') enterKeyListener(): void {
+    this.onSendMessage();
+  }
 
   ngOnInit(): void {
     this.subscribeToInput();
@@ -44,6 +49,7 @@ export class ChatInputComponent implements OnInit {
     }
 
     this.sendMessage.emit();
+    this.chatInputRef.nativeElement.focus();
   }
 
   private subscribeToInput(): void {

@@ -1,9 +1,11 @@
 <input
+  #chatInput
   [formControl]="control"
   placeholder="Write a message..."
   class="chat-input"
   type="text"
 />
+
 <button class="send-message-button" type="button" (click)="onSendMessage()">
   <img
     ngSrc="../../../../../../../assets/icons/system/send.svg"

@@ -20,6 +20,15 @@ export class UserService {
           userName: 'Pavel',
           avatar: 'assets/icons/system/avatar.svg',
           roomId: 'room-1',
+          lastMessage: {
+            id: 1,
+            uuid: 2,
+            message: 'hello, mather fucker!',
+            userName: 'Pavel',
+            roomId: 'room-1',
+            creationDate: '01-01-2020',
+            editDate: null,
+          },
         },
       ],
     });

@@ -1,3 +1,5 @@
+import { LastMessage } from '../../pages/messenger/components/chat/interfaces/chat.interface';
+
 export interface UserData {
   id: number;
   userName: string;
@@ -12,4 +14,5 @@ export interface Contact {
   phoneNumber: string;
   avatar: string;
   roomId: string;
+  lastMessage: LastMessage;
 }

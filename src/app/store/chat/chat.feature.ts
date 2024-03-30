@@ -21,6 +21,7 @@ const reducer = createReducer(
       input,
     }),
   ),
+  on(action.sendMessage, (state): State => ({ ...state, input: '' })),
   on(action.resetInput, (state): State => ({ ...state, input: '' })),
   on(
     action.setMessagesHistory,

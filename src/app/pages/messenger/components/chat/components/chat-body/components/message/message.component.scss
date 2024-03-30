@@ -17,6 +17,15 @@
   color: map-get($colorful-palette, richBlack);
 }
 
+.like {
+  font-size: 13px;
+}
+
+.like-pic {
+  position: relative;
+  bottom: -2px;
+}
+
 .message-date {
   position: relative;
   bottom: -4px;

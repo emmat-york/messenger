@@ -3,8 +3,10 @@
 <div class="contact-info">
   <div class="name-and-date">
     <h3 class="user-name">{{ contact.userName }}</h3>
-    <span class="date">{{ '01-01-2020' | date: 'shortTime' }}</span>
+    <span class="date">{{
+      contact.lastMessage.creationDate | date: dateFormat.HH_MM_PM
+    }}</span>
   </div>
 
-  <div class="message">{{ '' }}</div>
+  <span class="message">{{ contact.lastMessage.message }}</span>
 </div>
