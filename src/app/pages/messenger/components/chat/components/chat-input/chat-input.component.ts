@@ -1,11 +1,14 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  DestroyRef, ElementRef,
-  EventEmitter, HostListener,
+  DestroyRef,
+  ElementRef,
+  EventEmitter,
+  HostListener,
   Input,
   OnInit,
-  Output, ViewChild,
+  Output,
+  ViewChild,
 } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';

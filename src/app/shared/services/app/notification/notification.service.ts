@@ -27,6 +27,14 @@ export class NotificationService {
     });
   }
 
+  private get nextElementPosition(): string {
+    return (
+      this.previousElementsTotalHeight +
+      this.modalRefs.length * INDENT_BETWEEN_NOTIFICATIONS +
+      'px'
+    );
+  }
+
   private get previousElementsTotalHeight(): number {
     return this.modalRefs.reduce((totalHeight, ref, index) => {
       if (index === this.modalRefs.length - 1) {
@@ -62,18 +70,21 @@ export class NotificationService {
     if (this.modalRefs.length > 1) {
       requestAnimationFrame(() => {
         const element = ref.location.nativeElement as HTMLElement;
-
-        element.style.bottom =
-          this.previousElementsTotalHeight +
-          this.modalRefs.length * INDENT_BETWEEN_NOTIFICATIONS +
-          'px';
+        element.style.bottom = this.nextElementPosition;
       });
     }
 
-    setTimeout(
-      () => this.destroyModalRef(ref),
-      timeOut ?? DEFAULT_NOTIFICATION_DURATION,
-    );
+    setTimeout(() => {
+      this.destroyModalRef(ref);
+      this.recalculateElementsPosition();
+    }, timeOut ?? DEFAULT_NOTIFICATION_DURATION);
+  }
+
+  private recalculateElementsPosition(): void {
+    this.modalRefs.forEach((ref, index) => {
+      const element = ref.location.nativeElement as HTMLElement;
+      element.style.bottom = index === 0 ? 20 + 'px' : this.nextElementPosition;
+    });
   }
 
   private destroyModalRef(modalRef: ComponentRef<NotificationComponent>): void {
