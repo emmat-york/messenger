@@ -19,7 +19,7 @@ import { SignUpFormKey } from './enums/registration.enum';
 import { getTrimmedString } from '../../shared/helpers/input.helper';
 import { InputComponent } from '../../shared/components/form/input/input.component';
 import { ButtonComponent } from '../../shared/components/button/button.component';
-import { catchError, finalize, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, finalize, throwError } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
 import { AppPages } from '../../app.routes';
 import { AuthUserService } from '../../shared/services/app/auth-user/auth-user.service';
@@ -32,6 +32,7 @@ import { SignUpFormGroup } from './interfaces/registration.interface';
 import { NgIf } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { getRegistrationErrorMessage } from '../../shared/services/app/auth-user/helpers/auth-user.helper';
+import { PushPipe } from '@ngrx/component';
 
 @Component({
   selector: 'app-registration',
@@ -45,6 +46,7 @@ import { getRegistrationErrorMessage } from '../../shared/services/app/auth-user
     InputComponent,
     RouterLink,
     NgIf,
+    PushPipe,
   ],
 })
 export class RegistrationComponent {
@@ -69,7 +71,7 @@ export class RegistrationComponent {
       ],
     });
 
-  serverErrorMessage = '';
+  serverErrorMessage$ = new BehaviorSubject<string>('');
 
   constructor(
     private readonly authUserService: AuthUserService,
@@ -98,7 +100,7 @@ export class RegistrationComponent {
       .pipe(
         catchError((errorResponse: HttpErrorResponse) => {
           const message = getRegistrationErrorMessage(errorResponse);
-          this.serverErrorMessage = message;
+          this.serverErrorMessage$.next(message);
 
           return throwError(() => message);
         }),

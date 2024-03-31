@@ -1,8 +1,11 @@
 <form class="form-group" [formGroup]="formGroup" (ngSubmit)="onRegistration()">
   <h2 class="heading">Registration</h2>
 
-  <article *ngIf="serverErrorMessage" class="server-error-message">
-    {{ serverErrorMessage }}
+  <article
+    *ngIf="serverErrorMessage$ | ngrxPush as error"
+    class="server-error-message"
+  >
+    {{ error }}
   </article>
 
   <app-input

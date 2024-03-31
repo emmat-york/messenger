@@ -23,12 +23,13 @@ import { LoginFormGroup } from './interfaces/login.interface';
 import { LOGIN_ERROR_STATE, LOGIN_LABELS } from './constants/login.constant';
 import { AppPages } from '../../app.routes';
 import { AuthUserService } from '../../shared/services/app/auth-user/auth-user.service';
-import { catchError, finalize, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, finalize, throwError } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
 import { getTrimmedString } from '../../shared/helpers/input.helper';
 import { HttpErrorResponse } from '@angular/common/http';
 import { getLoginErrorMessage } from '../../shared/services/app/auth-user/helpers/auth-user.helper';
 import { NgIf } from '@angular/common';
+import { PushPipe } from '@ngrx/component';
 
 @Component({
   selector: 'app-login',
@@ -42,6 +43,7 @@ import { NgIf } from '@angular/common';
     InputComponent,
     RouterLink,
     NgIf,
+    PushPipe,
   ],
 })
 export class LoginComponent {
@@ -62,7 +64,7 @@ export class LoginComponent {
       ],
     });
 
-  serverErrorMessage = '';
+  serverErrorMessage$ = new BehaviorSubject<string>('');
 
   constructor(
     private readonly authUserService: AuthUserService,
@@ -91,7 +93,7 @@ export class LoginComponent {
       .pipe(
         catchError((errorResponse: HttpErrorResponse) => {
           const message = getLoginErrorMessage(errorResponse);
-          this.serverErrorMessage = message;
+          this.serverErrorMessage$.next(message);
 
           return throwError(() => message);
         }),
