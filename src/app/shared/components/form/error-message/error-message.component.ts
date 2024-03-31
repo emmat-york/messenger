@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import {ErrorState} from "../../../interfaces/form.interface";
-import {ValidatorKeys} from "../../../enums/validator-keys.enum";
+import { ErrorState } from '../../../interfaces/form.interface';
+import { ValidatorKeys } from '../../../enums/validator-keys.enum';
 
 @Component({
   selector: 'app-error-message',

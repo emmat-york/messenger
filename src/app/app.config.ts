@@ -16,6 +16,7 @@ import { UserFacade } from './store/user/user.facade';
 import { EMPTY, Observable, tap } from 'rxjs';
 import { UserService } from './shared/services/api/user/user.service';
 import { UserData } from './store/user/user.interface';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 function initializeAppFactory(
   authUserService: AuthUserService,
@@ -52,5 +53,6 @@ export const appConfig: ApplicationConfig = {
       deps: [AuthUserService, UserService, UserFacade],
       multi: true,
     },
+    provideAnimationsAsync(),
   ],
 };
