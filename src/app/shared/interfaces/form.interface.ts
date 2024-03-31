@@ -6,3 +6,5 @@ export interface ValidationMessages {
   [ValidatorKeys.password]: string;
   [ValidatorKeys.minlength]: (length: number) => string;
 }
+
+export type ErrorState = Partial<Record<ValidatorKeys, string>>;

@@ -20,6 +20,7 @@ import { LabelComponent } from '../label/label.component';
 import { ErrorMessageComponent } from '../error-message/error-message.component';
 import { IconPipe } from '../../../pipes/icon/icon.pipe';
 import { InputType } from './interfaces/input.interface';
+import {ErrorState} from "../../../interfaces/form.interface";
 
 @Component({
   selector: 'app-input',
@@ -45,7 +46,7 @@ import { InputType } from './interfaces/input.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputComponent implements ControlValueAccessor, OnInit {
-  @Input() errorState: any = {};
+  @Input() errorState: ErrorState = {};
   @Input() id!: string;
   @Input() placeholder = '';
   @Input() label = '';

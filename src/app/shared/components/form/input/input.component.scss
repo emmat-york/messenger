@@ -7,7 +7,7 @@
   display: block;
   height: 36px;
   width: 100%;
-  padding: 0;
+  padding: 0 8px;
   border: 1.5px solid black;
 
   &.valid:not(&.invalid, &:focus, &:disabled) {
