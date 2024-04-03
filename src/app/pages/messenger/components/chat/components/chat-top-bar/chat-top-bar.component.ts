@@ -2,6 +2,9 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { AuthUserService } from '../../../../../../shared/services/app/auth-user/auth-user.service';
 import { Contact } from '../../../../../../store/user/user.interface';
+import { ModalService } from '../../../../../../shared/services/app/modal/modal.service';
+import { ConfirmationModalComponent } from '../../../../../../shared/components/confirmation-modal/confirmation-modal.component';
+import { filter, take } from 'rxjs';
 
 @Component({
   selector: 'app-chat-top-bar',
@@ -14,9 +17,15 @@ import { Contact } from '../../../../../../store/user/user.interface';
 export class ChatTopBarComponent {
   @Input() selectedContact!: Contact;
 
-  constructor(private readonly authUserService: AuthUserService) {}
+  constructor(
+    private readonly authUserService: AuthUserService,
+    private readonly modalService: ModalService,
+  ) {}
 
   onLogOut(): void {
-    this.authUserService.logOut();
+    this.modalService
+      .open(ConfirmationModalComponent)
+      .pipe(take(1), filter(Boolean))
+      .subscribe(() => this.authUserService.logOut());
   }
 }
