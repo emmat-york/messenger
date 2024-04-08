@@ -3,28 +3,26 @@ import * as action from './settings.action';
 
 export type AppTheme = 'dark-app-theme' | 'light-app-theme';
 
-interface State {
+export interface SettingsState {
   theme: AppTheme;
 }
 
-const initialState: State = {
+const initialState: SettingsState = {
   theme: 'dark-app-theme',
 };
 
-const reducer = createReducer(
-  initialState,
-  on(
-    action.setTheme,
-    (state, { theme }): State => ({
-      ...state,
-      theme,
-    }),
-  ),
-);
-
-export const settingsFeature = createFeature({
+const feature = createFeature({
   name: 'settingsFeatureKey',
-  reducer,
+  reducer: createReducer(
+    initialState,
+    on(
+      action.setTheme,
+      (state, { theme }): SettingsState => ({
+        ...state,
+        theme,
+      }),
+    ),
+  ),
 });
 
-export const { selectTheme } = settingsFeature;
+export const { selectTheme, reducer } = feature;
