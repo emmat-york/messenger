@@ -8,9 +8,6 @@ import {
 } from '@angular/core';
 import {
   ControlValueAccessor,
-  FormControl,
-  FormControlName,
-  FormGroupDirective,
   FormsModule,
   NG_VALUE_ACCESSOR,
   NgControl,
@@ -28,13 +25,13 @@ import { ErrorState } from '../../../interfaces/form.interface';
   templateUrl: 'input.component.html',
   styleUrls: ['input.component.scss'],
   imports: [
-    FormsModule,
-    NgClass,
-    LabelComponent,
     ErrorMessageComponent,
-    NgIf,
     NgOptimizedImage,
+    LabelComponent,
+    FormsModule,
     IconPipe,
+    NgClass,
+    NgIf,
   ],
   providers: [
     {
@@ -47,19 +44,19 @@ import { ErrorState } from '../../../interfaces/form.interface';
 })
 export class InputComponent implements ControlValueAccessor, OnInit {
   @Input() errorState: ErrorState = {};
-  @Input() id!: string;
-  @Input() placeholder = '';
-  @Input() label = '';
   @Input() type: InputType = 'text';
+  @Input() placeholder = '';
+  @Input() id!: string;
+  @Input() label = '';
 
-  control!: FormControl<string>;
+  ngControl!: NgControl;
   disabled = false;
   value = '';
 
   constructor(private readonly injector: Injector) {}
 
   ngOnInit(): void {
-    this.setCurrentControl();
+    this.ngControl = this.injector.get(NgControl);
   }
 
   onChange(_: string): void {}
@@ -88,11 +85,5 @@ export class InputComponent implements ControlValueAccessor, OnInit {
 
   registerOnTouched(fn: any): void {
     this.onBlur = fn;
-  }
-
-  private setCurrentControl(): void {
-    this.control = this.injector
-      .get(FormGroupDirective)
-      .getControl(this.injector.get(NgControl) as FormControlName);
   }
 }

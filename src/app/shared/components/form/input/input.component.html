@@ -5,8 +5,8 @@
   [placeholder]="placeholder"
   [disabled]="disabled"
   [ngClass]="{
-    invalid: control.errors && control.touched,
-    valid: !control.errors
+    invalid: ngControl.errors && ngControl.touched,
+    valid: !ngControl.errors
   }"
   [ngModel]="value"
   [type]="type"
@@ -16,7 +16,7 @@
 />
 
 <app-error-message
-  *ngIf="control.errors && control.touched"
+  *ngIf="ngControl.errors && ngControl.touched"
   [errorState]="errorState"
-  [controlErrors]="control.errors"
+  [controlErrors]="ngControl.errors"
 ></app-error-message>
