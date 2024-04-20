@@ -1,9 +1,6 @@
-@import '../../../../../assets/styles/variables';
-
 :host {
   display: block;
   height: 100%;
-  border-right: 1px solid map-get($colorful-palette, darkGrey);
 }
 
 .search-bar {
@@ -29,21 +26,16 @@
   height: inherit;
   width: inherit;
   padding: 12px;
-  font-family: $inter;
   font-size: 13px;
   font-weight: 400;
   line-height: 18px;
   border-radius: 22px;
-  background-color: map-get($colorful-palette, lightGrey);
-  color: map-get($colorful-palette, navyGrey);
 
   &:hover:not(&:focus) {
     opacity: 0.8;
   }
 
   &:focus {
-    outline: 1.5px solid map-get($colorful-palette, lightGrey);
-    background-color: map-get($colorful-palette, white);
   }
 }
 
@@ -53,11 +45,9 @@
 }
 
 .no-contacts {
-  font-family: $inter;
   font-size: 13px;
   font-weight: 500;
   line-height: 18px;
   border-radius: 22px;
   text-align: center;
-  color: map-get($colorful-palette, navyGrey);
 }
