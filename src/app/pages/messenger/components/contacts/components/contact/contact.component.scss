@@ -10,25 +10,21 @@ $avatar-indent: 16px;
   cursor: pointer;
 
   &:hover:not(.selected) {
-    background-color: map-get($colorful-palette, lightGrey);
   }
 }
 
 :host(.selected) {
   & {
-    background-color: map-get($colorful-palette, blue);
   }
 
   .user-name,
   .date,
   .message {
-    color: map-get($colorful-palette, white);
   }
 }
 
 .contact-info {
   width: calc(100% - #{$avatar-width} - #{$avatar-indent});
-  font-family: $inter;
 }
 
 .name-and-date {
@@ -42,21 +38,18 @@ $avatar-indent: 16px;
   font-size: 15px;
   font-weight: 400;
   line-height: 20px;
-  color: map-get($colorful-palette, richBlack);
 }
 
 .date {
   font-size: 12px;
   font-weight: 400;
   line-height: 16px;
-  color: map-get($colorful-palette, navyGrey);
 }
 
 .message {
   font-size: 14px;
   font-weight: 400;
   line-height: 18px;
-  color: map-get($colorful-palette, navyGrey);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

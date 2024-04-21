@@ -1,13 +1,15 @@
 {
   "name": "chat",
   "version": "0.0.1",
+  "main": "main.js",
   "scripts": {
     "ng": "ng",
     "start": "ng serve -o",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "prettier": "npx prettier . --write"
+    "prettier": "npx prettier . --write",
+    "start:electron": "ng build --base-href ./ && electron ."
   },
   "private": true,
   "dependencies": {
@@ -37,6 +39,7 @@
     "@angular/cli": "^17.1.2",
     "@angular/compiler-cli": "^17.1.0",
     "@types/jasmine": "~5.1.0",
+    "electron": "^30.0.1",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
