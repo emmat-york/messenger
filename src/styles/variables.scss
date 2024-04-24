@@ -37,6 +37,7 @@
 
   // ====== WHITE ======
   --white1: #ffffff;
+  --mud_white: #f5f5f5;
   --white_alpha80: #ccffffff;
   --white_alpha40: #66ffffff;
   --white_alpha35: #59ffffff;
@@ -81,6 +82,8 @@
   --blue_light6: #3ba9ec;
   --blue_light7: #32a8e6;
   --blue_light8: #19a7e7;
+
+  --line-blue: #4b87bb;
 
   // ---- semi-light ----
   --blue_semi-light1: #64b5ef;
@@ -137,6 +140,8 @@
   --green_bright2: #47a938;
   --green_bright3: #04a410;
 
+  --line-green: #60a457;
+
   // ====== STEEL GRAY ======
   // ---- bright ----
   --steel-gray_bright1: #deecef;
@@ -184,21 +189,25 @@
 
   // ====== SPACING ======
   --spacing_16: 16px;
+  --spacing_14: 14px;
   --spacing_12: 12px;
+  --spacing_10: 10px;
   --spacing_8: 8px;
+  --spacing_7: 7px;
   --spacing_6: 6px;
   --spacing_2: 2px;
 
   // ====== BORDER RADIUS =====
   --border-radius_4: 4px;
   --border-radius_7: 7px;
+  --border-radius_15: 15px;
 
   // ====== SPACING ======
   --medium_weight: 500;
   --regular_weight: 400;
 
   // ====== OPACITY ======
-  --opacity: 0.8;
+  --opacity: 0.9;
 
   // ===== FONT SIZE =====
   --font_weight_regular: 400;

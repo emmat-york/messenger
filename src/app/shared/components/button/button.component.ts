@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { ButtonMetaData, ButtonType } from './interfaces/button.interface';
+import { ButtonType, ButtonVariant } from './interfaces/button.interface';
 import { NgClass } from '@angular/common';
 
 @Component({
@@ -7,9 +7,9 @@ import { NgClass } from '@angular/common';
   standalone: true,
   template: ` <button
     class="button"
-    [ngClass]="['variant-' + meta.variant, 'type-' + meta.type]"
-    [type]="type"
     [disabled]="disabled"
+    [ngClass]="'variant-' + variant"
+    [type]="type"
   >
     <ng-content></ng-content>
   </button>`,
@@ -18,11 +18,7 @@ import { NgClass } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonComponent {
-  @Input() meta: ButtonMetaData = {
-    variant: 'regular',
-    type: 'regular',
-  };
-
+  @Input() variant: ButtonVariant = 'regular';
   @Input() type: ButtonType = 'button';
   @Input() disabled = false;
 }

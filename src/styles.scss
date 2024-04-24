@@ -11,6 +11,7 @@ html {
 body {
   height: 100%;
   margin: 0;
+  font-family: var(--inter);
 }
 
 h1,
@@ -34,14 +35,10 @@ ul {
 
 button {
   padding: 0;
+  font-family: var(--inter);
   border: none;
-  background-color: transparent;
   outline: none;
   cursor: pointer;
-
-  &:hover:not(&:disabled) {
-    opacity: var(--opacity);
-  }
 
   &:disabled {
     opacity: var(--opacity);

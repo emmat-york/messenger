@@ -25,13 +25,14 @@
 
   <app-button
     [disabled]="formGroup.disabled"
-    [meta]="{ variant: 'regular', type: 'large' }"
+    class="submit-button"
+    variant="regular"
     type="submit"
   >
     Submit
   </app-button>
 
-  <app-button type="button" [meta]="{ variant: 'regular', type: 'text' }">
+  <app-button class="registration-button" type="button" variant="text">
     <a class="link" [routerLink]="['/' + appPages.Registration]"
       >Go to registration</a
     >
