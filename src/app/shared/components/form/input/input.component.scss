@@ -7,18 +7,20 @@
   display: block;
   height: 36px;
   width: 100%;
-  padding: 0 8px;
-  border: 1.5px solid black;
+  font-family: var(--inter);
+  border: none;
+  border-bottom: 1.5px solid var(--unknown_gray);
+  color: var(--black1);
 
   &.valid:not(&.invalid, &:focus, &:disabled) {
-    border-color: green;
+    border-color: var(--green_bright2);
   }
 
   &.invalid {
-    border-color: red;
+    border-color: var(--red3);
   }
 
   &:focus:not(&.invalid, &:disabled) {
-    border-color: blue;
+    border-color: var(--blue_light7);
   }
 }

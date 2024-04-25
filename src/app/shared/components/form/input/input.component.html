@@ -1,4 +1,4 @@
-<app-label [for]="id">{{ label }}</app-label>
+<app-label *ngIf="label" [for]="id">{{ label }}</app-label>
 
 <input
   class="input"
