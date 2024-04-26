@@ -23,10 +23,10 @@
 }
 
 .server-error-message {
-  margin-bottom: 20px;
+  margin-bottom: var(--spacing_8);
   font-size: 13px;
   font-weight: var(--regular_weight);
-  line-height: 25px;
+  line-height: 20px;
   font-style: normal;
   color: var(--red3);
   text-align: center;

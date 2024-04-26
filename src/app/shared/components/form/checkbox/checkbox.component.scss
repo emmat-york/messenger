@@ -6,8 +6,8 @@
 
 .checkbox {
   position: relative;
-  width: 17px;
-  height: 17px;
+  width: 16px;
+  height: 16px;
   margin: 0;
   appearance: none;
   border: 2px solid var(--gray_dark9);
@@ -23,7 +23,7 @@
     position: absolute;
     content: '';
     top: 1px;
-    left: 6px;
+    left: 5.5px;
     width: 3px;
     height: 9px;
     border: 3px solid transparent;
