@@ -13,6 +13,7 @@
   color: var(--black1);
 
   &::placeholder {
+    color: var(--steel-gray_light15);
   }
 
   &.valid:not(&.invalid, &:focus, &:disabled) {

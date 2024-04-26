@@ -9,7 +9,7 @@ export const SLEEPY_OPTIONS = {
 };
 
 export const VALIDATION_MESSAGES: ValidationMessages = {
-  [ValidatorKeys.required]: 'This field is required',
+  [ValidatorKeys.required]: 'Field is required',
   [ValidatorKeys.email]: 'Email should be valid',
   [ValidatorKeys.password]:
     'Password should contains uppercase, lowercase, number and special symbols',
