@@ -5,6 +5,7 @@ import { LoginFormKey } from '../enums/login.enum';
 export interface LoginFormGroup {
   [LoginFormKey.Email]: FormControl<string>;
   [LoginFormKey.Password]: FormControl<string>;
+  [LoginFormKey.RememberMe]: FormControl<boolean>;
 }
 
 export interface LoginErrorState {

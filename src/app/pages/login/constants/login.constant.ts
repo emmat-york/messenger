@@ -21,4 +21,5 @@ export const LOGIN_ERROR_STATE: LoginErrorState = {
 export const LOGIN_LABELS = {
   [LoginFormKey.Email]: 'Email',
   [LoginFormKey.Password]: 'Password',
+  [LoginFormKey.RememberMe]: 'Remember me',
 };

@@ -23,6 +23,12 @@
     type="password"
   ></app-input>
 
+  <app-checkbox
+    [formControlName]="loginFormKey.RememberMe"
+    [label]="labels[loginFormKey.RememberMe]"
+    [id]="loginFormKey.RememberMe"
+  ></app-checkbox>
+
   <app-button
     [disabled]="formGroup.disabled"
     class="submit-button"

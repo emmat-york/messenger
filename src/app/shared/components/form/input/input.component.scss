@@ -12,6 +12,9 @@
   border-bottom: 1.5px solid var(--unknown_gray);
   color: var(--black1);
 
+  &::placeholder {
+  }
+
   &.valid:not(&.invalid, &:focus, &:disabled) {
     border-color: var(--green_bright2);
   }

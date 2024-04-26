@@ -20,6 +20,6 @@ export const REGISTRATION_ERROR_STATE: RegistrationErrorState = {
 };
 
 export const REGISTRATION_LABELS = {
-  [SignUpFormKey.Email]: 'Email:',
-  [SignUpFormKey.Password]: 'Password:',
+  [SignUpFormKey.Email]: 'Email',
+  [SignUpFormKey.Password]: 'Password',
 };

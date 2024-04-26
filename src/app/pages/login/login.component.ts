@@ -30,6 +30,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { getLoginErrorMessage } from '../../shared/services/app/auth-user/helpers/auth-user.helper';
 import { NgIf } from '@angular/common';
 import { PushPipe } from '@ngrx/component';
+import { CheckboxComponent } from '../../shared/components/form/checkbox/checkbox.component';
 
 @Component({
   selector: 'app-login',
@@ -44,6 +45,7 @@ import { PushPipe } from '@ngrx/component';
     RouterLink,
     NgIf,
     PushPipe,
+    CheckboxComponent,
   ],
 })
 export class LoginComponent {
@@ -62,6 +64,7 @@ export class LoginComponent {
         '',
         [Validators.required, Validators.minLength(MIN_PASSWORD_LENGTH)],
       ],
+      [LoginFormKey.RememberMe]: [false],
     });
 
   serverErrorMessage$ = new BehaviorSubject<string>('');
@@ -88,8 +91,10 @@ export class LoginComponent {
 
     this.formGroup.disable(SLEEPY_OPTIONS);
 
+    const { email, password } = this.formGroup.getRawValue();
+
     this.authUserService
-      .login$(this.formGroup.getRawValue())
+      .login$({ email, password })
       .pipe(
         catchError((errorResponse: HttpErrorResponse) => {
           const message = getLoginErrorMessage(errorResponse);
@@ -107,8 +112,15 @@ export class LoginComponent {
   }
 
   private removeWhiteSpaceFromFields(): void {
-    Object.values(this.formGroup.controls).forEach(control => {
+    [
+      this.control(LoginFormKey.Email),
+      this.control(LoginFormKey.Password),
+    ].forEach(control => {
       control.setValue(getTrimmedString(control.getRawValue()), SLEEPY_OPTIONS);
     });
+  }
+
+  private control<Key extends LoginFormKey>(key: Key): LoginFormGroup[Key] {
+    return this.formGroup.controls[key];
   }
 }

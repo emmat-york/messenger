@@ -1,1 +1,11 @@
-<p>checkbox</p>
+<input
+  class="checkbox"
+  [disabled]="disabled"
+  [ngModel]="value"
+  type="checkbox"
+  [id]="id"
+  (ngModelChange)="onInputChange($event)"
+  (blur)="onInputBlur()"
+/>
+
+<app-label *ngIf="label" [for]="id">{{ label }}</app-label>

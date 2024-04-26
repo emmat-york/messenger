@@ -11,19 +11,21 @@
   <app-input
     [errorState]="errorState[signUpFormKey.Email]"
     [formControlName]="signUpFormKey.Email"
-    [label]="labels[signUpFormKey.Email]"
+    [placeholder]="labels[signUpFormKey.Email]"
     [id]="signUpFormKey.Email"
   ></app-input>
 
   <app-input
     [errorState]="errorState[signUpFormKey.Password]"
     [formControlName]="signUpFormKey.Password"
-    [label]="labels[signUpFormKey.Password]"
+    [placeholder]="labels[signUpFormKey.Password]"
     [id]="signUpFormKey.Password"
     type="password"
   ></app-input>
 
   <app-button class="submit-button" type="submit">Submit</app-button>
 
-  <a class="link" [routerLink]="['/' + appPages.Login]">Go to login</a>
+  <app-button class="registration-button" type="button" variant="text">
+    <a class="link" [routerLink]="['/' + appPages.Login]">Go to login</a>
+  </app-button>
 </form>

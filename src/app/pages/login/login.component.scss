@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   height: inherit;
-  background-image: url('../../../assets/images/333333.jpg');
+  background-image: url('../../../assets/images/auth-background.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -24,7 +24,12 @@
 
 .server-error-message {
   margin-bottom: 20px;
+  font-size: 13px;
+  font-weight: var(--regular_weight);
+  line-height: 25px;
+  font-style: normal;
   color: var(--red3);
+  text-align: center;
 }
 
 .link {
@@ -34,7 +39,7 @@
 
 .submit-button {
   width: 100%;
-  margin-top: 20px;
+  margin-top: 12px;
 }
 
 .registration-button {
