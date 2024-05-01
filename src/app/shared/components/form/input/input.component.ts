@@ -1,15 +1,13 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  forwardRef,
-  Injector,
   Input,
-  OnInit,
+  Optional,
+  Self,
 } from '@angular/core';
 import {
   ControlValueAccessor,
   FormsModule,
-  NG_VALUE_ACCESSOR,
   NgControl,
   ValidationErrors,
 } from '@angular/forms';
@@ -33,30 +31,20 @@ import { InputType } from './interfaces/input.interface';
     NgClass,
     NgIf,
   ],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => InputComponent),
-      multi: true,
-    },
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class InputComponent implements ControlValueAccessor, OnInit {
+export class InputComponent implements ControlValueAccessor {
   @Input() errorState: ValidationErrors = {};
   @Input() type: InputType = 'text';
   @Input() placeholder = '';
-  @Input() id!: string;
   @Input() label = '';
+  @Input() id = '';
 
-  ngControl!: NgControl;
   disabled = false;
   value = '';
 
-  constructor(private readonly injector: Injector) {}
-
-  ngOnInit(): void {
-    this.ngControl = this.injector.get(NgControl);
+  constructor(@Self() @Optional() readonly ngControl: NgControl) {
+    this.ngControl.valueAccessor = this;
   }
 
   onChange(_: string): void {}
