@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { ErrorState } from '../../../interfaces/form.interface';
 import { ValidatorKeys } from '../../../enums/validator-keys.enum';
+import { ValidationErrors } from '@angular/forms';
 
 @Component({
   selector: 'app-error-message',
@@ -10,8 +10,8 @@ import { ValidatorKeys } from '../../../enums/validator-keys.enum';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ErrorMessageComponent {
-  @Input() controlErrors: Partial<Record<ValidatorKeys, any>> = {};
-  @Input() errorState: ErrorState = {};
+  @Input() controlErrors: ValidationErrors = {};
+  @Input() errorState: ValidationErrors = {};
 
   get message(): string {
     const errorKey = Object.keys(this.controlErrors)[0] as ValidatorKeys;

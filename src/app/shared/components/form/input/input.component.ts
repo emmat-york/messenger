@@ -11,13 +11,13 @@ import {
   FormsModule,
   NG_VALUE_ACCESSOR,
   NgControl,
+  ValidationErrors,
 } from '@angular/forms';
 import { NgClass, NgIf, NgOptimizedImage } from '@angular/common';
 import { LabelComponent } from '../label/label.component';
 import { ErrorMessageComponent } from '../error-message/error-message.component';
 import { IconPipe } from '../../../pipes/icon/icon.pipe';
 import { InputType } from './interfaces/input.interface';
-import { ErrorState } from '../../../interfaces/form.interface';
 
 @Component({
   selector: 'app-input',
@@ -43,7 +43,7 @@ import { ErrorState } from '../../../interfaces/form.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputComponent implements ControlValueAccessor, OnInit {
-  @Input() errorState: ErrorState = {};
+  @Input() errorState: ValidationErrors = {};
   @Input() type: InputType = 'text';
   @Input() placeholder = '';
   @Input() id!: string;
