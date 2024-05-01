@@ -15,7 +15,6 @@ import { NgClass, NgIf, NgOptimizedImage } from '@angular/common';
 import { LabelComponent } from '../label/label.component';
 import { ErrorMessageComponent } from '../error-message/error-message.component';
 import { IconPipe } from '../../../pipes/icon/icon.pipe';
-import { InputType } from './interfaces/input.interface';
 
 @Component({
   selector: 'app-input',
@@ -35,7 +34,7 @@ import { InputType } from './interfaces/input.interface';
 })
 export class InputComponent implements ControlValueAccessor {
   @Input() errorState: ValidationErrors = {};
-  @Input() type: InputType = 'text';
+  @Input() type: 'text' | 'password' = 'text';
   @Input() placeholder = '';
   @Input() label = '';
   @Input() id = '';
