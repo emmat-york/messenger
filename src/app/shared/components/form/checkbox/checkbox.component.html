@@ -1,9 +1,9 @@
 <input
-  class="checkbox"
   [disabled]="disabled"
   [ngModel]="value"
-  type="checkbox"
   [id]="id"
+  type="checkbox"
+  class="checkbox"
   (ngModelChange)="onInputChange($event)"
   (blur)="onInputBlur()"
 />

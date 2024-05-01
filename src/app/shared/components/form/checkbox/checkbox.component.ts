@@ -1,17 +1,11 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  forwardRef,
-  Injector,
   Input,
-  OnInit,
+  Optional,
+  Self,
 } from '@angular/core';
-import {
-  ControlValueAccessor,
-  FormsModule,
-  NG_VALUE_ACCESSOR,
-  NgControl,
-} from '@angular/forms';
+import { ControlValueAccessor, FormsModule, NgControl } from '@angular/forms';
 import { LabelComponent } from '../label/label.component';
 import { NgIf } from '@angular/common';
 
@@ -20,28 +14,18 @@ import { NgIf } from '@angular/common';
   standalone: true,
   templateUrl: 'checkbox.component.html',
   styleUrl: 'checkbox.component.scss',
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CheckboxComponent),
-      multi: true,
-    },
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [FormsModule, LabelComponent, NgIf],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CheckboxComponent implements ControlValueAccessor, OnInit {
-  @Input() id!: string;
+export class CheckboxComponent implements ControlValueAccessor {
   @Input() label = '';
+  @Input() id = '';
 
-  ngControl: NgControl | undefined;
   disabled = false;
   value = false;
 
-  constructor(private readonly injector: Injector) {}
-
-  ngOnInit(): void {
-    this.ngControl = this.injector.get(NgControl);
+  constructor(@Self() @Optional() readonly ngControl: NgControl) {
+    this.ngControl.valueAccessor = this;
   }
 
   onChange(_: boolean): void {}

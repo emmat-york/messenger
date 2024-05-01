@@ -18,6 +18,6 @@
 
 <app-error-message
   *ngIf="ngControl && ngControl.errors && ngControl.touched"
-  [errorState]="errorState"
   [controlErrors]="ngControl.errors"
+  [errorState]="errorState"
 ></app-error-message>
