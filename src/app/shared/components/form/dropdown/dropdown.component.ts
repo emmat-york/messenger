@@ -7,7 +7,7 @@ import {
 import { NgForOf, NgIf } from '@angular/common';
 import { ClickOutsideDirective } from '../../../directives/click-outside/click-outside.directive';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Option } from './interfaces/dropdown.interface';
+import { DropdownOptionValue, Option } from './interfaces/dropdown.interface';
 import { IconPipe } from '../../../pipes/icon/icon.pipe';
 
 @Component({
@@ -33,7 +33,7 @@ export class DropdownComponent implements ControlValueAccessor, OnInit {
   isDropdownShown = false;
   disabled = false;
 
-  onChange(value: string): void {}
+  onChange(_: DropdownOptionValue): void {}
   onBlur(): void {}
 
   ngOnInit(): void {
