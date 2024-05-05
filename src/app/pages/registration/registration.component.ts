@@ -4,12 +4,7 @@ import {
   Component,
   DestroyRef,
 } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   MIN_PASSWORD_LENGTH,
@@ -28,7 +23,6 @@ import {
   REGISTRATION_ERROR_STATE,
   REGISTRATION_LABELS,
 } from './constants/registration.constant';
-import { SignUpFormGroup } from './interfaces/registration.interface';
 import { NgIf } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { getRegistrationErrorMessage } from '../../shared/services/app/auth-user/helpers/auth-user.helper';
@@ -45,8 +39,8 @@ import { PushPipe } from '@ngrx/component';
     ButtonComponent,
     InputComponent,
     RouterLink,
-    NgIf,
     PushPipe,
+    NgIf,
   ],
 })
 export class RegistrationComponent {
@@ -55,21 +49,20 @@ export class RegistrationComponent {
   readonly signUpFormKey = SignUpFormKey;
   readonly appPages = AppPages;
 
-  readonly formGroup: FormGroup<SignUpFormGroup> =
-    this.formBuilder.nonNullable.group({
-      [SignUpFormKey.Email]: [
-        '',
-        [Validators.required, CustomValidators.email()],
+  readonly formGroup = this.formBuilder.nonNullable.group({
+    [SignUpFormKey.Email]: [
+      '',
+      [Validators.required, CustomValidators.email()],
+    ],
+    [SignUpFormKey.Password]: [
+      '',
+      [
+        Validators.required,
+        Validators.minLength(MIN_PASSWORD_LENGTH),
+        CustomValidators.password(),
       ],
-      [SignUpFormKey.Password]: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(MIN_PASSWORD_LENGTH),
-          CustomValidators.password(),
-        ],
-      ],
-    });
+    ],
+  });
 
   serverErrorMessage$ = new BehaviorSubject<string>('');
 

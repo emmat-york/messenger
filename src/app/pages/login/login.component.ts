@@ -4,12 +4,7 @@ import {
   Component,
   DestroyRef,
 } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LoginFormKey } from './enums/login.enum';
 import { ButtonComponent } from '../../shared/components/button/button.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -19,7 +14,6 @@ import {
 } from '../../shared/constants/form.constant';
 import { CustomValidators } from '../../shared/utils/validators/validators.util';
 import { InputComponent } from '../../shared/components/form/input/input.component';
-import { LoginFormGroup } from './interfaces/login.interface';
 import { LOGIN_ERROR_STATE, LOGIN_LABELS } from './constants/login.constant';
 import { AppPages } from '../../app.routes';
 import { AuthUserService } from '../../shared/services/app/auth-user/auth-user.service';
@@ -60,18 +54,14 @@ export class LoginComponent {
   readonly loginFormKey = LoginFormKey;
   readonly appPages = AppPages;
 
-  readonly formGroup: FormGroup<LoginFormGroup> =
-    this.formBuilder.nonNullable.group({
-      [LoginFormKey.Email]: [
-        '',
-        [Validators.required, CustomValidators.email()],
-      ],
-      [LoginFormKey.Password]: [
-        '',
-        [Validators.required, Validators.minLength(MIN_PASSWORD_LENGTH)],
-      ],
-      [LoginFormKey.RememberMe]: [false],
-    });
+  readonly formGroup = this.formBuilder.nonNullable.group({
+    [LoginFormKey.Email]: ['', [Validators.required, CustomValidators.email()]],
+    [LoginFormKey.Password]: [
+      '',
+      [Validators.required, Validators.minLength(MIN_PASSWORD_LENGTH)],
+    ],
+    [LoginFormKey.RememberMe]: [false],
+  });
 
   serverErrorMessage$ = new BehaviorSubject<string>('');
 
