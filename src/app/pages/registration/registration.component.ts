@@ -16,7 +16,7 @@ import {
   SLEEPY_OPTIONS,
 } from '../../shared/constants/form.constant';
 import { SignUpFormKey } from './enums/registration.enum';
-import { getTrimmedString } from '../../shared/helpers/input.helper';
+import { getTrimmedString } from '../../shared/utils/form/form.util';
 import { InputComponent } from '../../shared/components/form/input/input.component';
 import { ButtonComponent } from '../../shared/components/button/button.component';
 import { BehaviorSubject, catchError, finalize, throwError } from 'rxjs';

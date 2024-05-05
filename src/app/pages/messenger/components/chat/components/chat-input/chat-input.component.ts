@@ -13,7 +13,7 @@ import {
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { distinctUntilChanged } from 'rxjs';
-import { getTrimmedString } from '../../../../../../shared/helpers/input.helper';
+import { getTrimmedString } from '../../../../../../shared/utils/form/form.util';
 import { NgOptimizedImage } from '@angular/common';
 
 @Component({

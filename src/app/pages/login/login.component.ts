@@ -25,7 +25,7 @@ import { AppPages } from '../../app.routes';
 import { AuthUserService } from '../../shared/services/app/auth-user/auth-user.service';
 import { BehaviorSubject, catchError, finalize, throwError } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
-import { getTrimmedString } from '../../shared/helpers/input.helper';
+import { getTrimmedString } from '../../shared/utils/form/form.util';
 import { HttpErrorResponse } from '@angular/common/http';
 import { getLoginErrorMessage } from '../../shared/services/app/auth-user/helpers/auth-user.helper';
 import { NgIf } from '@angular/common';
