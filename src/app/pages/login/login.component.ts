@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   DestroyRef,
+  OnDestroy,
 } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LoginFormKey } from './enums/login.enum';
@@ -48,7 +49,7 @@ import { PopOverDirective } from '../../shared/directives/pop-over/pop-over.dire
     PopOverDirective,
   ],
 })
-export class LoginComponent {
+export class LoginComponent implements OnDestroy {
   readonly errorState = LOGIN_ERROR_STATE;
   readonly labels = LOGIN_LABELS;
   readonly loginFormKey = LoginFormKey;
@@ -63,7 +64,7 @@ export class LoginComponent {
     [LoginFormKey.RememberMe]: [false],
   });
 
-  serverErrorMessage$ = new BehaviorSubject<string>('');
+  readonly serverErrorMessage$ = new BehaviorSubject<string>('');
 
   constructor(
     private readonly authUserService: AuthUserService,
@@ -72,6 +73,10 @@ export class LoginComponent {
     private readonly destroyRef: DestroyRef,
     private readonly router: Router,
   ) {}
+
+  ngOnDestroy(): void {
+    this.serverErrorMessage$.complete();
+  }
 
   onLogin(): void {
     if (this.formGroup.disabled) {

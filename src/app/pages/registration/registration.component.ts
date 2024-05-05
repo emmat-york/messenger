@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   DestroyRef,
+  OnDestroy,
 } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -43,7 +44,7 @@ import { PushPipe } from '@ngrx/component';
     NgIf,
   ],
 })
-export class RegistrationComponent {
+export class RegistrationComponent implements OnDestroy {
   readonly errorState = REGISTRATION_ERROR_STATE;
   readonly labels = REGISTRATION_LABELS;
   readonly signUpFormKey = SignUpFormKey;
@@ -64,7 +65,7 @@ export class RegistrationComponent {
     ],
   });
 
-  serverErrorMessage$ = new BehaviorSubject<string>('');
+  readonly serverErrorMessage$ = new BehaviorSubject<string>('');
 
   constructor(
     private readonly authUserService: AuthUserService,
@@ -73,6 +74,10 @@ export class RegistrationComponent {
     private readonly destroyRef: DestroyRef,
     private readonly router: Router,
   ) {}
+
+  ngOnDestroy(): void {
+    this.serverErrorMessage$.complete();
+  }
 
   onRegistration(): void {
     if (this.formGroup.disabled) {
