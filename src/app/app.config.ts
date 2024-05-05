@@ -13,12 +13,12 @@ import { SettingsEffect } from './store/settings/settings.effect';
 import { ChatEffect } from './store/chat/chat.effect';
 import { provideHttpClient } from '@angular/common/http';
 import { AuthUserService } from './shared/services/app/auth-user/auth-user.service';
-import { UserFacade } from './store/user/user.facade';
 import { EMPTY, Observable, tap } from 'rxjs';
 import { UserService } from './shared/services/api/user/user.service';
 import { UserData } from './store/user/user.interface';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { store } from './store/store';
+import { UserFacade } from './store/user/user.facade';
 
 function initializeAppFactory(
   authUserService: AuthUserService,

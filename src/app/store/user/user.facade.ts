@@ -1,14 +1,12 @@
 import { selectUserVM } from './user.feature';
 import { Injectable } from '@angular/core';
-import { Action, Store } from '@ngrx/store';
 import { Contact, UserData } from './user.interface';
 import * as action from './user.action';
+import { BaseStoreFacade } from '../utils/base-store-facade';
 
 @Injectable()
-export class UserFacade {
-  userVM$ = this.store.select(selectUserVM);
-
-  constructor(private readonly store: Store) {}
+export class UserFacade extends BaseStoreFacade {
+  readonly userVM$ = this.store.select(selectUserVM);
 
   setUserData(userData: UserData | null): void {
     this.dispatch(action.setUserData({ userData }));
@@ -16,9 +14,5 @@ export class UserFacade {
 
   setSelectedContact(selectedContact: Contact | null): void {
     this.dispatch(action.setSelectedContact({ selectedContact }));
-  }
-
-  private dispatch(action: Action): void {
-    this.store.dispatch(action);
   }
 }
