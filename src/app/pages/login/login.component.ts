@@ -119,14 +119,14 @@ export class LoginComponent {
 
   private removeWhiteSpaceFromFields(): void {
     [
-      this.control(LoginFormKey.Email),
-      this.control(LoginFormKey.Password),
+      this.formGroup.get(LoginFormKey.Email),
+      this.formGroup.get(LoginFormKey.Password),
     ].forEach(control => {
-      control.setValue(getTrimmedString(control.getRawValue()), SLEEPY_OPTIONS);
-    });
-  }
+      if (!control) {
+        return;
+      }
 
-  private control<Key extends LoginFormKey>(key: Key): LoginFormGroup[Key] {
-    return this.formGroup.controls[key];
+      control.setValue(getTrimmedString(control.value), SLEEPY_OPTIONS);
+    });
   }
 }
