@@ -1,5 +1,5 @@
 import { reducer as userReducer, UserState } from './user/user.feature';
-import { reducer as chatReducer, ChatState } from './chat/chat.feature';
+import { ChatState, reducer as chatReducer } from './chat/chat.feature';
 import {
   reducer as settingsReducer,
   SettingsState,
