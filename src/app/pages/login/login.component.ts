@@ -31,6 +31,9 @@ import { getLoginErrorMessage } from '../../shared/services/app/auth-user/helper
 import { NgIf } from '@angular/common';
 import { PushPipe } from '@ngrx/component';
 import { CheckboxComponent } from '../../shared/components/form/checkbox/checkbox.component';
+import { PopoverTargetDirective } from '../../shared/directives/popover-target/popover-target.directive';
+import { TooltipComponent } from '../../shared/components/tooltip/tooltip.component';
+import { PopOverDirective } from '../../shared/directives/pop-over/pop-over.directive';
 
 @Component({
   selector: 'app-login',
@@ -46,6 +49,9 @@ import { CheckboxComponent } from '../../shared/components/form/checkbox/checkbo
     NgIf,
     PushPipe,
     CheckboxComponent,
+    PopoverTargetDirective,
+    TooltipComponent,
+    PopOverDirective,
   ],
 })
 export class LoginComponent {
