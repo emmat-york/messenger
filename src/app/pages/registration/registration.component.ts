@@ -114,8 +114,15 @@ export class RegistrationComponent {
   }
 
   private removeWhiteSpaceFromFields(): void {
-    Object.values(this.formGroup.controls).forEach(control => {
-      control.setValue(getTrimmedString(control.getRawValue()), SLEEPY_OPTIONS);
+    [
+      this.formGroup.get(SignUpFormKey.Email),
+      this.formGroup.get(SignUpFormKey.Password),
+    ].forEach(control => {
+      if (!control) {
+        return;
+      }
+
+      control.setValue(getTrimmedString(control.value), SLEEPY_OPTIONS);
     });
   }
 }
