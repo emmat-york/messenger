@@ -14,6 +14,7 @@ import { AppPages } from '../../../../app.routes';
 import { UserFacade } from '../../../../store/user/user.facade';
 import { UserService } from '../../api/user/user.service';
 import { UserData } from '../../../../store/user/user.interface';
+import { AuthFacade } from '../../../../store/auth/auth.facade';
 
 @Injectable()
 export class AuthUserService {
@@ -21,6 +22,7 @@ export class AuthUserService {
     private readonly authService: AuthService,
     private readonly userService: UserService,
     private readonly userFacade: UserFacade,
+    private readonly authFacade: AuthFacade,
     private readonly router: Router,
   ) {}
 
@@ -70,7 +72,9 @@ export class AuthUserService {
 
   logOut(): void {
     this.removeToken();
-    this.router.navigate([AppPages.Login]);
+    this.router
+      .navigate([AppPages.Login])
+      .then(() => this.authFacade.setIsAuth(false));
   }
 
   private setToken({

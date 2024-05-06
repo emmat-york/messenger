@@ -9,17 +9,17 @@
   </article>
 
   <app-input
-    [errorState]="errorState[loginFormKey.Email]"
-    [id]="loginFormKey.Email"
-    [formControlName]="loginFormKey.Email"
     [placeholder]="placeholders[loginFormKey.Email]"
+    [errorState]="errorState[loginFormKey.Email]"
+    [formControlName]="loginFormKey.Email"
+    [id]="loginFormKey.Email"
   ></app-input>
 
   <app-input
-    [errorState]="errorState[loginFormKey.Password]"
-    [id]="loginFormKey.Password"
-    [formControlName]="loginFormKey.Password"
     [placeholder]="placeholders[loginFormKey.Password]"
+    [errorState]="errorState[loginFormKey.Password]"
+    [formControlName]="loginFormKey.Password"
+    [id]="loginFormKey.Password"
     type="password"
   ></app-input>
 
@@ -38,9 +38,3 @@
     >
   </app-button>
 </form>
-
-<button popoverTarget="pop-over">popover BTN!!!</button>
-
-<div popOver="pop-over">
-  <app-tooltip></app-tooltip>
-</div>

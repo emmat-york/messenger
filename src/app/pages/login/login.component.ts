@@ -28,29 +28,22 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { getLoginErrorMessage } from '../../shared/services/app/auth-user/helpers/auth-user.helper';
 import { NgIf } from '@angular/common';
 import { PushPipe } from '@ngrx/component';
-import { CheckboxComponent } from '../../shared/components/form/checkbox/checkbox.component';
-import { PopoverTargetDirective } from '../../shared/directives/popover-target/popover-target.directive';
-import { TooltipComponent } from '../../shared/components/tooltip/tooltip.component';
-import { PopOverDirective } from '../../shared/directives/pop-over/pop-over.directive';
+import { AuthFacade } from '../../store/auth/auth.facade';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   templateUrl: 'login.component.html',
   styleUrl: 'login.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
     ButtonComponent,
     InputComponent,
     RouterLink,
-    NgIf,
     PushPipe,
-    CheckboxComponent,
-    PopoverTargetDirective,
-    TooltipComponent,
-    PopOverDirective,
+    NgIf,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent implements OnDestroy {
   readonly placeholders = LOGIN_PLACEHOLDERS;
@@ -73,6 +66,7 @@ export class LoginComponent implements OnDestroy {
     private readonly cdRef: ChangeDetectorRef,
     private readonly formBuilder: FormBuilder,
     private readonly destroyRef: DestroyRef,
+    private readonly authFacade: AuthFacade,
     private readonly router: Router,
   ) {}
 
@@ -100,10 +94,8 @@ export class LoginComponent implements OnDestroy {
       .login$({ email, password })
       .pipe(
         catchError((errorResponse: HttpErrorResponse) => {
-          const message = getLoginErrorMessage(errorResponse);
-          this.errorMessage$.next(message);
-
-          return throwError(() => message);
+          this.errorMessage$.next(getLoginErrorMessage(errorResponse));
+          return throwError(() => errorResponse);
         }),
         finalize(() => {
           this.formGroup.enable(SLEEPY_OPTIONS);
@@ -111,7 +103,11 @@ export class LoginComponent implements OnDestroy {
         }),
         takeUntilDestroyed(this.destroyRef),
       )
-      .subscribe(() => this.router.navigate([AppPages.Messenger]));
+      .subscribe(() => {
+        this.router
+          .navigate([AppPages.Messenger])
+          .then(() => this.authFacade.setIsAuth(true));
+      });
   }
 
   private trim(): void {

@@ -28,13 +28,13 @@ import { NgIf } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { getRegistrationErrorMessage } from '../../shared/services/app/auth-user/helpers/auth-user.helper';
 import { PushPipe } from '@ngrx/component';
+import { AuthFacade } from '../../store/auth/auth.facade';
 
 @Component({
   selector: 'app-registration',
   standalone: true,
   templateUrl: 'registration.component.html',
   styleUrl: 'registration.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
     ButtonComponent,
@@ -43,6 +43,7 @@ import { PushPipe } from '@ngrx/component';
     PushPipe,
     NgIf,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegistrationComponent implements OnDestroy {
   readonly placeholders = REGISTRATION_PLACEHOLDERS;
@@ -72,6 +73,7 @@ export class RegistrationComponent implements OnDestroy {
     private readonly cdRef: ChangeDetectorRef,
     private readonly formBuilder: FormBuilder,
     private readonly destroyRef: DestroyRef,
+    private readonly authFacade: AuthFacade,
     private readonly router: Router,
   ) {}
 
@@ -97,10 +99,8 @@ export class RegistrationComponent implements OnDestroy {
       .registration$(this.formGroup.getRawValue())
       .pipe(
         catchError((errorResponse: HttpErrorResponse) => {
-          const message = getRegistrationErrorMessage(errorResponse);
-          this.errorMessage$.next(message);
-
-          return throwError(() => message);
+          this.errorMessage$.next(getRegistrationErrorMessage(errorResponse));
+          return throwError(() => errorResponse);
         }),
         finalize(() => {
           this.formGroup.enable(SLEEPY_OPTIONS);
@@ -108,7 +108,11 @@ export class RegistrationComponent implements OnDestroy {
         }),
         takeUntilDestroyed(this.destroyRef),
       )
-      .subscribe(() => this.router.navigate([AppPages.Messenger]));
+      .subscribe(() => {
+        this.router
+          .navigate([AppPages.Messenger])
+          .then(() => this.authFacade.setIsAuth(true));
+      });
   }
 
   private trim(): void {

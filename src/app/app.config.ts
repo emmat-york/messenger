@@ -19,17 +19,22 @@ import { UserData } from './store/user/user.interface';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { store } from './store/store';
 import { UserFacade } from './store/user/user.facade';
+import { AuthFacade } from './store/auth/auth.facade';
 
 function initializeAppFactory(
   authUserService: AuthUserService,
   userService: UserService,
   userFacade: UserFacade,
+  authFacade: AuthFacade,
 ): () => Observable<UserData | never> {
   return () => {
     if (authUserService.isAuth) {
-      return userService
-        .getUserData$('')
-        .pipe(tap(userData => userFacade.setUserData(userData)));
+      return userService.getUserData$('').pipe(
+        tap(userData => {
+          userFacade.setUserData(userData);
+          authFacade.setIsAuth(true);
+        }),
+      );
     }
 
     return EMPTY;
@@ -49,7 +54,7 @@ export const appConfig: ApplicationConfig = {
     {
       provide: APP_INITIALIZER,
       useFactory: initializeAppFactory,
-      deps: [AuthUserService, UserService, UserFacade],
+      deps: [AuthUserService, UserService, UserFacade, AuthFacade],
       multi: true,
     },
     provideAnimationsAsync(),
