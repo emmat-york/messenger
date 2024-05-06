@@ -5,12 +5,9 @@ import {
   DestroyRef,
   OnDestroy,
 } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import {
-  MIN_PASSWORD_LENGTH,
-  SLEEPY_OPTIONS,
-} from '../../shared/constants/form.constant';
+import { SLEEPY_OPTIONS } from '../../shared/constants/form.constant';
 import { SignUpFormKey } from './enums/registration.enum';
 import { getTrimmedString } from '../../shared/utils/form/form.util';
 import { InputComponent } from '../../shared/components/form/input/input.component';
@@ -19,10 +16,10 @@ import { BehaviorSubject, catchError, finalize, throwError } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
 import { AppPages } from '../../app.routes';
 import { AuthUserService } from '../../shared/services/app/auth-user/auth-user.service';
-import { CustomValidators } from '../../shared/utils/validators/validators.util';
 import {
   REGISTRATION_ERROR_STATE,
   REGISTRATION_PLACEHOLDERS,
+  REGISTRATION_VALIDATORS,
 } from './constants/registration.constant';
 import { NgIf } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -51,18 +48,11 @@ export class RegistrationComponent implements OnDestroy {
   readonly signUpFormKey = SignUpFormKey;
   readonly appPages = AppPages;
 
-  readonly formGroup = this.formBuilder.nonNullable.group({
-    [SignUpFormKey.Email]: [
-      '',
-      [Validators.required, CustomValidators.email()],
-    ],
+  readonly formGroup = this.fb.nonNullable.group({
+    [SignUpFormKey.Email]: REGISTRATION_VALIDATORS[SignUpFormKey.Email],
     [SignUpFormKey.Password]: [
       '',
-      [
-        Validators.required,
-        Validators.minLength(MIN_PASSWORD_LENGTH),
-        CustomValidators.password(),
-      ],
+      REGISTRATION_VALIDATORS[SignUpFormKey.Password],
     ],
   });
 
@@ -71,9 +61,9 @@ export class RegistrationComponent implements OnDestroy {
   constructor(
     private readonly authUserService: AuthUserService,
     private readonly cdRef: ChangeDetectorRef,
-    private readonly formBuilder: FormBuilder,
     private readonly destroyRef: DestroyRef,
     private readonly authFacade: AuthFacade,
+    private readonly fb: FormBuilder,
     private readonly router: Router,
   ) {}
 

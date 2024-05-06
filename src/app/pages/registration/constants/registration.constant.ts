@@ -5,6 +5,8 @@ import {
   VALIDATION_MESSAGES,
 } from '../../../shared/constants/form.constant';
 import { RegistrationErrorState } from '../interfaces/registration.interface';
+import { Validators } from '@angular/forms';
+import { CustomValidators } from '../../../shared/utils/validators/validators.util';
 
 export const REGISTRATION_ERROR_STATE: RegistrationErrorState = {
   [SignUpFormKey.Email]: {
@@ -22,4 +24,13 @@ export const REGISTRATION_ERROR_STATE: RegistrationErrorState = {
 export const REGISTRATION_PLACEHOLDERS = {
   [SignUpFormKey.Email]: 'Email',
   [SignUpFormKey.Password]: 'Password',
+};
+
+export const REGISTRATION_VALIDATORS = {
+  [SignUpFormKey.Email]: [Validators.required, CustomValidators.email()],
+  [SignUpFormKey.Password]: [
+    Validators.required,
+    Validators.minLength(MIN_PASSWORD_LENGTH),
+    CustomValidators.password(),
+  ],
 };
