@@ -2,23 +2,23 @@
   <h2 class="heading">Registration</h2>
 
   <article
-    *ngIf="serverErrorMessage$ | ngrxPush as error"
+    *ngIf="errorMessage$ | ngrxPush as error"
     class="server-error-message"
   >
     {{ error }}
   </article>
 
   <app-input
+    [placeholder]="placeholders[signUpFormKey.Email]"
     [errorState]="errorState[signUpFormKey.Email]"
     [formControlName]="signUpFormKey.Email"
-    [placeholder]="labels[signUpFormKey.Email]"
     [id]="signUpFormKey.Email"
   ></app-input>
 
   <app-input
+    [placeholder]="placeholders[signUpFormKey.Password]"
     [errorState]="errorState[signUpFormKey.Password]"
     [formControlName]="signUpFormKey.Password"
-    [placeholder]="labels[signUpFormKey.Password]"
     [id]="signUpFormKey.Password"
     type="password"
   ></app-input>

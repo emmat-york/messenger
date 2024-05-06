@@ -19,7 +19,7 @@ export const REGISTRATION_ERROR_STATE: RegistrationErrorState = {
   },
 };
 
-export const REGISTRATION_LABELS = {
+export const REGISTRATION_PLACEHOLDERS = {
   [SignUpFormKey.Email]: 'Email',
   [SignUpFormKey.Password]: 'Password',
 };

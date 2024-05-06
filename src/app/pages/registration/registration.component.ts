@@ -22,7 +22,7 @@ import { AuthUserService } from '../../shared/services/app/auth-user/auth-user.s
 import { CustomValidators } from '../../shared/utils/validators/validators.util';
 import {
   REGISTRATION_ERROR_STATE,
-  REGISTRATION_LABELS,
+  REGISTRATION_PLACEHOLDERS,
 } from './constants/registration.constant';
 import { NgIf } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -45,8 +45,8 @@ import { PushPipe } from '@ngrx/component';
   ],
 })
 export class RegistrationComponent implements OnDestroy {
+  readonly placeholders = REGISTRATION_PLACEHOLDERS;
   readonly errorState = REGISTRATION_ERROR_STATE;
-  readonly labels = REGISTRATION_LABELS;
   readonly signUpFormKey = SignUpFormKey;
   readonly appPages = AppPages;
 
@@ -65,7 +65,7 @@ export class RegistrationComponent implements OnDestroy {
     ],
   });
 
-  readonly serverErrorMessage$ = new BehaviorSubject<string>('');
+  readonly errorMessage$ = new BehaviorSubject<string>('');
 
   constructor(
     private readonly authUserService: AuthUserService,
@@ -76,7 +76,7 @@ export class RegistrationComponent implements OnDestroy {
   ) {}
 
   ngOnDestroy(): void {
-    this.serverErrorMessage$.complete();
+    this.errorMessage$.complete();
   }
 
   onRegistration(): void {
@@ -84,7 +84,7 @@ export class RegistrationComponent implements OnDestroy {
       return;
     }
 
-    this.removeWhiteSpaceFromFields();
+    this.trim();
 
     if (this.formGroup.invalid) {
       this.formGroup.markAllAsTouched();
@@ -98,7 +98,7 @@ export class RegistrationComponent implements OnDestroy {
       .pipe(
         catchError((errorResponse: HttpErrorResponse) => {
           const message = getRegistrationErrorMessage(errorResponse);
-          this.serverErrorMessage$.next(message);
+          this.errorMessage$.next(message);
 
           return throwError(() => message);
         }),
@@ -111,7 +111,7 @@ export class RegistrationComponent implements OnDestroy {
       .subscribe(() => this.router.navigate([AppPages.Messenger]));
   }
 
-  private removeWhiteSpaceFromFields(): void {
+  private trim(): void {
     [
       this.formGroup.get(SignUpFormKey.Email),
       this.formGroup.get(SignUpFormKey.Password),
