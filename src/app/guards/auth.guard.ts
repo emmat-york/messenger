@@ -11,6 +11,6 @@ export function canActivateAuth(): boolean {
     return true;
   }
 
-  router.navigate([AppPages.Messenger]);
+  router.navigate([AppPages.Messenger]).then();
   return false;
 }

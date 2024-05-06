@@ -2,7 +2,7 @@
   <h2 class="heading">Login</h2>
 
   <article
-    *ngIf="serverErrorMessage$ | ngrxPush as error"
+    *ngIf="errorMessage$ | ngrxPush as error"
     class="server-error-message"
   >
     {{ error }}
@@ -12,22 +12,16 @@
     [errorState]="errorState[loginFormKey.Email]"
     [id]="loginFormKey.Email"
     [formControlName]="loginFormKey.Email"
-    [placeholder]="labels[loginFormKey.Email]"
+    [placeholder]="placeholders[loginFormKey.Email]"
   ></app-input>
 
   <app-input
     [errorState]="errorState[loginFormKey.Password]"
     [id]="loginFormKey.Password"
     [formControlName]="loginFormKey.Password"
-    [placeholder]="labels[loginFormKey.Password]"
+    [placeholder]="placeholders[loginFormKey.Password]"
     type="password"
   ></app-input>
-
-  <app-checkbox
-    [formControlName]="loginFormKey.RememberMe"
-    [label]="labels[loginFormKey.RememberMe]"
-    [id]="loginFormKey.RememberMe"
-  ></app-checkbox>
 
   <app-button
     [disabled]="formGroup.disabled"

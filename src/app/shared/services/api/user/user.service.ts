@@ -5,7 +5,7 @@ import { UserData } from '../../../../store/user/user.interface';
 
 @Injectable()
 export class UserService {
-  constructor(private readonly httpClient: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
   getUserData$(idToken: string): Observable<UserData> {
     return of({

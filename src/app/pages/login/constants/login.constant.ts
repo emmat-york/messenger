@@ -18,8 +18,7 @@ export const LOGIN_ERROR_STATE: LoginErrorState = {
   },
 };
 
-export const LOGIN_LABELS = {
+export const LOGIN_PLACEHOLDERS = {
   [LoginFormKey.Email]: 'Email',
   [LoginFormKey.Password]: 'Password',
-  [LoginFormKey.RememberMe]: 'Remember me',
 };

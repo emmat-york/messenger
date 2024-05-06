@@ -15,7 +15,10 @@ import {
 } from '../../shared/constants/form.constant';
 import { CustomValidators } from '../../shared/utils/validators/validators.util';
 import { InputComponent } from '../../shared/components/form/input/input.component';
-import { LOGIN_ERROR_STATE, LOGIN_LABELS } from './constants/login.constant';
+import {
+  LOGIN_ERROR_STATE,
+  LOGIN_PLACEHOLDERS,
+} from './constants/login.constant';
 import { AppPages } from '../../app.routes';
 import { AuthUserService } from '../../shared/services/app/auth-user/auth-user.service';
 import { BehaviorSubject, catchError, finalize, throwError } from 'rxjs';
@@ -50,8 +53,8 @@ import { PopOverDirective } from '../../shared/directives/pop-over/pop-over.dire
   ],
 })
 export class LoginComponent implements OnDestroy {
+  readonly placeholders = LOGIN_PLACEHOLDERS;
   readonly errorState = LOGIN_ERROR_STATE;
-  readonly labels = LOGIN_LABELS;
   readonly loginFormKey = LoginFormKey;
   readonly appPages = AppPages;
 
@@ -61,10 +64,9 @@ export class LoginComponent implements OnDestroy {
       '',
       [Validators.required, Validators.minLength(MIN_PASSWORD_LENGTH)],
     ],
-    [LoginFormKey.RememberMe]: [false],
   });
 
-  readonly serverErrorMessage$ = new BehaviorSubject<string>('');
+  readonly errorMessage$ = new BehaviorSubject<string>('');
 
   constructor(
     private readonly authUserService: AuthUserService,
@@ -75,7 +77,7 @@ export class LoginComponent implements OnDestroy {
   ) {}
 
   ngOnDestroy(): void {
-    this.serverErrorMessage$.complete();
+    this.errorMessage$.complete();
   }
 
   onLogin(): void {
@@ -83,7 +85,7 @@ export class LoginComponent implements OnDestroy {
       return;
     }
 
-    this.removeWhiteSpaceFromFields();
+    this.trim();
 
     if (this.formGroup.invalid) {
       this.formGroup.markAllAsTouched();
@@ -99,7 +101,7 @@ export class LoginComponent implements OnDestroy {
       .pipe(
         catchError((errorResponse: HttpErrorResponse) => {
           const message = getLoginErrorMessage(errorResponse);
-          this.serverErrorMessage$.next(message);
+          this.errorMessage$.next(message);
 
           return throwError(() => message);
         }),
@@ -112,7 +114,7 @@ export class LoginComponent implements OnDestroy {
       .subscribe(() => this.router.navigate([AppPages.Messenger]));
   }
 
-  private removeWhiteSpaceFromFields(): void {
+  private trim(): void {
     [
       this.formGroup.get(LoginFormKey.Email),
       this.formGroup.get(LoginFormKey.Password),
