@@ -25,7 +25,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { getRegistrationErrorMessage } from '../../shared/services/app/auth-user/helpers/auth-user.helper';
 import { PushPipe } from '@ngrx/component';
 import { AuthFacade } from '../../store/auth/auth.facade';
-import { AppPages } from '../../shared/enums/app-routes.enum';
+import { AppRoutes } from '../../shared/enums/app-routes.enum';
 
 @Component({
   selector: 'app-registration',
@@ -48,7 +48,7 @@ export class RegistrationComponent implements OnDestroy {
   readonly placeholders = REGISTRATION_PLACEHOLDERS;
   readonly errorState = REGISTRATION_ERROR_STATE;
   readonly signUpFormKey = SignUpFormKey;
-  readonly appPages = AppPages;
+  readonly appRoutes = AppRoutes;
 
   readonly formGroup = this.fb.nonNullable.group({
     [SignUpFormKey.Email]: REGISTRATION_VALIDATORS[SignUpFormKey.Email],
@@ -103,7 +103,7 @@ export class RegistrationComponent implements OnDestroy {
       )
       .subscribe(() => {
         this.router
-          .navigate([AppPages.Messenger])
+          .navigate([AppRoutes.Messenger])
           .then(() => this.authFacade.setIsAuth(true));
       });
   }

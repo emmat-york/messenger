@@ -1,4 +1,4 @@
-export enum AppPages {
+export enum AppRoutes {
   Messenger = 'messenger',
   Settings = 'settings',
   Registration = 'registration',

@@ -25,7 +25,7 @@ import { getLoginErrorMessage } from '../../shared/services/app/auth-user/helper
 import { NgIf } from '@angular/common';
 import { PushPipe } from '@ngrx/component';
 import { AuthFacade } from '../../store/auth/auth.facade';
-import { AppPages } from '../../shared/enums/app-routes.enum';
+import { AppRoutes } from '../../shared/enums/app-routes.enum';
 
 @Component({
   selector: 'app-login',
@@ -48,7 +48,7 @@ export class LoginComponent implements OnDestroy {
   readonly placeholders = LOGIN_PLACEHOLDERS;
   readonly errorState = LOGIN_ERROR_STATE;
   readonly loginFormKey = LoginFormKey;
-  readonly appPages = AppPages;
+  readonly appRoutes = AppRoutes;
 
   readonly formGroup = this.fb.nonNullable.group({
     [LoginFormKey.Email]: ['', LOGIN_VALIDATORS[LoginFormKey.Email]],
@@ -97,7 +97,7 @@ export class LoginComponent implements OnDestroy {
       )
       .subscribe(() => {
         this.router
-          .navigate([AppPages.Messenger])
+          .navigate([AppRoutes.Messenger])
           .then(() => this.authFacade.setIsAuth(true));
       });
   }

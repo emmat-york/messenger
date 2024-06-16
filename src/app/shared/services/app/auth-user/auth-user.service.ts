@@ -14,7 +14,7 @@ import { UserFacade } from '../../../../store/user/user.facade';
 import { UserService } from '../../api/user/user.service';
 import { UserData } from '../../../../store/user/user.interface';
 import { AuthFacade } from '../../../../store/auth/auth.facade';
-import { AppPages } from '../../../enums/app-routes.enum';
+import { AppRoutes } from '../../../enums/app-routes.enum';
 
 @Injectable()
 export class AuthUserService {
@@ -73,7 +73,7 @@ export class AuthUserService {
   logOut(): void {
     this.removeToken();
     this.router
-      .navigate([AppPages.Login])
+      .navigate([AppRoutes.Login])
       .then(() => this.authFacade.setIsAuth(false));
   }
 
