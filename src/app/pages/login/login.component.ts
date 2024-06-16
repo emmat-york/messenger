@@ -82,10 +82,8 @@ export class LoginComponent implements OnDestroy {
 
     this.formGroup.disable(SLEEPY_OPTIONS);
 
-    const { email, password } = this.formGroup.getRawValue();
-
     this.authUserService
-      .login$({ email, password })
+      .login$(this.formGroup.getRawValue())
       .pipe(
         catchError((errorResponse: HttpErrorResponse) => {
           this.authFacade.setErrorMsg(getLoginErrorMessage(errorResponse));
