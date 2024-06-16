@@ -14,20 +14,20 @@
   </label>
 </div>
 
-<ng-container *ngrxLet="userVM$; let userVM">
+<ng-container *ngrxLet="vm$; let vm">
   <ul
-    *ngIf="userVM.userData?.contacts?.length; else noContacts"
+    *ngIf="vm.userData?.contacts?.length; else noContacts"
     class="contact-list"
   >
     <li
       *ngFor="
-        let contact of userVM.userData?.contacts
+        let contact of vm.userData?.contacts
           | arrayFilter: control.value : 'userName'
       "
-      (click)="setSelectedUserId(userVM.selectedContact?.id, contact)"
+      (click)="setSelectedUserId(vm.selectedContact?.id, contact)"
     >
       <app-contact
-        [class.selected]="contact.id === userVM.selectedContact?.id"
+        [class.selected]="contact.id === vm.selectedContact?.id"
         [contact]="contact"
       ></app-contact>
     </li>

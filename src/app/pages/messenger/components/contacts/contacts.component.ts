@@ -6,8 +6,8 @@ import { ArrayFilterPipe } from '../../../../shared/pipes/array-filter/array-fil
 import { IconPipe } from '../../../../shared/pipes/icon/icon.pipe';
 import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 import { LetDirective } from '@ngrx/component';
-import { Contact } from '../../../../store/user/user.interface';
-import { ChatFacade } from '../../../../store/chat/chat.facade';
+import { Contact, UserData } from '../../../../store/user/user.interface';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-contacts',
@@ -27,14 +27,14 @@ import { ChatFacade } from '../../../../store/chat/chat.facade';
   ],
 })
 export class ContactsComponent {
-  readonly userVM$ = this.userFacade.userVM$;
+  readonly vm$: Observable<{
+    userData: UserData | null;
+    selectedContact: Contact | null;
+  }> = this.userFacade.vm$;
 
   readonly control = new FormControl<string>('', { nonNullable: true });
 
-  constructor(
-    private readonly userFacade: UserFacade,
-    private readonly chatFacade: ChatFacade,
-  ) {}
+  constructor(private readonly userFacade: UserFacade) {}
 
   setSelectedUserId(
     selectedContactId: number | undefined,

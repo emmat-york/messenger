@@ -25,9 +25,9 @@ export const routes: Routes = [
   {
     path: AppPages.Settings,
     loadComponent: () =>
-      import('./pages/settings/settings.component').then(
-        c => c.SettingsComponent,
-      ),
+      import(
+        './pages/messenger/components/contacts/components/settings/settings.component'
+      ).then(c => c.SettingsComponent),
     canActivate: [canActivateMessenger],
   },
   {

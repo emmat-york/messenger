@@ -6,7 +6,7 @@ import { BaseStoreFacade } from '../utils/base-store-facade';
 
 @Injectable()
 export class UserFacade extends BaseStoreFacade {
-  readonly userVM$ = this.store.select(selectUserVM);
+  readonly vm$ = this.store.select(selectUserVM);
 
   setUserData(userData: UserData | null): void {
     this.dispatch(action.setUserData({ userData }));
