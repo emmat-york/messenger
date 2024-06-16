@@ -2,14 +2,7 @@ import { Routes } from '@angular/router';
 import { MessengerComponent } from './pages/messenger/messenger.component';
 import { canActivateMessenger } from './guards/messenger.guard';
 import { canActivateAuth } from './guards/auth.guard';
-
-export enum AppPages {
-  Messenger = 'messenger',
-  Settings = 'settings',
-  Registration = 'registration',
-  Login = 'login',
-  NotFound = '**',
-}
+import { AppPages } from './shared/enums/app-routes.enum';
 
 export const routes: Routes = [
   {

@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { AuthUserService } from '../shared/services/app/auth-user/auth-user.service';
 import { Router } from '@angular/router';
-import { AppPages } from '../app.routes';
+import { AppPages } from '../shared/enums/app-routes.enum';
 
 export function canActivateMessenger(): boolean {
   const authUserService = inject(AuthUserService);

@@ -14,7 +14,6 @@ import { InputComponent } from '../../shared/components/form/input/input.compone
 import { ButtonComponent } from '../../shared/components/button/button.component';
 import { catchError, finalize, throwError } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
-import { AppPages } from '../../app.routes';
 import { AuthUserService } from '../../shared/services/app/auth-user/auth-user.service';
 import {
   REGISTRATION_ERROR_STATE,
@@ -26,6 +25,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { getRegistrationErrorMessage } from '../../shared/services/app/auth-user/helpers/auth-user.helper';
 import { PushPipe } from '@ngrx/component';
 import { AuthFacade } from '../../store/auth/auth.facade';
+import { AppPages } from '../../shared/enums/app-routes.enum';
 
 @Component({
   selector: 'app-registration',

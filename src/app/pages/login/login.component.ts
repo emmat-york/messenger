@@ -16,7 +16,6 @@ import {
   LOGIN_PLACEHOLDERS,
   LOGIN_VALIDATORS,
 } from './constants/login.constant';
-import { AppPages } from '../../app.routes';
 import { AuthUserService } from '../../shared/services/app/auth-user/auth-user.service';
 import { catchError, finalize, throwError } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
@@ -26,6 +25,7 @@ import { getLoginErrorMessage } from '../../shared/services/app/auth-user/helper
 import { NgIf } from '@angular/common';
 import { PushPipe } from '@ngrx/component';
 import { AuthFacade } from '../../store/auth/auth.facade';
+import { AppPages } from '../../shared/enums/app-routes.enum';
 
 @Component({
   selector: 'app-login',

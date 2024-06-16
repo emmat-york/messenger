@@ -10,11 +10,11 @@ import {
   RegistrationCredentials,
 } from '../../api/auth/interfaces/auth.interface';
 import { Router } from '@angular/router';
-import { AppPages } from '../../../../app.routes';
 import { UserFacade } from '../../../../store/user/user.facade';
 import { UserService } from '../../api/user/user.service';
 import { UserData } from '../../../../store/user/user.interface';
 import { AuthFacade } from '../../../../store/auth/auth.facade';
+import { AppPages } from '../../../enums/app-routes.enum';
 
 @Injectable()
 export class AuthUserService {
