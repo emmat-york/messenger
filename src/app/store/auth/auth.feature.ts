@@ -3,10 +3,12 @@ import * as action from './auth.action';
 
 export interface AuthState {
   isAuth: boolean;
+  errorMsg: string;
 }
 
 const initialState: AuthState = {
   isAuth: false,
+  errorMsg: '',
 };
 
 const authFeature = createFeature({
@@ -17,7 +19,11 @@ const authFeature = createFeature({
       action.setIsAuth,
       (state, { isAuth }): AuthState => ({ ...state, isAuth }),
     ),
+    on(
+      action.setErrorMsg,
+      (state, { errorMsg }): AuthState => ({ ...state, errorMsg }),
+    ),
   ),
 });
 
-export const { selectIsAuth, reducer } = authFeature;
+export const { selectIsAuth, selectErrorMsg, reducer } = authFeature;

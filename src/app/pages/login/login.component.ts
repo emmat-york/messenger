@@ -18,7 +18,7 @@ import {
 } from './constants/login.constant';
 import { AppPages } from '../../app.routes';
 import { AuthUserService } from '../../shared/services/app/auth-user/auth-user.service';
-import { BehaviorSubject, catchError, finalize, throwError } from 'rxjs';
+import { catchError, finalize, throwError } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
 import { getTrimmedString } from '../../shared/utils/form/form.util';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -43,6 +43,8 @@ import { AuthFacade } from '../../store/auth/auth.facade';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent implements OnDestroy {
+  readonly errorMsg$ = this.authFacade.errorMsg$;
+
   readonly placeholders = LOGIN_PLACEHOLDERS;
   readonly errorState = LOGIN_ERROR_STATE;
   readonly loginFormKey = LoginFormKey;
@@ -52,8 +54,6 @@ export class LoginComponent implements OnDestroy {
     [LoginFormKey.Email]: ['', LOGIN_VALIDATORS[LoginFormKey.Email]],
     [LoginFormKey.Password]: ['', LOGIN_VALIDATORS[LoginFormKey.Password]],
   });
-
-  readonly errorMessage$ = new BehaviorSubject<string>('');
 
   constructor(
     private readonly authUserService: AuthUserService,
@@ -65,7 +65,7 @@ export class LoginComponent implements OnDestroy {
   ) {}
 
   ngOnDestroy(): void {
-    this.errorMessage$.complete();
+    this.authFacade.setErrorMsg('');
   }
 
   onLogin(): void {
@@ -88,7 +88,7 @@ export class LoginComponent implements OnDestroy {
       .login$({ email, password })
       .pipe(
         catchError((errorResponse: HttpErrorResponse) => {
-          this.errorMessage$.next(getLoginErrorMessage(errorResponse));
+          this.authFacade.setErrorMsg(getLoginErrorMessage(errorResponse));
           return throwError(() => errorResponse);
         }),
         finalize(() => {

@@ -12,7 +12,7 @@ import { SignUpFormKey } from './enums/registration.enum';
 import { getTrimmedString } from '../../shared/utils/form/form.util';
 import { InputComponent } from '../../shared/components/form/input/input.component';
 import { ButtonComponent } from '../../shared/components/button/button.component';
-import { BehaviorSubject, catchError, finalize, throwError } from 'rxjs';
+import { catchError, finalize, throwError } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
 import { AppPages } from '../../app.routes';
 import { AuthUserService } from '../../shared/services/app/auth-user/auth-user.service';
@@ -43,6 +43,8 @@ import { AuthFacade } from '../../store/auth/auth.facade';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegistrationComponent implements OnDestroy {
+  readonly errorMsg$ = this.authFacade.errorMsg$;
+
   readonly placeholders = REGISTRATION_PLACEHOLDERS;
   readonly errorState = REGISTRATION_ERROR_STATE;
   readonly signUpFormKey = SignUpFormKey;
@@ -56,8 +58,6 @@ export class RegistrationComponent implements OnDestroy {
     ],
   });
 
-  readonly errorMessage$ = new BehaviorSubject<string>('');
-
   constructor(
     private readonly authUserService: AuthUserService,
     private readonly cdRef: ChangeDetectorRef,
@@ -68,7 +68,7 @@ export class RegistrationComponent implements OnDestroy {
   ) {}
 
   ngOnDestroy(): void {
-    this.errorMessage$.complete();
+    this.authFacade.setErrorMsg('');
   }
 
   onRegistration(): void {
@@ -89,7 +89,10 @@ export class RegistrationComponent implements OnDestroy {
       .registration$(this.formGroup.getRawValue())
       .pipe(
         catchError((errorResponse: HttpErrorResponse) => {
-          this.errorMessage$.next(getRegistrationErrorMessage(errorResponse));
+          this.authFacade.setErrorMsg(
+            getRegistrationErrorMessage(errorResponse),
+          );
+
           return throwError(() => errorResponse);
         }),
         finalize(() => {

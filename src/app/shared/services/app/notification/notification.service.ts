@@ -4,11 +4,6 @@ import {
   Injectable,
   ViewContainerRef,
 } from '@angular/core';
-import { NotificationComponent } from '../../../components/notification/notification.component';
-import {
-  ModalConfig,
-  ModalSettings,
-} from '../../../components/notification/interfaces/notification.interface';
 import {
   DEFAULT_NOTIFICATION_DURATION,
   INDENT_BETWEEN_NOTIFICATIONS,
@@ -18,7 +13,7 @@ import {
   providedIn: 'root',
 })
 export class NotificationService {
-  private modalRefs: ComponentRef<NotificationComponent>[] = [];
+  private modalRefs: ComponentRef<any>[] = [];
   private viewRef!: ViewContainerRef;
 
   constructor(private readonly appRef: ApplicationRef) {
@@ -45,20 +40,20 @@ export class NotificationService {
     }, 0);
   }
 
-  success(message: string, settings?: ModalSettings): void {
+  success(message: string, settings?: {}): void {
     this.openModal({ message, type: 'success', settings });
   }
 
-  warning(message: string, settings?: ModalSettings): void {
+  warning(message: string, settings?: {}): void {
     this.openModal({ message, type: 'warning', settings });
   }
 
-  error(message: string, settings?: ModalSettings): void {
+  error(message: string, settings?: {}): void {
     this.openModal({ message, type: 'error', settings });
   }
 
-  private openModal({ message, type, settings }: ModalConfig): void {
-    const ref = this.viewRef.createComponent(NotificationComponent);
+  private openModal({ message, type, settings }: any): void {
+    const ref = this.viewRef.createComponent({} as any);
     const { timeOut } = settings || {};
 
     ref.setInput('type', type);
@@ -87,7 +82,7 @@ export class NotificationService {
     });
   }
 
-  private destroyModalRef(modalRef: ComponentRef<NotificationComponent>): void {
+  private destroyModalRef(modalRef: ComponentRef<any>): void {
     this.modalRefs = this.modalRefs.filter(ref => ref !== modalRef);
     modalRef.destroy();
   }

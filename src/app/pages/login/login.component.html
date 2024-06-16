@@ -1,10 +1,7 @@
 <form class="form-group" [formGroup]="formGroup" (ngSubmit)="onLogin()">
   <h2 class="heading">Login</h2>
 
-  <article
-    *ngIf="errorMessage$ | ngrxPush as error"
-    class="server-error-message"
-  >
+  <article *ngIf="errorMsg$ | ngrxPush as error" class="server-error-message">
     {{ error }}
   </article>
 

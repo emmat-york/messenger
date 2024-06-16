@@ -9,14 +9,12 @@ import {
   RegistrationResponse,
 } from './interfaces/auth.interface';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class AuthService {
-  constructor(private readonly httpClient: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
   login$(credentials: LoginCredentials): Observable<LoginResponse> {
-    return this.httpClient.post<LoginResponse>(LOGIN_PATH, {
+    return this.http.post<LoginResponse>(LOGIN_PATH, {
       ...credentials,
       returnSecureToken: true,
     });
@@ -25,7 +23,7 @@ export class AuthService {
   registration$(
     credentials: RegistrationCredentials,
   ): Observable<RegistrationResponse> {
-    return this.httpClient.post<RegistrationResponse>(REGISTRATION_PATH, {
+    return this.http.post<RegistrationResponse>(REGISTRATION_PATH, {
       ...credentials,
       returnSecureToken: true,
     });

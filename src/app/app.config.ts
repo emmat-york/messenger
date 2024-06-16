@@ -20,6 +20,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { store } from './store/store';
 import { UserFacade } from './store/user/user.facade';
 import { AuthFacade } from './store/auth/auth.facade';
+import { AuthService } from './shared/services/api/auth/auth.service';
 
 function initializeAppFactory(
   authUserService: AuthUserService,
@@ -44,6 +45,7 @@ function initializeAppFactory(
 export const appConfig: ApplicationConfig = {
   providers: [
     UserService,
+    AuthService,
     AuthUserService,
     UserFacade,
     provideRouter(routes, withPreloading(PreloadAllModules)),
