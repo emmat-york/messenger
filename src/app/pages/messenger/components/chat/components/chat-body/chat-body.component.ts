@@ -25,7 +25,7 @@ import { Message } from '../../interfaces/chat.interface';
   imports: [MessageComponent, ScrollCircleComponent, NgIf],
 })
 export class ChatBodyComponent implements AfterViewInit {
-  @Input() isScrollCircleShown!: boolean;
+  @Input() isScrollCircleShown = false;
   @Input() messages: Message[] = [];
 
   constructor(

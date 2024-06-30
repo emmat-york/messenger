@@ -4,11 +4,9 @@ import { Message } from '../../pages/messenger/components/chat/interfaces/chat.i
 import * as action from './chat.action';
 import { BaseStoreFacade } from '../utils/base-store-facade';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class ChatFacade extends BaseStoreFacade {
-  readonly chatVM$ = this.store.select(chatVM);
+  readonly vm$ = this.store.select(chatVM);
 
   setInput(input: string): void {
     this.dispatch(action.setInput({ input }));

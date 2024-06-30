@@ -6,8 +6,9 @@ import { ArrayFilterPipe } from '../../../../shared/pipes/array-filter/array-fil
 import { IconPipe } from '../../../../shared/pipes/icon/icon.pipe';
 import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 import { LetDirective } from '@ngrx/component';
-import { Contact, UserData } from '../../../../store/user/user.interface';
+import { Contact } from '../../../../store/user/user.interface';
 import { Observable } from 'rxjs';
+import { UserState } from '../../../../store/user/user.feature';
 
 @Component({
   selector: 'app-contacts',
@@ -27,11 +28,7 @@ import { Observable } from 'rxjs';
   ],
 })
 export class ContactsComponent {
-  readonly vm$: Observable<{
-    userData: UserData | null;
-    selectedContact: Contact | null;
-  }> = this.userFacade.vm$;
-
+  readonly vm$: Observable<UserState> = this.userFacade.vm$;
   readonly control = new FormControl<string>('', { nonNullable: true });
 
   constructor(private readonly userFacade: UserFacade) {}

@@ -6,8 +6,11 @@ import { PushPipe } from '@ngrx/component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  templateUrl: 'app.component.html',
-  styleUrl: 'app.component.scss',
+  template: '<router-outlet></router-outlet>',
+  styles: `:host {
+      display: block;
+      height: 100%;
+    }`,
   imports: [RouterOutlet, NgClass, PushPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

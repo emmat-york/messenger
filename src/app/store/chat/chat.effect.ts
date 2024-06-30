@@ -1,6 +1,4 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { UserFacade } from '../user/user.facade';
-import { ChatFacade } from './chat.facade';
 import { Injectable } from '@angular/core';
 import { catchError, EMPTY, map, switchMap, throwError } from 'rxjs';
 import { ChatService } from '../../shared/services/api/chat/chat.service';
@@ -11,8 +9,6 @@ import * as userAction from '../user/user.action';
 export class ChatEffect {
   constructor(
     private readonly chatService: ChatService,
-    private readonly chatFacade: ChatFacade,
-    private readonly userFacade: UserFacade,
     private readonly actions$: Actions,
   ) {}
 

@@ -1,13 +1,13 @@
-<ng-container *ngrxLet="componentVM$; let VM">
-  <ng-container *ngIf="VM.userVM.selectedContact; else noSelectedContact">
+<ng-container *ngrxLet="{ user: userVm$, chat: chatVm$ }; let vm">
+  <ng-container *ngIf="vm.user.selectedContact; else noSelectedContact">
     <app-chat-top-bar
-      [selectedContact]="VM.userVM.selectedContact"
+      [selectedContact]="vm.user.selectedContact"
     ></app-chat-top-bar>
 
-    <app-chat-body [messages]="VM.chatVM.messages"></app-chat-body>
+    <app-chat-body [messages]="vm.chat.messages"></app-chat-body>
 
     <app-chat-input
-      [input]="VM.chatVM.input"
+      [input]="vm.chat.input"
       (setInput)="setInput($event)"
       (sendMessage)="sendMessage()"
     ></app-chat-input>
