@@ -19,10 +19,10 @@ export class ArrayFilterPipe implements PipeTransform {
       return array;
     }
 
-    const lowSearch = getTrimmedString(search).toLowerCase();
-
     return array.filter(item =>
-      item[propName].toLowerCase().includes(lowSearch),
+      item[propName]
+        .toLowerCase()
+        .includes(getTrimmedString(search).toLowerCase()),
     );
   }
 }
