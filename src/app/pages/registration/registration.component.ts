@@ -101,11 +101,7 @@ export class RegistrationComponent implements OnDestroy {
         }),
         takeUntilDestroyed(this.destroyRef),
       )
-      .subscribe(() => {
-        this.router
-          .navigate([AppRoutes.Messenger])
-          .then(() => this.authFacade.setIsAuth(true));
-      });
+      .subscribe(() => this.router.navigate([AppRoutes.Messenger]));
   }
 
   private trim(): void {

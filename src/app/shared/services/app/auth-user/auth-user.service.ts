@@ -72,9 +72,7 @@ export class AuthUserService {
 
   logOut(): void {
     this.removeToken();
-    this.router
-      .navigate([AppRoutes.Login])
-      .then(() => this.authFacade.setIsAuth(false));
+    this.router.navigate([AppRoutes.Login]);
   }
 
   private setToken({
@@ -86,10 +84,12 @@ export class AuthUserService {
   }) {
     localStorage.setItem(AUTH_TOKEN_EXPIRES_DATE_KEY, expiresIn);
     localStorage.setItem(AUTH_TOKEN_KEY, idToken);
+    this.authFacade.setIsAuth(true);
   }
 
   private removeToken(): void {
     localStorage.removeItem(AUTH_TOKEN_EXPIRES_DATE_KEY);
     localStorage.removeItem(AUTH_TOKEN_KEY);
+    this.authFacade.setIsAuth(false);
   }
 }

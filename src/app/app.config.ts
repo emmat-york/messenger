@@ -53,9 +53,10 @@ function initializeAppFactory(
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    UserService,
     AuthService,
     AuthUserService,
+    AuthFacade,
+    UserService,
     UserFacade,
     provideRouter(routes, withPreloading(PreloadAllModules)),
     provideStore(),
