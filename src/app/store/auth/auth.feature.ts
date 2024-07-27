@@ -1,7 +1,8 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import * as action from './auth.action';
+import { AUTH_KEY } from '../constants/store.constant';
 
-export interface AuthState {
+interface AuthState {
   isAuth: boolean;
   errorMsg: string;
 }
@@ -12,7 +13,7 @@ const initialState: AuthState = {
 };
 
 const authFeature = createFeature({
-  name: 'authFeatureKey',
+  name: AUTH_KEY,
   reducer: createReducer(
     initialState,
     on(

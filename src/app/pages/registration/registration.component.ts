@@ -12,7 +12,7 @@ import { SignUpFormKey } from './enums/registration.enum';
 import { getTrimmedString } from '../../shared/utils/form/form.util';
 import { InputComponent } from '../../shared/components/form/input/input.component';
 import { ButtonComponent } from '../../shared/components/button/button.component';
-import { catchError, finalize, throwError } from 'rxjs';
+import { catchError, EMPTY, finalize } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
 import { AuthUserService } from '../../shared/services/app/auth-user/auth-user.service';
 import {
@@ -51,7 +51,7 @@ export class RegistrationComponent implements OnDestroy {
   readonly appRoutes = AppRoutes;
 
   readonly formGroup = this.fb.nonNullable.group({
-    [SignUpFormKey.Email]: REGISTRATION_VALIDATORS[SignUpFormKey.Email],
+    [SignUpFormKey.Email]: ['', REGISTRATION_VALIDATORS[SignUpFormKey.Email]],
     [SignUpFormKey.Password]: [
       '',
       REGISTRATION_VALIDATORS[SignUpFormKey.Password],
@@ -93,7 +93,7 @@ export class RegistrationComponent implements OnDestroy {
             getRegistrationErrorMessage(errorResponse),
           );
 
-          return throwError(() => errorResponse);
+          return EMPTY;
         }),
         finalize(() => {
           this.formGroup.enable(SLEEPY_OPTIONS);

@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { ValidatorKeys } from '../../../enums/validator-keys.enum';
 import { ValidationErrors } from '@angular/forms';
 
 @Component({
@@ -14,7 +13,7 @@ export class ErrorMessageComponent {
   @Input() errorState: ValidationErrors = {};
 
   get message(): string {
-    const errorKey = Object.keys(this.controlErrors)[0] as ValidatorKeys;
-    return this.errorState[errorKey] || 'Unknown error';
+    const key = Object.keys(this.controlErrors)[0];
+    return this.errorState[key];
   }
 }

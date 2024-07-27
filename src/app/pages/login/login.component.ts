@@ -17,7 +17,7 @@ import {
   LOGIN_VALIDATORS,
 } from './constants/login.constant';
 import { AuthUserService } from '../../shared/services/app/auth-user/auth-user.service';
-import { catchError, finalize, throwError } from 'rxjs';
+import { catchError, EMPTY, finalize } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
 import { getTrimmedString } from '../../shared/utils/form/form.util';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -87,7 +87,7 @@ export class LoginComponent implements OnDestroy {
       .pipe(
         catchError((errorResponse: HttpErrorResponse) => {
           this.authFacade.setErrorMsg(getLoginErrorMessage(errorResponse));
-          return throwError(() => errorResponse);
+          return EMPTY;
         }),
         finalize(() => {
           this.formGroup.enable(SLEEPY_OPTIONS);

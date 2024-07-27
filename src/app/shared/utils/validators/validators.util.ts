@@ -3,7 +3,7 @@ import { ValidatorKeys } from '../../enums/validator-keys.enum';
 
 export abstract class CustomValidators {
   static email(): ValidatorFn {
-    return ({ value }: AbstractControl): ValidationErrors | null => {
+    return ({ value }: AbstractControl<string>): ValidationErrors | null => {
       if (value.match(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/)) {
         return null;
       }
@@ -13,7 +13,7 @@ export abstract class CustomValidators {
   }
 
   static password(): ValidatorFn {
-    return ({ value }: AbstractControl): ValidationErrors | null => {
+    return ({ value }: AbstractControl<string>): ValidationErrors | null => {
       const error = {
         [ValidatorKeys.password]: true,
       };

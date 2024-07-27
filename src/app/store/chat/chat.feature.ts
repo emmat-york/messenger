@@ -1,6 +1,7 @@
 import { createFeature, createReducer, createSelector, on } from '@ngrx/store';
 import { Message } from '../../pages/messenger/components/chat/interfaces/chat.interface';
 import * as action from './chat.action';
+import { CHAT_KEY } from '../constants/store.constant';
 
 export interface ChatState {
   input: string;
@@ -13,7 +14,7 @@ const initialState: ChatState = {
 };
 
 const chatFeature = createFeature({
-  name: 'chatFeatureKey',
+  name: CHAT_KEY,
   reducer: createReducer(
     initialState,
     on(

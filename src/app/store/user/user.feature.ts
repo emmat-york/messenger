@@ -1,6 +1,7 @@
 import { createFeature, createReducer, createSelector, on } from '@ngrx/store';
 import { Contact, UserData } from './user.interface';
 import * as action from './user.action';
+import { USER_KEY } from '../constants/store.constant';
 
 export interface UserState {
   userData: UserData | null;
@@ -13,7 +14,7 @@ const initialState: UserState = {
 };
 
 const userFeature = createFeature({
-  name: 'userFeatureKey',
+  name: USER_KEY,
   reducer: createReducer(
     initialState,
     on(action.setUserData, (state, { userData }) => ({ ...state, userData })),
