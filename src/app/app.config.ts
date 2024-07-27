@@ -4,7 +4,7 @@ import {
   provideRouter,
   withPreloading,
 } from '@angular/router';
-import { routes } from './app.routes';
+import { routes } from './routes/app.routes';
 import { provideState, provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';

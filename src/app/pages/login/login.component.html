@@ -21,7 +21,7 @@
   ></app-input>
 
   <app-button
-    [disabled]="formGroup.disabled"
+    [disabled]="formGroup.disabled || formGroup.invalid"
     class="submit-button"
     variant="regular"
     type="submit"
@@ -29,7 +29,12 @@
     Submit
   </app-button>
 
-  <app-button class="registration-button" type="button" variant="text">
+  <app-button
+    [disabled]="formGroup.disabled"
+    class="registration-button"
+    type="button"
+    variant="text"
+  >
     <a class="link" [routerLink]="['/' + appRoutes.Registration]"
       >Go to registration</a
     >
