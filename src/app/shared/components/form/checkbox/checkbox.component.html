@@ -8,4 +8,6 @@
   (blur)="onInputBlur()"
 />
 
-<app-label *ngIf="label" [for]="id">{{ label }}</app-label>
+@if (label) {
+<app-label [for]="id">{{ label }}</app-label>
+}

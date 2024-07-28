@@ -6,8 +6,9 @@
   }
 </ul>
 
+@if (isScrollCircleShown) {
 <app-scroll-circle
-  *ngIf="isScrollCircleShown"
   class="scroll-circle"
   (click)="onScrollDown()"
 ></app-scroll-circle>
+}

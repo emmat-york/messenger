@@ -1,7 +1,7 @@
-<app-label *ngIf="label" [for]="id">{{ label }}</app-label>
-
+@if (label) {
+<app-label [for]="id">{{ label }}</app-label>
+} @if (ngControl) {
 <input
-  *ngIf="ngControl"
   [placeholder]="placeholder"
   [disabled]="disabled"
   [ngClass]="{
@@ -15,9 +15,9 @@
   (ngModelChange)="onInputChange($event)"
   (blur)="onInputBlur()"
 />
-
+} @if (ngControl && ngControl.errors && ngControl.touched) {
 <app-error-message
-  *ngIf="ngControl && ngControl.errors && ngControl.touched"
   [controlErrors]="ngControl.errors"
   [errorState]="errorState"
 ></app-error-message>
+}

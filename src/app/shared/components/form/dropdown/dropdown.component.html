@@ -10,7 +10,8 @@
     <img [class.expanded]="isDropdownShown" src="" alt="" />
   </button>
 
-  <ul class="option-list" *ngIf="isDropdownShown">
+  @if (isDropdownShown) {
+  <ul class="option-list">
     <li
       class="option"
       *ngFor="let option of options"
@@ -19,4 +20,5 @@
       {{ option.title }}
     </li>
   </ul>
+  }
 </div>

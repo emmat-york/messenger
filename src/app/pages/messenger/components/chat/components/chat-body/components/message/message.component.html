@@ -1,11 +1,15 @@
 <article class="message">{{ message.message }}</article>
 
-<ul *ngIf="message.likes.length">
+@if (message.likes.length) {
+<ul>
   <li *ngFor="let like of message.likes" class="like">
-    <span *ngIf="like.count > 1">{{ like.count }}</span>
+    @if (like.count > 1) {
+    <span>{{ like.count }}</span>
+    }
     <span class="like-pic">{{ like.emoji.pic }}</span>
   </li>
 </ul>
+}
 
 <span class="message-date">{{
   message.creationDate | date: dateFormat.HH_MM_PM
