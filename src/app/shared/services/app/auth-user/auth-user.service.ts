@@ -30,7 +30,7 @@ export class AuthUserService {
     return !!this.token;
   }
 
-  private get token(): string | null {
+  get token(): string | null {
     const expiresDate = localStorage.getItem(AUTH_TOKEN_EXPIRES_DATE_KEY);
     const token = localStorage.getItem(AUTH_TOKEN_KEY);
 

@@ -39,7 +39,7 @@ function initializeAppFactory(
 ): () => Observable<UserData | never> {
   return () => {
     if (authUserService.isAuth) {
-      return userService.getUserData$('').pipe(
+      return userService.getUserData$(authUserService.token).pipe(
         tap(userData => {
           userFacade.setUserData(userData);
           authFacade.setIsAuth(true);
@@ -64,15 +64,15 @@ export const appConfig: ApplicationConfig = {
     provideState({ name: CHAT_KEY, reducer: chatReducer }),
     provideState({ name: SETTINGS_KEY, reducer: settingsReducer }),
     provideState({ name: USER_KEY, reducer: userReducer }),
-    provideHttpClient(),
-    provideEffects([ChatEffect, UserEffect, SettingsEffect]),
     provideStoreDevtools({ maxAge: 50, logOnly: !isDevMode() }),
+    provideEffects([ChatEffect, UserEffect, SettingsEffect]),
+    provideAnimationsAsync(),
+    provideHttpClient(),
     {
       provide: APP_INITIALIZER,
       useFactory: initializeAppFactory,
       deps: [AuthUserService, UserService, UserFacade, AuthFacade],
       multi: true,
     },
-    provideAnimationsAsync(),
   ],
 };

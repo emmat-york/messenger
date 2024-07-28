@@ -7,7 +7,7 @@ import { UserData } from '../../../../store/user/user.interface';
 export class UserService {
   constructor(private readonly http: HttpClient) {}
 
-  getUserData$(idToken: string): Observable<UserData> {
+  getUserData$(idToken: string | null): Observable<UserData> {
     return of({
       id: 1,
       phoneNumber: '12345678',
@@ -142,7 +142,6 @@ export class UserService {
             editDate: null,
           },
         },
-
         {
           id: 10,
           phoneNumber: '+375259273423',
