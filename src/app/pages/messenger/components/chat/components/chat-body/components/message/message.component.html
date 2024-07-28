@@ -2,12 +2,14 @@
 
 @if (message.likes.length) {
 <ul>
-  <li *ngFor="let like of message.likes" class="like">
+  @for (like of message.likes; track like.type) {
+  <li class="like">
     @if (like.count > 1) {
     <span>{{ like.count }}</span>
     }
     <span class="like-pic">{{ like.emoji.pic }}</span>
   </li>
+  }
 </ul>
 }
 

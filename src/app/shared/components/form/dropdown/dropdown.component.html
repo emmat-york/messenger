@@ -12,13 +12,11 @@
 
   @if (isDropdownShown) {
   <ul class="option-list">
-    <li
-      class="option"
-      *ngFor="let option of options"
-      (click)="onOptionClick(option)"
-    >
+    @for (option of options; track option.value) {
+    <li class="option" (click)="onOptionClick(option)">
       {{ option.title }}
     </li>
+    }
   </ul>
   }
 </div>
