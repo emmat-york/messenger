@@ -40,9 +40,15 @@ function initializeAppFactory(
   return () => {
     if (authUserService.isAuth) {
       return userService.getUserData$(authUserService.token).pipe(
-        tap(userData => {
-          userFacade.setUserData(userData);
-          authFacade.setIsAuth(true);
+        tap({
+          next: userData => {
+            userFacade.setUserData(userData);
+            authFacade.setIsAuth(true);
+          },
+          error: () => {
+            authUserService.logOut();
+            return EMPTY;
+          },
         }),
       );
     }
