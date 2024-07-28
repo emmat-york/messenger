@@ -39,6 +39,7 @@ button {
   border: none;
   outline: none;
   cursor: pointer;
+  background: transparent;
 
   &:disabled {
     opacity: var(--opacity);
@@ -64,4 +65,8 @@ a {
   &:disabled {
     cursor: not-allowed;
   }
+}
+
+::-webkit-scrollbar {
+  display: none;
 }

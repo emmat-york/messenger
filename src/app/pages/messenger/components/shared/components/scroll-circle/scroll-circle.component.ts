@@ -8,8 +8,8 @@ import { IconPipe } from '../../../../../../shared/pipes/icon/icon.pipe';
   standalone: true,
   templateUrl: './scroll-circle.component.html',
   styleUrl: './scroll-circle.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgClass, NgOptimizedImage, IconPipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ScrollCircleComponent {
   @Input() type: ScrollType = 'down';

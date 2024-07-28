@@ -34,7 +34,7 @@ export class ChatInputComponent implements OnInit {
 
   @ViewChild('chatInput') chatInputRef!: ElementRef<HTMLInputElement>;
 
-  control = new FormControl('', { nonNullable: true });
+  readonly control = new FormControl('', { nonNullable: true });
 
   constructor(private readonly destroyRef: DestroyRef) {}
 
@@ -47,7 +47,7 @@ export class ChatInputComponent implements OnInit {
   }
 
   onSendMessage(): void {
-    if (!this.control.getRawValue()) {
+    if (!this.control.value) {
       return;
     }
 

@@ -7,6 +7,7 @@
   display: flex;
   align-items: center;
   padding: 12px 0;
+  border-bottom: 1px solid var(--gray_light8);
 }
 
 .menu-button {
@@ -30,18 +31,21 @@
   font-weight: 400;
   line-height: 18px;
   border-radius: 22px;
-
-  &:hover:not(&:focus) {
-    opacity: 0.8;
-  }
-
-  &:focus {
-  }
 }
 
 .contact-list {
   height: calc(100% - 65px);
   overflow-y: auto;
+}
+
+.contact {
+  &:hover:not(.selected) {
+    background-color: var(--gray_light2);
+  }
+}
+
+.selected {
+  background-color: var(--blue_light8);
 }
 
 .no-contacts {

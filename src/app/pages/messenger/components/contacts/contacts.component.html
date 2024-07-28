@@ -15,15 +15,14 @@
 </div>
 
 <ng-container *ngrxLet="vm$; let vm">
-  <ul
-    *ngIf="vm.userData?.contacts?.length; else noContacts"
-    class="contact-list"
-  >
+  @if (vm.userData?.contacts?.length) {
+  <ul class="contact-list">
     <li
       *ngFor="
         let contact of vm.userData?.contacts
           | arrayFilter: control.value : 'userName'
       "
+      class="contact"
       (click)="setSelectedUserId(vm.selectedContact?.id, contact)"
     >
       <app-contact
@@ -32,8 +31,7 @@
       ></app-contact>
     </li>
   </ul>
-</ng-container>
-
-<ng-template #noContacts>
+  } @else {
   <div class="no-contacts">No contacts</div>
-</ng-template>
+  }
+</ng-container>

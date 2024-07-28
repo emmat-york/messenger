@@ -29,6 +29,7 @@ import { UserState } from '../../../../store/user/user.feature';
 })
 export class ContactsComponent {
   readonly vm$: Observable<UserState> = this.userFacade.vm$;
+
   readonly control = new FormControl<string>('', { nonNullable: true });
 
   constructor(private readonly userFacade: UserFacade) {}
