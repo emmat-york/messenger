@@ -1,12 +1,12 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   DestroyRef,
+  ElementRef,
   Input,
+  OnInit,
   Renderer2,
-  ViewContainerRef,
 } from '@angular/core';
 import { MessageComponent } from './components/message/message.component';
 import { debounceTime, fromEvent } from 'rxjs';
@@ -21,38 +21,48 @@ import { Message } from '../../interfaces/chat.interface';
   standalone: true,
   templateUrl: 'chat-body.component.html',
   styleUrl: 'chat-body.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [MessageComponent, ScrollCircleComponent, NgIf],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ChatBodyComponent implements AfterViewInit {
-  @Input() isScrollCircleShown = false;
+export class ChatBodyComponent implements OnInit {
   @Input() messages: Message[] = [];
 
+  isScrollCircleShown = false;
+
   constructor(
-    private readonly viewRef: ViewContainerRef,
+    private readonly elementRef: ElementRef<HTMLUnknownElement>,
     private readonly cdRef: ChangeDetectorRef,
     private readonly destroyRef: DestroyRef,
     private readonly renderer2: Renderer2,
   ) {}
 
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
     this.subscribeToScroll();
   }
 
   onScrollDown(): void {
-    const element = this.viewRef.element.nativeElement;
-    this.renderer2.setProperty(element, 'scrollTop', element.scrollHeight);
+    this.renderer2.setProperty(
+      this.elementRef.nativeElement,
+      'scrollTop',
+      this.elementRef.nativeElement.scrollHeight,
+    );
   }
 
   private subscribeToScroll(): void {
-    fromEvent(this.viewRef.element.nativeElement, 'scroll')
+    fromEvent(this.elementRef.nativeElement, 'scroll')
       .pipe(debounceTime(50), takeUntilDestroyed(this.destroyRef))
       .subscribe(event => {
         const {
           target: { clientHeight, scrollTop, scrollHeight },
         } = event as unknown as ScrollEvent;
 
-        this.isScrollCircleShown = clientHeight + scrollTop + 20 < scrollHeight;
+        const newScrollState = clientHeight + scrollTop + 20 < scrollHeight;
+
+        if (this.isScrollCircleShown === newScrollState) {
+          return;
+        }
+
+        this.isScrollCircleShown = newScrollState;
         this.cdRef.markForCheck();
       });
   }

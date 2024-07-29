@@ -16,7 +16,7 @@
 
 <ng-container *ngrxLet="vm$; let vm">
   @if (vm.userData?.contacts?.length) {
-  <ul class="contact-list">
+  <ul #contactList class="contact-list">
     <li
       *ngFor="
         let contact of vm.userData?.contacts
@@ -35,3 +35,11 @@
   <div class="no-contacts">No contacts</div>
   }
 </ng-container>
+
+@if (isScrollCircleShown) {
+<app-scroll-circle
+  class="scroll-circle"
+  type="up"
+  (click)="onScrollUp()"
+></app-scroll-circle>
+}

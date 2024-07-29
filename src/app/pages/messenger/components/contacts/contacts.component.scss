@@ -1,4 +1,5 @@
 :host {
+  position: relative;
   display: block;
   height: 100%;
 }
@@ -33,7 +34,7 @@
 }
 
 .contact-list {
-  height: calc(100% - 65px);
+  height: calc(100% - 57px);
   overflow-y: auto;
 }
 
@@ -53,4 +54,10 @@
   line-height: 18px;
   border-radius: 22px;
   text-align: center;
+}
+
+.scroll-circle {
+  position: absolute;
+  right: 28px;
+  bottom: 62px;
 }
