@@ -8,8 +8,8 @@ import { Contact } from '../../../../../../store/user/user.interface';
   standalone: true,
   templateUrl: 'chat-top-bar.component.html',
   styleUrl: 'chat-top-bar.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgOptimizedImage],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChatTopBarComponent {
   @Input() selectedContact!: Contact;

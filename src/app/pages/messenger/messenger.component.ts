@@ -13,8 +13,8 @@ import { take } from 'rxjs';
   standalone: true,
   templateUrl: 'messenger.component.html',
   styleUrl: 'messenger.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ContactsComponent, ChatComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MessengerComponent {
   constructor(private readonly userFacade: UserFacade) {}

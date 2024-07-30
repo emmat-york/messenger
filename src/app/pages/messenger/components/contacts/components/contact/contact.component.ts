@@ -8,8 +8,8 @@ import { DateFormat } from '../../../../../../shared/enums/date-formats.enum';
   standalone: true,
   templateUrl: 'contact.component.html',
   styleUrl: 'contact.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [DatePipe, NgOptimizedImage],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactComponent {
   @Input() contact!: Contact;

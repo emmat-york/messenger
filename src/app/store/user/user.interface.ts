@@ -13,6 +13,7 @@ export interface Contact {
   userName: string;
   phoneNumber: string;
   avatar: string;
+  isOnline: boolean;
   roomId: string;
   lastMessage: LastMessage;
 }

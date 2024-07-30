@@ -8,7 +8,12 @@
     alt="avatar"
   />
 
-  <h3 class="name">{{ selectedContact.userName }}</h3>
+  <div>
+    <h3 class="name">{{ selectedContact.userName }}</h3>
+    <span class="online-indicator" [class.online]="selectedContact.isOnline">{{
+      selectedContact.isOnline ? 'online' : 'offline'
+    }}</span>
+  </div>
 </header>
 
 <button type="button" (click)="onLogOut()">Log out</button>

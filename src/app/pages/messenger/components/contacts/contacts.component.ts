@@ -5,8 +5,11 @@ import {
   Component,
   DestroyRef,
   ElementRef,
+  OnInit,
+  QueryList,
   Renderer2,
   ViewChild,
+  ViewChildren,
 } from '@angular/core';
 import { ContactComponent } from './components/contact/contact.component';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
@@ -40,14 +43,17 @@ import { ScrollCircleComponent } from '../shared/components/scroll-circle/scroll
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ContactsComponent implements AfterViewInit {
+export class ContactsComponent implements OnInit, AfterViewInit {
   readonly vm$: Observable<UserState> = this.userFacade.vm$;
   readonly control = new FormControl<string>('', { nonNullable: true });
 
   isScrollCircleShown = false;
+  noSearchResults = false;
 
   @ViewChild('contactList')
   private readonly contactList?: ElementRef<HTMLUListElement>;
+  @ViewChildren(ContactComponent)
+  private readonly contacts?: QueryList<ContactComponent>;
 
   constructor(
     private readonly cdRef: ChangeDetectorRef,
@@ -55,6 +61,18 @@ export class ContactsComponent implements AfterViewInit {
     private readonly destroyRef: DestroyRef,
     private readonly renderer2: Renderer2,
   ) {}
+
+  ngOnInit(): void {
+    this.control.valueChanges
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(value => {
+        requestAnimationFrame(() => {
+          const hasResult = !!this.contacts?.length;
+          this.noSearchResults = !!value && !hasResult;
+          this.cdRef.markForCheck();
+        });
+      });
+  }
 
   ngAfterViewInit(): void {
     this.subscribeToScroll();

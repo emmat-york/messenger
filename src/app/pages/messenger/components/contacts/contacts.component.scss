@@ -7,14 +7,13 @@
 .search-bar {
   display: flex;
   align-items: center;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--gray_light8);
+  padding: var(--spacing_12) 0;
 }
 
 .menu-button {
   height: 24px;
   width: 24px;
-  margin: 0 16px;
+  margin: 0 var(--spacing_16);
 }
 
 .label {
@@ -27,10 +26,12 @@
 .input {
   height: inherit;
   width: inherit;
+  padding: 0 var(--spacing_16);
   font-size: 13px;
   font-weight: 400;
   line-height: 18px;
   border-radius: 22px;
+  background-color: var(--gray_light6);
 }
 
 .contact-list {
@@ -38,10 +39,14 @@
   overflow-y: auto;
 }
 
-.contact {
-  &:hover:not(.selected) {
-    background-color: var(--gray_light2);
-  }
+.contact:hover:not(.selected) {
+  background-color: var(--gray_light2);
+}
+
+.no-search-results {
+  padding: 0 16px;
+  text-align: center;
+  word-break: break-all;
 }
 
 .selected {
@@ -59,5 +64,5 @@
 .scroll-circle {
   position: absolute;
   right: 28px;
-  bottom: 62px;
+  bottom: 28px;
 }

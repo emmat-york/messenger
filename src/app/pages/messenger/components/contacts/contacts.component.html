@@ -30,6 +30,10 @@
         [contact]="contact"
       ></app-contact>
     </li>
+
+    <li *ngIf="noSearchResults" class="no-search-results">
+      {{ 'No results for: ' + control.value }}
+    </li>
   </ul>
   } @else {
   <div class="no-contacts">No contacts</div>

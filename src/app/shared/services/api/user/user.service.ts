@@ -19,6 +19,7 @@ export class UserService {
           phoneNumber: '+375259273423',
           userName: 'Pavel',
           avatar: 'assets/icons/system/avatar.svg',
+          isOnline: false,
           roomId: 'room-1',
           lastMessage: {
             id: 1,
@@ -35,6 +36,7 @@ export class UserService {
           phoneNumber: '+375259273423',
           userName: 'Pavel',
           avatar: 'assets/icons/system/avatar.svg',
+          isOnline: false,
           roomId: 'room-1',
           lastMessage: {
             id: 1,
@@ -51,6 +53,7 @@ export class UserService {
           phoneNumber: '+375259273423',
           userName: 'Pavel',
           avatar: 'assets/icons/system/avatar.svg',
+          isOnline: true,
           roomId: 'room-1',
           lastMessage: {
             id: 1,
@@ -67,6 +70,7 @@ export class UserService {
           phoneNumber: '+375259273423',
           userName: 'Pavel',
           avatar: 'assets/icons/system/avatar.svg',
+          isOnline: true,
           roomId: 'room-1',
           lastMessage: {
             id: 1,
@@ -83,6 +87,7 @@ export class UserService {
           phoneNumber: '+375259273423',
           userName: 'Pavel',
           avatar: 'assets/icons/system/avatar.svg',
+          isOnline: true,
           roomId: 'room-1',
           lastMessage: {
             id: 1,
@@ -99,6 +104,7 @@ export class UserService {
           phoneNumber: '+375259273423',
           userName: 'Pavel',
           avatar: 'assets/icons/system/avatar.svg',
+          isOnline: true,
           roomId: 'room-1',
           lastMessage: {
             id: 1,
@@ -115,6 +121,7 @@ export class UserService {
           phoneNumber: '+375259273423',
           userName: 'Pavel',
           avatar: 'assets/icons/system/avatar.svg',
+          isOnline: true,
           roomId: 'room-1',
           lastMessage: {
             id: 1,
@@ -131,6 +138,7 @@ export class UserService {
           phoneNumber: '+375259273423',
           userName: 'Pavel',
           avatar: 'assets/icons/system/avatar.svg',
+          isOnline: true,
           roomId: 'room-1',
           lastMessage: {
             id: 1,
@@ -147,6 +155,7 @@ export class UserService {
           phoneNumber: '+375259273423',
           userName: 'Pavel',
           avatar: 'assets/icons/system/avatar.svg',
+          isOnline: true,
           roomId: 'room-1',
           lastMessage: {
             id: 1,
@@ -163,6 +172,7 @@ export class UserService {
           phoneNumber: '+375259273423',
           userName: 'Pavel',
           avatar: 'assets/icons/system/avatar.svg',
+          isOnline: false,
           roomId: 'room-1',
           lastMessage: {
             id: 1,
@@ -179,6 +189,7 @@ export class UserService {
           phoneNumber: '+375259273423',
           userName: 'Pavel',
           avatar: 'assets/icons/system/avatar.svg',
+          isOnline: false,
           roomId: 'room-1',
           lastMessage: {
             id: 1,
@@ -195,6 +206,7 @@ export class UserService {
           phoneNumber: '+375259273423',
           userName: 'Pavel',
           avatar: 'assets/icons/system/avatar.svg',
+          isOnline: false,
           roomId: 'room-1',
           lastMessage: {
             id: 1,
@@ -211,6 +223,7 @@ export class UserService {
           phoneNumber: '+375259273423',
           userName: 'Pavel',
           avatar: 'assets/icons/system/avatar.svg',
+          isOnline: false,
           roomId: 'room-1',
           lastMessage: {
             id: 1,
@@ -227,6 +240,7 @@ export class UserService {
           phoneNumber: '+375259273423',
           userName: 'Pavel',
           avatar: 'assets/icons/system/avatar.svg',
+          isOnline: false,
           roomId: 'room-1',
           lastMessage: {
             id: 1,
@@ -243,6 +257,7 @@ export class UserService {
           phoneNumber: '+375259273423',
           userName: 'Pavel',
           avatar: 'assets/icons/system/avatar.svg',
+          isOnline: true,
           roomId: 'room-1',
           lastMessage: {
             id: 1,
@@ -259,6 +274,7 @@ export class UserService {
           phoneNumber: '+375259273423',
           userName: 'Pavel',
           avatar: 'assets/icons/system/avatar.svg',
+          isOnline: true,
           roomId: 'room-1',
           lastMessage: {
             id: 1,

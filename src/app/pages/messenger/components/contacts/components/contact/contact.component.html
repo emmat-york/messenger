@@ -1,4 +1,6 @@
-<img [ngSrc]="contact.avatar" width="48" height="48" alt="avatar" />
+<div [class.online]="contact.isOnline">
+  <img [ngSrc]="contact.avatar" width="48" height="48" alt="avatar" />
+</div>
 
 <div class="contact-info">
   <div class="name-and-date">

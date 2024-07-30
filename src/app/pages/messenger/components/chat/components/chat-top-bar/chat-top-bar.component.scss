@@ -11,6 +11,7 @@
 
 .header {
   display: flex;
+  height: 32px;
 }
 
 .avatar {
@@ -18,7 +19,17 @@
 }
 
 .name {
-  font-size: 16px;
+  font-size: 14px;
+  line-height: 14px;
   font-weight: 600;
-  line-height: 20px;
+}
+
+.online-indicator {
+  font-size: 11px;
+  line-height: 11px;
+  color: var(--gray_dark8);
+
+  &.online {
+    color: var(--blue_medium8);
+  }
 }
