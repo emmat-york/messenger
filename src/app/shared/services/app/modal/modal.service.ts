@@ -10,12 +10,13 @@ export class ModalService {
   private viewRef?: ViewContainerRef;
 
   constructor(private readonly appRef: ApplicationRef) {
-    requestAnimationFrame(() => {
-      this.viewRef = this.appRef.components[0].injector.get(ViewContainerRef);
-    });
+    this.setViewRef();
   }
 
-  open(component: Constructor): Observable<void> {
+  open(
+    component: Constructor,
+    settings?: { type?: 'aside' | 'middle' },
+  ): Observable<void> {
     const modalRef = this.viewRef?.createComponent(ModalFrameComponent);
     const destroy$ = new Subject<void>();
 
@@ -29,6 +30,16 @@ export class ModalService {
     modalRef.instance.closeAction = () => modalRef.destroy();
     modalRef.instance.destroy$ = destroy$;
 
+    if (settings && settings.type) {
+      modalRef.instance.type = settings.type;
+    }
+
     return destroy$;
+  }
+
+  private setViewRef(): void {
+    requestAnimationFrame(() => {
+      this.viewRef = this.appRef.components[0].injector.get(ViewContainerRef);
+    });
   }
 }

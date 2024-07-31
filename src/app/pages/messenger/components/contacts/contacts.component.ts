@@ -82,7 +82,7 @@ export class ContactsComponent implements OnInit, AfterViewInit {
   }
 
   openUserMenu(): void {
-    this.modalService.open(UserMenuComponent);
+    this.modalService.open(UserMenuComponent, { type: 'aside' });
   }
 
   setSelectedUserId(
