@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { SettingsFacade } from '../../../../../../store/settings/settings.facade';
+import { SettingsFacade } from '../../../../../../../../store/settings/settings.facade';
 
 @Component({
   selector: 'app-settings',

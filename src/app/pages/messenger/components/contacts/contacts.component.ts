@@ -23,7 +23,9 @@ import { debounceTime, fromEvent, Observable } from 'rxjs';
 import { UserState } from '../../../../store/user/user.feature';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ScrollEvent } from '../chat/components/chat-body/interfaces/chat-body.interface';
-import { ScrollCircleComponent } from '../shared/components/scroll-circle/scroll-circle.component';
+import { ScrollCircleComponent } from '../../../../shared/components/scroll-circle/scroll-circle.component';
+import { ModalService } from '../../../../shared/services/app/modal/modal.service';
+import { UserMenuComponent } from './components/user-menu/user-menu.component';
 
 @Component({
   selector: 'app-contacts',
@@ -60,6 +62,7 @@ export class ContactsComponent implements OnInit, AfterViewInit {
     private readonly userFacade: UserFacade,
     private readonly destroyRef: DestroyRef,
     private readonly renderer2: Renderer2,
+    private readonly modalService: ModalService,
   ) {}
 
   ngOnInit(): void {
@@ -76,6 +79,10 @@ export class ContactsComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.subscribeToScroll();
+  }
+
+  openUserMenu(): void {
+    this.modalService.open(UserMenuComponent);
   }
 
   setSelectedUserId(

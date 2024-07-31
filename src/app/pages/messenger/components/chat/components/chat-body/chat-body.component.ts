@@ -12,7 +12,7 @@ import { MessageComponent } from './components/message/message.component';
 import { debounceTime, fromEvent } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ScrollEvent } from './interfaces/chat-body.interface';
-import { ScrollCircleComponent } from '../../../shared/components/scroll-circle/scroll-circle.component';
+import { ScrollCircleComponent } from '../../../../../../shared/components/scroll-circle/scroll-circle.component';
 import { NgIf } from '@angular/common';
 import { Message } from '../../interfaces/chat.interface';
 
