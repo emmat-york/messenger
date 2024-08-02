@@ -5,9 +5,10 @@
 }
 
 .contacts {
-  width: 364px;
+  width: 25%;
+  min-width: 312px;
 }
 
 .chat {
-  width: calc(100% - 364px);
+  width: 75%;
 }
