@@ -28,13 +28,13 @@ export class ModalService {
         ModalFrameComponent,
       );
 
-    const destroy$ = new Subject<Action>();
-
     if (!modalRef) {
       throw new Error(
         'Modal component could not be created due to there is no viewRef for ModalService.',
       );
     }
+
+    const destroy$ = new Subject<Action>();
 
     modalRef.instance.component = component;
     modalRef.instance.closeAction = (action: Action) => {
