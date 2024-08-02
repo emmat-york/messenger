@@ -1,1 +1,7 @@
-<p>USERRRRR</p>
+<ng-container *ngrxLet="modalData.userFacade.vm$; let vm">
+  <header *ngIf="vm.userData">
+    <img [ngSrc]="vm.userData.avatar" width="48" height="48" alt="avatar" />
+
+    <button type="button" (click)="closeAction()">Close</button>
+  </header>
+</ng-container>

@@ -26,6 +26,7 @@ import { ScrollEvent } from '../chat/components/chat-body/interfaces/chat-body.i
 import { ScrollCircleComponent } from '../../../../shared/components/scroll-circle/scroll-circle.component';
 import { ModalService } from '../../../../shared/services/app/modal/modal.service';
 import { UserMenuComponent } from './components/user-menu/user-menu.component';
+import { UserMenuModalData } from './components/user-menu/interfaces/user-menu.interface';
 
 @Component({
   selector: 'app-contacts',
@@ -58,11 +59,11 @@ export class ContactsComponent implements OnInit, AfterViewInit {
   private readonly contacts?: QueryList<ContactComponent>;
 
   constructor(
+    private readonly modalService: ModalService,
     private readonly cdRef: ChangeDetectorRef,
     private readonly userFacade: UserFacade,
     private readonly destroyRef: DestroyRef,
     private readonly renderer2: Renderer2,
-    private readonly modalService: ModalService,
   ) {}
 
   ngOnInit(): void {
@@ -82,7 +83,11 @@ export class ContactsComponent implements OnInit, AfterViewInit {
   }
 
   openUserMenu(): void {
-    this.modalService.open(UserMenuComponent, { type: 'aside' });
+    this.modalService.open<UserMenuModalData>({
+      component: UserMenuComponent,
+      modalData: { userFacade: this.userFacade },
+      settings: { type: 'aside' },
+    });
   }
 
   setSelectedUserId(

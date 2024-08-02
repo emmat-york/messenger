@@ -1,9 +1,7 @@
 import { Constructor } from '../../../../../interfaces/common.interface';
-import { Subject } from 'rxjs';
 
-export interface ModalFrame {
+export interface ModalFrame<Action = undefined> {
   component: Constructor;
   type: 'aside' | 'middle';
-  closeAction: () => void;
-  destroy$: Subject<void>;
+  closeAction: (action: Action) => void;
 }
