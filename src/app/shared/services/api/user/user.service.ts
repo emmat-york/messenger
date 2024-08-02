@@ -11,7 +11,7 @@ export class UserService {
     return of({
       id: 1,
       phoneNumber: '12345678',
-      userName: 'Andrew',
+      userName: 'Andrei Filimonchyk',
       avatar: 'assets/icons/system/avatar.svg',
       contacts: [
         {

@@ -3,3 +3,41 @@
   height: 100%;
   background-color: white;
 }
+
+.header {
+  padding: 20px 20px 12px 20px;
+  border-bottom: 1px solid var(--gray_light8);
+}
+
+.top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.user-name {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.menu-list {
+  margin-top: 6px;
+  padding: 0 20px;
+
+  &:hover {
+    background-color: var(--gray_light2);
+  }
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  cursor: pointer;
+}
+
+.text {
+  font-size: 14px;
+}
