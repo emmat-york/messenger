@@ -16,7 +16,6 @@ import { UserState } from '../../../../store/user/user.feature';
   standalone: true,
   templateUrl: 'chat.component.html',
   styleUrl: 'chat.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ChatTopBarComponent,
     ChatInputComponent,
@@ -26,6 +25,7 @@ import { UserState } from '../../../../store/user/user.feature';
     NoSelectedContactComponent,
   ],
   providers: [ChatFacade],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChatComponent {
   readonly userVm$: Observable<UserState> = this.userFacade.vm$;

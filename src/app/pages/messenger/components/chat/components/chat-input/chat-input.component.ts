@@ -21,8 +21,8 @@ import { NgOptimizedImage } from '@angular/common';
   standalone: true,
   templateUrl: 'chat-input.component.html',
   styleUrl: 'chat-input.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ReactiveFormsModule, NgOptimizedImage],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChatInputComponent implements OnInit {
   @Input() set input(input: string) {

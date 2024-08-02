@@ -107,7 +107,7 @@ export class ContactsComponent implements OnInit, AfterViewInit {
 
   private subscribeToScroll(): void {
     if (!this.contactList?.nativeElement) {
-      return;
+      throw new Error('contactList element not found.');
     }
 
     fromEvent(this.contactList.nativeElement, 'scroll')
