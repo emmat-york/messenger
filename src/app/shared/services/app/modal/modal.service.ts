@@ -53,7 +53,7 @@ export class ModalService {
       modalRef.instance.type = settings.type;
     }
 
-    return destroy$;
+    return destroy$.asObservable();
   }
 
   private setViewRef(): void {
