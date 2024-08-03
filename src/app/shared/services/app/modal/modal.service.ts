@@ -34,17 +34,18 @@ export class ModalService {
       );
     }
 
+    const instance = modalRef.instance;
     const destroy$ = new Subject<Action>();
 
-    modalRef.instance.component = component;
-    modalRef.instance.closeAction = (action: Action) => {
+    instance.component = component;
+    instance.closeAction = (action: Action) => {
       modalRef.destroy();
       destroy$.next(action);
       destroy$.complete();
     };
 
-    modalRef.instance.modalData = modalData ? modalData : ({} as ModalData);
-    modalRef.instance.settings = settings ? settings : ({} as ModalSettings);
+    instance.modalData = modalData ? modalData : ({} as ModalData);
+    instance.settings = settings ? settings : ({} as ModalSettings);
 
     return destroy$.asObservable();
   }
