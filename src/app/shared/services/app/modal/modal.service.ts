@@ -43,15 +43,8 @@ export class ModalService {
       destroy$.complete();
     };
 
-    if (modalData) {
-      modalRef.instance.modalData = modalData;
-    } else {
-      modalRef.instance.modalData = {} as ModalData;
-    }
-
-    if (settings && settings.type) {
-      modalRef.instance.type = settings.type;
-    }
+    modalRef.instance.modalData = modalData ? modalData : ({} as ModalData);
+    modalRef.instance.settings = settings ? settings : ({} as ModalSettings);
 
     return destroy$.asObservable();
   }

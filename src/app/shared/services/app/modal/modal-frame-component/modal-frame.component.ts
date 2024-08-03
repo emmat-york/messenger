@@ -1,8 +1,10 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   Input,
   OnInit,
+  Renderer2,
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
@@ -10,29 +12,36 @@ import { Constructor } from '../../../../interfaces/common.interface';
 import { ModalFrame } from './interfaces/modal-frame.interface';
 import { NgClass } from '@angular/common';
 import { ClickOutsideDirective } from '../../../../directives/click-outside/click-outside.directive';
-import { ModalWithData } from '../interfaces/modal.interface';
+import { ModalSettings, ModalWithData } from '../interfaces/modal.interface';
+import { ModalFrameTypePipe } from './pipes/modal-frame-type/modal-frame-type.pipe';
 
 @Component({
   selector: 'app-modal-frame',
   standalone: true,
   templateUrl: 'modal-frame.component.html',
   styleUrl: 'modal-frame.component.scss',
-  imports: [NgClass, ClickOutsideDirective],
+  imports: [NgClass, ClickOutsideDirective, ModalFrameTypePipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModalFrameComponent<ModalData extends object, Action = undefined>
   implements ModalFrame<Action>, OnInit
 {
-  @Input() type: 'aside' | 'middle' = 'middle';
+  @Input() closeAction: (action: Action) => void;
   @Input() modalData: ModalData;
   @Input() component: Constructor;
-  @Input() closeAction: (action: Action) => void;
+  @Input() settings: ModalSettings;
 
   @ViewChild('container', { static: true, read: ViewContainerRef })
   private readonly container?: ViewContainerRef;
 
+  constructor(
+    private readonly hostElement: ElementRef<HTMLElement>,
+    private readonly renderer2: Renderer2,
+  ) {}
+
   ngOnInit(): void {
     this.initModalComponent();
+    this.setBackdrop();
   }
 
   private initModalComponent(): void {
@@ -46,5 +55,13 @@ export class ModalFrameComponent<ModalData extends object, Action = undefined>
 
     component.closeAction = this.closeAction;
     component.modalData = this.modalData;
+  }
+
+  private setBackdrop(): void {
+    this.renderer2.setStyle(
+      this.hostElement.nativeElement,
+      'backgroundColor',
+      this.settings?.noBackdrop ? null : 'rgba(0, 0, 0, 0.5)',
+    );
   }
 }
