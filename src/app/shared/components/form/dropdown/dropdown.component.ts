@@ -27,14 +27,16 @@ import { IconPipe } from '../../../pipes/icon/icon.pipe';
 })
 export class DropdownComponent implements ControlValueAccessor, OnInit {
   @Input() options: Option[] = [];
+  @Input() dropdownId = '';
 
   selectedOption!: Option;
   selectedValueTitle = '';
   isDropdownShown = false;
   disabled = false;
 
-  onChange(_: DropdownOptionValue): void {}
-  onBlur(): void {}
+  private onChange(_: DropdownOptionValue): void {}
+
+  private onBlur(): void {}
 
   ngOnInit(): void {
     this.selectedValueTitle = this.options[0].title;
@@ -50,12 +52,9 @@ export class DropdownComponent implements ControlValueAccessor, OnInit {
 
   onOptionClick({ value, title }: Option): void {
     this.onChange(value);
+    this.onBlur();
     this.selectedValueTitle = title;
     this.isDropdownShown = false;
-  }
-
-  onDropdownBlur(): void {
-    this.onBlur();
   }
 
   registerOnChange(fn: (_: string) => void): void {
@@ -75,7 +74,7 @@ export class DropdownComponent implements ControlValueAccessor, OnInit {
       return;
     }
 
-    if (this.isOptionString(value)) {
+    if (typeof value === 'string') {
       const selectedOption = this.options.find(
         option => option.value === value,
       );
@@ -92,9 +91,5 @@ export class DropdownComponent implements ControlValueAccessor, OnInit {
 
     this.selectedValueTitle = value.title;
     this.selectedOption = value;
-  }
-
-  private isOptionString(value: string | Option): value is string {
-    return typeof value === 'string';
   }
 }

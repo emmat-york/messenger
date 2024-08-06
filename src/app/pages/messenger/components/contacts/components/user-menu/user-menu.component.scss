@@ -4,6 +4,10 @@
   background-color: white;
 }
 
+.aside {
+  height: 100%;
+}
+
 .header {
   padding: 20px 20px 12px 20px;
   border-bottom: 1px solid var(--gray_light8);
@@ -23,19 +27,18 @@
 
 .menu-list {
   margin-top: 6px;
-  padding: 0 20px;
-
-  &:hover {
-    background-color: var(--gray_light2);
-  }
 }
 
 .menu-item {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 10px 0;
-  cursor: pointer;
+  padding: 10px 20px;
+
+  &:hover {
+    background-color: var(--gray_light2);
+    cursor: pointer;
+  }
 }
 
 .text {

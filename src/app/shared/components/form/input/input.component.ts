@@ -37,7 +37,7 @@ export class InputComponent implements ControlValueAccessor {
   @Input() type: 'text' | 'password' = 'text';
   @Input() placeholder = '';
   @Input() label = '';
-  @Input() id = '';
+  @Input() inputId = '';
 
   disabled = false;
   value = '';
@@ -46,8 +46,9 @@ export class InputComponent implements ControlValueAccessor {
     this.ngControl.valueAccessor = this;
   }
 
-  onChange(_: string): void {}
-  onBlur(): void {}
+  private onChange(_: string): void {}
+
+  private onBlur(): void {}
 
   onInputChange(value: string): void {
     this.value = value;

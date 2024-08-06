@@ -1,13 +1,12 @@
 <input
   [disabled]="disabled"
   [ngModel]="value"
-  [id]="id"
+  [id]="checkboxId"
   type="checkbox"
   class="checkbox"
   (ngModelChange)="onInputChange($event)"
-  (blur)="onInputBlur()"
 />
 
 @if (label) {
-<app-label [for]="id">{{ label }}</app-label>
+<app-label [for]="checkboxId">{{ label }}</app-label>
 }

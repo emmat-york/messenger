@@ -6,8 +6,8 @@ import { IconPipe } from '../../pipes/icon/icon.pipe';
 @Component({
   selector: 'app-scroll-circle',
   standalone: true,
-  templateUrl: './scroll-circle.component.html',
-  styleUrl: './scroll-circle.component.scss',
+  templateUrl: 'scroll-circle.component.html',
+  styleUrl: 'scroll-circle.component.scss',
   imports: [NgClass, NgOptimizedImage, IconPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

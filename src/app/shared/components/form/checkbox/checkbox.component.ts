@@ -19,7 +19,7 @@ import { NgIf } from '@angular/common';
 })
 export class CheckboxComponent implements ControlValueAccessor {
   @Input() label = '';
-  @Input() id = '';
+  @Input() checkboxId = '';
 
   disabled = false;
   value = false;
@@ -28,15 +28,13 @@ export class CheckboxComponent implements ControlValueAccessor {
     this.ngControl.valueAccessor = this;
   }
 
-  onChange(_: boolean): void {}
-  onBlur(): void {}
+  private onChange(_: boolean): void {}
+
+  private onBlur(): void {}
 
   onInputChange(value: boolean): void {
     this.value = value;
     this.onChange(value);
-  }
-
-  onInputBlur(): void {
     this.onBlur();
   }
 

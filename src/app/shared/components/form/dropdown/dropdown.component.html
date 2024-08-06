@@ -1,13 +1,16 @@
-<div appClickOutside (clickOutside)="onClickOutSide()">
+<div appClickOutside (clickOutside)="onClickOutSide()" [id]="dropdownId">
   <button
     class="dropdown-button"
     type="button"
     [disabled]="disabled"
     (click)="onDropdownClick()"
-    (blur)="onDropdownBlur()"
   >
     <span class="title">{{ selectedValueTitle }}</span>
-    <img [class.expanded]="isDropdownShown" src="" alt="" />
+    <img
+      [class.expanded]="isDropdownShown"
+      src=""
+      [alt]="isDropdownShown ? 'expanded' : 'collapsed'"
+    />
   </button>
 
   @if (isDropdownShown) {

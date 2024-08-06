@@ -1,5 +1,5 @@
 @if (label) {
-<app-label [for]="id">{{ label }}</app-label>
+<app-label [for]="inputId">{{ label }}</app-label>
 } @if (ngControl) {
 <input
   [placeholder]="placeholder"
@@ -10,7 +10,7 @@
   }"
   [ngModel]="value"
   [type]="type"
-  [id]="id"
+  [id]="inputId"
   class="input"
   (ngModelChange)="onInputChange($event)"
   (blur)="onInputBlur()"

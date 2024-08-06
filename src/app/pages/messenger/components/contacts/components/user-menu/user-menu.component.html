@@ -1,4 +1,4 @@
-<aside *ngrxLet="modalData.userFacade.vm$; let vm">
+<aside *ngrxLet="modalData.userFacade.vm$; let vm" class="aside">
   <header *ngIf="vm.userData" class="header">
     <div class="top-header">
       <img [ngSrc]="vm.userData.avatar" width="42" height="42" alt="avatar" />
@@ -13,7 +13,22 @@
   <ul class="menu-list">
     <li class="menu-item">
       <img [ngSrc]="'error' | icon" width="20" height="20" alt="alt" />
+      <span class="text">Contacts</span>
+    </li>
+
+    <li class="menu-item">
+      <img [ngSrc]="'error' | icon" width="20" height="20" alt="alt" />
+      <span class="text">Saved Messages</span>
+    </li>
+
+    <li class="menu-item">
+      <img [ngSrc]="'error' | icon" width="20" height="20" alt="alt" />
       <span class="text">Settings</span>
+    </li>
+
+    <li class="menu-item">
+      <img [ngSrc]="'error' | icon" width="20" height="20" alt="alt" />
+      <span class="text">Night Mode</span>
     </li>
   </ul>
 
