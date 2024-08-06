@@ -34,8 +34,7 @@ export type RegistrationErrorMessages =
   | 'OPERATION_NOT_ALLOWED'
   | 'TOO_MANY_ATTEMPTS_TRY_LATER';
 
-export type RegistrationErrorResponse =
-  AuthErrorResponse<RegistrationErrorMessages>;
+export type RegistrationErrorResponse = AuthErrorResponse<RegistrationErrorMessages>;
 
 // LOGIN
 export interface LoginCredentials {

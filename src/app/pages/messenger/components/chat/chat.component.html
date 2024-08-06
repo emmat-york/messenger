@@ -1,8 +1,6 @@
 <ng-container *ngrxLet="{ user: userVm$, chat: chatVm$ }; let vm">
   @if (vm.user.selectedContact) {
-  <app-chat-top-bar
-    [selectedContact]="vm.user.selectedContact"
-  ></app-chat-top-bar>
+  <app-chat-top-bar [selectedContact]="vm.user.selectedContact"></app-chat-top-bar>
 
   <app-chat-body [messages]="vm.chat.messages"></app-chat-body>
 

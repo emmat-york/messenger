@@ -5,8 +5,6 @@ import {
   MIN_PASSWORD_LENGTH,
   VALIDATION_MESSAGES,
 } from '../../../shared/constants/form.constant';
-import { Validators } from '@angular/forms';
-import { CustomValidators } from '../../../shared/utils/validators/validators.util';
 
 export const LOGIN_ERROR_STATE: LoginErrorState = {
   [LoginFormKey.Email]: {
@@ -18,17 +16,4 @@ export const LOGIN_ERROR_STATE: LoginErrorState = {
     [ValidatorKeys.minlength]:
       VALIDATION_MESSAGES[ValidatorKeys.minlength](MIN_PASSWORD_LENGTH),
   },
-};
-
-export const LOGIN_PLACEHOLDERS = {
-  [LoginFormKey.Email]: 'Email',
-  [LoginFormKey.Password]: 'Password',
-};
-
-export const LOGIN_VALIDATORS = {
-  [LoginFormKey.Email]: [Validators.required, CustomValidators.email()],
-  [LoginFormKey.Password]: [
-    Validators.required,
-    Validators.minLength(MIN_PASSWORD_LENGTH),
-  ],
 };

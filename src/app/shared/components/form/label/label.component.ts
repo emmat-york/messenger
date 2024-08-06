@@ -3,8 +3,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 @Component({
   selector: 'app-label',
   standalone: true,
-  template:
-    '<label class="label" [for]="for"><ng-content></ng-content></label>',
+  template: '<label class="label" [for]="for"><ng-content></ng-content></label>',
   styles: `.label {
       font-size: 13px;
       font-weight: var(--font_weight_regular);

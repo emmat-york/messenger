@@ -20,9 +20,7 @@ export class AuthService {
     });
   }
 
-  registration$(
-    credentials: RegistrationCredentials,
-  ): Observable<RegistrationResponse> {
+  registration$(credentials: RegistrationCredentials): Observable<RegistrationResponse> {
     return this.http.post<RegistrationResponse>(REGISTRATION_PATH, {
       ...credentials,
       returnSecureToken: true,

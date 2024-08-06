@@ -1,22 +1,24 @@
 <form class="form-group" [formGroup]="formGroup" (ngSubmit)="onRegistration()">
   <h2 class="heading">Registration</h2>
 
-  <article *ngIf="errorMsg$ | ngrxPush as error" class="server-error-message">
+  @if (errorMsg$ | ngrxPush; as error) {
+  <article class="server-error-message">
     {{ error }}
   </article>
+  }
 
   <app-input
-    [placeholder]="placeholders[signUpFormKey.Email]"
     [errorState]="errorState[signUpFormKey.Email]"
     [formControlName]="signUpFormKey.Email"
     [id]="signUpFormKey.Email"
+    placeholder="Email"
   ></app-input>
 
   <app-input
-    [placeholder]="placeholders[signUpFormKey.Password]"
     [errorState]="errorState[signUpFormKey.Password]"
     [formControlName]="signUpFormKey.Password"
     [id]="signUpFormKey.Password"
+    placeholder="Password"
     type="password"
   ></app-input>
 

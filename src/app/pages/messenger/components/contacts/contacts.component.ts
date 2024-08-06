@@ -90,10 +90,7 @@ export class ContactsComponent implements OnInit, AfterViewInit {
     });
   }
 
-  setSelectedUserId(
-    selectedContactId: number | undefined,
-    contact: Contact,
-  ): void {
+  setSelectedUserId(selectedContactId: number | undefined, contact: Contact): void {
     if (selectedContactId === contact.id) {
       return;
     }

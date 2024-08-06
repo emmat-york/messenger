@@ -35,7 +35,6 @@ ul {
 
 button {
   padding: 0;
-  font-family: var(--inter);
   border: none;
   outline: none;
   cursor: pointer;
@@ -47,7 +46,6 @@ button {
 }
 
 a {
-  font-style: normal;
   text-decoration: none;
   outline: none;
 }
@@ -62,6 +60,9 @@ input {
 button,
 input,
 a {
+  font-family: var(--inter);
+  font-style: normal;
+
   &:disabled {
     cursor: not-allowed;
   }

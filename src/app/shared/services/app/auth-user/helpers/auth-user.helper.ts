@@ -6,9 +6,7 @@ import {
   RegistrationErrorResponse,
 } from '../../../api/auth/interfaces/auth.interface';
 
-export const getRegistrationErrorMessage = (
-  errorResponse: HttpErrorResponse,
-): string => {
+export const getRegistrationErrorMessage = (errorResponse: HttpErrorResponse): string => {
   const error = errorResponse.error as RegistrationErrorResponse;
 
   const REGISTRATION_ERROR_MAP: Record<RegistrationErrorMessages, string> = {
@@ -21,9 +19,7 @@ export const getRegistrationErrorMessage = (
   return REGISTRATION_ERROR_MAP[error.error.message];
 };
 
-export const getLoginErrorMessage = (
-  errorResponse: HttpErrorResponse,
-): string => {
+export const getLoginErrorMessage = (errorResponse: HttpErrorResponse): string => {
   const error = errorResponse.error as LoginErrorResponse;
 
   const LOGIN_ERROR_MAP: Record<LoginErrorMessages, string> = {

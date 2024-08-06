@@ -1,7 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { NgClass } from '@angular/common';
-import { PushPipe } from '@ngrx/component';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +9,7 @@ import { PushPipe } from '@ngrx/component';
       display: block;
       height: 100%;
     }`,
-  imports: [RouterOutlet, NgClass, PushPipe],
+  imports: [RouterOutlet],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {}

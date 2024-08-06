@@ -1,22 +1,24 @@
 <form class="form-group" [formGroup]="formGroup" (ngSubmit)="onLogin()">
   <h2 class="heading">Login</h2>
 
-  <article *ngIf="errorMsg$ | ngrxPush as error" class="server-error-message">
+  @if (errorMsg$ | ngrxPush; as error) {
+  <article class="server-error-message">
     {{ error }}
   </article>
+  }
 
   <app-input
-    [placeholder]="placeholders[loginFormKey.Email]"
     [errorState]="errorState[loginFormKey.Email]"
     [formControlName]="loginFormKey.Email"
-    [id]="loginFormKey.Email"
+    [inputId]="loginFormKey.Email"
+    placeholder="Email"
   ></app-input>
 
   <app-input
-    [placeholder]="placeholders[loginFormKey.Password]"
     [errorState]="errorState[loginFormKey.Password]"
     [formControlName]="loginFormKey.Password"
-    [id]="loginFormKey.Password"
+    [inputId]="loginFormKey.Password"
+    placeholder="Password"
     type="password"
   ></app-input>
 
@@ -35,8 +37,6 @@
     type="button"
     variant="text"
   >
-    <a class="link" [routerLink]="['/' + appRoutes.Registration]"
-      >Go to registration</a
-    >
+    <a class="link" [routerLink]="['/' + appRoutes.Registration]">Go to registration</a>
   </app-button>
 </form>

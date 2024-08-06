@@ -5,56 +5,50 @@ import {
   DestroyRef,
   OnDestroy,
 } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { SLEEPY_OPTIONS } from '../../shared/constants/form.constant';
+import {
+  MIN_PASSWORD_LENGTH,
+  SLEEPY_OPTIONS,
+} from '../../shared/constants/form.constant';
 import { SignUpFormKey } from './enums/registration.enum';
-import { getTrimmedString } from '../../shared/utils/form/form.util';
 import { InputComponent } from '../../shared/components/form/input/input.component';
 import { ButtonComponent } from '../../shared/components/button/button.component';
 import { catchError, EMPTY, finalize } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
 import { AuthUserService } from '../../shared/services/app/auth-user/auth-user.service';
-import {
-  REGISTRATION_ERROR_STATE,
-  REGISTRATION_PLACEHOLDERS,
-  REGISTRATION_VALIDATORS,
-} from './constants/registration.constant';
-import { NgIf } from '@angular/common';
+import { REGISTRATION_ERROR_STATE } from './constants/registration.constant';
 import { HttpErrorResponse } from '@angular/common/http';
 import { getRegistrationErrorMessage } from '../../shared/services/app/auth-user/helpers/auth-user.helper';
 import { PushPipe } from '@ngrx/component';
 import { AuthFacade } from '../../store/auth/auth.facade';
 import { AppRoutes } from '../../shared/enums/app-routes.enum';
+import { trim } from '../../shared/utils/form/form.util';
+import { CustomValidators } from '../../shared/utils/validators/validators.util';
 
 @Component({
   selector: 'app-registration',
   standalone: true,
   templateUrl: 'registration.component.html',
   styleUrl: 'registration.component.scss',
-  imports: [
-    ReactiveFormsModule,
-    ButtonComponent,
-    InputComponent,
-    RouterLink,
-    PushPipe,
-    NgIf,
-  ],
+  imports: [ReactiveFormsModule, ButtonComponent, InputComponent, RouterLink, PushPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegistrationComponent implements OnDestroy {
   readonly errorMsg$ = this.authFacade.errorMsg$;
-
-  readonly placeholders = REGISTRATION_PLACEHOLDERS;
   readonly errorState = REGISTRATION_ERROR_STATE;
   readonly signUpFormKey = SignUpFormKey;
   readonly appRoutes = AppRoutes;
 
   readonly formGroup = this.fb.nonNullable.group({
-    [SignUpFormKey.Email]: ['', REGISTRATION_VALIDATORS[SignUpFormKey.Email]],
+    [SignUpFormKey.Email]: ['', [Validators.required, CustomValidators.email()]],
     [SignUpFormKey.Password]: [
       '',
-      REGISTRATION_VALIDATORS[SignUpFormKey.Password],
+      [
+        Validators.required,
+        Validators.minLength(MIN_PASSWORD_LENGTH),
+        CustomValidators.password(),
+      ],
     ],
   });
 
@@ -76,7 +70,13 @@ export class RegistrationComponent implements OnDestroy {
       return;
     }
 
-    this.trim();
+    trim(
+      [
+        this.formGroup.controls[SignUpFormKey.Email],
+        this.formGroup.controls[SignUpFormKey.Password],
+      ],
+      SLEEPY_OPTIONS,
+    );
 
     if (this.formGroup.invalid) {
       this.formGroup.markAllAsTouched();
@@ -89,9 +89,7 @@ export class RegistrationComponent implements OnDestroy {
       .registration$(this.formGroup.getRawValue())
       .pipe(
         catchError((errorResponse: HttpErrorResponse) => {
-          this.authFacade.setErrorMsg(
-            getRegistrationErrorMessage(errorResponse),
-          );
+          this.authFacade.setErrorMsg(getRegistrationErrorMessage(errorResponse));
 
           return EMPTY;
         }),
@@ -102,18 +100,5 @@ export class RegistrationComponent implements OnDestroy {
         takeUntilDestroyed(this.destroyRef),
       )
       .subscribe(() => this.router.navigate([AppRoutes.Messenger]));
-  }
-
-  private trim(): void {
-    [
-      this.formGroup.get(SignUpFormKey.Email),
-      this.formGroup.get(SignUpFormKey.Password),
-    ].forEach(control => {
-      if (!control) {
-        return;
-      }
-
-      control.setValue(getTrimmedString(control.value), SLEEPY_OPTIONS);
-    });
   }
 }

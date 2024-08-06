@@ -19,8 +19,7 @@
   <ul #contactList class="contact-list">
     <li
       *ngFor="
-        let contact of vm.userData?.contacts
-          | arrayFilter: control.value : 'userName'
+        let contact of vm.userData?.contacts | arrayFilter: control.value : 'userName'
       "
       class="contact"
       (click)="setSelectedUserId(vm.selectedContact?.id, contact)"

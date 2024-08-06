@@ -40,8 +40,6 @@ export const routes: Routes = [
   {
     path: AppRoutes.NotFound,
     loadComponent: () =>
-      import('../pages/not-found/not-found.component').then(
-        c => c.NotFoundComponent,
-      ),
+      import('../pages/not-found/not-found.component').then(c => c.NotFoundComponent),
   },
 ];

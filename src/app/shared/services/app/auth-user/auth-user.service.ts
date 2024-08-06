@@ -75,13 +75,7 @@ export class AuthUserService {
     this.router.navigate([AppRoutes.Login]);
   }
 
-  private setToken({
-    expiresIn,
-    idToken,
-  }: {
-    expiresIn: string;
-    idToken: string;
-  }) {
+  private setToken({ expiresIn, idToken }: { expiresIn: string; idToken: string }) {
     localStorage.setItem(AUTH_TOKEN_EXPIRES_DATE_KEY, expiresIn);
     localStorage.setItem(AUTH_TOKEN_KEY, idToken);
     this.authFacade.setIsAuth(true);

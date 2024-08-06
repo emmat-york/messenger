@@ -16,14 +16,8 @@ const authFeature = createFeature({
   name: AUTH_KEY,
   reducer: createReducer(
     initialState,
-    on(
-      action.setIsAuth,
-      (state, { isAuth }): AuthState => ({ ...state, isAuth }),
-    ),
-    on(
-      action.setErrorMsg,
-      (state, { errorMsg }): AuthState => ({ ...state, errorMsg }),
-    ),
+    on(action.setIsAuth, (state, { isAuth }): AuthState => ({ ...state, isAuth })),
+    on(action.setErrorMsg, (state, { errorMsg }): AuthState => ({ ...state, errorMsg })),
   ),
 });
 

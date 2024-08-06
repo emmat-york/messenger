@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  Optional,
-  Self,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, Optional, Self } from '@angular/core';
 import {
   ControlValueAccessor,
   FormsModule,

@@ -1,8 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  HostListener,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener } from '@angular/core';
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { UserFacade } from '../../store/user/user.facade';

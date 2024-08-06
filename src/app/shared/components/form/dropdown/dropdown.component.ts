@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { NgForOf, NgIf } from '@angular/common';
 import { ClickOutsideDirective } from '../../../directives/click-outside/click-outside.directive';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -75,9 +70,7 @@ export class DropdownComponent implements ControlValueAccessor, OnInit {
     }
 
     if (typeof value === 'string') {
-      const selectedOption = this.options.find(
-        option => option.value === value,
-      );
+      const selectedOption = this.options.find(option => option.value === value);
 
       if (!selectedOption) {
         throw new Error('There is no option with this value.');
