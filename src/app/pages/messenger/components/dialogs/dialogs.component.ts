@@ -11,12 +11,12 @@ import {
   ViewChild,
   ViewChildren,
 } from '@angular/core';
-import { ContactComponent } from './components/contact/contact.component';
+import { DialogComponent } from './components/dialog/dialog.component';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { UserFacade } from '../../../../store/user/user.facade';
 import { ArrayFilterPipe } from '../../../../shared/pipes/array-filter/array-filter.pipe';
 import { IconPipe } from '../../../../shared/pipes/icon/icon.pipe';
-import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import { LetDirective } from '@ngrx/component';
 import { Contact } from '../../../../store/user/user.interface';
 import { debounceTime, fromEvent, Observable } from 'rxjs';
@@ -29,24 +29,22 @@ import { UserMenuComponent } from './components/user-menu/user-menu.component';
 import { UserMenuModalData } from './components/user-menu/interfaces/user-menu.interface';
 
 @Component({
-  selector: 'app-contacts',
+  selector: 'app-dialogs',
   standalone: true,
-  templateUrl: 'contacts.component.html',
-  styleUrl: 'contacts.component.scss',
+  templateUrl: 'dialogs.component.html',
+  styleUrl: 'dialogs.component.scss',
   imports: [
     ReactiveFormsModule,
-    ContactComponent,
+    DialogComponent,
     NgOptimizedImage,
     ArrayFilterPipe,
     LetDirective,
     IconPipe,
-    NgIf,
-    NgForOf,
     ScrollCircleComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ContactsComponent implements OnInit, AfterViewInit {
+export class DialogsComponent implements OnInit, AfterViewInit {
   readonly vm$: Observable<UserState> = this.userFacade.vm$;
   readonly control = new FormControl<string>('', { nonNullable: true });
 
@@ -55,8 +53,8 @@ export class ContactsComponent implements OnInit, AfterViewInit {
 
   @ViewChild('contactList')
   private readonly contactList?: ElementRef<HTMLUListElement>;
-  @ViewChildren(ContactComponent)
-  private readonly contacts?: QueryList<ContactComponent>;
+  @ViewChildren(DialogComponent)
+  private readonly contacts?: QueryList<DialogComponent>;
 
   constructor(
     private readonly modalService: ModalService,

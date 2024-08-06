@@ -8,8 +8,8 @@ import { IconPipe } from '../../../../../../shared/pipes/icon/icon.pipe';
 @Component({
   selector: 'app-user-menu',
   standalone: true,
-  templateUrl: 'user-menu.component.html',
-  styleUrl: 'user-menu.component.scss',
+  templateUrl: './user-menu.component.html',
+  styleUrl: './user-menu.component.scss',
   imports: [LetDirective, NgOptimizedImage, NgIf, IconPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

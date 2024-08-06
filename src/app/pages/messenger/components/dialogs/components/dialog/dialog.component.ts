@@ -4,15 +4,15 @@ import { Contact } from '../../../../../../store/user/user.interface';
 import { DateFormat } from '../../../../../../shared/enums/date-formats.enum';
 
 @Component({
-  selector: 'app-contact',
+  selector: 'app-dialog',
   standalone: true,
-  templateUrl: 'contact.component.html',
-  styleUrl: 'contact.component.scss',
+  templateUrl: 'dialog.component.html',
+  styleUrl: 'dialog.component.scss',
   imports: [DatePipe, NgOptimizedImage],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ContactComponent {
-  @Input() contact!: Contact;
+export class DialogComponent {
+  @Input() contact: Contact;
 
   readonly dateFormat = DateFormat;
 }

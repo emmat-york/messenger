@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, HostListener } from '@angular/core';
-import { ContactsComponent } from './components/contacts/contacts.component';
+import { DialogsComponent } from './components/dialogs/dialogs.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { UserFacade } from '../../store/user/user.facade';
 import { take } from 'rxjs';
@@ -9,7 +9,7 @@ import { take } from 'rxjs';
   standalone: true,
   templateUrl: 'messenger.component.html',
   styleUrl: 'messenger.component.scss',
-  imports: [ContactsComponent, ChatComponent],
+  imports: [DialogsComponent, ChatComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MessengerComponent {

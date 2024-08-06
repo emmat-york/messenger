@@ -11,7 +11,9 @@ export class ModalService {
   private viewRef?: ViewContainerRef;
 
   constructor(private readonly appRef: ApplicationRef) {
-    this.setViewRef();
+    requestAnimationFrame(() => {
+      this.viewRef = this.appRef.components[0].injector.get(ViewContainerRef);
+    });
   }
 
   open<ModalData extends object, Action = undefined>({
@@ -48,11 +50,5 @@ export class ModalService {
     instance.settings = settings ? settings : ({} as ModalSettings);
 
     return destroy$.asObservable();
-  }
-
-  private setViewRef(): void {
-    requestAnimationFrame(() => {
-      this.viewRef = this.appRef.components[0].injector.get(ViewContainerRef);
-    });
   }
 }

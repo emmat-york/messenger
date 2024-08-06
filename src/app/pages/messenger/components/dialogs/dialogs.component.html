@@ -17,22 +17,19 @@
 <ng-container *ngrxLet="vm$; let vm">
   @if (vm.userData?.contacts?.length) {
   <ul #contactList class="contact-list">
-    <li
-      *ngFor="
-        let contact of vm.userData?.contacts | arrayFilter: control.value : 'userName'
-      "
-      class="contact"
-      (click)="setSelectedUserId(vm.selectedContact?.id, contact)"
-    >
-      <app-contact
-        [class.selected]="contact.id === vm.selectedContact?.id"
-        [contact]="contact"
-      ></app-contact>
+    @for (dialog of vm.userData?.contacts | arrayFilter: control.value : 'userName'; track
+    dialog.userName) {
+    <li class="contact" (click)="setSelectedUserId(vm.selectedContact?.id, dialog)">
+      <app-dialog
+        [class.selected]="dialog.id === vm.selectedContact?.id"
+        [contact]="dialog"
+      ></app-dialog>
     </li>
-
-    <li *ngIf="noSearchResults" class="no-search-results">
+    } @if (noSearchResults) {
+    <li class="no-search-results">
       {{ 'No results for: ' + control.value }}
     </li>
+    }
   </ul>
   } @else {
   <div class="no-contacts">No contacts</div>
