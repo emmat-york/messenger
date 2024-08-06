@@ -84,7 +84,7 @@ export class DialogsComponent implements AfterViewInit {
 
   private subscribeToScroll(): void {
     if (!this.contactList?.nativeElement) {
-      throw new Error('contactList element not found.');
+      return;
     }
 
     fromEvent(this.contactList.nativeElement, 'scroll')
