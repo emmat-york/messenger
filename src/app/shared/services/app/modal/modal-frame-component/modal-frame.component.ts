@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  Input,
   OnInit,
   Renderer2,
   ViewChild,
@@ -26,10 +25,10 @@ import { ModalFrameTypePipe } from './pipes/modal-frame-type/modal-frame-type.pi
 export class ModalFrameComponent<ModalData extends object, Action = undefined>
   implements ModalFrame<Action>, OnInit
 {
-  @Input() closeAction: (action: Action) => void;
-  @Input() modalData: ModalData;
-  @Input() component: Constructor;
-  @Input() settings: ModalSettings;
+  closeAction: (action: Action) => void;
+  modalData: ModalData;
+  component: Constructor;
+  settings: ModalSettings;
 
   @ViewChild('container', { static: true, read: ViewContainerRef })
   private readonly container?: ViewContainerRef;

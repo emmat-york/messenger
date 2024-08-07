@@ -5,7 +5,7 @@ import {
   NgControl,
   ValidationErrors,
 } from '@angular/forms';
-import { NgClass, NgIf, NgOptimizedImage } from '@angular/common';
+import { NgClass, NgOptimizedImage } from '@angular/common';
 import { LabelComponent } from '../label/label.component';
 import { ErrorMessageComponent } from '../error-message/error-message.component';
 import { IconPipe } from '../../../pipes/icon/icon.pipe';
@@ -22,7 +22,6 @@ import { IconPipe } from '../../../pipes/icon/icon.pipe';
     FormsModule,
     IconPipe,
     NgClass,
-    NgIf,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

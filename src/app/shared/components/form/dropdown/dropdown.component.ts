@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { NgForOf, NgIf } from '@angular/common';
 import { ClickOutsideDirective } from '../../../directives/click-outside/click-outside.directive';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DropdownOptionValue, Option } from './interfaces/dropdown.interface';
@@ -17,14 +16,14 @@ import { IconPipe } from '../../../pipes/icon/icon.pipe';
       multi: true,
     },
   ],
-  imports: [NgIf, NgForOf, ClickOutsideDirective, IconPipe],
+  imports: [ClickOutsideDirective, IconPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DropdownComponent implements ControlValueAccessor, OnInit {
   @Input() options: Option[] = [];
   @Input() dropdownId = '';
 
-  selectedOption!: Option;
+  selectedOption: Option;
   selectedValueTitle = '';
   isDropdownShown = false;
   disabled = false;

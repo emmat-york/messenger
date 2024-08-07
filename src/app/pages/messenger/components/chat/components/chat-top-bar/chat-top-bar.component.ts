@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
-import { AuthUserService } from '../../../../../../shared/services/app/auth-user/auth-user.service';
 import { Contact } from '../../../../../../store/user/user.interface';
 
 @Component({
@@ -12,11 +11,5 @@ import { Contact } from '../../../../../../store/user/user.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChatTopBarComponent {
-  @Input() selectedContact!: Contact;
-
-  constructor(private readonly authUserService: AuthUserService) {}
-
-  onLogOut(): void {
-    this.authUserService.logOut();
-  }
+  @Input() selectedContact: Contact;
 }

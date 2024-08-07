@@ -13,7 +13,6 @@ import { debounceTime, fromEvent } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ScrollEvent } from './interfaces/chat-body.interface';
 import { ScrollCircleComponent } from '../../../../../../shared/components/scroll-circle/scroll-circle.component';
-import { NgIf } from '@angular/common';
 import { Message } from '../../interfaces/chat.interface';
 
 @Component({
@@ -21,7 +20,7 @@ import { Message } from '../../interfaces/chat.interface';
   standalone: true,
   templateUrl: 'chat-body.component.html',
   styleUrl: 'chat-body.component.scss',
-  imports: [MessageComponent, ScrollCircleComponent, NgIf],
+  imports: [MessageComponent, ScrollCircleComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChatBodyComponent implements OnInit {

@@ -1,14 +1,13 @@
 import { ChangeDetectionStrategy, Component, Input, Optional, Self } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NgControl } from '@angular/forms';
 import { LabelComponent } from '../label/label.component';
-import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-checkbox',
   standalone: true,
   templateUrl: 'checkbox.component.html',
   styleUrl: 'checkbox.component.scss',
-  imports: [FormsModule, LabelComponent, NgIf],
+  imports: [FormsModule, LabelComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CheckboxComponent implements ControlValueAccessor {
