@@ -22,7 +22,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { getRegistrationErrorMessage } from '../../shared/services/app/auth-user/helpers/auth-user.helper';
 import { PushPipe } from '@ngrx/component';
 import { AuthFacade } from '../../store/auth/auth.facade';
-import { AppRoutes } from '../../shared/enums/app-routes.enum';
 import { trim } from '../../shared/utils/form/form.util';
 import { CustomValidators } from '../../shared/utils/validators/validators.util';
 
@@ -38,7 +37,6 @@ export class RegistrationComponent implements OnDestroy {
   readonly errorMsg$ = this.authFacade.errorMsg$;
   readonly errorState = REGISTRATION_ERROR_STATE;
   readonly signUpFormKey = SignUpFormKey;
-  readonly appRoutes = AppRoutes;
 
   readonly formGroup = this.fb.nonNullable.group({
     [SignUpFormKey.Email]: ['', [Validators.required, CustomValidators.email()]],
@@ -65,7 +63,7 @@ export class RegistrationComponent implements OnDestroy {
     this.authFacade.setErrorMsg('');
   }
 
-  onRegistration(): void {
+  submit(): void {
     if (this.formGroup.disabled) {
       return;
     }
@@ -99,6 +97,6 @@ export class RegistrationComponent implements OnDestroy {
         }),
         takeUntilDestroyed(this.destroyRef),
       )
-      .subscribe(() => this.router.navigate([AppRoutes.Messenger]));
+      .subscribe(() => this.router.navigate(['messenger']));
   }
 }

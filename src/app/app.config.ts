@@ -1,5 +1,5 @@
 import { APP_INITIALIZER, ApplicationConfig, isDevMode } from '@angular/core';
-import { PreloadAllModules, provideRouter, withPreloading } from '@angular/router';
+import { provideRouter } from '@angular/router';
 import { routes } from './routes/app.routes';
 import { provideState, provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
@@ -60,7 +60,7 @@ export const appConfig: ApplicationConfig = {
     AuthFacade,
     UserService,
     UserFacade,
-    provideRouter(routes, withPreloading(PreloadAllModules)),
+    provideRouter(routes),
     provideStore(),
     provideState({ name: AUTH_KEY, reducer: authReducer }),
     provideState({ name: CHAT_KEY, reducer: chatReducer }),

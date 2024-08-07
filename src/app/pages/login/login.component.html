@@ -1,4 +1,4 @@
-<form class="form-group" [formGroup]="formGroup" (ngSubmit)="onLogin()">
+<form class="form-group" [formGroup]="formGroup" (ngSubmit)="submit()">
   <h2 class="heading">Login</h2>
 
   @if (errorMsg$ | ngrxPush; as error) {
@@ -37,6 +37,6 @@
     type="button"
     variant="text"
   >
-    <a class="link" [routerLink]="['/' + appRoutes.Registration]">Go to registration</a>
+    <a class="link" [routerLink]="['/registration']">Go to registration</a>
   </app-button>
 </form>

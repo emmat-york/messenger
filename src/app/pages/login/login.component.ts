@@ -23,7 +23,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { getLoginErrorMessage } from '../../shared/services/app/auth-user/helpers/auth-user.helper';
 import { PushPipe } from '@ngrx/component';
 import { AuthFacade } from '../../store/auth/auth.facade';
-import { AppRoutes } from '../../shared/enums/app-routes.enum';
 import { CustomValidators } from '../../shared/utils/validators/validators.util';
 
 @Component({
@@ -38,7 +37,6 @@ export class LoginComponent implements OnDestroy {
   readonly errorMsg$ = this.authFacade.errorMsg$;
   readonly errorState = LOGIN_ERROR_STATE;
   readonly loginFormKey = LoginFormKey;
-  readonly appRoutes = AppRoutes;
 
   readonly formGroup = this.fb.nonNullable.group({
     [LoginFormKey.Email]: ['', [Validators.required, CustomValidators.email()]],
@@ -61,7 +59,7 @@ export class LoginComponent implements OnDestroy {
     this.authFacade.setErrorMsg('');
   }
 
-  onLogin(): void {
+  submit(): void {
     if (this.formGroup.disabled) {
       return;
     }
@@ -94,6 +92,6 @@ export class LoginComponent implements OnDestroy {
         }),
         takeUntilDestroyed(this.destroyRef),
       )
-      .subscribe(() => this.router.navigate([AppRoutes.Messenger]));
+      .subscribe(() => this.router.navigate(['messenger']));
   }
 }
