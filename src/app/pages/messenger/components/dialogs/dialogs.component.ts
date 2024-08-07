@@ -9,9 +9,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { DialogComponent } from './components/dialog/dialog.component';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { UserFacade } from '../../../../store/user/user.facade';
-import { ArrayFilterPipe } from '../../../../shared/pipes/array-filter/array-filter.pipe';
 import { IconPipe } from '../../../../shared/pipes/icon/icon.pipe';
 import { NgOptimizedImage } from '@angular/common';
 import { LetDirective } from '@ngrx/component';
@@ -31,19 +29,16 @@ import { UserMenuModalData } from './components/user-menu/interfaces/user-menu.i
   templateUrl: 'dialogs.component.html',
   styleUrl: 'dialogs.component.scss',
   imports: [
-    ReactiveFormsModule,
+    ScrollCircleComponent,
     DialogComponent,
     NgOptimizedImage,
-    ArrayFilterPipe,
     LetDirective,
     IconPipe,
-    ScrollCircleComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogsComponent implements AfterViewInit {
   readonly vm$: Observable<UserState> = this.userFacade.vm$;
-  readonly control = new FormControl<string>('', { nonNullable: true });
 
   isScrollCircleShown = false;
 

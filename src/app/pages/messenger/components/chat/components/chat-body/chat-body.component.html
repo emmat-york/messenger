@@ -7,5 +7,9 @@
 </ul>
 
 @if (isScrollCircleShown) {
-<app-scroll-circle class="scroll-circle" (click)="onScrollDown()"></app-scroll-circle>
+<app-scroll-circle
+  type="up"
+  class="scroll-circle"
+  (click)="onScrollDown()"
+></app-scroll-circle>
 }

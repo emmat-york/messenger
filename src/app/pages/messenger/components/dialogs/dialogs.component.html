@@ -4,21 +4,14 @@
   </button>
 
   <label class="label" for="contact-search-input-bar">
-    <input
-      [formControl]="control"
-      placeholder="Search"
-      id="contact-search-input-bar"
-      class="input"
-      type="text"
-    />
+    <input placeholder="Search" id="contact-search-input-bar" class="input" type="text" />
   </label>
 </div>
 
 <ng-container *ngrxLet="vm$; let vm">
   @if (vm.userData?.contacts?.length) {
   <ul #contactList class="contact-list">
-    @for (dialog of vm.userData?.contacts | arrayFilter: control.value : 'userName'; track
-    dialog.userName) {
+    @for (dialog of vm.userData?.contacts; track dialog.userName) {
     <li class="contact" (click)="setSelectedUserId(vm.selectedContact?.id, dialog)">
       <app-dialog
         [class.selected]="dialog.id === vm.selectedContact?.id"
@@ -27,15 +20,13 @@
     </li>
     }
   </ul>
-  } @else {
-  <div class="no-contacts">No contacts</div>
   }
 </ng-container>
 
 @if (isScrollCircleShown) {
 <app-scroll-circle
   class="scroll-circle"
-  type="up"
+  type="down"
   (click)="onScrollUp()"
 ></app-scroll-circle>
 }
