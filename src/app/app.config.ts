@@ -9,7 +9,7 @@ import { SettingsEffect } from './store/settings/settings.effect';
 import { ChatEffect } from './store/chat/chat.effect';
 import { provideHttpClient } from '@angular/common/http';
 import { AuthUserService } from './shared/services/app/auth-user/auth-user.service';
-import { EMPTY, Observable, tap } from 'rxjs';
+import { Observable, of, tap } from 'rxjs';
 import { UserService } from './shared/services/api/user/user.service';
 import { UserData } from './store/user/user.interface';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -32,7 +32,7 @@ function initializeAppFactory(
   userService: UserService,
   userFacade: UserFacade,
   authFacade: AuthFacade,
-): () => Observable<UserData | never> {
+): () => Observable<UserData | null> {
   return () => {
     if (authUserService.isAuth) {
       return userService.getUserData$(authUserService.token).pipe(
@@ -43,13 +43,13 @@ function initializeAppFactory(
           },
           error: () => {
             authUserService.logOut();
-            return EMPTY;
+            return of(null);
           },
         }),
       );
     }
 
-    return EMPTY;
+    return of(null);
   };
 }
 
