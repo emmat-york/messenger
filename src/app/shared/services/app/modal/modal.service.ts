@@ -1,4 +1,9 @@
-import { ApplicationRef, Injectable, ViewContainerRef } from '@angular/core';
+import {
+  ApplicationRef,
+  ComponentRef,
+  Injectable,
+  ViewContainerRef,
+} from '@angular/core';
 import { ModalFrameComponent } from './modal-frame-component/modal-frame.component';
 import { Constructor } from '../../../interfaces/common.interface';
 import { Observable, Subject } from 'rxjs';
@@ -9,6 +14,7 @@ import { ModalSettings } from './interfaces/modal.interface';
 })
 export class ModalService {
   private viewRef?: ViewContainerRef;
+  private modalRefs: ComponentRef<ModalFrameComponent<object, any>>[] = [];
 
   constructor(private readonly appRef: ApplicationRef) {
     requestAnimationFrame(() => {
@@ -36,19 +42,31 @@ export class ModalService {
       );
     }
 
+    if (!settings?.multi) {
+      this.dismissAll();
+    }
+
     const instance = modalRef.instance;
     const destroy$ = new Subject<Action>();
 
     instance.component = component;
     instance.closeAction = (action: Action) => {
-      modalRef.destroy();
+      this.modalRefs = this.modalRefs.filter(ref => ref === modalRef);
       destroy$.next(action);
       destroy$.complete();
+      modalRef.destroy();
     };
 
     instance.modalData = modalData ? modalData : ({} as ModalData);
     instance.settings = settings ? settings : ({} as ModalSettings);
 
+    this.modalRefs.push(modalRef);
+
     return destroy$.asObservable();
+  }
+
+  dismissAll(): void {
+    this.modalRefs.forEach(modalRef => modalRef.instance.closeAction(undefined));
+    this.modalRefs = [];
   }
 }
