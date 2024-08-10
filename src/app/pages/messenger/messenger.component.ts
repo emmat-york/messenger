@@ -16,8 +16,8 @@ export class MessengerComponent {
   constructor(private readonly userFacade: UserFacade) {}
 
   @HostListener('document:keydown.escape') escapeKeyListener(): void {
-    this.userFacade.vm$.pipe(take(1)).subscribe(({ selectedContact }) => {
-      if (!selectedContact) {
+    this.userFacade.vm$.pipe(take(1)).subscribe(({ selectedDialog }) => {
+      if (!selectedDialog) {
         return;
       }
 

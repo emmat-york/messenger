@@ -1,16 +1,16 @@
 import { createFeature, createReducer, createSelector, on } from '@ngrx/store';
-import { Contact, UserData } from './user.interface';
+import { Dialog, UserData } from './user.interface';
 import * as action from './user.action';
 import { USER_KEY } from '../constants/store.constant';
 
 export interface UserState {
   userData: UserData | null;
-  selectedContact: Contact | null;
+  selectedDialog: Dialog | null;
 }
 
 const initialState: UserState = {
   userData: null,
-  selectedContact: null,
+  selectedDialog: null,
 };
 
 const userFeature = createFeature({
@@ -18,20 +18,20 @@ const userFeature = createFeature({
   reducer: createReducer(
     initialState,
     on(action.setUserData, (state, { userData }) => ({ ...state, userData })),
-    on(action.setSelectedContact, (state, { selectedContact }) => ({
+    on(action.setSelectedContact, (state, { selectedDialog }) => ({
       ...state,
-      selectedContact,
+      selectedDialog,
     })),
   ),
 });
 
-export const { selectUserData, selectSelectedContact, reducer } = userFeature;
+export const { selectUserData, selectSelectedDialog, reducer } = userFeature;
 
 export const selectUserVM = createSelector(
   selectUserData,
-  selectSelectedContact,
-  (userData, selectedContact) => ({
+  selectSelectedDialog,
+  (userData, selectedDialog) => ({
     userData,
-    selectedContact,
+    selectedDialog,
   }),
 );

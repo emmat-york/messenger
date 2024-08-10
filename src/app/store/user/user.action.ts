@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Contact, UserData } from './user.interface';
+import { Dialog, UserData } from './user.interface';
 
 export const setUserData = createAction(
   '[USER] setUserData',
@@ -7,6 +7,6 @@ export const setUserData = createAction(
 );
 
 export const setSelectedContact = createAction(
-  '[USER] setSelectedContact',
-  props<{ selectedContact: Contact | null }>(),
+  '[USER] setSelectedDialog',
+  props<{ selectedDialog: Dialog | null }>(),
 );

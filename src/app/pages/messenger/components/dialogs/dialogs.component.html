@@ -9,13 +9,13 @@
 </div>
 
 <ng-container *ngrxLet="vm$; let vm">
-  @if (vm.userData?.contacts?.length) {
+  @if (vm.userData?.dialogs?.length) {
   <ul #contactList class="contact-list">
-    @for (dialog of vm.userData?.contacts; track dialog.userName) {
-    <li class="contact" (click)="setSelectedUserId(vm.selectedContact?.id, dialog)">
+    @for (dialog of vm.userData?.dialogs; track dialog.userName) {
+    <li class="contact" (click)="setSelectedDialog(vm.selectedDialog?.id, dialog)">
       <app-dialog
-        [class.selected]="dialog.id === vm.selectedContact?.id"
-        [contact]="dialog"
+        [class.selected]="dialog.id === vm.selectedDialog?.id"
+        [dialog]="dialog"
       ></app-dialog>
     </li>
     }

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { DatePipe, NgOptimizedImage } from '@angular/common';
-import { Contact } from '../../../../../../store/user/user.interface';
+import { Dialog } from '../../../../../../store/user/user.interface';
 
 @Component({
   selector: 'app-dialog',
@@ -11,5 +11,5 @@ import { Contact } from '../../../../../../store/user/user.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogComponent {
-  @Input() contact: Contact;
+  @Input() dialog: Dialog;
 }

@@ -6,9 +6,6 @@ import { LetDirective } from '@ngrx/component';
 import { ChatTopBarComponent } from './components/chat-top-bar/chat-top-bar.component';
 import { UserFacade } from '../../../../store/user/user.facade';
 import { NoSelectedContactComponent } from './components/no-selected-contact/no-selected-contact.component';
-import { Observable } from 'rxjs';
-import { ChatState } from '../../../../store/chat/chat.feature';
-import { UserState } from '../../../../store/user/user.feature';
 
 @Component({
   selector: 'app-chat',
@@ -26,8 +23,8 @@ import { UserState } from '../../../../store/user/user.feature';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChatComponent {
-  readonly userVm$: Observable<UserState> = this.userFacade.vm$;
-  readonly chatVm$: Observable<ChatState> = this.chatFacade.vm$;
+  readonly userVm$ = this.userFacade.vm$;
+  readonly chatVm$ = this.chatFacade.vm$;
 
   constructor(
     private readonly userFacade: UserFacade,

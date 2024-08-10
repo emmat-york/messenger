@@ -13,7 +13,7 @@ import { UserFacade } from '../../../../store/user/user.facade';
 import { IconPipe } from '../../../../shared/pipes/icon/icon.pipe';
 import { NgOptimizedImage } from '@angular/common';
 import { LetDirective } from '@ngrx/component';
-import { Contact } from '../../../../store/user/user.interface';
+import { Dialog } from '../../../../store/user/user.interface';
 import { debounceTime, fromEvent, Observable } from 'rxjs';
 import { UserState } from '../../../../store/user/user.feature';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -65,12 +65,12 @@ export class DialogsComponent implements AfterViewInit {
     });
   }
 
-  setSelectedUserId(selectedContactId: number | undefined, contact: Contact): void {
-    if (selectedContactId === contact.id) {
+  setSelectedDialog(selectedDialogId: number | undefined, dialog: Dialog): void {
+    if (selectedDialogId === dialog.id) {
       return;
     }
 
-    this.userFacade.setSelectedContact(contact);
+    this.userFacade.setSelectedContact(dialog);
   }
 
   onScrollUp(): void {

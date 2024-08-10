@@ -58,7 +58,7 @@ export class ModalService {
     };
 
     instance.modalData = modalData ? modalData : ({} as ModalData);
-    instance.settings = settings ? settings : ({} as ModalSettings);
+    instance.settings = settings ? settings : {};
 
     this.modalRefs.push(modalRef);
 

@@ -5,13 +5,12 @@ export interface UserData {
   userName: string;
   phoneNumber: string;
   avatar: string;
-  contacts: Contact[];
+  dialogs: Dialog[];
 }
 
-export interface Contact {
+export interface Dialog {
   id: number;
   userName: string;
-  phoneNumber: string;
   avatar: string;
   isOnline: boolean;
   roomId: string;

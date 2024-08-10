@@ -1,6 +1,6 @@
 <header class="header">
   <img
-    [ngSrc]="selectedContact.avatar"
+    [ngSrc]="selectedDialog.avatar"
     class="avatar"
     priority
     width="32"
@@ -9,9 +9,9 @@
   />
 
   <div>
-    <h3 class="name">{{ selectedContact.userName }}</h3>
-    <span class="online-indicator" [class.online]="selectedContact.isOnline">{{
-      selectedContact.isOnline ? 'online' : 'offline'
+    <h3 class="name">{{ selectedDialog.userName }}</h3>
+    <span class="online-indicator" [class.online]="selectedDialog.isOnline">{{
+      selectedDialog.isOnline ? 'online' : 'offline'
     }}</span>
   </div>
 </header>

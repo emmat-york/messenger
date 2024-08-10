@@ -13,10 +13,9 @@ export class UserService {
       phoneNumber: '12345678',
       userName: 'Andrei Filimonchyk',
       avatar: 'assets/icons/system/avatar.svg',
-      contacts: [
+      dialogs: [
         {
           id: 2,
-          phoneNumber: '+375259273423',
           userName: 'Pavel',
           avatar: 'assets/icons/system/avatar.svg',
           isOnline: false,
@@ -33,7 +32,6 @@ export class UserService {
         },
         {
           id: 3,
-          phoneNumber: '+375259273423',
           userName: 'Pavel',
           avatar: 'assets/icons/system/avatar.svg',
           isOnline: false,
@@ -50,7 +48,6 @@ export class UserService {
         },
         {
           id: 4,
-          phoneNumber: '+375259273423',
           userName: 'Pavel',
           avatar: 'assets/icons/system/avatar.svg',
           isOnline: true,
@@ -67,7 +64,6 @@ export class UserService {
         },
         {
           id: 5,
-          phoneNumber: '+375259273423',
           userName: 'Pavel',
           avatar: 'assets/icons/system/avatar.svg',
           isOnline: true,
@@ -84,7 +80,6 @@ export class UserService {
         },
         {
           id: 6,
-          phoneNumber: '+375259273423',
           userName: 'Pavel',
           avatar: 'assets/icons/system/avatar.svg',
           isOnline: true,
@@ -101,7 +96,6 @@ export class UserService {
         },
         {
           id: 7,
-          phoneNumber: '+375259273423',
           userName: 'Pavel',
           avatar: 'assets/icons/system/avatar.svg',
           isOnline: true,
@@ -118,7 +112,6 @@ export class UserService {
         },
         {
           id: 8,
-          phoneNumber: '+375259273423',
           userName: 'Pavel',
           avatar: 'assets/icons/system/avatar.svg',
           isOnline: true,
@@ -135,7 +128,6 @@ export class UserService {
         },
         {
           id: 9,
-          phoneNumber: '+375259273423',
           userName: 'Pavel',
           avatar: 'assets/icons/system/avatar.svg',
           isOnline: true,
@@ -152,7 +144,6 @@ export class UserService {
         },
         {
           id: 10,
-          phoneNumber: '+375259273423',
           userName: 'Pavel',
           avatar: 'assets/icons/system/avatar.svg',
           isOnline: true,
@@ -169,7 +160,6 @@ export class UserService {
         },
         {
           id: 11,
-          phoneNumber: '+375259273423',
           userName: 'Pavel',
           avatar: 'assets/icons/system/avatar.svg',
           isOnline: false,
@@ -186,7 +176,6 @@ export class UserService {
         },
         {
           id: 12,
-          phoneNumber: '+375259273423',
           userName: 'Pavel',
           avatar: 'assets/icons/system/avatar.svg',
           isOnline: false,
@@ -203,7 +192,6 @@ export class UserService {
         },
         {
           id: 13,
-          phoneNumber: '+375259273423',
           userName: 'Pavel',
           avatar: 'assets/icons/system/avatar.svg',
           isOnline: false,
@@ -220,7 +208,6 @@ export class UserService {
         },
         {
           id: 14,
-          phoneNumber: '+375259273423',
           userName: 'Pavel',
           avatar: 'assets/icons/system/avatar.svg',
           isOnline: false,
@@ -237,7 +224,6 @@ export class UserService {
         },
         {
           id: 15,
-          phoneNumber: '+375259273423',
           userName: 'Pavel',
           avatar: 'assets/icons/system/avatar.svg',
           isOnline: false,
@@ -254,7 +240,6 @@ export class UserService {
         },
         {
           id: 16,
-          phoneNumber: '+375259273423',
           userName: 'Pavel',
           avatar: 'assets/icons/system/avatar.svg',
           isOnline: true,
@@ -271,7 +256,6 @@ export class UserService {
         },
         {
           id: 17,
-          phoneNumber: '+375259273423',
           userName: 'Pavel',
           avatar: 'assets/icons/system/avatar.svg',
           isOnline: true,

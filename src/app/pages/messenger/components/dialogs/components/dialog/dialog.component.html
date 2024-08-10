@@ -1,12 +1,12 @@
-<div [class.online]="contact.isOnline">
-  <img [ngSrc]="contact.avatar" width="48" height="48" alt="avatar" />
+<div [class.online]="dialog.isOnline">
+  <img [ngSrc]="dialog.avatar" width="48" height="48" alt="avatar" />
 </div>
 
 <div class="contact-info">
   <div class="name-and-date">
-    <h3 class="user-name">{{ contact.userName }}</h3>
-    <span class="date">{{ contact.lastMessage.creationDate | date: 'shortTime' }}</span>
+    <h3 class="user-name">{{ dialog.userName }}</h3>
+    <span class="date">{{ dialog.lastMessage.creationDate | date: 'shortTime' }}</span>
   </div>
 
-  <span class="message">{{ contact.lastMessage.message }}</span>
+  <span class="message">{{ dialog.lastMessage.message }}</span>
 </div>

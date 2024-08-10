@@ -15,12 +15,12 @@ export class ChatEffect {
   requestChatHistoryByRoomId$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(userAction.setSelectedContact),
-      switchMap(({ selectedContact }) => {
-        if (!selectedContact) {
+      switchMap(({ selectedDialog }) => {
+        if (!selectedDialog) {
           return EMPTY;
         }
 
-        return this.chatService.getChatHistoryByRoomId$(selectedContact.roomId);
+        return this.chatService.getChatHistoryByRoomId$(selectedDialog.roomId);
       }),
       catchError(() => {
         return throwError(() => '');
