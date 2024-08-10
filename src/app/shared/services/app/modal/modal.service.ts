@@ -22,6 +22,10 @@ export class ModalService {
     });
   }
 
+  get isModalOpened(): boolean {
+    return !!this.modalRefs.length;
+  }
+
   open<ModalData extends object, Action = undefined>({
     component,
     modalData,

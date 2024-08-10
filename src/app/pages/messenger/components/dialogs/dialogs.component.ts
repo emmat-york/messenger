@@ -70,7 +70,7 @@ export class DialogsComponent implements AfterViewInit {
       return;
     }
 
-    this.userFacade.setSelectedContact(dialog);
+    this.userFacade.setSelectedDialog(dialog);
   }
 
   onScrollUp(): void {

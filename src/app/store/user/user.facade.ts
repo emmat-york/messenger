@@ -13,7 +13,7 @@ export class UserFacade extends BaseStoreFacade {
     this.dispatch(action.setUserData({ userData }));
   }
 
-  setSelectedContact(selectedDialog: Dialog | null): void {
-    this.dispatch(action.setSelectedContact({ selectedDialog }));
+  setSelectedDialog(selectedDialog: Dialog | null): void {
+    this.dispatch(action.setSelectedDialog({ selectedDialog }));
   }
 }

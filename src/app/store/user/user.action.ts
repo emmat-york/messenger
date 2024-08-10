@@ -6,7 +6,7 @@ export const setUserData = createAction(
   props<{ userData: UserData | null }>(),
 );
 
-export const setSelectedContact = createAction(
+export const setSelectedDialog = createAction(
   '[USER] setSelectedDialog',
   props<{ selectedDialog: Dialog | null }>(),
 );

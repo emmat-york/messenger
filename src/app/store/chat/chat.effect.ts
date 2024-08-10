@@ -14,7 +14,7 @@ export class ChatEffect {
 
   requestChatHistoryByRoomId$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(userAction.setSelectedContact),
+      ofType(userAction.setSelectedDialog),
       switchMap(({ selectedDialog }) => {
         if (!selectedDialog) {
           return EMPTY;

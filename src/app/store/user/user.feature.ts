@@ -18,7 +18,7 @@ const userFeature = createFeature({
   reducer: createReducer(
     initialState,
     on(action.setUserData, (state, { userData }) => ({ ...state, userData })),
-    on(action.setSelectedContact, (state, { selectedDialog }) => ({
+    on(action.setSelectedDialog, (state, { selectedDialog }) => ({
       ...state,
       selectedDialog,
     })),

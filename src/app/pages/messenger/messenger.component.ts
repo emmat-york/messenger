@@ -3,6 +3,7 @@ import { DialogsComponent } from './components/dialogs/dialogs.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { UserFacade } from '../../store/user/user.facade';
 import { take } from 'rxjs';
+import { ModalService } from '../../shared/services/app/modal/modal.service';
 
 @Component({
   selector: 'app-messenger',
@@ -13,15 +14,22 @@ import { take } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MessengerComponent {
-  constructor(private readonly userFacade: UserFacade) {}
+  constructor(
+    private readonly modalService: ModalService,
+    private readonly userFacade: UserFacade,
+  ) {}
 
   @HostListener('document:keydown.escape') escapeKeyListener(): void {
+    if (this.modalService.isModalOpened) {
+      return;
+    }
+
     this.userFacade.vm$.pipe(take(1)).subscribe(({ selectedDialog }) => {
       if (!selectedDialog) {
         return;
       }
 
-      this.userFacade.setSelectedContact(null);
+      this.userFacade.setSelectedDialog(null);
     });
   }
 }
