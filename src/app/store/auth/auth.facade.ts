@@ -3,7 +3,9 @@ import { BaseStoreFacade } from '../utils/base-store-facade';
 import * as actions from './auth.action';
 import { selectErrorMsg, selectIsAuth } from './auth.feature';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class AuthFacade extends BaseStoreFacade {
   readonly isAuth$ = this.store.select(selectIsAuth);
   readonly errorMsg$ = this.store.select(selectErrorMsg);

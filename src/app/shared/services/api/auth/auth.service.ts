@@ -9,7 +9,9 @@ import {
   RegistrationResponse,
 } from './interfaces/auth.interface';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class AuthService {
   constructor(private readonly http: HttpClient) {}
 

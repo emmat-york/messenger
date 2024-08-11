@@ -15,7 +15,9 @@ import { UserService } from '../../api/user/user.service';
 import { UserData } from '../../../../store/user/user.interface';
 import { AuthFacade } from '../../../../store/auth/auth.facade';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class AuthUserService {
   constructor(
     private readonly authService: AuthService,

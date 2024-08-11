@@ -9,13 +9,12 @@ import { SettingsEffect } from './store/settings/settings.effect';
 import { ChatEffect } from './store/chat/chat.effect';
 import { provideHttpClient } from '@angular/common/http';
 import { AuthUserService } from './shared/services/app/auth-user/auth-user.service';
-import { Observable, of, tap } from 'rxjs';
+import { catchError, Observable, of, tap } from 'rxjs';
 import { UserService } from './shared/services/api/user/user.service';
 import { UserData } from './store/user/user.interface';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { UserFacade } from './store/user/user.facade';
 import { AuthFacade } from './store/auth/auth.facade';
-import { AuthService } from './shared/services/api/auth/auth.service';
 import { reducer as authReducer } from './store/auth/auth.feature';
 import { reducer as chatReducer } from './store/chat/chat.feature';
 import { reducer as settingsReducer } from './store/settings/settings.feature';
@@ -26,25 +25,26 @@ import {
   SETTINGS_KEY,
   USER_KEY,
 } from './store/constants/store.constant';
+import { ChatSocket } from './shared/services/socket/chat/chat.socket';
 
 function initializeAppFactory(
   authUserService: AuthUserService,
   userService: UserService,
   userFacade: UserFacade,
   authFacade: AuthFacade,
+  chatSocket: ChatSocket,
 ): () => Observable<UserData | null> {
   return () => {
     if (authUserService.isAuth) {
       return userService.getUserData$(authUserService.token).pipe(
-        tap({
-          next: userData => {
-            userFacade.setUserData(userData);
-            authFacade.setIsAuth(true);
-          },
-          error: () => {
-            authUserService.logOut();
-            return of(null);
-          },
+        tap(userData => {
+          userFacade.setUserData(userData);
+          authFacade.setIsAuth(true);
+          chatSocket.init();
+        }),
+        catchError(() => {
+          authUserService.logOut();
+          return of(null);
         }),
       );
     }
@@ -55,11 +55,6 @@ function initializeAppFactory(
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    AuthService,
-    AuthUserService,
-    AuthFacade,
-    UserService,
-    UserFacade,
     provideRouter(routes),
     provideStore(),
     provideState({ name: AUTH_KEY, reducer: authReducer }),
@@ -73,7 +68,7 @@ export const appConfig: ApplicationConfig = {
     {
       provide: APP_INITIALIZER,
       useFactory: initializeAppFactory,
-      deps: [AuthUserService, UserService, UserFacade, AuthFacade],
+      deps: [AuthUserService, UserService, UserFacade, AuthFacade, ChatSocket],
       multi: true,
     },
   ],

@@ -22,6 +22,28 @@ const userFeature = createFeature({
       ...state,
       selectedDialog,
     })),
+    on(action.updateLastMessage, (state, { message, roomId }) => {
+      if (!state.userData) {
+        return state;
+      }
+
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          dialogs: state.userData.dialogs.map(dialog => {
+            if (dialog.roomId === roomId) {
+              return {
+                ...dialog,
+                lastMessage: message,
+              };
+            }
+
+            return dialog;
+          }),
+        },
+      };
+    }),
   ),
 });
 

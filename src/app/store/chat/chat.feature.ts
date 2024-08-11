@@ -24,18 +24,18 @@ const chatFeature = createFeature({
         input,
       }),
     ),
-    on(action.sendMessage, (state): ChatState => ({ ...state, input: '' })),
     on(action.resetInput, (state): ChatState => ({ ...state, input: '' })),
     on(
-      action.setMessagesHistory,
+      action.setMessagesHistorySuccess,
       (state, { messages }): ChatState => ({
         ...state,
         messages,
       }),
     ),
-    on(action.setMessage, (state, { message }) => ({
+    on(action.setMessage, (state, { message, withInputReset }) => ({
       ...state,
       messages: [...state.messages, message],
+      input: withInputReset ? '' : state.input,
     })),
   ),
   extraSelectors: ({ selectInput, selectMessages }) => ({
