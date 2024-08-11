@@ -42,25 +42,30 @@ export class ChatEffect {
       )
       .pipe(
         map(([, chatVm, userVm]) => {
+          if (!userVm.userData || !userVm.selectedDialog) {
+            throw new Error('Impossible to send message.');
+          }
+
           const message: Message = {
             id: 11111123334,
-            uuid: userVm.userData!.id,
+            uuid: userVm.userData.id,
             message: chatVm.input,
-            userName: userVm.userData!.userName,
-            roomId: userVm.selectedDialog!.roomId,
-            creationDate: '01-01-2020',
+            userName: userVm.userData.userName,
+            roomId: userVm.selectedDialog.roomId,
+            creationDate: new Date().toUTCString(),
             editDate: null,
             likes: [],
           };
 
-          this.chatSocket.request(message, userVm.selectedDialog!.roomId);
+          this.chatSocket.request(message, userVm.selectedDialog.roomId);
 
-          return action.setMessage({ message, withInputReset: true });
+          return action.setMessage({
+            message,
+            roomId: userVm.selectedDialog.roomId,
+            withInputReset: true,
+          });
         }),
+        catchError(() => of(action.sendMessageFail())),
       );
   });
-
-  // getMessage$ = createEffect(() => {
-  //   return this.actions$.pipe();
-  // });
 }

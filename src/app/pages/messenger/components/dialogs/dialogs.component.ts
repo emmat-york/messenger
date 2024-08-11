@@ -14,8 +14,7 @@ import { IconPipe } from '../../../../shared/pipes/icon/icon.pipe';
 import { NgOptimizedImage } from '@angular/common';
 import { LetDirective } from '@ngrx/component';
 import { Dialog } from '../../../../store/user/user.interface';
-import { debounceTime, fromEvent, Observable } from 'rxjs';
-import { UserState } from '../../../../store/user/user.feature';
+import { debounceTime, fromEvent } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ScrollEvent } from '../chat/components/chat-body/interfaces/chat-body.interface';
 import { ScrollCircleComponent } from '../../../../shared/components/scroll-circle/scroll-circle.component';
@@ -38,7 +37,7 @@ import { UserMenuModalData } from './components/user-menu/interfaces/user-menu.i
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogsComponent implements AfterViewInit {
-  readonly vm$: Observable<UserState> = this.userFacade.vm$;
+  readonly vm$ = this.userFacade.vm$;
 
   isScrollCircleShown = false;
 

@@ -1,6 +1,7 @@
 import { createFeature, createReducer, createSelector, on } from '@ngrx/store';
 import { Dialog, UserData } from './user.interface';
 import * as action from './user.action';
+import * as chatAction from '../chat/chat.action';
 import { USER_KEY } from '../constants/store.constant';
 
 export interface UserState {
@@ -22,7 +23,7 @@ const userFeature = createFeature({
       ...state,
       selectedDialog,
     })),
-    on(action.updateLastMessage, (state, { message, roomId }) => {
+    on(chatAction.setMessage, (state, { message, roomId }) => {
       if (!state.userData) {
         return state;
       }

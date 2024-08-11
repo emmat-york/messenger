@@ -30,12 +30,4 @@ export class ChatComponent {
     private readonly userFacade: UserFacade,
     private readonly chatFacade: ChatFacade,
   ) {}
-
-  setInput(input: string): void {
-    this.chatFacade.setInput(input);
-  }
-
-  sendMessage(): void {
-    this.chatFacade.sendMessage();
-  }
 }

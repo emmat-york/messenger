@@ -7,10 +7,5 @@
 />
 
 <button class="send-message-button" type="button" (click)="onSendMessage()">
-  <img
-    ngSrc="../../../../../../../assets/icons/system/send.svg"
-    width="24"
-    height="24"
-    alt="send"
-  />
+  <img [ngSrc]="'send' | icon" width="24" height="24" alt="send" />
 </button>
