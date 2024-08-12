@@ -17,6 +17,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ScrollEvent } from './interfaces/chat-body.interface';
 import { ScrollCircleComponent } from '../../../../../../shared/components/scroll-circle/scroll-circle.component';
 import { Message } from '../../interfaces/chat.interface';
+import { ScrollBehaviour } from '../../../../../../shared/interfaces/common.interface';
 
 @Component({
   selector: 'app-chat-body',
@@ -93,7 +94,7 @@ export class ChatBodyComponent implements OnChanges, OnInit, AfterViewInit {
     );
   }
 
-  private setScrollBehaviour(behaviour: 'smooth' | 'auto'): void {
+  private setScrollBehaviour(behaviour: ScrollBehaviour): void {
     this.renderer2.setStyle(this.elementRef.nativeElement, 'scrollBehavior', behaviour);
   }
 

@@ -40,6 +40,9 @@ $avatar-indent: 16px;
   font-size: 15px;
   font-weight: 400;
   line-height: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .date {

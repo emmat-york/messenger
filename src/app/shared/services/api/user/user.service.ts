@@ -18,7 +18,7 @@ export class UserService {
       dialogs: [
         {
           id: 2,
-          userName: 'Pavel',
+          userName: 'Pavel Filimonchyk  asdfasd fasdfasdfas dfasd fasdf',
           avatar: 'assets/icons/system/avatar.svg',
           isOnline: false,
           roomId: 'room-1',
@@ -34,7 +34,7 @@ export class UserService {
         },
         {
           id: 3,
-          userName: 'Pavel',
+          userName: 'Pavel Filimonchyk',
           avatar: 'assets/icons/system/avatar.svg',
           isOnline: false,
           roomId: 'room-2',
@@ -50,7 +50,7 @@ export class UserService {
         },
         {
           id: 4,
-          userName: 'Pavel',
+          userName: 'Pavel Filimonchyk',
           avatar: 'assets/icons/system/avatar.svg',
           isOnline: true,
           roomId: 'room-3',
@@ -66,7 +66,7 @@ export class UserService {
         },
         {
           id: 5,
-          userName: 'Pavel',
+          userName: 'Pavel Filimonchyk',
           avatar: 'assets/icons/system/avatar.svg',
           isOnline: true,
           roomId: 'room-4',
@@ -82,7 +82,7 @@ export class UserService {
         },
         {
           id: 6,
-          userName: 'Pavel',
+          userName: 'Pavel Filimonchyk',
           avatar: 'assets/icons/system/avatar.svg',
           isOnline: true,
           roomId: 'room-5',
@@ -98,7 +98,7 @@ export class UserService {
         },
         {
           id: 7,
-          userName: 'Pavel',
+          userName: 'Pavel Filimonchyk',
           avatar: 'assets/icons/system/avatar.svg',
           isOnline: true,
           roomId: 'room-6',
@@ -114,7 +114,7 @@ export class UserService {
         },
         {
           id: 8,
-          userName: 'Pavel',
+          userName: 'Pavel Filimonchyk',
           avatar: 'assets/icons/system/avatar.svg',
           isOnline: true,
           roomId: 'room-7',
@@ -130,7 +130,7 @@ export class UserService {
         },
         {
           id: 9,
-          userName: 'Pavel',
+          userName: 'Pavel Filimonchyk',
           avatar: 'assets/icons/system/avatar.svg',
           isOnline: true,
           roomId: 'room-8',
@@ -146,7 +146,7 @@ export class UserService {
         },
         {
           id: 10,
-          userName: 'Pavel',
+          userName: 'Pavel Filimonchyk',
           avatar: 'assets/icons/system/avatar.svg',
           isOnline: true,
           roomId: 'room-9',
