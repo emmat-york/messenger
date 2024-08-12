@@ -70,12 +70,31 @@ export class ChatBodyComponent implements OnChanges, OnInit, AfterViewInit {
     this.scrollDown();
   }
 
-  scrollDown(): void {
+  scrollDown(softScroll?: boolean): void {
+    if (softScroll) {
+      this.softScroll();
+      return;
+    }
+
+    this.scroll();
+  }
+
+  private softScroll(): void {
+    this.setScrollBehaviour('smooth');
+    this.scroll();
+    this.setScrollBehaviour('auto');
+  }
+
+  private scroll(): void {
     this.renderer2.setProperty(
       this.elementRef.nativeElement,
       'scrollTop',
       this.elementRef.nativeElement.scrollHeight,
     );
+  }
+
+  private setScrollBehaviour(behaviour: 'smooth' | 'auto'): void {
+    this.renderer2.setStyle(this.elementRef.nativeElement, 'scrollBehavior', behaviour);
   }
 
   private initScrollListener(): void {
