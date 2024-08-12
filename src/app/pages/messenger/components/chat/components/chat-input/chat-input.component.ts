@@ -40,14 +40,14 @@ export class ChatInputComponent implements OnInit {
   ) {}
 
   @HostListener('keydown.enter') enterKeyListener(): void {
-    this.onSendMessage();
+    this.sendMessage();
   }
 
   ngOnInit(): void {
     this.subscribeToInput();
   }
 
-  onSendMessage(): void {
+  sendMessage(): void {
     if (!this.control.value) {
       return;
     }
@@ -55,6 +55,8 @@ export class ChatInputComponent implements OnInit {
     this.chatFacade.sendMessage();
     this.chatInputRef.nativeElement.focus();
   }
+
+  openEmojiMenu(): void {}
 
   private subscribeToInput(): void {
     this.control.valueChanges

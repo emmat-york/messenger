@@ -6,6 +6,10 @@
   type="text"
 />
 
-<button class="send-message-button" type="button" (click)="onSendMessage()">
+<button class="action-button" type="button" (click)="openEmojiMenu()">
+  <img [ngSrc]="'smile' | icon" width="24" height="24" alt="emoji" />
+</button>
+
+<button class="action-button" type="button" (click)="sendMessage()">
   <img [ngSrc]="'send' | icon" width="24" height="24" alt="send" />
 </button>

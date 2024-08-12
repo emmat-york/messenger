@@ -28,11 +28,13 @@
 .message-date {
   position: relative;
   bottom: -4px;
-
   display: flex;
   align-items: flex-end;
-
   font-size: 10px;
   font-weight: 400;
   line-height: 16px;
+}
+
+:host-context(.your-message) {
+  background-color: var(--green_light1);
 }

@@ -4,6 +4,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
   padding: 8px 16px;
   border-left: 1px solid var(--gray_light8);
   background: var(--white1);
@@ -12,10 +13,9 @@
 .chat-input {
   width: 100%;
   height: 28px;
-  margin-right: 16px;
 }
 
-.send-message-button {
+.action-button {
   width: 24px;
   height: 24px;
 }
