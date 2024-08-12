@@ -17,7 +17,6 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ScrollEvent } from './interfaces/chat-body.interface';
 import { ScrollCircleComponent } from '../../../../../../shared/components/scroll-circle/scroll-circle.component';
 import { Message } from '../../interfaces/chat.interface';
-import { ScrollBehaviour } from '../../../../../../shared/interfaces/common.interface';
 
 @Component({
   selector: 'app-chat-body',
@@ -71,31 +70,12 @@ export class ChatBodyComponent implements OnChanges, OnInit, AfterViewInit {
     this.scrollDown();
   }
 
-  scrollDown(softScroll?: boolean): void {
-    if (softScroll) {
-      this.softScroll();
-      return;
-    }
-
-    this.scroll();
-  }
-
-  private softScroll(): void {
-    this.setScrollBehaviour('smooth');
-    this.scroll();
-    this.setScrollBehaviour('auto');
-  }
-
-  private scroll(): void {
+  scrollDown(): void {
     this.renderer2.setProperty(
       this.elementRef.nativeElement,
       'scrollTop',
       this.elementRef.nativeElement.scrollHeight,
     );
-  }
-
-  private setScrollBehaviour(behaviour: ScrollBehaviour): void {
-    this.renderer2.setStyle(this.elementRef.nativeElement, 'scrollBehavior', behaviour);
   }
 
   private initScrollListener(): void {
