@@ -8,10 +8,12 @@ import { ChatFacade } from './chat.facade';
 import { UserFacade } from '../user/user.facade';
 import { ChatSocket } from '../../shared/services/socket/chat/chat.socket';
 import { Message } from '../../pages/messenger/components/chat/interfaces/chat.interface';
+import { SoundService } from '../../shared/services/app/sound/sound.service';
 
 @Injectable()
 export class ChatEffect {
   constructor(
+    private readonly soundService: SoundService,
     private readonly chatService: ChatService,
     private readonly chatFacade: ChatFacade,
     private readonly userFacade: UserFacade,
@@ -58,6 +60,7 @@ export class ChatEffect {
           };
 
           this.chatSocket.request(message, userVm.selectedDialog.roomId);
+          this.soundService.play();
 
           return action.setMessage({
             message,

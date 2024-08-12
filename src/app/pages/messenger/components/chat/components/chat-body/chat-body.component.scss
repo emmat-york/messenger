@@ -10,6 +10,11 @@
 .message {
   margin-bottom: 16px;
 
+  &.your-message {
+    display: flex;
+    justify-content: flex-end;
+  }
+
   &:last-child {
     margin-bottom: 0;
   }

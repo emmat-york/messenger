@@ -36,9 +36,4 @@ export const routes: Routes = [
       import('../pages/login/login.component').then(c => c.LoginComponent),
     canActivate: [canActivateAuth],
   },
-  {
-    path: '**',
-    loadComponent: () =>
-      import('../pages/not-found/not-found.component').then(c => c.NotFoundComponent),
-  },
 ];

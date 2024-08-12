@@ -11,5 +11,6 @@ import { DatePipe } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MessageComponent {
+  @Input() isYoursMessage: boolean;
   @Input() message: Message;
 }

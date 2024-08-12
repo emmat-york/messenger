@@ -1,15 +1,18 @@
 <ul class="message-list">
   @for (message of messages; track message.id) {
-  <li class="message">
-    <app-message [message]="message"></app-message>
+  <li class="message" [class.your-message]="message.uuid === uuid">
+    <app-message
+      [isYoursMessage]="message.uuid === uuid"
+      [message]="message"
+    ></app-message>
   </li>
   }
 </ul>
 
-@if (isScrollCircleShown) {
+@if (hasTheChatBottomBeenReached) {
 <app-scroll-circle
   type="up"
   class="scroll-circle"
-  (click)="onScrollDown()"
+  (click)="scrollDown()"
 ></app-scroll-circle>
 }
