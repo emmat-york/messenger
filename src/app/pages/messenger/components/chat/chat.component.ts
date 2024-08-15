@@ -2,6 +2,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   DestroyRef,
+  ElementRef,
+  HostListener,
   OnInit,
   ViewChild,
 } from '@angular/core';
@@ -38,7 +40,10 @@ export class ChatComponent implements OnInit {
     | ChatBodyComponent
     | undefined;
 
+  @HostListener('window:resize') windowResizeListener(): void {}
+
   constructor(
+    private readonly elementRef: ElementRef<HTMLUnknownElement>,
     private readonly userFacade: UserFacade,
     private readonly chatFacade: ChatFacade,
     private readonly destroyRef: DestroyRef,
@@ -46,6 +51,10 @@ export class ChatComponent implements OnInit {
 
   ngOnInit(): void {
     this.initSelectedDialogListener();
+  }
+
+  get clientWidth(): number {
+    return this.elementRef.nativeElement.clientWidth;
   }
 
   private initSelectedDialogListener(): void {

@@ -2,6 +2,7 @@
 
 $avatar-width: 48px;
 $avatar-indent: 16px;
+$date-width: 64px;
 
 :host {
   display: flex;
@@ -37,6 +38,7 @@ $avatar-indent: 16px;
 }
 
 .user-name {
+  width: calc(100% - #{$date-width} - 12px);
   font-size: 15px;
   font-weight: 400;
   line-height: 20px;
@@ -46,9 +48,11 @@ $avatar-indent: 16px;
 }
 
 .date {
+  width: $date-width;
   font-size: 12px;
   font-weight: 400;
   line-height: 16px;
+  text-align: end;
 }
 
 .message {
