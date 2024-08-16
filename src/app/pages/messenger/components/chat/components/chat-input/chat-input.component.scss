@@ -12,7 +12,7 @@ $horizontal-padding: 16px;
 
 .chat-input {
   width: calc(
-    100% - #{$action-button-width} - #{$action-button-width} - 6px - #{$action-button-width}
+    100% - #{$action-button-width} - #{$action-button-width} - #{$action-button-width}
   );
   min-height: 28px;
   max-height: 196px;

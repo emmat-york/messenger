@@ -24,7 +24,6 @@ const chatFeature = createFeature({
         input,
       }),
     ),
-    on(action.resetInput, (state): ChatState => ({ ...state, input: '' })),
     on(
       action.setMessagesHistorySuccess,
       (state, { messages }): ChatState => ({

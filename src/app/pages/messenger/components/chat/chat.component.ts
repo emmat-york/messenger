@@ -2,8 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   DestroyRef,
-  ElementRef,
-  HostListener,
   OnInit,
   ViewChild,
 } from '@angular/core';
@@ -23,11 +21,11 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   templateUrl: 'chat.component.html',
   styleUrl: 'chat.component.scss',
   imports: [
+    NoSelectedContactComponent,
     ChatTopBarComponent,
     ChatInputComponent,
     ChatBodyComponent,
     LetDirective,
-    NoSelectedContactComponent,
   ],
   providers: [ChatFacade],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -40,10 +38,7 @@ export class ChatComponent implements OnInit {
     | ChatBodyComponent
     | undefined;
 
-  @HostListener('window:resize') windowResizeListener(): void {}
-
   constructor(
-    private readonly elementRef: ElementRef<HTMLUnknownElement>,
     private readonly userFacade: UserFacade,
     private readonly chatFacade: ChatFacade,
     private readonly destroyRef: DestroyRef,
@@ -51,10 +46,6 @@ export class ChatComponent implements OnInit {
 
   ngOnInit(): void {
     this.initSelectedDialogListener();
-  }
-
-  get clientWidth(): number {
-    return this.elementRef.nativeElement.clientWidth;
   }
 
   private initSelectedDialogListener(): void {

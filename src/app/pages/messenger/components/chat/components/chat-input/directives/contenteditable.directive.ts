@@ -18,23 +18,21 @@ import { KeyboardKey, MaxLengthKeyboardKey } from '../enums/chat-input.enum';
 })
 export class ContentEditableFormDirective implements ControlValueAccessor {
   @Input() isMaxLengthReached = false;
+
   @Output() sendMessage = new EventEmitter<KeyboardEvent>();
 
   @HostBinding('attr.contenteditable') contenteditable = true;
 
+  private readonly listOfAllowedKeyboardKeys = Object.values(MaxLengthKeyboardKey);
+  private readonly ngControl = inject(NgControl, { optional: true });
+
   private onChange: (value: string) => void;
   private onTouched: () => void;
-
-  readonly ngControl = inject(NgControl, { optional: true });
-
-  private readonly listOfAllowedKeyboardKeys = Object.values(MaxLengthKeyboardKey);
-  private readonly nativeElement: HTMLElement;
 
   constructor(
     private readonly elementRef: ElementRef<HTMLDivElement>,
     private readonly renderer2: Renderer2,
   ) {
-    this.nativeElement = this.elementRef.nativeElement;
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
     }
@@ -53,7 +51,7 @@ export class ContentEditableFormDirective implements ControlValueAccessor {
   }
 
   @HostListener('input') onInput(): void {
-    this.onChange(this.nativeElement.innerText);
+    this.onChange(this.elementRef.nativeElement.textContent ?? '');
   }
 
   @HostListener('blur') onBlur(): void {
@@ -61,7 +59,7 @@ export class ContentEditableFormDirective implements ControlValueAccessor {
   }
 
   writeValue(value: string): void {
-    this.renderer2.setProperty(this.nativeElement, 'innerText', value || '');
+    this.renderer2.setProperty(this.elementRef.nativeElement, 'textContent', value ?? '');
   }
 
   registerOnChange(onChange: (value: string) => void): void {

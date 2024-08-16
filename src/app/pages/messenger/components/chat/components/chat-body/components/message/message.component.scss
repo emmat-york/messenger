@@ -1,5 +1,7 @@
 @import '../../../../../../../../../styles/variables';
 
+$date-width: 52px;
+
 :host {
   display: flex;
   gap: 8px;
@@ -10,6 +12,7 @@
 }
 
 .message {
+  max-width: calc(100% - $date-width);
   font-size: 13px;
   font-weight: 400;
   line-height: 16px;
@@ -26,9 +29,11 @@
 }
 
 .message-date {
+  width: $date-width;
   position: relative;
   bottom: -4px;
   display: flex;
+  justify-content: flex-end;
   align-items: flex-end;
   font-size: 10px;
   font-weight: 400;

@@ -3,7 +3,6 @@ import {
   Component,
   DestroyRef,
   ElementRef,
-  HostListener,
   Input,
   OnInit,
   ViewChild,
@@ -16,13 +15,19 @@ import { NgOptimizedImage } from '@angular/common';
 import { ChatFacade } from '../../../../../../store/chat/chat.facade';
 import { SLEEPY_OPTIONS } from '../../../../../../shared/constants/form.constant';
 import { IconPipe } from '../../../../../../shared/pipes/icon/icon.pipe';
+import { ContentEditableFormDirective } from './directives/contenteditable.directive';
 
 @Component({
   selector: 'app-chat-input',
   standalone: true,
   templateUrl: 'chat-input.component.html',
   styleUrl: 'chat-input.component.scss',
-  imports: [ReactiveFormsModule, NgOptimizedImage, IconPipe],
+  imports: [
+    ReactiveFormsModule,
+    NgOptimizedImage,
+    IconPipe,
+    ContentEditableFormDirective,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChatInputComponent implements OnInit {
@@ -38,10 +43,6 @@ export class ChatInputComponent implements OnInit {
     private readonly chatFacade: ChatFacade,
     private readonly destroyRef: DestroyRef,
   ) {}
-
-  @HostListener('keydown.enter') enterKeyListener(): void {
-    this.sendMessage();
-  }
 
   ngOnInit(): void {
     this.subscribeToInput();

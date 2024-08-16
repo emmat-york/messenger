@@ -6,7 +6,6 @@ export const setInput = createAction('[CHAT] setInput', props<{ input: string }>
 export const sendMessage = createAction('[CHAT] sendMessage');
 export const sendMessageFail = createAction('[CHAT] sendMessageFail');
 
-export const resetInput = createAction('[CHAT] resetInput');
 export const setMessage = createAction(
   '[CHAT] setMessage',
   props<{ message: Message; roomId: string; withInputReset?: boolean }>(),

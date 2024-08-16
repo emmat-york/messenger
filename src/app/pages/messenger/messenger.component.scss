@@ -1,3 +1,5 @@
+$dialog-width: 348px;
+
 :host {
   display: flex;
   height: 100%;
@@ -5,10 +7,10 @@
 }
 
 .dialogs {
-  width: 25%;
+  width: $dialog-width;
   min-width: 312px;
 }
 
 .chat {
-  width: 75%;
+  width: calc(100% - #{$dialog-width});
 }

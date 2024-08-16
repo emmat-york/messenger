@@ -1,10 +1,12 @@
 <div
   #chatInput
-  contenteditable
+  appContenteditable
+  contenteditable="true"
   [formControl]="control"
   [attr.data-placeholder]="'Write a message...'"
   class="chat-input"
   type="text"
+  (sendMessage)="sendMessage()"
 ></div>
 
 <button class="emoji-menu" type="button" (click)="openEmojiMenu()">
