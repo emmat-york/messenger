@@ -4,6 +4,7 @@
   contenteditable="true"
   class="chat-input"
   [ngModel]="input"
+  [style.min-height.px]="initialInputHeight"
   [attr.data-placeholder]="placeholder"
   (ngModelChange)="setInput($event)"
   (sendMessage)="sendMessage()"

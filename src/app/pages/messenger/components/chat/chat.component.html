@@ -10,6 +10,7 @@
   <app-chat-input
     placeholder="Write a message..."
     [input]="vm.chat.input"
+    (scrollDown)="scrollDown()"
   ></app-chat-input>
   } @else {
   <app-no-selected-contact></app-no-selected-contact>

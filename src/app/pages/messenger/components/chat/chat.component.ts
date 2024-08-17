@@ -48,6 +48,10 @@ export class ChatComponent implements OnInit {
     this.initSelectedDialogListener();
   }
 
+  scrollDown(): void {
+    this.chatBodyComponent?.scrollDown();
+  }
+
   private initSelectedDialogListener(): void {
     this.userVm$
       .pipe(
@@ -56,6 +60,6 @@ export class ChatComponent implements OnInit {
         filter(Boolean),
         takeUntilDestroyed(this.destroyRef),
       )
-      .subscribe(() => this.chatBodyComponent?.scrollDown());
+      .subscribe(() => this.scrollDown());
   }
 }
