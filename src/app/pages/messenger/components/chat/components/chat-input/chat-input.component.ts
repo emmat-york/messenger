@@ -21,6 +21,7 @@ import { getTrimmedString } from '../../../../../../shared/utils/form/form.util'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChatInputComponent {
+  @Input() placeholder = '';
   @Input() input = '';
 
   @ViewChild('chatInput') chatInputRef: ElementRef<HTMLInputElement>;
@@ -32,6 +33,11 @@ export class ChatInputComponent {
   }
 
   sendMessage(): void {
+    if (!this.input) {
+      this.chatInputRef.nativeElement.focus();
+      return;
+    }
+
     const trimmedInput = getTrimmedString(this.input);
 
     if (!trimmedInput && this.input.length) {

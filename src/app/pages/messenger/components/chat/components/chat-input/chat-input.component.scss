@@ -1,18 +1,19 @@
 @import '../../../../../../../styles/variables';
 
-$action-button-width: 24px;
-$horizontal-padding: 16px;
+$action-button-size: 24px;
+$indent: 16px;
 
 :host {
   display: flex;
-  padding: 8px $horizontal-padding;
+  gap: $indent;
+  padding: 8px 16px;
   border-left: 1px solid var(--gray_light8);
   background: var(--white1);
 }
 
 .chat-input {
   width: calc(
-    100% - #{$action-button-width} - #{$action-button-width} - #{$action-button-width}
+    100% - #{$action-button-size} - #{$action-button-size} - #{$indent} - #{$indent}
   );
   min-height: 28px;
   max-height: 196px;
@@ -29,18 +30,17 @@ $horizontal-padding: 16px;
   }
 }
 
-.emoji-menu {
-  position: absolute;
-  bottom: 10px;
-  right: 62px;
-  width: $action-button-width;
-  height: 24px;
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: $indent;
+  width: calc(#{$action-button-size} + #{$action-button-size} + #{$indent});
 }
 
-.send-message {
-  position: absolute;
-  bottom: 10px;
-  right: 16px;
-  width: $action-button-width;
-  height: 24px;
+.action-button {
+  position: relative;
+  bottom: 2px;
+  width: $action-button-size;
+  height: $action-button-size;
 }
