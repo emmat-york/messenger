@@ -5,6 +5,8 @@
 }
 
 .aside {
+  display: flex;
+  flex-direction: column;
   height: 100%;
 }
 
@@ -26,6 +28,7 @@
 }
 
 .menu-list {
+  flex: 1 1 auto;
   margin-top: 6px;
 }
 
@@ -43,4 +46,40 @@
 
 .text {
   font-size: 14px;
+}
+
+.footer {
+  padding: 20px;
+}
+
+.telegram-desktop {
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gray_dark7);
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.version {
+  font-size: 11px;
+  color: var(--gray_dark5);
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.about {
+  font-size: 11px;
+  color: var(--gray_dark5);
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }

@@ -10,5 +10,4 @@ export interface ModalWithData<ModalData extends object, Action = undefined>
 export interface ModalSettings {
   type?: 'aside' | 'middle';
   noBackdrop?: boolean;
-  multi?: boolean;
 }

@@ -14,16 +14,12 @@ import { ModalSettings } from './interfaces/modal.interface';
 })
 export class ModalService {
   private viewRef?: ViewContainerRef;
-  private modalRefs: ComponentRef<ModalFrameComponent<object, any>>[] = [];
+  private modalRef: ComponentRef<ModalFrameComponent<object, any>> | undefined;
 
   constructor(private readonly appRef: ApplicationRef) {
     requestAnimationFrame(() => {
       this.viewRef = this.appRef.components[0].injector.get(ViewContainerRef);
     });
-  }
-
-  get isModalOpened(): boolean {
-    return !!this.modalRefs.length;
   }
 
   open<ModalData extends object, Action = undefined>({
@@ -46,31 +42,30 @@ export class ModalService {
       );
     }
 
-    if (!settings?.multi) {
+    if (this.modalRef) {
       this.dismissAll();
     }
+
+    this.modalRef = modalRef;
 
     const instance = modalRef.instance;
     const destroy$ = new Subject<Action>();
 
     instance.component = component;
     instance.closeAction = (action: Action) => {
-      this.modalRefs = this.modalRefs.filter(ref => ref === modalRef);
       destroy$.next(action);
       destroy$.complete();
       modalRef.destroy();
+      this.modalRef = undefined;
     };
 
     instance.modalData = modalData ? modalData : ({} as ModalData);
     instance.settings = settings ? settings : {};
 
-    this.modalRefs.push(modalRef);
-
     return destroy$.asObservable();
   }
 
   dismissAll(): void {
-    this.modalRefs.forEach(modalRef => modalRef.instance.closeAction(undefined));
-    this.modalRefs = [];
+    this.modalRef?.instance.closeAction(undefined);
   }
 }
