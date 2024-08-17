@@ -21,6 +21,7 @@ import { ScrollCircleComponent } from '../../../../shared/components/scroll-circ
 import { ModalService } from '../../../../shared/services/app/modal/modal.service';
 import { UserMenuComponent } from './components/user-menu/user-menu.component';
 import { UserMenuModalData } from './components/user-menu/interfaces/user-menu.interface';
+import { ChatFacade } from '../../../../store/chat/chat.facade';
 
 @Component({
   selector: 'app-dialogs',
@@ -47,6 +48,7 @@ export class DialogsComponent implements AfterViewInit {
   constructor(
     private readonly modalService: ModalService,
     private readonly cdRef: ChangeDetectorRef,
+    private readonly chatFacade: ChatFacade,
     private readonly userFacade: UserFacade,
     private readonly destroyRef: DestroyRef,
     private readonly renderer2: Renderer2,
@@ -70,6 +72,7 @@ export class DialogsComponent implements AfterViewInit {
     }
 
     this.userFacade.setSelectedDialog(dialog);
+    this.chatFacade.setInput('');
   }
 
   onScrollUp(): void {
