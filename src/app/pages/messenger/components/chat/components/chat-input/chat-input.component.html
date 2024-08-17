@@ -2,10 +2,10 @@
   #chatInput
   appContenteditable
   contenteditable="true"
-  [formControl]="control"
+  [ngModel]="input"
   [attr.data-placeholder]="'Write a message...'"
   class="chat-input"
-  type="text"
+  (ngModelChange)="setInput($event)"
   (sendMessage)="sendMessage()"
 ></div>
 

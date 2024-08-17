@@ -10,7 +10,7 @@ import {
   Renderer2,
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
-import { KeyboardKey, MaxLengthKeyboardKey } from '../enums/chat-input.enum';
+import { KeyboardKey } from '../enums/chat-input.enum';
 
 @Directive({
   selector: '[appContenteditable]',
@@ -23,9 +23,7 @@ export class ContentEditableFormDirective implements ControlValueAccessor {
 
   @HostBinding('attr.contenteditable') contenteditable = true;
 
-  private readonly listOfAllowedKeyboardKeys = Object.values(MaxLengthKeyboardKey);
   private readonly ngControl = inject(NgControl, { optional: true });
-
   private onChange: (value: string) => void;
   private onTouched: () => void;
 
@@ -39,15 +37,12 @@ export class ContentEditableFormDirective implements ControlValueAccessor {
   }
 
   @HostListener('keydown', ['$event']) onKeyDown(event: KeyboardEvent): void {
-    if (event.key === KeyboardKey.Enter) {
-      event.preventDefault();
-      this.sendMessage.emit(event);
+    if (event.key !== KeyboardKey.Enter) {
       return;
     }
 
-    if (this.isMaxLengthReached && this.isAllowedKeyHasntBeenPressed(event.key)) {
-      event.preventDefault();
-    }
+    event.preventDefault();
+    this.sendMessage.emit(event);
   }
 
   @HostListener('input') onInput(): void {
@@ -68,9 +63,5 @@ export class ContentEditableFormDirective implements ControlValueAccessor {
 
   registerOnTouched(onTouched: () => void): void {
     this.onTouched = onTouched;
-  }
-
-  private isAllowedKeyHasntBeenPressed(pressedKey: string): boolean {
-    return !this.listOfAllowedKeyboardKeys.some(key => key === pressedKey);
   }
 }
