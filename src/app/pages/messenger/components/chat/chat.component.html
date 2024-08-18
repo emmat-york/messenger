@@ -3,6 +3,7 @@
   <app-chat-top-bar [selectedDialog]="vm.chat.selectedDialog"></app-chat-top-bar>
 
   <app-chat-body
+    [isLoading]="vm.chat.isLoading"
     [messages]="vm.chat.messages"
     [uuid]="vm.user.userData?.id"
   ></app-chat-body>

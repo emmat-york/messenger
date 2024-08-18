@@ -53,6 +53,7 @@ export class ChatComponent implements OnInit {
   }
 
   private initSelectedDialogListener(): void {
+    // TODO: create separate selectedDialog selector for this code.
     this.chatVm$
       .pipe(
         map(({ selectedDialog }) => selectedDialog?.roomId),

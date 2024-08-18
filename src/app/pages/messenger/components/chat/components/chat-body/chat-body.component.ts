@@ -17,18 +17,20 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ScrollEvent } from './interfaces/chat-body.interface';
 import { ScrollCircleComponent } from '../../../../../../shared/components/scroll-circle/scroll-circle.component';
 import { Message } from '../../interfaces/chat.interface';
+import { MessageSkeletonComponent } from './components/message-skeleton/message-skeleton.component';
 
 @Component({
   selector: 'app-chat-body',
   standalone: true,
   templateUrl: 'chat-body.component.html',
   styleUrl: 'chat-body.component.scss',
-  imports: [MessageComponent, ScrollCircleComponent],
+  imports: [MessageComponent, ScrollCircleComponent, MessageSkeletonComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChatBodyComponent implements OnChanges, OnInit, AfterViewInit {
   @Input() messages: Message[] = [];
   @Input() uuid: number | undefined;
+  @Input() isLoading: boolean;
 
   hasTheChatBottomBeenReached = false;
 
