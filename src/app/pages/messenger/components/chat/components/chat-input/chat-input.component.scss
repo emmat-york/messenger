@@ -42,4 +42,8 @@ $indent: 16px;
   bottom: 2px;
   width: $action-button-size;
   height: $action-button-size;
+
+  &:hover {
+    opacity: 0.6;
+  }
 }

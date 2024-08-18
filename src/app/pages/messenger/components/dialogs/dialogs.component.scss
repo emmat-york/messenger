@@ -14,6 +14,10 @@
   height: 24px;
   width: 24px;
   margin: 0 var(--spacing_16);
+
+  &:hover {
+    opacity: 0.6;
+  }
 }
 
 .label {
