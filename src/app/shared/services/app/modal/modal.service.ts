@@ -56,7 +56,6 @@ export class ModalService {
       destroy$.next(action);
       destroy$.complete();
       modalRef.destroy();
-      this.modalRef = undefined;
     };
 
     instance.modalData = modalData ? modalData : ({} as ModalData);
@@ -67,5 +66,6 @@ export class ModalService {
 
   dismissAll(): void {
     this.modalRef?.instance.closeAction(undefined);
+    this.modalRef = undefined;
   }
 }

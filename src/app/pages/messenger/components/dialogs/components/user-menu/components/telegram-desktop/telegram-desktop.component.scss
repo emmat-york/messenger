@@ -1,0 +1,14 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 338px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  background-color: var(--white1);
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+}

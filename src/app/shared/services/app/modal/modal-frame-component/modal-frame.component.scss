@@ -8,15 +8,16 @@
 }
 
 .modal-frame-container {
+  display: flex;
   height: 100%;
   width: 100%;
 
   &.aside {
-    width: 240px;
+    justify-content: flex-start;
   }
 
   &.middle {
-    margin: 0 auto;
-    width: 30%;
+    justify-content: center;
+    align-items: center;
   }
 }

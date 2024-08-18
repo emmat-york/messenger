@@ -24,8 +24,13 @@
 
   &-text {
     padding: var(--spacing_12);
+    border-radius: 4px;
     background-color: transparent;
     color: var(--blue_semi-light9);
+
+    &:hover {
+      background-color: var(--steel-gray_bright2);
+    }
   }
 
   &-line {

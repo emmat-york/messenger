@@ -1,7 +1,8 @@
 :host {
   display: block;
   height: 100%;
-  background-color: white;
+  width: 240px;
+  background-color: var(--white1);
 }
 
 .aside {
@@ -64,19 +65,12 @@
   }
 }
 
-.version {
+.telegram-info {
   font-size: 11px;
   color: var(--gray_dark5);
-  cursor: pointer;
-
-  &:hover {
-    text-decoration: underline;
-  }
 }
 
-.about {
-  font-size: 11px;
-  color: var(--gray_dark5);
+.telegram-info-text {
   cursor: pointer;
 
   &:hover {

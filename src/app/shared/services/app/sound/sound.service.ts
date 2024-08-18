@@ -8,6 +8,8 @@ export class SoundService {
 
   play(): Promise<void> {
     this.instance.src = '../../../assets/sound/desktop-notification.mp3';
+    this.instance.autoplay = true;
+
     return this.instance.play();
   }
 }

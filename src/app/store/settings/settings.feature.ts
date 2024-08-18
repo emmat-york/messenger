@@ -6,10 +6,18 @@ export type AppTheme = 'dark-app-theme' | 'light-app-theme';
 
 export interface SettingsState {
   theme: AppTheme;
+  version: string;
+  isNotificationSoundOn: boolean;
+  languages: string[];
+  selectedLanguage: string;
 }
 
 const initialState: SettingsState = {
   theme: 'dark-app-theme',
+  version: '',
+  isNotificationSoundOn: true,
+  languages: [],
+  selectedLanguage: '',
 };
 
 const feature = createFeature({
