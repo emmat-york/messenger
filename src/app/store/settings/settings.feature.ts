@@ -14,7 +14,7 @@ export interface SettingsState {
 
 const initialState: SettingsState = {
   theme: 'dark-app-theme',
-  version: '',
+  version: '1.0.0',
   isNotificationSoundOn: true,
   languages: [],
   selectedLanguage: '',
@@ -34,4 +34,4 @@ const feature = createFeature({
   ),
 });
 
-export const { selectTheme, reducer } = feature;
+export const { selectTheme, selectVersion, reducer } = feature;
