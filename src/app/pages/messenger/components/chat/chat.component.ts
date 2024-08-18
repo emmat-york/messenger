@@ -53,7 +53,7 @@ export class ChatComponent implements OnInit {
   }
 
   private initSelectedDialogListener(): void {
-    this.userVm$
+    this.chatVm$
       .pipe(
         map(({ selectedDialog }) => selectedDialog?.roomId),
         distinctUntilChanged(),

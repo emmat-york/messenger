@@ -1,9 +1,8 @@
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
-import { catchError, EMPTY, map, of, switchMap } from 'rxjs';
+import { catchError, map, of, switchMap } from 'rxjs';
 import { ChatService } from '../../shared/services/api/chat/chat.service';
 import * as action from './chat.action';
-import * as userAction from '../user/user.action';
 import { ChatFacade } from './chat.facade';
 import { UserFacade } from '../user/user.facade';
 import { ChatSocket } from '../../shared/services/socket/chat/chat.socket';
@@ -21,18 +20,14 @@ export class ChatEffect {
     private readonly actions$: Actions,
   ) {}
 
-  getChatHistoryByRoomId$ = createEffect(() => {
+  setSelectedDialog$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(userAction.setSelectedDialog),
-      switchMap(({ selectedDialog }) => {
-        if (!selectedDialog) {
-          return EMPTY;
-        }
-
-        return this.chatService.getChatHistoryByRoomId$(selectedDialog.roomId);
-      }),
-      map(messages => action.setMessagesHistorySuccess({ messages })),
-      catchError(() => of(action.setMessagesHistoryFail())),
+      ofType(action.setSelectedDialog),
+      switchMap(({ selectedDialog }) =>
+        this.chatService.getChatHistoryByRoomId$(selectedDialog.roomId),
+      ),
+      map(messages => action.setSelectedDialogSuccess({ messages })),
+      catchError(() => of(action.setSelectedDialogFail())),
     );
   });
 
@@ -44,7 +39,7 @@ export class ChatEffect {
       )
       .pipe(
         map(([, chatVm, userVm]) => {
-          if (!userVm.userData || !userVm.selectedDialog) {
+          if (!userVm.userData || !chatVm.selectedDialog) {
             throw new Error('Impossible to send message.');
           }
 
@@ -53,18 +48,18 @@ export class ChatEffect {
             uuid: userVm.userData.id,
             message: chatVm.input,
             userName: userVm.userData.userName,
-            roomId: userVm.selectedDialog.roomId,
+            roomId: chatVm.selectedDialog.roomId,
             creationDate: new Date().toUTCString(),
             editDate: null,
             likes: [],
           };
 
-          this.chatSocket.request(message, userVm.selectedDialog.roomId);
+          this.chatSocket.request(message, chatVm.selectedDialog.roomId);
           this.soundService.play();
 
           return action.setMessage({
             message,
-            roomId: userVm.selectedDialog.roomId,
+            roomId: chatVm.selectedDialog.roomId,
             withInputReset: true,
           });
         }),

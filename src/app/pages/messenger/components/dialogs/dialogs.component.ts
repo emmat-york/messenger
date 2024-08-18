@@ -38,7 +38,7 @@ import { ChatFacade } from '../../../../store/chat/chat.facade';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogsComponent implements AfterViewInit {
-  readonly vm$ = this.userFacade.vm$;
+  readonly vm$ = this.chatFacade.vm$;
 
   isScrollCircleShown = false;
 
@@ -71,8 +71,7 @@ export class DialogsComponent implements AfterViewInit {
       return;
     }
 
-    this.userFacade.setSelectedDialog(dialog);
-    this.chatFacade.setInput('');
+    this.chatFacade.setSelectedDialog(dialog);
   }
 
   onScrollUp(): void {

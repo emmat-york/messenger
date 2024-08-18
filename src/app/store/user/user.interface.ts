@@ -5,7 +5,6 @@ export interface UserData {
   userName: string;
   phoneNumber: string;
   avatar: string;
-  dialogs: Dialog[];
 }
 
 export interface Dialog {

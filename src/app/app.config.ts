@@ -9,9 +9,9 @@ import { SettingsEffect } from './store/settings/settings.effect';
 import { ChatEffect } from './store/chat/chat.effect';
 import { provideHttpClient } from '@angular/common/http';
 import { AuthUserService } from './shared/services/app/auth-user/auth-user.service';
-import { catchError, Observable, of, tap } from 'rxjs';
+import { catchError, Observable, of, switchMap, tap } from 'rxjs';
 import { UserService } from './shared/services/api/user/user.service';
-import { UserData } from './store/user/user.interface';
+import { Dialog } from './store/user/user.interface';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { UserFacade } from './store/user/user.facade';
 import { AuthFacade } from './store/auth/auth.facade';
@@ -26,19 +26,27 @@ import {
   USER_KEY,
 } from './store/constants/store.constant';
 import { ChatSocket } from './shared/services/socket/chat/chat.socket';
+import { ChatFacade } from './store/chat/chat.facade';
+import { ChatService } from './shared/services/api/chat/chat.service';
 
 function initializeAppFactory(
   authUserService: AuthUserService,
   userService: UserService,
+  chatService: ChatService,
   userFacade: UserFacade,
+  chatFacade: ChatFacade,
   authFacade: AuthFacade,
   chatSocket: ChatSocket,
-): () => Observable<UserData | null> {
+): () => Observable<Dialog[] | null> {
   return () => {
     if (authUserService.isAuth) {
       return userService.getUserData$(authUserService.token).pipe(
-        tap(userData => {
+        switchMap(userData => {
           userFacade.setUserData(userData);
+          return chatService.getUserDialogs$(userData.id);
+        }),
+        tap(dialogs => {
+          chatFacade.setDialogs(dialogs);
           authFacade.setIsAuth(true);
           chatSocket.init();
         }),
@@ -68,7 +76,15 @@ export const appConfig: ApplicationConfig = {
     {
       provide: APP_INITIALIZER,
       useFactory: initializeAppFactory,
-      deps: [AuthUserService, UserService, UserFacade, AuthFacade, ChatSocket],
+      deps: [
+        AuthUserService,
+        UserService,
+        ChatService,
+        UserFacade,
+        ChatFacade,
+        AuthFacade,
+        ChatSocket,
+      ],
       multi: true,
     },
   ],
