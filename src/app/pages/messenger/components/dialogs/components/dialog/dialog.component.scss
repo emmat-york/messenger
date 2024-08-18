@@ -1,13 +1,13 @@
 @import '../../../../../../../styles/variables';
 
-$avatar-width: 48px;
+$avatar-width: 40px;
 $avatar-indent: 16px;
 $date-width: 64px;
 
 :host {
   display: flex;
   gap: $avatar-indent;
-  padding: 8px 16px;
+  padding: 6px 16px;
   cursor: pointer;
 }
 
@@ -39,8 +39,8 @@ $date-width: 64px;
 
 .user-name {
   width: calc(100% - #{$date-width} - 12px);
-  font-size: 15px;
-  font-weight: 400;
+  font-size: 12px;
+  font-weight: 600;
   line-height: 20px;
   white-space: nowrap;
   overflow: hidden;
@@ -49,19 +49,20 @@ $date-width: 64px;
 
 .date {
   width: $date-width;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 400;
   line-height: 16px;
   text-align: end;
 }
 
 .message {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 18px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: var(--gray_dark10);
 }
 
 :host(.selected) {
