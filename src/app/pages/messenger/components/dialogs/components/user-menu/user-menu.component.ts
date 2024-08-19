@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ModalWithData } from '../../../../../../shared/services/app/modal/interfaces/modal.interface';
-import { UserMenuModalData } from './interfaces/user-menu.interface';
+import { UserMenuModalData } from './user-menu.interface';
 import { LetDirective } from '@ngrx/component';
 import { NgOptimizedImage } from '@angular/common';
 import { IconPipe } from '../../../../../../shared/pipes/icon/icon.pipe';

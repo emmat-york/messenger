@@ -10,7 +10,7 @@ import {
   Renderer2,
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
-import { KeyboardKey } from '../enums/chat-input.enum';
+import { KeyboardKey } from './chat-input.enum';
 
 @Directive({
   selector: '[appContenteditable]',

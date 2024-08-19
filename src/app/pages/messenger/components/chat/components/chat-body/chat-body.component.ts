@@ -14,9 +14,9 @@ import {
 import { MessageComponent } from './components/message/message.component';
 import { debounceTime, fromEvent } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ScrollEvent } from './interfaces/chat-body.interface';
+import { ScrollEvent } from './chat-body.interface';
 import { ScrollCircleComponent } from '../../../../../../shared/components/scroll-circle/scroll-circle.component';
-import { Message } from '../../interfaces/chat.interface';
+import { Message } from '../../chat.interface';
 import { MessageSkeletonComponent } from './components/message-skeleton/message-skeleton.component';
 
 @Component({

@@ -1,4 +1,4 @@
-import { LastMessage } from '../../pages/messenger/components/chat/interfaces/chat.interface';
+import { LastMessage } from '../../pages/messenger/components/chat/chat.interface';
 
 export interface UserData {
   id: number;

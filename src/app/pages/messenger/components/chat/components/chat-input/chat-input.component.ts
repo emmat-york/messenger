@@ -11,9 +11,9 @@ import { FormsModule } from '@angular/forms';
 import { NgOptimizedImage } from '@angular/common';
 import { ChatFacade } from '../../../../../../store/chat/chat.facade';
 import { IconPipe } from '../../../../../../shared/pipes/icon/icon.pipe';
-import { ContentEditableFormDirective } from './directives/contenteditable.directive';
+import { ContentEditableFormDirective } from './contenteditable.directive';
 import { getTrimmedString } from '../../../../../../shared/utils/form.util';
-import { INITIAL_INPUT_HEIGHT } from './constants/chat-input.constant';
+import { INITIAL_INPUT_HEIGHT } from './chat-input.constant';
 
 @Component({
   selector: 'app-chat-input',

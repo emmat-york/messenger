@@ -1,4 +1,4 @@
-import { EmojiCategory } from '../enum/chat.enum';
+import { EmojiCategory } from './chat.enum';
 
 export interface Message {
   id: number;

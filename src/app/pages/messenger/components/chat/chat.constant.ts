@@ -1,5 +1,5 @@
-import { EmojiCategory } from '../enum/chat.enum';
-import { Emoji } from '../interfaces/chat.interface';
+import { EmojiCategory } from './chat.enum';
+import { Emoji } from './chat.interface';
 
 export const EMOJIS: Emoji[] = [
   {

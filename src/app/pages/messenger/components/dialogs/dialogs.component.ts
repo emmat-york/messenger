@@ -16,11 +16,11 @@ import { LetDirective } from '@ngrx/component';
 import { Dialog } from '../../../../store/user/user.interface';
 import { debounceTime, fromEvent } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ScrollEvent } from '../chat/components/chat-body/interfaces/chat-body.interface';
+import { ScrollEvent } from '../chat/components/chat-body/chat-body.interface';
 import { ScrollCircleComponent } from '../../../../shared/components/scroll-circle/scroll-circle.component';
 import { ModalService } from '../../../../shared/services/app/modal/modal.service';
 import { UserMenuComponent } from './components/user-menu/user-menu.component';
-import { UserMenuModalData } from './components/user-menu/interfaces/user-menu.interface';
+import { UserMenuModalData } from './components/user-menu/user-menu.interface';
 import { ChatFacade } from '../../../../store/chat/chat.facade';
 
 @Component({
