@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { getTrimmedString } from '../../utils/form/form.util';
+import { getTrimmedString } from '../utils/form.util';
 
 @Pipe({
   name: 'arrayFilter',

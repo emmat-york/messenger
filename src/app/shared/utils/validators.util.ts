@@ -1,5 +1,5 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { ValidatorKeys } from '../../enums/validator-keys.enum';
+import { ValidatorKeys } from '../enums/validator-keys.enum';
 
 export abstract class CustomValidators {
   static email(): ValidatorFn {

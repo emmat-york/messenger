@@ -1,10 +1,10 @@
-import { LoginFormKey } from '../enums/login.enum';
-import { ValidatorKeys } from '../../../shared/enums/validator-keys.enum';
-import { LoginErrorState } from '../interfaces/login.interface';
+import { LoginFormKey } from './login.enum';
+import { ValidatorKeys } from '../../shared/enums/validator-keys.enum';
+import { LoginErrorState } from './login.interface';
 import {
   MIN_PASSWORD_LENGTH,
   VALIDATION_MESSAGES,
-} from '../../../shared/constants/form.constant';
+} from '../../shared/constants/form.constant';
 
 export const LOGIN_ERROR_STATE: LoginErrorState = {
   [LoginFormKey.Email]: {

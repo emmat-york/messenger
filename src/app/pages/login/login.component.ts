@@ -6,7 +6,7 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { LoginFormKey } from './enums/login.enum';
+import { LoginFormKey } from './login.enum';
 import { ButtonComponent } from '../../shared/components/button/button.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
@@ -14,16 +14,16 @@ import {
   SLEEPY_OPTIONS,
 } from '../../shared/constants/form.constant';
 import { InputComponent } from '../../shared/components/form/input/input.component';
-import { LOGIN_ERROR_STATE } from './constants/login.constant';
+import { LOGIN_ERROR_STATE } from './login.constant';
 import { AuthUserService } from '../../shared/services/app/auth-user/auth-user.service';
 import { catchError, EMPTY, finalize } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
-import { trim } from '../../shared/utils/form/form.util';
+import { trim } from '../../shared/utils/form.util';
 import { HttpErrorResponse } from '@angular/common/http';
 import { getLoginErrorMessage } from '../../shared/services/app/auth-user/helpers/auth-user.helper';
 import { PushPipe } from '@ngrx/component';
 import { AuthFacade } from '../../store/auth/auth.facade';
-import { CustomValidators } from '../../shared/utils/validators/validators.util';
+import { CustomValidators } from '../../shared/utils/validators.util';
 
 @Component({
   selector: 'app-login',

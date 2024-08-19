@@ -12,7 +12,7 @@ import { NgOptimizedImage } from '@angular/common';
 import { ChatFacade } from '../../../../../../store/chat/chat.facade';
 import { IconPipe } from '../../../../../../shared/pipes/icon/icon.pipe';
 import { ContentEditableFormDirective } from './directives/contenteditable.directive';
-import { getTrimmedString } from '../../../../../../shared/utils/form/form.util';
+import { getTrimmedString } from '../../../../../../shared/utils/form.util';
 import { INITIAL_INPUT_HEIGHT } from './constants/chat-input.constant';
 
 @Component({

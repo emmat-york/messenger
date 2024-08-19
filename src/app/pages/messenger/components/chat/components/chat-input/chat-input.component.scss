@@ -12,9 +12,7 @@ $indent: 16px;
 }
 
 .chat-input {
-  width: calc(
-    100% - #{$action-button-size} - #{$action-button-size} - #{$indent} - #{$indent}
-  );
+  width: calc(100% - (#{$action-button-size} * 2) - (#{$indent} * 2));
   max-height: 196px;
   padding-top: 8px;
   font-size: 12px;
@@ -34,7 +32,7 @@ $indent: 16px;
   justify-content: space-between;
   align-items: flex-end;
   gap: $indent;
-  width: calc(#{$action-button-size} + #{$action-button-size} + #{$indent});
+  width: calc((#{$action-button-size} * 2) + #{$indent});
 }
 
 .action-button {
@@ -42,8 +40,4 @@ $indent: 16px;
   bottom: 2px;
   width: $action-button-size;
   height: $action-button-size;
-
-  &:hover {
-    opacity: 0.6;
-  }
 }

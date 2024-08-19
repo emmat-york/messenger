@@ -1,5 +1,5 @@
-import { ValidatorKeys } from '../../../shared/enums/validator-keys.enum';
-import { LoginFormKey } from '../enums/login.enum';
+import { ValidatorKeys } from '../../shared/enums/validator-keys.enum';
+import { LoginFormKey } from './login.enum';
 
 export interface LoginErrorState {
   [LoginFormKey.Email]: {

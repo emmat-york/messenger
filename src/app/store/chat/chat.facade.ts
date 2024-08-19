@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ChatState, selectChatState } from './chat.feature';
 import * as action from './chat.action';
-import { BaseStoreFacade } from '../utils/base-store-facade';
+import { BaseStoreFacade } from '../base-store-facade';
 import { Observable } from 'rxjs';
 import { Dialog } from '../user/user.interface';
 

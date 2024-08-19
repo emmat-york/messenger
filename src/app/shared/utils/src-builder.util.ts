@@ -1,5 +1,5 @@
-import { FileExtensions } from '../../enums/file-extensions.enum';
-import { Folders } from '../../pipes/icon/interfaces/icon.interface';
+import { FileExtensions } from '../enums/file-extensions.enum';
+import { Folders } from '../pipes/icon/interfaces/icon.interface';
 
 export class SrcBuilder {
   private _folderOne = '';

@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { FileExtensions } from '../../enums/file-extensions.enum';
 import { Folders } from './interfaces/icon.interface';
-import { SrcBuilder } from '../../utils/src-builder/src-builder.util';
+import { SrcBuilder } from '../../utils/src-builder.util';
 
 @Pipe({
   name: 'icon',

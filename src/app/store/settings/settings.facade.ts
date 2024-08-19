@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AppTheme, selectTheme, selectVersion } from './settings.feature';
 import * as action from './settings.action';
-import { BaseStoreFacade } from '../utils/base-store-facade';
+import { BaseStoreFacade } from '../base-store-facade';
 
 @Injectable({
   providedIn: 'root',

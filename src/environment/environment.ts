@@ -1,5 +1,5 @@
-import { Environment } from './interfaces/environment.interface';
-import { FIREBASE_CONFIG } from './constants/environment.constant';
+import { Environment } from './environment.interface';
+import { FIREBASE_CONFIG } from './environment.constant';
 
 export const environment: Environment = {
   isProduction: false,

@@ -11,19 +11,19 @@ import {
   MIN_PASSWORD_LENGTH,
   SLEEPY_OPTIONS,
 } from '../../shared/constants/form.constant';
-import { SignUpFormKey } from './enums/registration.enum';
+import { SignUpFormKey } from './registration.enum';
 import { InputComponent } from '../../shared/components/form/input/input.component';
 import { ButtonComponent } from '../../shared/components/button/button.component';
 import { catchError, EMPTY, finalize } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
 import { AuthUserService } from '../../shared/services/app/auth-user/auth-user.service';
-import { REGISTRATION_ERROR_STATE } from './constants/registration.constant';
+import { REGISTRATION_ERROR_STATE } from './registration.constant';
 import { HttpErrorResponse } from '@angular/common/http';
 import { getRegistrationErrorMessage } from '../../shared/services/app/auth-user/helpers/auth-user.helper';
 import { PushPipe } from '@ngrx/component';
 import { AuthFacade } from '../../store/auth/auth.facade';
-import { trim } from '../../shared/utils/form/form.util';
-import { CustomValidators } from '../../shared/utils/validators/validators.util';
+import { trim } from '../../shared/utils/form.util';
+import { CustomValidators } from '../../shared/utils/validators.util';
 
 @Component({
   selector: 'app-registration',

@@ -1,6 +1,6 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import * as action from './settings.action';
-import { SETTINGS_KEY } from '../constants/store.constant';
+import { SETTINGS_KEY } from '../store.constant';
 
 export type AppTheme = 'dark-app-theme' | 'light-app-theme';
 

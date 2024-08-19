@@ -1,5 +1,5 @@
-import { SignUpFormKey } from '../enums/registration.enum';
-import { ValidatorKeys } from '../../../shared/enums/validator-keys.enum';
+import { SignUpFormKey } from './registration.enum';
+import { ValidatorKeys } from '../../shared/enums/validator-keys.enum';
 
 export interface RegistrationErrorState {
   [SignUpFormKey.Email]: {

@@ -1,6 +1,6 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import * as action from './auth.action';
-import { AUTH_KEY } from '../constants/store.constant';
+import { AUTH_KEY } from '../store.constant';
 
 interface AuthState {
   isAuth: boolean;

@@ -1,6 +1,6 @@
 import { APP_INITIALIZER, ApplicationConfig, isDevMode } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { routes } from './routes/app.routes';
+import { routes } from './app.routes';
 import { provideState, provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
@@ -19,12 +19,7 @@ import { reducer as authReducer } from './store/auth/auth.feature';
 import { reducer as chatReducer } from './store/chat/chat.feature';
 import { reducer as settingsReducer } from './store/settings/settings.feature';
 import { reducer as userReducer } from './store/user/user.feature';
-import {
-  AUTH_KEY,
-  CHAT_KEY,
-  SETTINGS_KEY,
-  USER_KEY,
-} from './store/constants/store.constant';
+import { AUTH_KEY, CHAT_KEY, SETTINGS_KEY, USER_KEY } from './store/store.constant';
 import { ChatSocket } from './shared/services/socket/chat/chat.socket';
 import { ChatFacade } from './store/chat/chat.facade';
 import { ChatService } from './shared/services/api/chat/chat.service';

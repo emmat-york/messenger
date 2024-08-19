@@ -1,7 +1,7 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { Message } from '../../pages/messenger/components/chat/interfaces/chat.interface';
 import * as action from './chat.action';
-import { CHAT_KEY } from '../constants/store.constant';
+import { CHAT_KEY } from '../store.constant';
 import { Dialog } from '../user/user.interface';
 
 export interface ChatState {

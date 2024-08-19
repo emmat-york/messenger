@@ -1,10 +1,10 @@
-import { SignUpFormKey } from '../enums/registration.enum';
-import { ValidatorKeys } from '../../../shared/enums/validator-keys.enum';
+import { SignUpFormKey } from './registration.enum';
+import { ValidatorKeys } from '../../shared/enums/validator-keys.enum';
 import {
   MIN_PASSWORD_LENGTH,
   VALIDATION_MESSAGES,
-} from '../../../shared/constants/form.constant';
-import { RegistrationErrorState } from '../interfaces/registration.interface';
+} from '../../shared/constants/form.constant';
+import { RegistrationErrorState } from './registration.interface';
 
 export const REGISTRATION_ERROR_STATE: RegistrationErrorState = {
   [SignUpFormKey.Email]: {

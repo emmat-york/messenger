@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BaseStoreFacade } from '../utils/base-store-facade';
+import { BaseStoreFacade } from '../base-store-facade';
 import * as actions from './auth.action';
 import { selectErrorMsg, selectIsAuth } from './auth.feature';
 

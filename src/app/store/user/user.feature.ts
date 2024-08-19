@@ -1,7 +1,7 @@
 import { createFeature, createReducer, createSelector, on } from '@ngrx/store';
 import { UserData } from './user.interface';
 import * as action from './user.action';
-import { USER_KEY } from '../constants/store.constant';
+import { USER_KEY } from '../store.constant';
 
 export interface UserState {
   userData: UserData | null;

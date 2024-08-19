@@ -10,7 +10,7 @@ import {
 import { Constructor } from '../../../../interfaces/common.interface';
 import { ModalFrame } from './interfaces/modal-frame.interface';
 import { NgClass } from '@angular/common';
-import { ClickOutsideDirective } from '../../../../directives/click-outside/click-outside.directive';
+import { ClickOutsideDirective } from '../../../../directives/click-outside.directive';
 import { ModalSettings, ModalWithData } from '../interfaces/modal.interface';
 import { ModalFrameTypePipe } from './pipes/modal-frame-type/modal-frame-type.pipe';
 

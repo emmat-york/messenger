@@ -1,4 +1,4 @@
-import { FirebaseConfig } from '../interfaces/environment.interface';
+import { FirebaseConfig } from './environment.interface';
 
 export const FIREBASE_CONFIG: FirebaseConfig = {
   apiKey: 'AIzaSyCynFf3frEiCcrjDvnonbxYUL9EwSqOR5s',
