@@ -7,4 +7,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrl: 'message-skeleton.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MessageSkeletonComponent {}
+export class MessageSkeletonComponent {
+  readonly array = Array;
+}
