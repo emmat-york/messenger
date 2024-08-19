@@ -12,7 +12,7 @@ import {
   SLEEPY_OPTIONS,
 } from '../../shared/constants/form.constant';
 import { SignUpFormKey } from './registration.enum';
-import { InputComponent } from '../../shared/components/form/input/input.component';
+import { InputComponent } from '../../shared/components/input/input.component';
 import { ButtonComponent } from '../../shared/components/button/button.component';
 import { catchError, EMPTY, finalize } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';

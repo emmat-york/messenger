@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { ClickOutsideDirective } from '../../../directives/click-outside.directive';
+import { ClickOutsideDirective } from '../../directives/click-outside.directive';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { DropdownOptionValue, Option } from './interfaces/dropdown.interface';
-import { IconPipe } from '../../../pipes/icon/icon.pipe';
+import { DropdownOptionValue, Option } from './dropdown.interface';
+import { IconPipe } from '../../pipes/icon.pipe';
 
 @Component({
   selector: 'app-dropdown',

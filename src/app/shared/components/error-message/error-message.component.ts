@@ -4,8 +4,14 @@ import { ValidationErrors } from '@angular/forms';
 @Component({
   selector: 'app-error-message',
   standalone: true,
-  templateUrl: 'error-message.component.html',
-  styleUrls: ['error-message.component.scss'],
+  template: `{{ message }}`,
+  styles: `:host {
+      font-size: 13px;
+      font-weight: var(--regular_weight);
+      line-height: 25px;
+      font-style: normal;
+      color: var(--red3);
+    }`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ErrorMessageComponent {

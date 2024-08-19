@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { UserFacade } from '../../../../store/user/user.facade';
-import { IconPipe } from '../../../../shared/pipes/icon/icon.pipe';
+import { IconPipe } from '../../../../shared/pipes/icon.pipe';
 import { NgOptimizedImage } from '@angular/common';
 import { LetDirective } from '@ngrx/component';
 import { Dialog } from '../../../../store/user/user.interface';

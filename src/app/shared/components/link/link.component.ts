@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { LinkTarget } from './interfaces/link.interface';
+import { LinkTarget } from './link.interface';
 
 @Component({
   selector: 'app-link',

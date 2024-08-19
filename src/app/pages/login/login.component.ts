@@ -13,7 +13,7 @@ import {
   MIN_PASSWORD_LENGTH,
   SLEEPY_OPTIONS,
 } from '../../shared/constants/form.constant';
-import { InputComponent } from '../../shared/components/form/input/input.component';
+import { InputComponent } from '../../shared/components/input/input.component';
 import { LOGIN_ERROR_STATE } from './login.constant';
 import { AuthUserService } from '../../shared/services/app/auth-user/auth-user.service';
 import { catchError, EMPTY, finalize } from 'rxjs';

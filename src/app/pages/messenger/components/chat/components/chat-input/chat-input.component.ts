@@ -10,7 +10,7 @@ import {
 import { FormsModule } from '@angular/forms';
 import { NgOptimizedImage } from '@angular/common';
 import { ChatFacade } from '../../../../../../store/chat/chat.facade';
-import { IconPipe } from '../../../../../../shared/pipes/icon/icon.pipe';
+import { IconPipe } from '../../../../../../shared/pipes/icon.pipe';
 import { ContentEditableFormDirective } from './contenteditable.directive';
 import { getTrimmedString } from '../../../../../../shared/utils/form.util';
 import { INITIAL_INPUT_HEIGHT } from './chat-input.constant';
@@ -25,6 +25,7 @@ import { INITIAL_INPUT_HEIGHT } from './chat-input.constant';
 })
 export class ChatInputComponent {
   @Input() initialInputHeight = INITIAL_INPUT_HEIGHT;
+  @Input() isLoading: boolean;
   @Input() placeholder = '';
   @Input() input = '';
 
@@ -48,7 +49,7 @@ export class ChatInputComponent {
   }
 
   sendMessage(): void {
-    if (!this.input) {
+    if (!this.input || this.isLoading) {
       this.chatInputRef.nativeElement.focus();
       return;
     }

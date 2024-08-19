@@ -8,7 +8,7 @@ import {
 import { NgClass, NgOptimizedImage } from '@angular/common';
 import { LabelComponent } from '../label/label.component';
 import { ErrorMessageComponent } from '../error-message/error-message.component';
-import { IconPipe } from '../../../pipes/icon/icon.pipe';
+import { IconPipe } from '../../pipes/icon.pipe';
 
 @Component({
   selector: 'app-input',

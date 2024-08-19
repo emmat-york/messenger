@@ -1,7 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { FileExtensions } from '../../enums/file-extensions.enum';
-import { Folders } from './interfaces/icon.interface';
-import { SrcBuilder } from '../../utils/src-builder.util';
+import { FileExtensions } from '../enums/file-extensions.enum';
+import { SrcBuilder } from '../utils/src-builder.util';
+
+export type Folders = 'system' | 'flags';
 
 @Pipe({
   name: 'icon',

@@ -3,7 +3,7 @@ import { ModalWithData } from '../../../../../../shared/services/app/modal/inter
 import { UserMenuModalData } from './user-menu.interface';
 import { LetDirective } from '@ngrx/component';
 import { NgOptimizedImage } from '@angular/common';
-import { IconPipe } from '../../../../../../shared/pipes/icon/icon.pipe';
+import { IconPipe } from '../../../../../../shared/pipes/icon.pipe';
 import { ModalService } from '../../../../../../shared/services/app/modal/modal.service';
 import { AboutComponent } from './components/about/about.component';
 import { VersionComponent } from './components/version/version.component';

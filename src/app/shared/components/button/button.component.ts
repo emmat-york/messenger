@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { ButtonType, ButtonVariant } from './interfaces/button.interface';
 import { NgClass } from '@angular/common';
+
+export type ButtonVariant = 'regular' | 'line' | 'commerce' | 'publicLink' | 'text';
+export type ButtonType = 'submit' | 'button' | 'reset';
 
 @Component({
   selector: 'app-button',
