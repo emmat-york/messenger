@@ -9,7 +9,6 @@ import { ValidationErrors } from '@angular/forms';
       font-size: 13px;
       font-weight: var(--regular_weight);
       line-height: 25px;
-      font-style: normal;
       color: var(--red3);
     }`,
   changeDetection: ChangeDetectionStrategy.OnPush,
