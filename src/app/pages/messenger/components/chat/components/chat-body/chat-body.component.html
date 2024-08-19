@@ -1,4 +1,4 @@
-@if (true) {
+@if (isLoading) {
 <app-message-skeleton></app-message-skeleton>
 } @else {
 <ul class="message-list">
@@ -11,10 +11,10 @@
   </li>
   }
 </ul>
-} @if (hasTheChatBottomBeenReached) {
+} @if (hasTheChatBottomBeenReached && !isLoading) {
 <app-scroll-circle
-  type="up"
   class="scroll-circle"
+  type="up"
   (click)="scrollDown()"
 ></app-scroll-circle>
 }
