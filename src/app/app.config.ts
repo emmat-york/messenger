@@ -20,7 +20,7 @@ import { reducer as chatReducer } from './store/chat/chat.feature';
 import { reducer as settingsReducer } from './store/settings/settings.feature';
 import { reducer as userReducer } from './store/user/user.feature';
 import { AUTH_KEY, CHAT_KEY, SETTINGS_KEY, USER_KEY } from './store/store.constant';
-import { ChatSocket } from './shared/services/socket/chat/chat.socket';
+import { ChatSocket } from './shared/services/socket/chat.socket';
 import { ChatFacade } from './store/chat/chat.facade';
 import { ChatService } from './shared/services/api/chat/chat.service';
 

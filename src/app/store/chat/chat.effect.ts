@@ -5,7 +5,7 @@ import { ChatService } from '../../shared/services/api/chat/chat.service';
 import * as action from './chat.action';
 import { ChatFacade } from './chat.facade';
 import { UserFacade } from '../user/user.facade';
-import { ChatSocket } from '../../shared/services/socket/chat/chat.socket';
+import { ChatSocket } from '../../shared/services/socket/chat.socket';
 import { Message } from '../../pages/messenger/components/chat/chat.interface';
 import { SoundService } from '../../shared/services/app/sound/sound.service';
 

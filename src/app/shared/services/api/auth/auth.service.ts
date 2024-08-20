@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { LOGIN_PATH, REGISTRATION_PATH } from './constants/auth.constant';
+import { LOGIN_PATH, REGISTRATION_PATH } from './auth.constant';
 import {
   LoginCredentials,
   LoginResponse,
   RegistrationCredentials,
   RegistrationResponse,
-} from './interfaces/auth.interface';
+} from './auth.interface';
 
 @Injectable({
   providedIn: 'root',

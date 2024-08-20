@@ -1,4 +1,4 @@
-import { ResponseCode } from '../../../../enums/response-code.enum';
+import { ResponseCode } from '../../../enums/response-code.enum';
 
 // COMMON
 interface AuthErrorResponse<T> {

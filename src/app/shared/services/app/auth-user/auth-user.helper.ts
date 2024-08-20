@@ -4,7 +4,7 @@ import {
   LoginErrorResponse,
   RegistrationErrorMessages,
   RegistrationErrorResponse,
-} from '../../../api/auth/interfaces/auth.interface';
+} from '../../api/auth/auth.interface';
 
 export const getRegistrationErrorMessage = (errorResponse: HttpErrorResponse): string => {
   const error = errorResponse.error as RegistrationErrorResponse;
