@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ButtonComponent } from '../../../../../../../../shared/components/button/button.component';
-import { Modal } from '../../../../../../../../shared/services/app/modal/interfaces/modal.interface';
+import { Modal } from '../../../../../../../../shared/services/app/modal/modal.interface';
 import { ModalService } from '../../../../../../../../shared/services/app/modal/modal.service';
 import { VersionComponent } from '../version/version.component';
 import { SettingsFacade } from '../../../../../../../../store/settings/settings.facade';

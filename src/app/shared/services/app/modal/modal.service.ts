@@ -7,19 +7,24 @@ import {
 import { ModalFrameComponent } from './modal-frame-component/modal-frame.component';
 import { Constructor } from '../../../interfaces/common.interface';
 import { Observable, Subject } from 'rxjs';
-import { ModalSettings } from './interfaces/modal.interface';
+import { ModalSettings } from './modal.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ModalService {
-  private viewRef?: ViewContainerRef;
   private modalRef: ComponentRef<ModalFrameComponent<object, any>> | undefined;
+  private viewRef: ViewContainerRef | undefined;
 
   constructor(private readonly appRef: ApplicationRef) {
     requestAnimationFrame(() => {
       this.viewRef = this.appRef.components[0].injector.get(ViewContainerRef);
     });
+  }
+
+  get hasOpenedModal(): boolean {
+    console.log(this.modalRef);
+    return Boolean(this.modalRef);
   }
 
   open<ModalData extends object, Action = undefined>({
@@ -56,6 +61,7 @@ export class ModalService {
       destroy$.next(action);
       destroy$.complete();
       modalRef.destroy();
+      this.modalRef = undefined;
     };
 
     instance.modalData = modalData ? modalData : ({} as ModalData);

@@ -41,6 +41,7 @@
 .contact-list {
   height: calc(100% - 57px);
   overflow-y: auto;
+  outline: none;
 }
 
 .contact:hover:not(.selected) {

@@ -1,5 +1,5 @@
-import { Constructor } from '../../../../../interfaces/common.interface';
-import { ModalSettings } from '../../interfaces/modal.interface';
+import { Constructor } from '../../../../interfaces/common.interface';
+import { ModalSettings } from '../modal.interface';
 
 export interface ModalFrame<Action = undefined> {
   component: Constructor;

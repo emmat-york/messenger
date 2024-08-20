@@ -2,17 +2,18 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  HostListener,
   OnInit,
   Renderer2,
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
 import { Constructor } from '../../../../interfaces/common.interface';
-import { ModalFrame } from './interfaces/modal-frame.interface';
+import { ModalFrame } from './modal-frame.interface';
 import { NgClass } from '@angular/common';
 import { ClickOutsideDirective } from '../../../../directives/click-outside.directive';
-import { ModalSettings, ModalWithData } from '../interfaces/modal.interface';
-import { ModalFrameTypePipe } from './pipes/modal-frame-type/modal-frame-type.pipe';
+import { ModalSettings, ModalWithData } from '../modal.interface';
+import { ModalFrameTypePipe } from './modal-frame-type.pipe';
 
 @Component({
   selector: 'app-modal-frame',
@@ -37,6 +38,10 @@ export class ModalFrameComponent<ModalData extends object, Action = undefined>
     private readonly hostElement: ElementRef<HTMLElement>,
     private readonly renderer2: Renderer2,
   ) {}
+
+  @HostListener('document:keydown.escape') escapeKeyListener(): void {
+    this.closeAction(undefined as Action);
+  }
 
   ngOnInit(): void {
     this.initModalComponent();
