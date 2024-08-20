@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 @Component({
   selector: 'app-message-skeleton',
   standalone: true,
-  template: `@for (_ of array(20); track _) {
+  template: `@for (_ of array(12); track _) {
     <div class="outer-card">
       <div class="inner-card"></div>
     </div>
