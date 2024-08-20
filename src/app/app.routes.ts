@@ -1,6 +1,31 @@
-import { Routes } from '@angular/router';
+import { Router, Routes } from '@angular/router';
 import { MessengerComponent } from './pages/messenger/messenger.component';
-import { canActivateAuth, canActivateMessenger } from './auth.guard';
+import { inject } from '@angular/core';
+import { AuthUserService } from './shared/services/app/auth-user/auth-user.service';
+
+export function canActivateAuth(): boolean {
+  const authUserService = inject(AuthUserService);
+  const router = inject(Router);
+
+  if (!authUserService.isAuth) {
+    return true;
+  }
+
+  router.navigate(['messenger']);
+  return false;
+}
+
+export function canActivateMessenger(): boolean {
+  const authUserService = inject(AuthUserService);
+  const router = inject(Router);
+
+  if (authUserService.isAuth) {
+    return true;
+  }
+
+  router.navigate(['login']);
+  return false;
+}
 
 export const routes: Routes = [
   {
