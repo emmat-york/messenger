@@ -4,7 +4,7 @@
 }
 
 .card {
-  width: 60%;
+  width: 50%;
   height: 70px;
   margin-bottom: 12px;
   border-radius: 12px;
@@ -12,17 +12,17 @@
 
   &:nth-child(2n) {
     height: 50px;
-    width: 48%;
+    width: 38%;
   }
 
   &:nth-child(3n) {
     height: 76px;
-    width: 36%;
+    width: 26%;
   }
 
   &:nth-child(4n) {
     height: 88px;
-    width: 52%;
+    width: 42%;
   }
 }
 
