@@ -6,15 +6,14 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { LoginFormKey } from './login.enum';
 import { ButtonComponent } from '../../shared/components/button/button.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   MIN_PASSWORD_LENGTH,
   SLEEPY_OPTIONS,
+  VALIDATION_MESSAGES,
 } from '../../shared/constants/form.constant';
 import { InputComponent } from '../../shared/components/input/input.component';
-import { LOGIN_ERROR_STATE } from './login.constant';
 import { AuthUserService } from '../../shared/services/app/auth-user/auth-user.service';
 import { catchError, EMPTY, finalize } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
@@ -24,6 +23,12 @@ import { getLoginErrorMessage } from '../../shared/services/app/auth-user/helper
 import { PushPipe } from '@ngrx/component';
 import { AuthFacade } from '../../store/auth/auth.facade';
 import { CustomValidators } from '../../shared/utils/validators.util';
+import { ValidatorKeys } from '../../shared/enums/validator-keys.enum';
+
+export enum LoginFormKey {
+  Email = 'email',
+  Password = 'password',
+}
 
 @Component({
   selector: 'app-login',
@@ -35,8 +40,18 @@ import { CustomValidators } from '../../shared/utils/validators.util';
 })
 export class LoginComponent implements OnDestroy {
   readonly errorMsg$ = this.authFacade.errorMsg$;
-  readonly errorState = LOGIN_ERROR_STATE;
   readonly loginFormKey = LoginFormKey;
+  readonly errorState = {
+    [LoginFormKey.Email]: {
+      [ValidatorKeys.required]: VALIDATION_MESSAGES[ValidatorKeys.required],
+      [ValidatorKeys.email]: VALIDATION_MESSAGES[ValidatorKeys.email],
+    },
+    [LoginFormKey.Password]: {
+      [ValidatorKeys.required]: VALIDATION_MESSAGES[ValidatorKeys.required],
+      [ValidatorKeys.minlength]:
+        VALIDATION_MESSAGES[ValidatorKeys.minlength](MIN_PASSWORD_LENGTH),
+    },
+  };
 
   readonly formGroup = this.fb.nonNullable.group({
     [LoginFormKey.Email]: ['', [Validators.required, CustomValidators.email()]],

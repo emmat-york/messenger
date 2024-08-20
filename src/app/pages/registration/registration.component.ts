@@ -10,20 +10,25 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   MIN_PASSWORD_LENGTH,
   SLEEPY_OPTIONS,
+  VALIDATION_MESSAGES,
 } from '../../shared/constants/form.constant';
-import { SignUpFormKey } from './registration.enum';
 import { InputComponent } from '../../shared/components/input/input.component';
 import { ButtonComponent } from '../../shared/components/button/button.component';
 import { catchError, EMPTY, finalize } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
 import { AuthUserService } from '../../shared/services/app/auth-user/auth-user.service';
-import { REGISTRATION_ERROR_STATE } from './registration.constant';
 import { HttpErrorResponse } from '@angular/common/http';
 import { getRegistrationErrorMessage } from '../../shared/services/app/auth-user/helpers/auth-user.helper';
 import { PushPipe } from '@ngrx/component';
 import { AuthFacade } from '../../store/auth/auth.facade';
 import { trim } from '../../shared/utils/form.util';
 import { CustomValidators } from '../../shared/utils/validators.util';
+import { ValidatorKeys } from '../../shared/enums/validator-keys.enum';
+
+export enum SignUpFormKey {
+  Email = 'email',
+  Password = 'password',
+}
 
 @Component({
   selector: 'app-registration',
@@ -35,8 +40,19 @@ import { CustomValidators } from '../../shared/utils/validators.util';
 })
 export class RegistrationComponent implements OnDestroy {
   readonly errorMsg$ = this.authFacade.errorMsg$;
-  readonly errorState = REGISTRATION_ERROR_STATE;
   readonly signUpFormKey = SignUpFormKey;
+  readonly errorState = {
+    [SignUpFormKey.Email]: {
+      [ValidatorKeys.required]: VALIDATION_MESSAGES[ValidatorKeys.required],
+      [ValidatorKeys.email]: VALIDATION_MESSAGES[ValidatorKeys.email],
+    },
+    [SignUpFormKey.Password]: {
+      [ValidatorKeys.required]: VALIDATION_MESSAGES[ValidatorKeys.required],
+      [ValidatorKeys.password]: VALIDATION_MESSAGES[ValidatorKeys.password],
+      [ValidatorKeys.minlength]:
+        VALIDATION_MESSAGES[ValidatorKeys.minlength](MIN_PASSWORD_LENGTH),
+    },
+  };
 
   readonly formGroup = this.fb.nonNullable.group({
     [SignUpFormKey.Email]: ['', [Validators.required, CustomValidators.email()]],

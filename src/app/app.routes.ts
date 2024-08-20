@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { MessengerComponent } from './pages/messenger/messenger.component';
-import { canActivateMessenger } from './guards/messenger.guard';
-import { canActivateAuth } from './guards/auth.guard';
+import { canActivateAuth, canActivateMessenger } from './auth.guard';
 
 export const routes: Routes = [
   {
