@@ -11,7 +11,7 @@ html {
 body {
   height: 100%;
   margin: 0;
-  font-family: var(--inter);
+  font-family: var(--openSans);
 }
 
 h1,
@@ -51,16 +51,14 @@ a {
 }
 
 input {
-  padding: 0;
   border: none;
-  background-color: transparent;
   outline: none;
 }
 
 button,
 input,
 a {
-  font-family: var(--inter);
+  font-family: var(--openSans);
   font-style: normal;
 
   &:disabled {

@@ -9,18 +9,22 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { Constructor } from '../../../../interfaces/common.interface';
-import { ModalFrame } from './modal-frame.interface';
 import { NgClass } from '@angular/common';
 import { ModalSettings, ModalWithData } from '../modal.interface';
 import { ModalFrameTypePipe } from './modal-frame-type.pipe';
-import { ClickOutsideDirective } from '../../../../directives/click-outside.directive';
+
+export interface ModalFrame<Action = undefined> {
+  component: Constructor;
+  closeAction: (action: Action) => void;
+  settings: ModalSettings;
+}
 
 @Component({
   selector: 'app-modal-frame',
   standalone: true,
   templateUrl: 'modal-frame.component.html',
   styleUrl: 'modal-frame.component.scss',
-  imports: [NgClass, ModalFrameTypePipe, ClickOutsideDirective],
+  imports: [NgClass, ModalFrameTypePipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModalFrameComponent<ModalData extends object, Action = undefined>
