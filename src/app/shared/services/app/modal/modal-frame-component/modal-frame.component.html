@@ -1,3 +1,5 @@
 <div class="modal-frame-container" [ngClass]="settings.type | modalFrameType">
-  <ng-container #container></ng-container>
+  <div appClickOutside (clickOutside)="closeAction()">
+    <ng-container #container></ng-container>
+  </div>
 </div>

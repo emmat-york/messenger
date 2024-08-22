@@ -32,12 +32,25 @@
   </ul>
 
   <footer class="footer">
-    <div class="telegram-desktop" (click)="openTelegramDesktop()">Telegram Desktop</div>
+    <div
+      class="telegram-desktop"
+      (click)="openTelegramDesktop(); $event.stopImmediatePropagation()"
+    >
+      Telegram Desktop
+    </div>
 
     <div class="telegram-info">
-      <span class="telegram-info-text" (click)="openVersion()">Version 1.0 x64</span>
+      <span
+        class="telegram-info-text"
+        (click)="openVersion(); $event.stopImmediatePropagation()"
+        >Version 1.0 x64</span
+      >
       <span> - </span>
-      <span class="telegram-info-text" (click)="openAbout()">About</span>
+      <span
+        class="telegram-info-text"
+        (click)="openAbout(); $event.stopImmediatePropagation()"
+        >About</span
+      >
     </div>
   </footer>
 </aside>

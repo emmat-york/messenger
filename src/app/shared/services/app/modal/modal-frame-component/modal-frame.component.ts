@@ -13,13 +13,14 @@ import { ModalFrame } from './modal-frame.interface';
 import { NgClass } from '@angular/common';
 import { ModalSettings, ModalWithData } from '../modal.interface';
 import { ModalFrameTypePipe } from './modal-frame-type.pipe';
+import { ClickOutsideDirective } from '../../../../directives/click-outside.directive';
 
 @Component({
   selector: 'app-modal-frame',
   standalone: true,
   templateUrl: 'modal-frame.component.html',
   styleUrl: 'modal-frame.component.scss',
-  imports: [NgClass, ModalFrameTypePipe],
+  imports: [NgClass, ModalFrameTypePipe, ClickOutsideDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModalFrameComponent<ModalData extends object, Action = undefined>
@@ -39,7 +40,7 @@ export class ModalFrameComponent<ModalData extends object, Action = undefined>
   ) {}
 
   @HostListener('document:keydown.escape') escapeKeyListener(): void {
-    this.closeAction(undefined as Action);
+    this.closeAction();
   }
 
   ngOnInit(): void {

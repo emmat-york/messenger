@@ -1,5 +1,9 @@
 <div class="search-bar">
-  <button class="menu-button" type="button" (click)="openUserMenu()">
+  <button
+    class="menu-button"
+    type="button"
+    (click)="openUserMenu(); $event.stopImmediatePropagation()"
+  >
     <img [ngSrc]="'menu' | icon" width="22" height="22" alt="menu" />
   </button>
 
