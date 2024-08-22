@@ -16,7 +16,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     .outer-card {
       margin-bottom: 10px;
       border-radius: 12px;
-      box-shadow: 2px -2px 12px rgb(202, 202, 202);
+      box-shadow: 0 0 4px rgb(202, 202, 202);
 
       &:nth-child(1n) {
         width: 50%;
