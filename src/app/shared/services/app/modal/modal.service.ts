@@ -23,7 +23,6 @@ export class ModalService {
   }
 
   get hasOpenedModal(): boolean {
-    console.log(this.modalRef);
     return Boolean(this.modalRef);
   }
 
@@ -36,6 +35,10 @@ export class ModalService {
     modalData?: ModalData;
     settings?: ModalSettings;
   }): Observable<Action> {
+    if (this.modalRef) {
+      this.dismissAll();
+    }
+
     const modalRef =
       this.viewRef?.createComponent<ModalFrameComponent<ModalData, Action>>(
         ModalFrameComponent,
@@ -47,18 +50,14 @@ export class ModalService {
       );
     }
 
-    if (this.modalRef) {
-      this.dismissAll();
-    }
-
     this.modalRef = modalRef;
 
     const instance = modalRef.instance;
     const destroy$ = new Subject<Action>();
 
     instance.component = component;
-    instance.closeAction = (action: Action) => {
-      destroy$.next(action);
+    instance.closeAction = (action?: Action) => {
+      destroy$.next(action as Action);
       destroy$.complete();
       modalRef.destroy();
       this.modalRef = undefined;
@@ -71,7 +70,7 @@ export class ModalService {
   }
 
   dismissAll(): void {
-    this.modalRef?.instance.closeAction(undefined);
+    this.modalRef?.instance.closeAction();
     this.modalRef = undefined;
   }
 }

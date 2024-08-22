@@ -25,7 +25,7 @@ import { ModalFrameTypePipe } from './modal-frame-type.pipe';
 export class ModalFrameComponent<ModalData extends object, Action = undefined>
   implements ModalFrame<Action>, OnInit
 {
-  closeAction: (action: Action) => void;
+  closeAction: (action?: Action) => void;
   modalData: ModalData;
   component: Constructor;
   settings: ModalSettings;
