@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ModalWithData } from '../../../../../../shared/services/app/modal/modal.interface';
-import { UserMenuModalData } from './user-menu.interface';
+import { Modal } from '../../../../../../shared/services/app/modal/modal.interface';
 import { LetDirective } from '@ngrx/component';
 import { NgOptimizedImage } from '@angular/common';
 import { IconPipe } from '../../../../../../shared/pipes/icon.pipe';
@@ -8,6 +7,8 @@ import { ModalService } from '../../../../../../shared/services/app/modal/modal.
 import { AboutComponent } from './components/about/about.component';
 import { VersionComponent } from './components/version/version.component';
 import { TelegramDesktopComponent } from './components/telegram-desktop/telegram-desktop.component';
+import { SettingsFacade } from '../../../../../../store/settings/settings.facade';
+import { UserFacade } from '../../../../../../store/user/user.facade';
 
 @Component({
   selector: 'app-user-menu',
@@ -17,11 +18,17 @@ import { TelegramDesktopComponent } from './components/telegram-desktop/telegram
   imports: [LetDirective, NgOptimizedImage, IconPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UserMenuComponent implements ModalWithData<UserMenuModalData> {
-  modalData: UserMenuModalData;
+export class UserMenuComponent implements Modal {
+  readonly version$ = this.settingsFacade.version$;
+  readonly vm$ = this.userFacade.vm$;
+
   closeAction: () => void;
 
-  constructor(private readonly modalService: ModalService) {}
+  constructor(
+    private readonly settingsFacade: SettingsFacade,
+    private readonly modalService: ModalService,
+    private readonly userFacade: UserFacade,
+  ) {}
 
   openTelegramDesktop(): void {
     this.modalService.open({ component: TelegramDesktopComponent });

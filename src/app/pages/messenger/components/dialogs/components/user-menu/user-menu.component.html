@@ -1,11 +1,11 @@
-<aside *ngrxLet="modalData.userFacade.vm$; let vm" class="aside">
-  @if (vm.userData) {
+<aside *ngrxLet="{ userVm: vm$, version: version$ }; let vm" class="aside">
+  @if (vm.userVm.userData) {
   <header class="header">
     <div class="top-header">
-      <img [ngSrc]="vm.userData.avatar" width="42" height="42" alt="avatar" />
+      <img [ngSrc]="vm.userVm.userData.avatar" width="42" height="42" alt="avatar" />
     </div>
 
-    <span class="user-name">{{ vm.userData.userName }}</span>
+    <span class="user-name">{{ vm.userVm.userData.userName }}</span>
   </header>
   }
 
@@ -43,8 +43,8 @@
       <span
         class="telegram-info-text"
         (click)="openVersion(); $event.stopImmediatePropagation()"
-        >Version 1.0 x64</span
-      >
+        >Version {{ vm.version }}
+      </span>
       <span> - </span>
       <span
         class="telegram-info-text"

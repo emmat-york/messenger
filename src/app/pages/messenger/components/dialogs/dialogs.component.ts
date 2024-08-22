@@ -9,7 +9,6 @@ import {
   ViewChild,
 } from '@angular/core';
 import { DialogComponent } from './components/dialog/dialog.component';
-import { UserFacade } from '../../../../store/user/user.facade';
 import { IconPipe } from '../../../../shared/pipes/icon.pipe';
 import { NgOptimizedImage } from '@angular/common';
 import { LetDirective } from '@ngrx/component';
@@ -20,7 +19,6 @@ import { ScrollEvent } from '../chat/components/chat-body/chat-body.interface';
 import { ScrollCircleComponent } from '../../../../shared/components/scroll-circle/scroll-circle.component';
 import { ModalService } from '../../../../shared/services/app/modal/modal.service';
 import { UserMenuComponent } from './components/user-menu/user-menu.component';
-import { UserMenuModalData } from './components/user-menu/user-menu.interface';
 import { ChatFacade } from '../../../../store/chat/chat.facade';
 
 @Component({
@@ -49,7 +47,6 @@ export class DialogsComponent implements AfterViewInit {
     private readonly modalService: ModalService,
     private readonly cdRef: ChangeDetectorRef,
     private readonly chatFacade: ChatFacade,
-    private readonly userFacade: UserFacade,
     private readonly destroyRef: DestroyRef,
     private readonly renderer2: Renderer2,
   ) {}
@@ -59,9 +56,8 @@ export class DialogsComponent implements AfterViewInit {
   }
 
   openUserMenu(): void {
-    this.modalService.open<UserMenuModalData>({
+    this.modalService.open({
       component: UserMenuComponent,
-      modalData: { userFacade: this.userFacade },
       settings: { type: 'aside' },
     });
   }
