@@ -1,8 +1,14 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { ClickOutsideDirective } from '../../directives/click-outside.directive';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { DropdownOptionValue, Option } from './dropdown.interface';
 import { IconPipe } from '../../pipes/icon.pipe';
+
+export type DropdownOptionValue = string | number | boolean | null | undefined;
+
+export interface Option {
+  title: string;
+  value: DropdownOptionValue;
+}
 
 @Component({
   selector: 'app-dropdown',

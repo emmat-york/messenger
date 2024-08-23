@@ -1,8 +1,9 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import * as action from './chat.action';
-import { CHAT_KEY } from '../store.constant';
 import { Dialog } from '../user/user.interface';
 import { Message } from '../../pages/messenger/chat/chat.interface';
+
+export const CHAT_KEY = 'chat';
 
 export interface ChatState {
   input: string;
@@ -20,7 +21,7 @@ const initialState: ChatState = {
   isLoading: true,
 };
 
-const chatFeature = createFeature({
+export const { selectChatState, reducer } = createFeature({
   name: CHAT_KEY,
   reducer: createReducer(
     initialState,
@@ -73,5 +74,3 @@ const chatFeature = createFeature({
     })),
   ),
 });
-
-export const { selectChatState, reducer } = chatFeature;

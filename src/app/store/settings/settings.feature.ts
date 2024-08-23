@@ -1,6 +1,7 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import * as action from './settings.action';
-import { SETTINGS_KEY } from '../store.constant';
+
+export const SETTINGS_KEY = 'settings';
 
 export type AppTheme = 'dark-app-theme' | 'light-app-theme';
 
@@ -20,10 +21,14 @@ const initialState: SettingsState = {
   selectedLanguage: '',
 };
 
-const feature = createFeature({
+export const { selectTheme, selectVersion, reducer } = createFeature({
   name: SETTINGS_KEY,
   reducer: createReducer(
     initialState,
+    on(
+      action.setSettings,
+      (state, { settings }): SettingsState => ({ ...state, ...settings }),
+    ),
     on(
       action.setTheme,
       (state, { theme }): SettingsState => ({
@@ -33,5 +38,3 @@ const feature = createFeature({
     ),
   ),
 });
-
-export const { selectTheme, selectVersion, reducer } = feature;

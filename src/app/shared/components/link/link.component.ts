@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { LinkTarget } from './link.interface';
+
+export type LinkTarget = '_blank' | '_parent' | '_self' | '_top';
 
 @Component({
   selector: 'app-link',

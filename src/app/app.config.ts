@@ -15,11 +15,13 @@ import { Dialog } from './store/user/user.interface';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { UserFacade } from './store/user/user.facade';
 import { AuthFacade } from './store/auth/auth.facade';
-import { reducer as authReducer } from './store/auth/auth.feature';
-import { reducer as chatReducer } from './store/chat/chat.feature';
-import { reducer as settingsReducer } from './store/settings/settings.feature';
-import { reducer as userReducer } from './store/user/user.feature';
-import { AUTH_KEY, CHAT_KEY, SETTINGS_KEY, USER_KEY } from './store/store.constant';
+import { AUTH_KEY, reducer as authReducer } from './store/auth/auth.feature';
+import { CHAT_KEY, reducer as chatReducer } from './store/chat/chat.feature';
+import {
+  reducer as settingsReducer,
+  SETTINGS_KEY,
+} from './store/settings/settings.feature';
+import { reducer as userReducer, USER_KEY } from './store/user/user.feature';
 import { ChatSocket } from './shared/services/socket/chat.socket';
 import { ChatFacade } from './store/chat/chat.facade';
 import { ChatService } from './shared/services/api/chat/chat.service';
