@@ -33,7 +33,7 @@ function initializeAppFactory(
   authFacade: AuthFacade,
   chatSocket: ChatSocket,
 ): () => Observable<Dialog[] | null> {
-  return () => {
+  return (): Observable<Dialog[] | null> => {
     if (authUserService.isAuth) {
       return userService.getUserData$(authUserService.token).pipe(
         switchMap(userData => {
