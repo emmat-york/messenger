@@ -10,11 +10,8 @@ export type Folders = 'system' | 'flags';
 })
 export class IconPipe implements PipeTransform {
   transform(name: string, folder?: Folders): string {
-    if (!folder || folder === 'system') {
-      return new SrcBuilder()
-        .setFolderOne('system')
-        .setName(name)
-        .setExtension(FileExtensions.Svg).path;
+    if (!folder) {
+      return new SrcBuilder().setName(name).setExtension(FileExtensions.Svg).path;
     }
 
     const foldersState: Record<Folders, SrcBuilder> = {

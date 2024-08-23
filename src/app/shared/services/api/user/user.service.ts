@@ -14,7 +14,7 @@ export class UserService {
       id: 1,
       phoneNumber: '12345678',
       userName: 'Andrei Filimonchyk',
-      avatar: 'assets/icons/system/avatar.svg',
+      avatar: 'assets/icons/avatar.svg',
     });
   }
 }

@@ -16,7 +16,7 @@ export class ChatService {
       {
         id: 2,
         userName: 'Pavel Filimonchyk  asdfasd fasdfasdfas dfasd fasdf',
-        avatar: 'assets/icons/system/avatar.svg',
+        avatar: 'assets/icons/avatar.svg',
         isOnline: false,
         roomId: 'room-1',
         lastMessage: {
@@ -32,7 +32,7 @@ export class ChatService {
       {
         id: 3,
         userName: 'Pavel Filimonchyk',
-        avatar: 'assets/icons/system/avatar.svg',
+        avatar: 'assets/icons/avatar.svg',
         isOnline: false,
         roomId: 'room-2',
         lastMessage: {
@@ -48,7 +48,7 @@ export class ChatService {
       {
         id: 4,
         userName: 'Pavel Filimonchyk',
-        avatar: 'assets/icons/system/avatar.svg',
+        avatar: 'assets/icons/avatar.svg',
         isOnline: true,
         roomId: 'room-3',
         lastMessage: {
@@ -64,7 +64,7 @@ export class ChatService {
       {
         id: 5,
         userName: 'Pavel Filimonchyk',
-        avatar: 'assets/icons/system/avatar.svg',
+        avatar: 'assets/icons/avatar.svg',
         isOnline: true,
         roomId: 'room-4',
         lastMessage: {
@@ -80,7 +80,7 @@ export class ChatService {
       {
         id: 6,
         userName: 'Pavel Filimonchyk',
-        avatar: 'assets/icons/system/avatar.svg',
+        avatar: 'assets/icons/avatar.svg',
         isOnline: true,
         roomId: 'room-5',
         lastMessage: {
@@ -96,7 +96,7 @@ export class ChatService {
       {
         id: 7,
         userName: 'Pavel Filimonchyk',
-        avatar: 'assets/icons/system/avatar.svg',
+        avatar: 'assets/icons/avatar.svg',
         isOnline: true,
         roomId: 'room-6',
         lastMessage: {
@@ -112,7 +112,7 @@ export class ChatService {
       {
         id: 8,
         userName: 'Pavel Filimonchyk',
-        avatar: 'assets/icons/system/avatar.svg',
+        avatar: 'assets/icons/avatar.svg',
         isOnline: true,
         roomId: 'room-7',
         lastMessage: {
@@ -128,7 +128,7 @@ export class ChatService {
       {
         id: 9,
         userName: 'Pavel Filimonchyk',
-        avatar: 'assets/icons/system/avatar.svg',
+        avatar: 'assets/icons/avatar.svg',
         isOnline: true,
         roomId: 'room-8',
         lastMessage: {
@@ -144,7 +144,7 @@ export class ChatService {
       {
         id: 10,
         userName: 'Pavel Filimonchyk',
-        avatar: 'assets/icons/system/avatar.svg',
+        avatar: 'assets/icons/avatar.svg',
         isOnline: true,
         roomId: 'room-9',
         lastMessage: {
@@ -160,7 +160,7 @@ export class ChatService {
       {
         id: 11,
         userName: 'Pavel',
-        avatar: 'assets/icons/system/avatar.svg',
+        avatar: 'assets/icons/avatar.svg',
         isOnline: false,
         roomId: 'room-10',
         lastMessage: {
@@ -176,7 +176,7 @@ export class ChatService {
       {
         id: 12,
         userName: 'Pavel',
-        avatar: 'assets/icons/system/avatar.svg',
+        avatar: 'assets/icons/avatar.svg',
         isOnline: false,
         roomId: 'room-11',
         lastMessage: {
@@ -192,7 +192,7 @@ export class ChatService {
       {
         id: 13,
         userName: 'Pavel',
-        avatar: 'assets/icons/system/avatar.svg',
+        avatar: 'assets/icons/avatar.svg',
         isOnline: false,
         roomId: 'room-12',
         lastMessage: {
@@ -208,7 +208,7 @@ export class ChatService {
       {
         id: 14,
         userName: 'Pavel',
-        avatar: 'assets/icons/system/avatar.svg',
+        avatar: 'assets/icons/avatar.svg',
         isOnline: false,
         roomId: 'room-13',
         lastMessage: {
@@ -224,7 +224,7 @@ export class ChatService {
       {
         id: 15,
         userName: 'Pavel',
-        avatar: 'assets/icons/system/avatar.svg',
+        avatar: 'assets/icons/avatar.svg',
         isOnline: false,
         roomId: 'room-14',
         lastMessage: {
@@ -240,7 +240,7 @@ export class ChatService {
       {
         id: 16,
         userName: 'Pavel',
-        avatar: 'assets/icons/system/avatar.svg',
+        avatar: 'assets/icons/avatar.svg',
         isOnline: true,
         roomId: 'room-15',
         lastMessage: {
@@ -256,7 +256,7 @@ export class ChatService {
       {
         id: 17,
         userName: 'Pavel',
-        avatar: 'assets/icons/system/avatar.svg',
+        avatar: 'assets/icons/avatar.svg',
         isOnline: true,
         roomId: 'room-16',
         lastMessage: {
