@@ -1,0 +1,74 @@
+@import '../../../../../styles/variables';
+
+$avatar-width: 40px;
+$avatar-indent: 16px;
+$date-width: 64px;
+
+:host {
+  display: flex;
+  gap: $avatar-indent;
+  padding: 5px 16px;
+  cursor: pointer;
+}
+
+.online {
+  position: relative;
+
+  &::before {
+    position: absolute;
+    content: '';
+    bottom: 4px;
+    right: 4px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--green_bright2);
+  }
+}
+
+.contact-info {
+  width: calc(100% - #{$avatar-width} - #{$avatar-indent});
+}
+
+.name-and-date {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.user-name {
+  width: calc(100% - #{$date-width} - 12px);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.date {
+  width: $date-width;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 16px;
+  text-align: end;
+}
+
+.message {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--gray_dark10);
+}
+
+:host(.selected) {
+  .user-name,
+  .message,
+  .date {
+    color: var(--white1);
+  }
+}

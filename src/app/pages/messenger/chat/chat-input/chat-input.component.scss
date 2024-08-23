@@ -1,0 +1,43 @@
+@import '../../../../../styles/variables';
+
+$action-button-size: 24px;
+$indent: 16px;
+
+:host {
+  display: flex;
+  gap: $indent;
+  padding: 8px 16px;
+  border-left: 1px solid var(--gray_light8);
+  background: var(--white1);
+}
+
+.chat-input {
+  width: calc(100% - (#{$action-button-size} * 2) - (#{$indent} * 2));
+  max-height: 196px;
+  padding-top: 8px;
+  font-size: 12px;
+  overflow-y: auto;
+  outline: none;
+
+  &:empty::before {
+    content: attr(data-placeholder);
+    display: block;
+    pointer-events: none;
+    color: rgb(var(--spr-grey-550));
+  }
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: $indent;
+  width: calc((#{$action-button-size} * 2) + #{$indent});
+}
+
+.action-button {
+  position: relative;
+  bottom: 2px;
+  width: $action-button-size;
+  height: $action-button-size;
+}

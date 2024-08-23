@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { delay, Observable, of } from 'rxjs';
-import { Message } from '../../../../pages/messenger/components/chat/chat.interface';
-import { EmojiCategory } from '../../../../pages/messenger/components/chat/chat.enum';
 import { Dialog } from '../../../../store/user/user.interface';
+import { Message } from '../../../../pages/messenger/chat/chat.interface';
+import { EmojiCategory } from '../../../../pages/messenger/chat/chat.enum';
 
 @Injectable({
   providedIn: 'root',

@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import { Message } from '../../pages/messenger/components/chat/chat.interface';
 import { Dialog } from '../user/user.interface';
+import { Message } from '../../pages/messenger/chat/chat.interface';
 
 export const setDialogs = createAction(
   '[CHAT] setDialogs',

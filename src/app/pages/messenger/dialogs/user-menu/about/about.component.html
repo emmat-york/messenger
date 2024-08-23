@@ -1,0 +1,22 @@
+<div class="main-info">
+  <h4>Telegram Desktop</h4>
+
+  <p class="version" (click)="openVersion()">Version {{ version$ | ngrxPush }}</p>
+
+  <p class="info-paragraph">
+    Free messaging app based on
+    <app-link href="https://www.electronjs.org/">Electron</app-link>
+    platform and
+    <app-link href="https://v17.angular.io/docs">Angular</app-link>
+    framework.
+  </p>
+
+  <p class="info-paragraph">
+    This App is absolutely free from UI libraries so it makes it quick as much as it
+    possible. The App is constantly improving to be faster and more secured.
+  </p>
+</div>
+
+<footer class="footer">
+  <app-button variant="text" (click)="closeAction()">Close</app-button>
+</footer>

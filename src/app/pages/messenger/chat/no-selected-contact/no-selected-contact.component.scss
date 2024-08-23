@@ -1,0 +1,16 @@
+@import '../../../../../styles/variables';
+
+:host {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-block;
+  padding: 4px 8px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 20px;
+  color: var(--white1);
+  background-color: rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+}
