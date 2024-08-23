@@ -1,5 +1,4 @@
 import { ValidatorKeys } from '../enums/validator-keys.enum';
-import { ValidationMessages } from '../interfaces/form.interface';
 
 export const MIN_PASSWORD_LENGTH = 12;
 
@@ -8,7 +7,7 @@ export const SLEEPY_OPTIONS = {
   emitEvent: false,
 };
 
-export const VALIDATION_MESSAGES: ValidationMessages = {
+export const VALIDATION_MESSAGES = {
   [ValidatorKeys.required]: 'Field is required',
   [ValidatorKeys.email]: 'Email should be valid',
   [ValidatorKeys.password]:

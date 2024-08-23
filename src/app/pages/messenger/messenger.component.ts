@@ -7,8 +7,26 @@ import { ChatComponent } from './chat/chat.component';
 @Component({
   selector: 'app-messenger',
   standalone: true,
-  templateUrl: 'messenger.component.html',
-  styleUrl: 'messenger.component.scss',
+  template: `
+    <app-dialogs class="dialogs"></app-dialogs>
+    <app-chat class="chat"></app-chat>
+  `,
+  styles: `$dialog-width: 348px;
+
+    :host {
+      display: flex;
+      height: 100%;
+      width: 100%;
+    }
+
+    .dialogs {
+      width: $dialog-width;
+      min-width: 312px;
+    }
+
+    .chat {
+      width: calc(100% - #{$dialog-width});
+    }`,
   imports: [DialogsComponent, ChatComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

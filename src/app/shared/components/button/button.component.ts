@@ -15,7 +15,78 @@ export type ButtonType = 'submit' | 'button' | 'reset';
   >
     <ng-content></ng-content>
   </button>`,
-  styleUrls: ['button.component.scss'],
+  styles: `:host {
+      display: inline-block;
+    }
+
+    .button {
+      width: inherit;
+      font-size: 14px;
+      font-weight: var(--font_weight_medium);
+      line-height: 16px;
+      font-style: normal;
+    }
+
+    .variant {
+      &-regular {
+        padding: var(--spacing_12);
+        border-radius: var(--border-radius_4);
+        background-color: var(--blue_semi-light9);
+        color: var(--white1);
+
+        &:hover:not(&:disabled) {
+          opacity: var(--opacity);
+        }
+      }
+
+      &-text {
+        padding: var(--spacing_12);
+        border-radius: 4px;
+        background-color: transparent;
+        color: var(--blue_semi-light9);
+
+        &:hover {
+          background-color: var(--steel-gray_bright2);
+        }
+      }
+
+      &-line {
+        padding: var(--spacing_10);
+        border-radius: var(--border-radius_7);
+        border: 2px solid var(--line-blue);
+        text-transform: uppercase;
+        background-color: transparent;
+        color: var(--line-blue);
+
+        &:hover {
+          border-color: var(--line-green);
+          color: var(--line-green);
+        }
+      }
+
+      &-commerce {
+        padding: var(--spacing_7);
+        border-radius: var(--border-radius_15);
+        background-color: var(--green_light2);
+        color: var(--green_bright3);
+
+        &:hover:not(&:disabled) {
+          opacity: var(--opacity);
+        }
+      }
+
+      &-publicLink {
+        padding: var(--spacing_14);
+        border-radius: var(--border-radius_7);
+        background-color: var(--mud_white);
+        color: var(--black1);
+
+        &:hover:not(&:disabled) {
+          opacity: var(--opacity);
+        }
+      }
+    }
+    `,
   imports: [NgClass],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
