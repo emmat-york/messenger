@@ -27,7 +27,7 @@ export interface ModalFrame<Action> {
   imports: [NgClass, ModalFrameTypePipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ModalFrameComponent<ModalData extends object, Action = undefined>
+export class ModalFrameComponent<ModalData extends object, Action>
   implements ModalFrame<Action>, OnInit
 {
   closeAction: (action?: Action) => void;
