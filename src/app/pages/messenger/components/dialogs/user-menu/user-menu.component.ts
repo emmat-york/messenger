@@ -1,14 +1,14 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Modal } from '../../../../../../shared/services/app/modal/modal.interface';
+import { Modal } from '../../../../../shared/services/app/modal/modal.interface';
 import { LetDirective } from '@ngrx/component';
 import { NgOptimizedImage } from '@angular/common';
-import { IconPipe } from '../../../../../../shared/pipes/icon.pipe';
-import { ModalService } from '../../../../../../shared/services/app/modal/modal.service';
-import { AboutComponent } from './components/about/about.component';
-import { VersionComponent } from './components/version/version.component';
-import { TelegramDesktopComponent } from './components/telegram-desktop/telegram-desktop.component';
-import { SettingsFacade } from '../../../../../../store/settings/settings.facade';
-import { UserFacade } from '../../../../../../store/user/user.facade';
+import { IconPipe } from '../../../../../shared/pipes/icon.pipe';
+import { ModalService } from '../../../../../shared/services/app/modal/modal.service';
+import { AboutComponent } from './about/about.component';
+import { VersionComponent } from './version/version.component';
+import { TelegramDesktopComponent } from './telegram-desktop/telegram-desktop.component';
+import { SettingsFacade } from '../../../../../store/settings/settings.facade';
+import { UserFacade } from '../../../../../store/user/user.facade';
 
 @Component({
   selector: 'app-user-menu',

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
-import { Dialog } from '../../../../../../store/user/user.interface';
+import { Dialog } from '../../../../../store/user/user.interface';
 
 @Component({
   selector: 'app-chat-top-bar',

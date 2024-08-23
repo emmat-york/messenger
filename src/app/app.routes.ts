@@ -42,7 +42,7 @@ export const routes: Routes = [
     path: 'settings',
     loadComponent: () =>
       import(
-        './pages/messenger/components/dialogs/components/user-menu/components/settings/settings.component'
+        './pages/messenger/components/dialogs/user-menu/settings/settings.component'
       ).then(c => c.SettingsComponent),
     canActivate: [canActivateMessenger],
   },

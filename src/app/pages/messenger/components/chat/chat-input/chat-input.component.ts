@@ -9,10 +9,10 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgOptimizedImage } from '@angular/common';
-import { ChatFacade } from '../../../../../../store/chat/chat.facade';
-import { IconPipe } from '../../../../../../shared/pipes/icon.pipe';
+import { ChatFacade } from '../../../../../store/chat/chat.facade';
+import { IconPipe } from '../../../../../shared/pipes/icon.pipe';
 import { ContentEditableFormDirective } from './contenteditable.directive';
-import { getTrimmedString } from '../../../../../../shared/utils/form.util';
+import { getTrimmedString } from '../../../../../shared/utils/form.util';
 import { INITIAL_INPUT_HEIGHT } from './chat-input.constant';
 
 @Component({

@@ -71,6 +71,5 @@ export class ModalService {
 
   dismissAll(): void {
     this.modalRef?.instance.closeAction();
-    this.modalRef = undefined;
   }
 }

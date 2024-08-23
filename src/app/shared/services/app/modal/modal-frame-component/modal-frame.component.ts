@@ -13,9 +13,9 @@ import { NgClass } from '@angular/common';
 import { ModalSettings, ModalWithData } from '../modal.interface';
 import { ModalFrameTypePipe } from './modal-frame-type.pipe';
 
-export interface ModalFrame<Action = undefined> {
+export interface ModalFrame<Action> {
   component: Constructor;
-  closeAction: (action: Action) => void;
+  closeAction: (action?: Action) => void;
   settings: ModalSettings;
 }
 

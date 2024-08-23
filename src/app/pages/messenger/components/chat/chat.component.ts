@@ -7,11 +7,11 @@ import {
 } from '@angular/core';
 import { ChatFacade } from '../../../../store/chat/chat.facade';
 import { ChatBodyComponent } from './components/chat-body/chat-body.component';
-import { ChatInputComponent } from './components/chat-input/chat-input.component';
+import { ChatInputComponent } from './chat-input/chat-input.component';
 import { LetDirective } from '@ngrx/component';
-import { ChatTopBarComponent } from './components/chat-top-bar/chat-top-bar.component';
+import { ChatTopBarComponent } from './chat-top-bar/chat-top-bar.component';
 import { UserFacade } from '../../../../store/user/user.facade';
-import { NoSelectedContactComponent } from './components/no-selected-contact/no-selected-contact.component';
+import { NoSelectedContactComponent } from './no-selected-contact/no-selected-contact.component';
 import { distinctUntilChanged, filter, map } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 

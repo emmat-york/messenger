@@ -8,7 +8,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { DialogComponent } from './components/dialog/dialog.component';
+import { DialogComponent } from './dialog/dialog.component';
 import { IconPipe } from '../../../../shared/pipes/icon.pipe';
 import { NgOptimizedImage } from '@angular/common';
 import { LetDirective } from '@ngrx/component';
@@ -18,7 +18,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ScrollEvent } from '../chat/components/chat-body/chat-body.interface';
 import { ScrollCircleComponent } from '../../../../shared/components/scroll-circle/scroll-circle.component';
 import { ModalService } from '../../../../shared/services/app/modal/modal.service';
-import { UserMenuComponent } from './components/user-menu/user-menu.component';
+import { UserMenuComponent } from './user-menu/user-menu.component';
 import { ChatFacade } from '../../../../store/chat/chat.facade';
 
 @Component({
