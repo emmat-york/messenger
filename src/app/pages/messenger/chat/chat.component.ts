@@ -5,7 +5,6 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { ChatBodyComponent } from './components/chat-body/chat-body.component';
 import { ChatInputComponent } from './chat-input/chat-input.component';
 import { LetDirective } from '@ngrx/component';
 import { ChatTopBarComponent } from './chat-top-bar/chat-top-bar.component';
@@ -14,6 +13,7 @@ import { distinctUntilChanged, filter, map } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { UserFacade } from '../../../store/user/user.facade';
 import { ChatFacade } from '../../../store/chat/chat.facade';
+import { ChatBodyComponent } from './chat-body/chat-body.component';
 
 @Component({
   selector: 'app-chat',

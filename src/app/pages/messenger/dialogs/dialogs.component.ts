@@ -13,13 +13,13 @@ import { NgOptimizedImage } from '@angular/common';
 import { LetDirective } from '@ngrx/component';
 import { debounceTime, fromEvent } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ScrollEvent } from '../chat/components/chat-body/chat-body.interface';
 import { UserMenuComponent } from './user-menu/user-menu.component';
 import { ScrollCircleComponent } from '../../../shared/components/scroll-circle/scroll-circle.component';
 import { IconPipe } from '../../../shared/pipes/icon.pipe';
 import { ModalService } from '../../../shared/services/app/modal/modal.service';
 import { ChatFacade } from '../../../store/chat/chat.facade';
 import { Dialog } from '../../../store/user/user.interface';
+import { ScrollEvent } from '../chat/chat-body/chat-body.interface';
 
 @Component({
   selector: 'app-dialogs',

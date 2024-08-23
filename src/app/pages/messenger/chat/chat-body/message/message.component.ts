@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { Message } from '../../../chat.interface';
 import { DatePipe } from '@angular/common';
+import { Message } from '../../chat.interface';
 
 @Component({
   selector: 'app-message',
