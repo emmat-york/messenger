@@ -1,6 +1,5 @@
 import { AuthService } from '../../api/auth/auth.service';
 import { Injectable } from '@angular/core';
-import { AUTH_TOKEN_EXPIRES_DATE_KEY, AUTH_TOKEN_KEY } from './auth-user.constant';
 import { Observable, switchMap, tap } from 'rxjs';
 import { LoginCredentials, RegistrationCredentials } from '../../api/auth/auth.interface';
 import { Router } from '@angular/router';
@@ -8,6 +7,9 @@ import { UserFacade } from '../../../../store/user/user.facade';
 import { UserService } from '../../api/user/user.service';
 import { UserData } from '../../../../store/user/user.interface';
 import { AuthFacade } from '../../../../store/auth/auth.facade';
+
+export const AUTH_TOKEN_KEY = 'AUTH_TOKEN_KEY';
+export const AUTH_TOKEN_EXPIRES_DATE_KEY = 'AUTH_TOKEN_EXPIRES_IN_KEY';
 
 @Injectable({
   providedIn: 'root',

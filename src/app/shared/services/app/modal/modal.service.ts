@@ -4,7 +4,7 @@ import {
   Injectable,
   ViewContainerRef,
 } from '@angular/core';
-import { ModalFrameComponent } from './modal-frame-component/modal-frame.component';
+import { ModalFrameComponent } from './modal-frame.component';
 import { Constructor } from '../../../interfaces/common.interface';
 import { Observable, Subject } from 'rxjs';
 import { ModalSettings } from './modal.interface';

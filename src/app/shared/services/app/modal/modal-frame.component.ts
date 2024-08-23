@@ -8,9 +8,9 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
-import { Constructor } from '../../../../interfaces/common.interface';
+import { Constructor } from '../../../interfaces/common.interface';
 import { NgClass } from '@angular/common';
-import { ModalSettings, ModalWithData } from '../modal.interface';
+import { ModalSettings, ModalWithData } from './modal.interface';
 import { ModalFrameTypePipe } from './modal-frame-type.pipe';
 
 export interface ModalFrame<Action> {
