@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, HostListener } from '@angular/core';
 import { ChatFacade } from '../../store/chat/chat.facade';
 import { ModalService } from '../../shared/services/app/modal/modal.service';
-import { DialogsComponent } from './dialogs/dialogs.component';
 import { ChatComponent } from './chat/chat.component';
+import { DialogsComponent } from './aside/dialogs/dialogs.component';
 
 @Component({
   selector: 'app-messenger',

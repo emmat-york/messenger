@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ButtonComponent } from '../../../../../shared/components/button/button.component';
-import { Modal } from '../../../../../shared/services/app/modal/modal.interface';
+import { ButtonComponent } from '../../../../../../shared/components/button/button.component';
+import { Modal } from '../../../../../../shared/services/app/modal/modal.interface';
 
 @Component({
   selector: 'app-telegram-desktop',

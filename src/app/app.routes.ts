@@ -39,14 +39,6 @@ export const routes: Routes = [
     canActivate: [canActivateMessenger],
   },
   {
-    path: 'settings',
-    loadComponent: () =>
-      import('./pages/messenger/dialogs/user-menu/settings/settings.component').then(
-        c => c.SettingsComponent,
-      ),
-    canActivate: [canActivateMessenger],
-  },
-  {
     path: 'registration',
     loadComponent: () =>
       import('./pages/registration/registration.component').then(

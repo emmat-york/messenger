@@ -4,12 +4,12 @@ import { NgOptimizedImage } from '@angular/common';
 import { AboutComponent } from './about/about.component';
 import { VersionComponent } from './version/version.component';
 import { TelegramDesktopComponent } from './telegram-desktop/telegram-desktop.component';
-import { IconPipe } from '../../../../shared/pipes/icon.pipe';
-import { Modal } from '../../../../shared/services/app/modal/modal.interface';
-import { SettingsFacade } from '../../../../store/settings/settings.facade';
-import { ModalService } from '../../../../shared/services/app/modal/modal.service';
-import { UserFacade } from '../../../../store/user/user.facade';
-import { AvatarComponent } from '../../../../shared/components/avatar/avatar.component';
+import { IconPipe } from '../../../../../shared/pipes/icon.pipe';
+import { AvatarComponent } from '../../../../../shared/components/avatar/avatar.component';
+import { Modal } from '../../../../../shared/services/app/modal/modal.interface';
+import { SettingsFacade } from '../../../../../store/settings/settings.facade';
+import { ModalService } from '../../../../../shared/services/app/modal/modal.service';
+import { UserFacade } from '../../../../../store/user/user.facade';
 
 @Component({
   selector: 'app-user-menu',
