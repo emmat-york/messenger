@@ -43,6 +43,7 @@ function initializeAppFactory(
         switchMap(({ settings, ...restUserData }) => {
           userFacade.setUserData(restUserData);
           settingsFacade.setSettings(settings);
+
           return chatService.getUserDialogs$(restUserData.id);
         }),
         tap(dialogs => {

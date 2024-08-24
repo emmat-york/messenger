@@ -2,12 +2,50 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 288px;
-  max-height: 460px;
-  width: 338px;
-  padding: 12px 12px 12px 20px;
+  max-width: 454px;
+  padding: 12px 20px;
   border-radius: 8px;
   background-color: var(--white1);
+}
+
+.heading {
+  margin-bottom: 16px;
+}
+
+.version-list {
+  min-height: 288px;
+  max-height: 460px;
+  overflow-y: auto;
+}
+
+.version {
+  margin-bottom: 28px;
+  font-size: 14px;
+}
+
+.version-and-release-date {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.version-release-date {
+  font-size: 14px;
+  color: var(--gray_dark1);
+}
+
+.update-list {
+  padding-left: 24px;
+  margin-bottom: 16px;
+}
+
+.update {
+  list-style: disc;
+
+  &::marker {
+    color: var(--blue_light5);
+  }
 }
 
 .footer {

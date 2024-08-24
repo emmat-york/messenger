@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
-import { AppTheme, selectTheme, selectVersion, SettingsState } from './settings.feature';
+import { AppMode, selectVersions, SettingsState } from './settings.feature';
 import * as action from './settings.action';
 import { Action, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { Version } from '../user/user.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SettingsFacade {
-  readonly version$ = this.store.select(selectVersion);
-  readonly theme$ = this.store.select(selectTheme);
+  readonly versions$: Observable<Version[]> = this.store.select(selectVersions);
 
   constructor(private readonly store: Store) {}
 
@@ -16,7 +17,7 @@ export class SettingsFacade {
     this.dispatch(action.setSettings({ settings }));
   }
 
-  setTheme(theme: AppTheme): void {
+  setTheme(theme: AppMode): void {
     this.dispatch(action.setTheme({ theme }));
   }
 

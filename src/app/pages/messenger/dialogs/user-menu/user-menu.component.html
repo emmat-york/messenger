@@ -1,4 +1,4 @@
-<aside *ngrxLet="{ userVm: vm$, version: version$ }; let vm" class="aside">
+<aside *ngrxLet="{ userVm: vm$, version: versions$ }; let vm" class="aside">
   @if (vm.userVm.userData) {
   <header class="header">
     <div class="top-header">
@@ -40,7 +40,7 @@
 
     <div class="telegram-info">
       <span class="telegram-info-text" (click)="openVersion()"
-        >Version {{ vm.version }}
+        >Version {{ vm.version[0].version }}
       </span>
       <span> - </span>
       <span class="telegram-info-text" (click)="openAbout()">About</span>

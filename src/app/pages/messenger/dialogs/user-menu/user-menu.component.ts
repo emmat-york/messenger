@@ -20,7 +20,7 @@ import { AvatarComponent } from '../../../../shared/components/avatar/avatar.com
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserMenuComponent implements Modal {
-  readonly version$ = this.settingsFacade.version$;
+  readonly versions$ = this.settingsFacade.versions$;
   readonly vm$ = this.userFacade.vm$;
 
   closeAction: () => void;
