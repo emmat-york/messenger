@@ -1,0 +1,7 @@
+@if (src) {
+<img [ngSrc]="src" [width]="size" [height]="size" alt="avatar" />
+} @else {
+<div class="safeName" [style.width.px]="size" [style.height.px]="size">
+  {{ safeName[0] | titlecase }}
+</div>
+}

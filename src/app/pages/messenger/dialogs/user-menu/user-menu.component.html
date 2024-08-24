@@ -2,7 +2,11 @@
   @if (vm.userVm.userData) {
   <header class="header">
     <div class="top-header">
-      <img [ngSrc]="vm.userVm.userData.avatar" width="42" height="42" alt="avatar" />
+      <app-avatar
+        [safeName]="vm.userVm.userData.userName"
+        [src]="vm.userVm.userData.avatar"
+        variant="large"
+      ></app-avatar>
     </div>
 
     <span class="user-name">{{ vm.userVm.userData.userName }}</span>

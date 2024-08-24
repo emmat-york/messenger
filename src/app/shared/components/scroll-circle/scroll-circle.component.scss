@@ -9,7 +9,11 @@
   border-radius: 50%;
   background-color: var(--white1);
   box-shadow: 0 0 2px var(--gray_dark1);
-  cursor: pointer;
+
+  &:hover {
+    background-color: var(--gray_light2);
+    cursor: pointer;
+  }
 }
 
 .up {

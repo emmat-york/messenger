@@ -6,6 +6,7 @@ $date-width: 64px;
 
 :host {
   display: flex;
+  align-items: center;
   gap: $avatar-indent;
   padding: 5px 16px;
   cursor: pointer;
@@ -18,7 +19,7 @@ $date-width: 64px;
     position: absolute;
     content: '';
     bottom: 4px;
-    right: 4px;
+    right: -1px;
     width: 8px;
     height: 8px;
     border-radius: 50%;

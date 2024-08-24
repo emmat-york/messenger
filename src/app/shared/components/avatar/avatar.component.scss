@@ -1,0 +1,12 @@
+:host {
+  display: block;
+}
+
+.safeName {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: var(--gray_light10);
+  color: var(--white1);
+}

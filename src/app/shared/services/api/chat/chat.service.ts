@@ -32,7 +32,7 @@ export class ChatService {
       {
         id: 3,
         userName: 'Pavel Filimonchyk',
-        avatar: 'assets/icons/avatar.svg',
+        avatar: null,
         isOnline: false,
         roomId: 'room-2',
         lastMessage: {
@@ -96,7 +96,7 @@ export class ChatService {
       {
         id: 7,
         userName: 'Pavel Filimonchyk',
-        avatar: 'assets/icons/avatar.svg',
+        avatar: null,
         isOnline: true,
         roomId: 'room-6',
         lastMessage: {
@@ -112,7 +112,7 @@ export class ChatService {
       {
         id: 8,
         userName: 'Pavel Filimonchyk',
-        avatar: 'assets/icons/avatar.svg',
+        avatar: null,
         isOnline: true,
         roomId: 'room-7',
         lastMessage: {
@@ -192,7 +192,7 @@ export class ChatService {
       {
         id: 13,
         userName: 'Pavel',
-        avatar: 'assets/icons/avatar.svg',
+        avatar: null,
         isOnline: false,
         roomId: 'room-12',
         lastMessage: {
@@ -240,7 +240,7 @@ export class ChatService {
       {
         id: 16,
         userName: 'Pavel',
-        avatar: 'assets/icons/avatar.svg',
+        avatar: null,
         isOnline: true,
         roomId: 'room-15',
         lastMessage: {

@@ -25,6 +25,7 @@ import { reducer as userReducer, USER_KEY } from './store/user/user.feature';
 import { ChatSocket } from './shared/services/socket/chat.socket';
 import { ChatFacade } from './store/chat/chat.facade';
 import { ChatService } from './shared/services/api/chat/chat.service';
+import { SettingsFacade } from './store/settings/settings.facade';
 
 function initializeAppFactory(
   authUserService: AuthUserService,
@@ -33,14 +34,16 @@ function initializeAppFactory(
   userFacade: UserFacade,
   chatFacade: ChatFacade,
   authFacade: AuthFacade,
+  settingsFacade: SettingsFacade,
   chatSocket: ChatSocket,
 ): () => Observable<Dialog[] | null> {
   return (): Observable<Dialog[] | null> => {
     if (authUserService.isAuth) {
       return userService.getUserData$(authUserService.token).pipe(
-        switchMap(userData => {
-          userFacade.setUserData(userData);
-          return chatService.getUserDialogs$(userData.id);
+        switchMap(({ settings, ...restUserData }) => {
+          userFacade.setUserData(restUserData);
+          settingsFacade.setSettings(settings);
+          return chatService.getUserDialogs$(restUserData.id);
         }),
         tap(dialogs => {
           chatFacade.setDialogs(dialogs);
@@ -80,6 +83,7 @@ export const appConfig: ApplicationConfig = {
         UserFacade,
         ChatFacade,
         AuthFacade,
+        SettingsFacade,
         ChatSocket,
       ],
       multi: true,

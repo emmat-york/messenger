@@ -1,12 +1,10 @@
 <header class="header">
-  <img
-    [ngSrc]="selectedDialog.avatar"
+  <app-avatar
+    [safeName]="selectedDialog.userName"
+    [src]="selectedDialog.avatar"
+    variant="small"
     class="avatar"
-    priority
-    width="32"
-    height="32"
-    alt="avatar"
-  />
+  ></app-avatar>
 
   <div>
     <h3 class="name">{{ selectedDialog.userName }}</h3>

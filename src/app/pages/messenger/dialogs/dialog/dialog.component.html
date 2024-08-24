@@ -1,6 +1,9 @@
-<div [class.online]="dialog.isOnline">
-  <img [ngSrc]="dialog.avatar" width="40" height="40" alt="avatar" />
-</div>
+<app-avatar
+  [class.online]="dialog.isOnline"
+  [safeName]="dialog.userName"
+  [src]="dialog.avatar"
+  variant="small"
+></app-avatar>
 
 <div class="contact-info">
   <div class="name-and-date">

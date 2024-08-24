@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
-import { BaseStoreFacade } from '../base-store-facade';
 import * as actions from './auth.action';
-import { selectErrorMsg, selectIsAuth } from './auth.feature';
+import { selectErrorMsg } from './auth.feature';
+import { Action, Store } from '@ngrx/store';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthFacade extends BaseStoreFacade {
-  readonly isAuth$ = this.store.select(selectIsAuth);
+export class AuthFacade {
   readonly errorMsg$ = this.store.select(selectErrorMsg);
+
+  constructor(private readonly store: Store) {}
 
   setIsAuth(isAuth: boolean): void {
     this.dispatch(actions.setIsAuth({ isAuth }));
@@ -16,5 +17,9 @@ export class AuthFacade extends BaseStoreFacade {
 
   setErrorMsg(errorMsg: string): void {
     this.store.dispatch(actions.setErrorMsg({ errorMsg }));
+  }
+
+  private dispatch(action: Action): void {
+    this.store.dispatch(action);
   }
 }

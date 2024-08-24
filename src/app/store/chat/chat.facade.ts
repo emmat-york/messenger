@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
 import { ChatState, selectChatState } from './chat.feature';
 import * as action from './chat.action';
-import { BaseStoreFacade } from '../base-store-facade';
 import { Observable } from 'rxjs';
 import { Dialog } from '../user/user.interface';
+import { Action, Store } from '@ngrx/store';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ChatFacade extends BaseStoreFacade {
+export class ChatFacade {
   readonly vm$: Observable<ChatState> = this.store.select(selectChatState);
+
+  constructor(private readonly store: Store) {}
 
   setDialogs(dialogs: Dialog[]): void {
     this.dispatch(action.setDialogs({ dialogs }));
@@ -29,5 +31,9 @@ export class ChatFacade extends BaseStoreFacade {
 
   sendMessage(): void {
     this.dispatch(action.sendMessage());
+  }
+
+  private dispatch(action: Action): void {
+    this.store.dispatch(action);
   }
 }
