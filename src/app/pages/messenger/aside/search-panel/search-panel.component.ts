@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'search-panel',
+  selector: 'app-search-panel',
   standalone: true,
   templateUrl: 'search-panel.component.html',
   styleUrl: 'search-panel.component.scss',

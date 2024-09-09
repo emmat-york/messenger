@@ -1,1 +1,7 @@
-<p>asdf</p>
+<button class="menu-button" type="button" (click)="openUserMenu()">
+  <img [ngSrc]="'menu' | icon" width="22" height="22" alt="menu" />
+</button>
+
+<label class="label" for="contact-search-input-bar">
+  <input placeholder="Search" id="contact-search-input-bar" class="input" type="text" />
+</label>

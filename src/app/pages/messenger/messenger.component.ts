@@ -2,13 +2,13 @@ import { ChangeDetectionStrategy, Component, HostListener } from '@angular/core'
 import { ChatFacade } from '../../store/chat/chat.facade';
 import { ModalService } from '../../shared/services/app/modal/modal.service';
 import { ChatComponent } from './chat/chat.component';
-import { DialogsComponent } from './aside/dialogs/dialogs.component';
+import { AsideComponent } from './aside/aside.component';
 
 @Component({
   selector: 'app-messenger',
   standalone: true,
   template: `
-    <app-dialogs class="dialogs"></app-dialogs>
+    <app-aside class="aside"></app-aside>
     <app-chat class="chat"></app-chat>
   `,
   styles: `$dialog-width: 348px;
@@ -19,7 +19,7 @@ import { DialogsComponent } from './aside/dialogs/dialogs.component';
       width: 100%;
     }
 
-    .dialogs {
+    .aside {
       width: $dialog-width;
       min-width: 312px;
     }
@@ -27,7 +27,7 @@ import { DialogsComponent } from './aside/dialogs/dialogs.component';
     .chat {
       width: calc(100% - #{$dialog-width});
     }`,
-  imports: [DialogsComponent, ChatComponent],
+  imports: [ChatComponent, AsideComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MessengerComponent {

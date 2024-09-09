@@ -13,10 +13,8 @@ import { NgOptimizedImage } from '@angular/common';
 import { LetDirective } from '@ngrx/component';
 import { debounceTime, fromEvent } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { UserMenuComponent } from './user-menu/user-menu.component';
 import { ScrollCircleComponent } from '../../../../shared/components/scroll-circle/scroll-circle.component';
 import { IconPipe } from '../../../../shared/pipes/icon.pipe';
-import { ModalService } from '../../../../shared/services/app/modal/modal.service';
 import { ChatFacade } from '../../../../store/chat/chat.facade';
 import { Dialog } from '../../../../store/user/user.interface';
 import { ScrollEvent } from '../../chat/chat-body/chat-body.interface';
@@ -44,7 +42,6 @@ export class DialogsComponent implements AfterViewInit {
   private readonly contactList?: ElementRef<HTMLUListElement>;
 
   constructor(
-    private readonly modalService: ModalService,
     private readonly cdRef: ChangeDetectorRef,
     private readonly chatFacade: ChatFacade,
     private readonly destroyRef: DestroyRef,
@@ -53,13 +50,6 @@ export class DialogsComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.subscribeToScroll();
-  }
-
-  openUserMenu(): void {
-    this.modalService.open({
-      component: UserMenuComponent,
-      settings: { type: 'aside' },
-    });
   }
 
   setSelectedDialog(selectedDialogId: number | undefined, dialog: Dialog): void {
