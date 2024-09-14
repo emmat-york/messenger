@@ -8,7 +8,7 @@ import { UserEffect } from './store/user/user.effect';
 import { ChatEffect } from './store/chat/chat.effect';
 import { provideHttpClient } from '@angular/common/http';
 import { AuthUserService } from './shared/services/app/auth-user/auth-user.service';
-import { catchError, Observable, of, switchMap, tap } from 'rxjs';
+import { catchError, EMPTY, Observable, switchMap, tap } from 'rxjs';
 import { UserService } from './shared/services/api/user/user.service';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { UserFacade } from './store/user/user.facade';
@@ -35,8 +35,8 @@ function initializeAppFactory(
   chatFacade: ChatFacade,
   authFacade: AuthFacade,
   chatSocket: ChatSocket,
-): () => Observable<Dialog[] | null> {
-  return (): Observable<Dialog[] | null> => {
+): () => Observable<Dialog[] | never> {
+  return (): Observable<Dialog[] | never> => {
     if (authUserService.isAuth) {
       return userService.getUserData$(authUserService.token).pipe(
         switchMap(({ id, name, avatar, ...settings }) => {
@@ -49,14 +49,11 @@ function initializeAppFactory(
           authFacade.setIsAuth(true);
           chatSocket.init();
         }),
-        catchError(() => {
-          authUserService.logOut();
-          return of(null);
-        }),
+        catchError(() => EMPTY),
       );
     }
 
-    return of(null);
+    return EMPTY;
   };
 }
 

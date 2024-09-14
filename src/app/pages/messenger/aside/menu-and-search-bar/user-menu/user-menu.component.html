@@ -39,7 +39,7 @@
     <div class="telegram-desktop" (click)="openTelegramDesktop()">Telegram Desktop</div>
 
     <div class="telegram-info">
-      <span class="telegram-info-text" (click)="openVersion()"
+      <span *ngIf="vm.versions.length" class="telegram-info-text" (click)="openVersion()"
         >Version {{ vm.versions[0].version }}
       </span>
       <span> - </span>

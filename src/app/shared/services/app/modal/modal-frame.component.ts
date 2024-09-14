@@ -14,10 +14,11 @@ import { NgClass } from '@angular/common';
 import { ModalSettings } from './modal.interface';
 import { ModalFrameTypePipe } from './modal-frame-type.pipe';
 
-export interface ModalFrame<Action> {
+interface ModalFrame<ModalData, Action> {
   component: Constructor;
   closeAction: (action?: Action) => void;
-  settings: ModalSettings;
+  modalData?: ModalData;
+  settings?: ModalSettings;
 }
 
 @Component({
@@ -29,12 +30,12 @@ export interface ModalFrame<Action> {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModalFrameComponent<ModalData extends object, Action>
-  implements ModalFrame<Action>, OnInit
+  implements ModalFrame<ModalData, Action>, OnInit
 {
   @Input() closeAction: (action?: Action) => void;
-  @Input() modalData: ModalData;
   @Input() component: Constructor;
-  @Input() settings: ModalSettings;
+  @Input() settings?: ModalSettings;
+  @Input() modalData?: ModalData;
 
   @ViewChild('container', { static: true, read: ViewContainerRef })
   private readonly container?: ViewContainerRef;
@@ -60,8 +61,11 @@ export class ModalFrameComponent<ModalData extends object, Action>
       throw new Error('modalRef not found.');
     }
 
+    if (this.modalData) {
+      modalRef.setInput('modalData', this.modalData);
+    }
+
     modalRef.setInput('closeAction', this.closeAction);
-    modalRef.setInput('modalData', this.modalData);
   }
 
   private setBackdrop(): void {

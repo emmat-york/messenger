@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { LetDirective } from '@ngrx/component';
-import { NgOptimizedImage } from '@angular/common';
+import { NgIf, NgOptimizedImage } from '@angular/common';
 import { AboutComponent } from './about/about.component';
 import { VersionComponent } from './version/version.component';
 import { TelegramDesktopComponent } from './telegram-desktop/telegram-desktop.component';
@@ -16,7 +16,7 @@ import { SettingsFacade } from '../../../../../store/settings/settings.facade';
   standalone: true,
   templateUrl: 'user-menu.component.html',
   styleUrl: 'user-menu.component.scss',
-  imports: [LetDirective, NgOptimizedImage, IconPipe, AvatarComponent],
+  imports: [LetDirective, NgOptimizedImage, IconPipe, AvatarComponent, NgIf],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserMenuComponent implements Modal {

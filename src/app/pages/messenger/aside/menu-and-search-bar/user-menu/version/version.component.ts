@@ -3,7 +3,7 @@ import { LetDirective } from '@ngrx/component';
 import { DatePipe } from '@angular/common';
 import { ButtonComponent } from '../../../../../../shared/components/button/button.component';
 import { Modal } from '../../../../../../shared/services/app/modal/modal.interface';
-import { UserFacade } from '../../../../../../store/user/user.facade';
+import { SettingsFacade } from '../../../../../../store/settings/settings.facade';
 
 @Component({
   selector: 'app-version',
@@ -16,7 +16,7 @@ import { UserFacade } from '../../../../../../store/user/user.facade';
 export class VersionComponent implements Modal {
   @Input() closeAction: () => void;
 
-  readonly versions$ = this.userFacade.vm$;
+  readonly versions$ = this.settingsFacade.versions$;
 
-  constructor(private readonly userFacade: UserFacade) {}
+  constructor(private readonly settingsFacade: SettingsFacade) {}
 }

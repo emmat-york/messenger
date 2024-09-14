@@ -52,19 +52,23 @@ export class ModalService {
 
     this.modalRef = modalRef;
 
-    const instance = modalRef.instance;
     const destroy$ = new Subject<Action>();
 
-    instance.component = component;
-    instance.closeAction = (action?: Action) => {
+    modalRef.setInput('component', component);
+    modalRef.setInput('closeAction', (action?: Action) => {
       destroy$.next(action as Action);
       destroy$.complete();
       modalRef.destroy();
       this.modalRef = undefined;
-    };
+    });
 
-    instance.modalData = modalData ? modalData : ({} as ModalData);
-    instance.settings = settings ? settings : {};
+    if (modalData) {
+      modalRef.setInput('modalData', modalData);
+    }
+
+    if (settings) {
+      modalRef.setInput('settings', settings);
+    }
 
     return destroy$.asObservable();
   }
