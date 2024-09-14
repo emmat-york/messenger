@@ -39,16 +39,16 @@ export class ChatEffect {
         concatLatestFrom(() => [this.chatFacade.vm$, this.userFacade.vm$]),
       )
       .pipe(
-        map(([, chatVm, userVm]) => {
-          if (!userVm || !chatVm.selectedDialog) {
+        map(([, chatVm, { essentialData }]) => {
+          if (!essentialData || !chatVm.selectedDialog) {
             throw new Error('Impossible to send message.');
           }
 
           const message: Message = {
             id: 11111123334,
-            uuid: userVm.id,
+            uuid: essentialData.id,
             message: chatVm.input,
-            userName: userVm.name,
+            userName: essentialData.name,
             creationDate: new Date().toUTCString(),
             editDate: null,
             likes: [],

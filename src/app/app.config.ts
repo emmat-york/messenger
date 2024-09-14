@@ -40,9 +40,8 @@ function initializeAppFactory(
     if (authUserService.isAuth) {
       return userService.getUserData$(authUserService.token).pipe(
         switchMap(({ id, name, avatar, ...settings }) => {
-          userFacade.setUser({ id, name, avatar });
+          userFacade.setUser({ essentialData: { id, name }, avatar });
           settingsFacade.setUserSettings(settings);
-
           return chatService.getUserDialogs$(id);
         }),
         tap(dialogs => {
@@ -80,6 +79,7 @@ export const appConfig: ApplicationConfig = {
         AuthUserService,
         UserService,
         ChatService,
+        SettingsFacade,
         UserFacade,
         ChatFacade,
         AuthFacade,

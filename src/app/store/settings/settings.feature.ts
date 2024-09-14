@@ -12,7 +12,13 @@ export interface UserSettingsStoreState {
   selectedLanguage: string;
 }
 
-const initialState: UserSettingsStoreState = {} as UserSettingsStoreState;
+const initialState: UserSettingsStoreState = {
+  theme: '',
+  versions: [],
+  isNotificationSoundOn: true,
+  languages: [],
+  selectedLanguage: '',
+};
 
 export const { reducer, selectVersions } = createFeature({
   name: SETTINGS_KEY,

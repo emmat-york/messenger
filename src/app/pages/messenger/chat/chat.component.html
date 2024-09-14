@@ -1,11 +1,11 @@
 <ng-container *ngrxLet="{ user: userVm$, chat: chatVm$ }; let vm">
-  @if (vm.chat.selectedDialog) {
+  @if (vm.chat.selectedDialog && vm.user.essentialData) {
   <app-chat-top-bar [selectedDialog]="vm.chat.selectedDialog"></app-chat-top-bar>
 
   <app-chat-body
     [isLoading]="vm.chat.isLoading"
     [messages]="vm.chat.messages"
-    [uuid]="vm.user.id"
+    [uuid]="vm.user.essentialData.id"
   ></app-chat-body>
 
   <app-chat-input

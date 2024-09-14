@@ -1,15 +1,17 @@
 <aside *ngrxLet="{ userVm: vm$, versions: versions$ }; let vm" class="aside">
+  @if (vm.userVm.essentialData) {
   <header class="header">
     <div class="top-header">
       <app-avatar
-        [safeName]="vm.userVm.name"
+        [safeName]="vm.userVm.essentialData.name"
         [src]="vm.userVm.avatar"
         variant="large"
       ></app-avatar>
     </div>
 
-    <span class="user-name">{{ vm.userVm.name }}</span>
+    <span class="user-name">{{ vm.userVm.essentialData.name }}</span>
   </header>
+  }
 
   <ul class="menu-list">
     <li class="menu-item">

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { delay, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Message } from '../../../../pages/messenger/chat/chat.interface';
 import { EmojiCategory } from '../../../../pages/messenger/chat/chat.enum';
 import { Dialog } from './chat-service.interface';
@@ -557,6 +557,6 @@ export class ChatService {
           },
         ],
       },
-    ]).pipe(delay(2000));
+    ]);
   }
 }

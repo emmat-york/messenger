@@ -58,7 +58,10 @@ export class AuthUserService {
 
         return this.userService.getUserData$(idToken).pipe(
           switchMap(userData => {
-            this.userFacade.setUser(userData);
+            this.userFacade.setUser({
+              essentialData: { id: userData.id, name: userData.name },
+              avatar: userData.avatar,
+            });
 
             return this.chatService
               .getUserDialogs$(userData.id)
@@ -76,7 +79,10 @@ export class AuthUserService {
 
         return this.userService.getUserData$(idToken).pipe(
           switchMap(userData => {
-            this.userFacade.setUser(userData);
+            this.userFacade.setUser({
+              essentialData: { id: userData.id, name: userData.name },
+              avatar: userData.avatar,
+            });
 
             return this.chatService
               .getUserDialogs$(userData.id)
