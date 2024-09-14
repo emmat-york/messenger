@@ -5,7 +5,7 @@ export class SrcBuilder {
   private _folderOne = '';
   private _folderTwo = '';
   private _name = '';
-  private _extension = '.svg';
+  private _extension = FileExtensions.Svg;
   private readonly _baseFolder = 'assets/icons/';
 
   setFolderOne(folder: Folders): SrcBuilder {

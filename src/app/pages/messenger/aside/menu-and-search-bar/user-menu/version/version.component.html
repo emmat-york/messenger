@@ -1,24 +1,24 @@
-<h3 class="heading">Version history</h3>
+<!--<h3 class="heading">Version history</h3>-->
 
-<ul *ngrxLet="versions$; let versions" class="version-list">
-  @for (version of versions; track version.id) {
-  <li class="version">
-    <div class="version-and-release-date">
-      <span>{{ version.version }}</span>
-      <span class="version-release-date">{{
-        version.releaseDate | date: 'MM.dd.yy'
-      }}</span>
-    </div>
+<!--<ul *ngrxLet="versions$; let versions" class="version-list">-->
+<!--  @for (version of versions; track version.id) {-->
+<!--  <li class="version">-->
+<!--    <div class="version-and-release-date">-->
+<!--      <span>{{ version.version }}</span>-->
+<!--      <span class="version-release-date">{{-->
+<!--        version.releaseDate | date: 'MM.dd.yy'-->
+<!--      }}</span>-->
+<!--    </div>-->
 
-    <ul class="update-list">
-      @for (update of version.updates; track update) {
-      <li class="update">{{ update }}</li>
-      }
-    </ul>
-  </li>
-  }
-</ul>
+<!--    <ul class="update-list">-->
+<!--      @for (update of version.updates; track update) {-->
+<!--      <li class="update">{{ update }}</li>-->
+<!--      }-->
+<!--    </ul>-->
+<!--  </li>-->
+<!--  }-->
+<!--</ul>-->
 
-<footer class="footer">
-  <app-button variant="text" (click)="closeAction()">Close</app-button>
-</footer>
+<!--<footer class="footer">-->
+<!--  <app-button variant="text" (click)="closeAction()">Close</app-button>-->
+<!--</footer>-->

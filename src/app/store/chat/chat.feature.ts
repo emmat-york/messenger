@@ -1,7 +1,7 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import * as action from './chat.action';
-import { Dialog } from '../user/user.interface';
 import { Message } from '../../pages/messenger/chat/chat.interface';
+import { Dialog } from '../../shared/services/api/chat/chat-service.interface';
 
 export const CHAT_KEY = 'chat';
 
@@ -57,12 +57,12 @@ export const { selectChatState, reducer } = createFeature({
       action.setSelectedDialogFail,
       (state): ChatState => ({ ...state, messages: [], isLoading: false }),
     ),
-    on(action.setMessage, (state, { message, roomId, withInputReset }) => ({
+    on(action.setMessage, (state, { message, dialogId, withInputReset }) => ({
       ...state,
       messages: [...state.messages, message],
       input: withInputReset ? '' : state.input,
       dialogs: state.dialogs.map(dialog => {
-        if (dialog.roomId === roomId) {
+        if (dialog.id === dialogId) {
           return {
             ...dialog,
             lastMessage: message,

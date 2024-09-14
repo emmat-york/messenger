@@ -1,6 +1,6 @@
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
-import { catchError, map, of, switchMap } from 'rxjs';
+import { catchError, filter, map, of, switchMap } from 'rxjs';
 import { ChatService } from '../../shared/services/api/chat/chat.service';
 import * as action from './chat.action';
 import { ChatFacade } from './chat.facade';
@@ -23,9 +23,10 @@ export class ChatEffect {
   setSelectedDialog$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(action.setSelectedDialog),
-      switchMap(({ selectedDialog }) =>
-        this.chatService.getChatHistoryByRoomId$(selectedDialog.roomId),
-      ),
+      filter(({ selectedDialog: { roomId } }) => Boolean(roomId)),
+      switchMap(({ selectedDialog }) => {
+        return this.chatService.getChatHistoryByRoomId$(selectedDialog.roomId);
+      }),
       map(messages => action.setSelectedDialogSuccess({ messages })),
       catchError(() => of(action.setSelectedDialogFail())),
     );
@@ -39,16 +40,15 @@ export class ChatEffect {
       )
       .pipe(
         map(([, chatVm, userVm]) => {
-          if (!userVm.userData || !chatVm.selectedDialog) {
+          if (!userVm || !chatVm.selectedDialog) {
             throw new Error('Impossible to send message.');
           }
 
           const message: Message = {
             id: 11111123334,
-            uuid: userVm.userData.id,
+            uuid: userVm.id,
             message: chatVm.input,
-            userName: userVm.userData.userName,
-            roomId: chatVm.selectedDialog.roomId,
+            userName: userVm.name,
             creationDate: new Date().toUTCString(),
             editDate: null,
             likes: [],
@@ -59,7 +59,7 @@ export class ChatEffect {
 
           return action.setMessage({
             message,
-            roomId: chatVm.selectedDialog.roomId,
+            dialogId: chatVm.selectedDialog.id,
             withInputReset: true,
           });
         }),

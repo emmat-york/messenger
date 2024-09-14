@@ -3,6 +3,7 @@ import {
   Component,
   ElementRef,
   HostListener,
+  Input,
   OnInit,
   Renderer2,
   ViewChild,
@@ -10,7 +11,7 @@ import {
 } from '@angular/core';
 import { Constructor } from '../../../interfaces/common.interface';
 import { NgClass } from '@angular/common';
-import { ModalSettings, ModalWithData } from './modal.interface';
+import { ModalSettings } from './modal.interface';
 import { ModalFrameTypePipe } from './modal-frame-type.pipe';
 
 export interface ModalFrame<Action> {
@@ -30,10 +31,10 @@ export interface ModalFrame<Action> {
 export class ModalFrameComponent<ModalData extends object, Action>
   implements ModalFrame<Action>, OnInit
 {
-  closeAction: (action?: Action) => void;
-  modalData: ModalData;
-  component: Constructor;
-  settings: ModalSettings;
+  @Input() closeAction: (action?: Action) => void;
+  @Input() modalData: ModalData;
+  @Input() component: Constructor;
+  @Input() settings: ModalSettings;
 
   @ViewChild('container', { static: true, read: ViewContainerRef })
   private readonly container?: ViewContainerRef;
@@ -59,10 +60,8 @@ export class ModalFrameComponent<ModalData extends object, Action>
       throw new Error('modalRef not found.');
     }
 
-    const component = modalRef.instance as ModalWithData<ModalData, Action>;
-
-    component.closeAction = this.closeAction;
-    component.modalData = this.modalData;
+    modalRef.setInput('closeAction', this.closeAction);
+    modalRef.setInput('modalData', this.modalData);
   }
 
   private setBackdrop(): void {

@@ -1,13 +1,13 @@
 <header class="header">
   <app-avatar
-    [safeName]="selectedDialog.userName"
+    [safeName]="selectedDialog.name"
     [src]="selectedDialog.avatar"
     variant="small"
     class="avatar"
   ></app-avatar>
 
   <div>
-    <h3 class="name">{{ selectedDialog.userName }}</h3>
+    <h3 class="name">{{ selectedDialog.name }}</h3>
     <span class="online-indicator" [class.online]="selectedDialog.isOnline">{{
       selectedDialog.isOnline ? 'online' : 'offline'
     }}</span>

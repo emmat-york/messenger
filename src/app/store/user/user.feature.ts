@@ -1,25 +1,25 @@
-import { createFeature, createReducer, createSelector, on } from '@ngrx/store';
-import { UserData } from './user.interface';
+import { createFeature, createReducer, on } from '@ngrx/store';
 import * as action from './user.action';
 
 export const USER_KEY = 'user';
 
-export interface UserState {
-  userData: UserData | null;
+export interface UserStoreState {
+  id: number;
+  name: string;
+  avatar: string | null;
 }
 
-const initialState: UserState = {
-  userData: null,
-};
+const initialState: UserStoreState = {} as UserStoreState;
 
-export const { selectUserData, reducer } = createFeature({
+export const { selectUserState, reducer } = createFeature({
   name: USER_KEY,
   reducer: createReducer(
     initialState,
-    on(action.setUserData, (state, { userData }) => ({ ...state, userData })),
+    on(action.setUser, (state, { payload: { id, avatar, name } }) => ({
+      ...state,
+      id,
+      avatar,
+      name,
+    })),
   ),
 });
-
-export const selectUserVM = createSelector(selectUserData, userData => ({
-  userData,
-}));

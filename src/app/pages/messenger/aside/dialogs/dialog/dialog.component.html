@@ -1,15 +1,15 @@
 <app-avatar
   [class.online]="dialog.isOnline"
-  [safeName]="dialog.userName"
+  [safeName]="dialog.name"
   [src]="dialog.avatar"
   variant="medium"
 ></app-avatar>
 
 <div class="contact-info">
   <div class="name-and-date">
-    <h3 class="user-name">{{ dialog.userName }}</h3>
-    <div class="date">{{ dialog.lastMessage.creationDate | date: 'shortTime' }}</div>
+    <h3 class="user-name">{{ dialog.name }}</h3>
+    <div class="date">{{ dialog.lastMessage?.creationDate | date: 'shortTime' }}</div>
   </div>
 
-  <div class="message">{{ dialog.lastMessage.message }}</div>
+  <div class="message">{{ dialog.lastMessage?.message }}</div>
 </div>

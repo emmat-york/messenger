@@ -16,8 +16,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ScrollCircleComponent } from '../../../../shared/components/scroll-circle/scroll-circle.component';
 import { IconPipe } from '../../../../shared/pipes/icon.pipe';
 import { ChatFacade } from '../../../../store/chat/chat.facade';
-import { Dialog } from '../../../../store/user/user.interface';
 import { ScrollEvent } from '../../chat/chat-body/chat-body.interface';
+import { Dialog } from '../../../../shared/services/api/chat/chat-service.interface';
 
 @Component({
   selector: 'app-dialogs',

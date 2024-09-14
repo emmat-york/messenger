@@ -13,7 +13,7 @@ const initialState: AuthState = {
   errorMsg: '',
 };
 
-export const { selectIsAuth, selectErrorMsg, reducer } = createFeature({
+export const { selectErrorMsg, reducer } = createFeature({
   name: AUTH_KEY,
   reducer: createReducer(
     initialState,

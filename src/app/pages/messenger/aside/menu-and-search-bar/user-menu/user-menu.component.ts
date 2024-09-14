@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { LetDirective } from '@ngrx/component';
 import { NgOptimizedImage } from '@angular/common';
 import { AboutComponent } from './about/about.component';
@@ -7,9 +7,9 @@ import { TelegramDesktopComponent } from './telegram-desktop/telegram-desktop.co
 import { IconPipe } from '../../../../../shared/pipes/icon.pipe';
 import { AvatarComponent } from '../../../../../shared/components/avatar/avatar.component';
 import { Modal } from '../../../../../shared/services/app/modal/modal.interface';
-import { SettingsFacade } from '../../../../../store/settings/settings.facade';
 import { ModalService } from '../../../../../shared/services/app/modal/modal.service';
 import { UserFacade } from '../../../../../store/user/user.facade';
+import { SettingsFacade } from '../../../../../store/settings/settings.facade';
 
 @Component({
   selector: 'app-user-menu',
@@ -20,10 +20,10 @@ import { UserFacade } from '../../../../../store/user/user.facade';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserMenuComponent implements Modal {
+  @Input() closeAction: () => void;
+
   readonly versions$ = this.settingsFacade.versions$;
   readonly vm$ = this.userFacade.vm$;
-
-  closeAction: () => void;
 
   constructor(
     private readonly settingsFacade: SettingsFacade,

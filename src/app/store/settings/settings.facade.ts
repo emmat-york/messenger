@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { AppMode, selectVersions, SettingsState } from './settings.feature';
-import * as action from './settings.action';
 import { Action, Store } from '@ngrx/store';
+import { selectVersions, UserSettingsStoreState } from './settings.feature';
 import { Observable } from 'rxjs';
-import { Version } from '../user/user.interface';
+import { Version } from '../../shared/services/api/user/user-service.interface';
+import * as action from './settings.action';
 
 @Injectable({
   providedIn: 'root',
@@ -13,12 +13,8 @@ export class SettingsFacade {
 
   constructor(private readonly store: Store) {}
 
-  setSettings(settings: SettingsState): void {
-    this.dispatch(action.setSettings({ settings }));
-  }
-
-  setTheme(theme: AppMode): void {
-    this.dispatch(action.setTheme({ theme }));
+  setUserSettings(payload: UserSettingsStoreState) {
+    this.dispatch(action.setUserSettings({ payload }));
   }
 
   private dispatch(action: Action): void {

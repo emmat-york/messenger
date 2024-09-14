@@ -1,17 +1,15 @@
-<aside *ngrxLet="{ userVm: vm$, version: versions$ }; let vm" class="aside">
-  @if (vm.userVm.userData) {
+<aside *ngrxLet="{ userVm: vm$, versions: versions$ }; let vm" class="aside">
   <header class="header">
     <div class="top-header">
       <app-avatar
-        [safeName]="vm.userVm.userData.userName"
-        [src]="vm.userVm.userData.avatar"
+        [safeName]="vm.userVm.name"
+        [src]="vm.userVm.avatar"
         variant="large"
       ></app-avatar>
     </div>
 
-    <span class="user-name">{{ vm.userVm.userData.userName }}</span>
+    <span class="user-name">{{ vm.userVm.name }}</span>
   </header>
-  }
 
   <ul class="menu-list">
     <li class="menu-item">
@@ -40,7 +38,7 @@
 
     <div class="telegram-info">
       <span class="telegram-info-text" (click)="openVersion()"
-        >Version {{ vm.version[0].version }}
+        >Version {{ vm.versions[0].version }}
       </span>
       <span> - </span>
       <span class="telegram-info-text" (click)="openAbout()">About</span>

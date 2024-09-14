@@ -5,8 +5,10 @@ import { LoginCredentials, RegistrationCredentials } from '../../api/auth/auth.i
 import { Router } from '@angular/router';
 import { UserFacade } from '../../../../store/user/user.facade';
 import { UserService } from '../../api/user/user.service';
-import { UserData } from '../../../../store/user/user.interface';
 import { AuthFacade } from '../../../../store/auth/auth.facade';
+import { ChatService } from '../../api/chat/chat.service';
+import { Dialog } from '../../api/chat/chat-service.interface';
+import { ChatFacade } from '../../../../store/chat/chat.facade';
 
 export const AUTH_TOKEN_KEY = 'AUTH_TOKEN_KEY';
 export const AUTH_TOKEN_EXPIRES_DATE_KEY = 'AUTH_TOKEN_EXPIRES_IN_KEY';
@@ -16,9 +18,11 @@ export const AUTH_TOKEN_EXPIRES_DATE_KEY = 'AUTH_TOKEN_EXPIRES_IN_KEY';
 })
 export class AuthUserService {
   constructor(
+    private readonly chatService: ChatService,
     private readonly authService: AuthService,
     private readonly userService: UserService,
     private readonly userFacade: UserFacade,
+    private readonly chatFacade: ChatFacade,
     private readonly authFacade: AuthFacade,
     private readonly router: Router,
   ) {}
@@ -47,23 +51,39 @@ export class AuthUserService {
     return token;
   }
 
-  registration$(credentials: RegistrationCredentials): Observable<UserData> {
+  registration$(credentials: RegistrationCredentials): Observable<Dialog[]> {
     return this.authService.registration$(credentials).pipe(
       switchMap(({ idToken, expiresIn }) => {
         this.setToken({ idToken, expiresIn });
-        return this.userService.getUserData$(idToken);
+
+        return this.userService.getUserData$(idToken).pipe(
+          switchMap(userData => {
+            this.userFacade.setUser(userData);
+
+            return this.chatService
+              .getUserDialogs$(userData.id)
+              .pipe(tap(dialogs => this.chatFacade.setDialogs(dialogs)));
+          }),
+        );
       }),
-      tap(userData => this.userFacade.setUserData(userData)),
     );
   }
 
-  login$(credentials: LoginCredentials): Observable<UserData> {
+  login$(credentials: LoginCredentials): Observable<Dialog[]> {
     return this.authService.login$(credentials).pipe(
       switchMap(({ idToken, expiresIn }) => {
         this.setToken({ idToken, expiresIn });
-        return this.userService.getUserData$(idToken);
+
+        return this.userService.getUserData$(idToken).pipe(
+          switchMap(userData => {
+            this.userFacade.setUser(userData);
+
+            return this.chatService
+              .getUserDialogs$(userData.id)
+              .pipe(tap(dialogs => this.chatFacade.setDialogs(dialogs)));
+          }),
+        );
       }),
-      tap(userData => this.userFacade.setUserData(userData)),
     );
   }
 

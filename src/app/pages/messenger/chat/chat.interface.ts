@@ -5,7 +5,6 @@ export interface Message {
   uuid: number;
   message: string;
   userName: string;
-  roomId: string;
   creationDate: string;
   editDate: string | null;
   likes: Like[];
@@ -22,14 +21,4 @@ export interface Emoji {
   title: string;
   category: EmojiCategory;
   pic: string;
-}
-
-export interface LastMessage {
-  id: number;
-  uuid: number;
-  message: string;
-  userName: string;
-  roomId: string;
-  creationDate: string;
-  editDate: string | null;
 }

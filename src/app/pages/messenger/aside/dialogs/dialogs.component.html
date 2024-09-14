@@ -1,7 +1,7 @@
 <ng-container *ngrxLet="vm$; let vm">
   @if (vm.dialogs.length) {
   <ul #contactList class="contact-list">
-    @for (dialog of vm.dialogs; track dialog.userName) {
+    @for (dialog of vm.dialogs; track dialog.name) {
     <li class="contact" (click)="setSelectedDialog(vm.selectedDialog?.id, dialog)">
       <app-dialog
         [class.selected]="dialog.id === vm.selectedDialog?.id"

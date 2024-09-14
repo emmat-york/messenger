@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { DatePipe, NgOptimizedImage } from '@angular/common';
 import { AvatarComponent } from '../../../../../shared/components/avatar/avatar.component';
-import { Dialog } from '../../../../../store/user/user.interface';
+import { Dialog } from '../../../../../shared/services/api/chat/chat-service.interface';
 
 @Component({
   selector: 'app-dialog',

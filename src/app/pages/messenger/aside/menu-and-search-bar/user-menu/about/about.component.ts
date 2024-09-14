@@ -1,10 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { VersionComponent } from '../version/version.component';
 import { LetDirective } from '@ngrx/component';
 import { ButtonComponent } from '../../../../../../shared/components/button/button.component';
 import { LinkComponent } from '../../../../../../shared/components/link/link.component';
 import { Modal } from '../../../../../../shared/services/app/modal/modal.interface';
-import { SettingsFacade } from '../../../../../../store/settings/settings.facade';
 import { ModalService } from '../../../../../../shared/services/app/modal/modal.service';
 
 @Component({
@@ -16,14 +15,9 @@ import { ModalService } from '../../../../../../shared/services/app/modal/modal.
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AboutComponent implements Modal {
-  readonly version$ = this.settingsFacade.versions$;
+  @Input() closeAction: () => void;
 
-  closeAction: () => void;
-
-  constructor(
-    private readonly settingsFacade: SettingsFacade,
-    private readonly modalService: ModalService,
-  ) {}
+  constructor(private readonly modalService: ModalService) {}
 
   openVersion(): void {
     this.modalService.open({ component: VersionComponent });

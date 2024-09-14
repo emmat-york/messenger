@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ButtonComponent } from '../../../../../../shared/components/button/button.component';
 import { Modal } from '../../../../../../shared/services/app/modal/modal.interface';
 
@@ -11,5 +11,5 @@ import { Modal } from '../../../../../../shared/services/app/modal/modal.interfa
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TelegramDesktopComponent implements Modal {
-  closeAction: () => void;
+  @Input() closeAction: () => void;
 }

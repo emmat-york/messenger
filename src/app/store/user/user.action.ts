@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
-import { UserData } from './user.interface';
+import { UserStoreState } from './user.feature';
 
-export const setUserData = createAction(
+export const setUser = createAction(
   '[USER] setUserData',
-  props<{ userData: UserData | null }>(),
+  props<{ payload: UserStoreState }>(),
 );

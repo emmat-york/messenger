@@ -1,40 +1,32 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
+import { Version } from '../../shared/services/api/user/user-service.interface';
 import * as action from './settings.action';
-import { Version } from '../user/user.interface';
 
 export const SETTINGS_KEY = 'settings';
 
-export type AppMode = 'night-app-mode' | 'day-app-mode';
-
-export interface SettingsState {
-  theme: AppMode;
+export interface UserSettingsStoreState {
+  theme: string;
   versions: Version[];
   isNotificationSoundOn: boolean;
   languages: string[];
   selectedLanguage: string;
 }
 
-const initialState: SettingsState = {
-  theme: 'day-app-mode',
-  versions: [],
-  isNotificationSoundOn: true,
-  languages: [],
-  selectedLanguage: '',
-};
+const initialState: UserSettingsStoreState = {} as UserSettingsStoreState;
 
-export const { selectVersions, reducer } = createFeature({
+export const { reducer, selectVersions } = createFeature({
   name: SETTINGS_KEY,
   reducer: createReducer(
     initialState,
     on(
-      action.setSettings,
-      (state, { settings }): SettingsState => ({ ...state, ...settings }),
-    ),
-    on(
-      action.setTheme,
-      (state, { theme }): SettingsState => ({
+      action.setUserSettings,
+      (state, { payload }): UserSettingsStoreState => ({
         ...state,
-        theme,
+        isNotificationSoundOn: payload.isNotificationSoundOn,
+        selectedLanguage: payload.selectedLanguage,
+        languages: payload.languages,
+        versions: payload.versions,
+        theme: payload.theme,
       }),
     ),
   ),
