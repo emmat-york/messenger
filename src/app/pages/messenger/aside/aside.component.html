@@ -1,0 +1,7 @@
+<app-menu-and-search-bar (changeView)="onChangeView()"></app-menu-and-search-bar>
+
+@switch (view) { @case ('dialogs') {
+<app-dialogs class="content"></app-dialogs>
+} @case ('search-panel') {
+<app-search-panel class="content"></app-search-panel>
+} }

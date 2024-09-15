@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { User } from './user-service.interface';
+import { EmojiCategory } from '../../../../pages/messenger/chat/chat.enum';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +12,64 @@ export class UserService {
       id: 1,
       name: 'Andrei Filimonchyk',
       avatar: 'assets/icons/avatar.svg',
+      dialogs: [
+        {
+          id: 2,
+          name: 'Pavel Filimonchyk  asdfasd fasdfasdfas dfasd fasdf',
+          avatar: 'assets/icons/avatar.svg',
+          isOnline: false,
+          roomId: 'room-1',
+          lastMessage: {
+            id: 1,
+            uuid: 2,
+            message: 'hello, mather fucker!',
+            userName: 'Gvardiola',
+            roomId: 'room-1',
+            creationDate: '01-01-2020',
+            editDate: null,
+            likes: [
+              {
+                type: '',
+                count: 1,
+                emoji: {
+                  no: 1,
+                  title: 'face with tears of joy',
+                  category: EmojiCategory.Favorites,
+                  pic: '😂',
+                },
+              },
+            ],
+          },
+        },
+        {
+          id: 3,
+          name: 'Pavel Filimonchyk',
+          avatar: null,
+          isOnline: false,
+          roomId: 'room-2',
+          lastMessage: {
+            id: 1,
+            uuid: 2,
+            message: 'hello, mather fucker!',
+            userName: 'Gvardiola',
+            roomId: 'room-1',
+            creationDate: '01-01-2020',
+            editDate: null,
+            likes: [
+              {
+                type: '',
+                count: 1,
+                emoji: {
+                  no: 1,
+                  title: 'face with tears of joy',
+                  category: EmojiCategory.Favorites,
+                  pic: '😂',
+                },
+              },
+            ],
+          },
+        },
+      ],
       theme: 'day-app-mode',
       versions: [
         {

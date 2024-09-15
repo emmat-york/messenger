@@ -40,6 +40,7 @@ export enum LoginFormKey {
 })
 export class LoginComponent implements OnDestroy {
   readonly errorMsg$ = this.authFacade.errorMsg$;
+
   readonly loginFormKey = LoginFormKey;
   readonly errorState = {
     [LoginFormKey.Email]: {

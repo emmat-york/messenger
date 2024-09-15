@@ -1,0 +1,16 @@
+$dialog-width: 348px;
+
+:host {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.aside {
+  width: $dialog-width;
+  min-width: 312px;
+}
+
+.chat {
+  width: calc(100% - #{$dialog-width});
+}

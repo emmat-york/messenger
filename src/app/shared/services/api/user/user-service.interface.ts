@@ -1,3 +1,5 @@
+import {Dialog} from '../chat/chat-service.interface';
+
 /**
  * User here equals to init user data (your data)
  * **/
@@ -5,6 +7,7 @@ export interface User {
   id: number;
   name: string;
   avatar: string | null;
+  dialogs: Dialog[];
   // Settings
   theme: string;
   versions: Version[];

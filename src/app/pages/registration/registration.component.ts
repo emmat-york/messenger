@@ -40,6 +40,7 @@ export enum SignUpFormKey {
 })
 export class RegistrationComponent implements OnDestroy {
   readonly errorMsg$ = this.authFacade.errorMsg$;
+
   readonly signUpFormKey = SignUpFormKey;
   readonly errorState = {
     [SignUpFormKey.Email]: {
@@ -104,7 +105,6 @@ export class RegistrationComponent implements OnDestroy {
       .pipe(
         catchError((errorResponse: HttpErrorResponse) => {
           this.authFacade.setErrorMsg(getRegistrationErrorMessage(errorResponse));
-
           return EMPTY;
         }),
         finalize(() => {

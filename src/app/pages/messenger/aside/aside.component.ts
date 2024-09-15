@@ -8,26 +8,8 @@ import { SearchPanelComponent } from './search-panel/search-panel.component';
 @Component({
   selector: 'app-aside',
   standalone: true,
-  template: `
-    <app-menu-and-search-bar (click)="onChangeView()"></app-menu-and-search-bar>
-
-    @switch (view) { @case ('dialogs') {
-    <app-dialogs class="content"></app-dialogs>
-    } @case ('search-panel') {
-    <app-search-panel class="content"></app-search-panel>
-    } }
-  `,
-  styles: `
-      $search-height: 56px;
-
-      :host {
-        display: block;
-      }
-
-      .content {
-        height: calc(100% - $search-height);
-      }
-    `,
+  templateUrl: 'aside.component.html',
+  styleUrl: 'aside.component.scss',
   imports: [
     NgOptimizedImage,
     IconPipe,

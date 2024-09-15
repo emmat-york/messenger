@@ -1,0 +1,9 @@
+$search-height: 56px;
+
+:host {
+  display: block;
+}
+
+.content {
+  height: calc(100% - $search-height);
+}

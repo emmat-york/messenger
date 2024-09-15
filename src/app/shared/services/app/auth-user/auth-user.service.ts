@@ -7,8 +7,8 @@ import { UserFacade } from '../../../../store/user/user.facade';
 import { UserService } from '../../api/user/user.service';
 import { AuthFacade } from '../../../../store/auth/auth.facade';
 import { ChatService } from '../../api/chat/chat.service';
-import { Dialog } from '../../api/chat/chat-service.interface';
 import { ChatFacade } from '../../../../store/chat/chat.facade';
+import { User } from '../../api/user/user-service.interface';
 
 export const AUTH_TOKEN_KEY = 'AUTH_TOKEN_KEY';
 export const AUTH_TOKEN_EXPIRES_DATE_KEY = 'AUTH_TOKEN_EXPIRES_IN_KEY';
@@ -51,42 +51,38 @@ export class AuthUserService {
     return token;
   }
 
-  registration$(credentials: RegistrationCredentials): Observable<Dialog[]> {
+  registration$(credentials: RegistrationCredentials): Observable<User> {
     return this.authService.registration$(credentials).pipe(
       switchMap(({ idToken, expiresIn }) => {
         this.setToken({ idToken, expiresIn });
 
         return this.userService.getUserData$(idToken).pipe(
-          switchMap(userData => {
+          tap(({ id, name, avatar, dialogs }) => {
             this.userFacade.setUser({
-              essentialData: { id: userData.id, name: userData.name },
-              avatar: userData.avatar,
+              essentialData: { id, name },
+              avatar,
             });
 
-            return this.chatService
-              .getUserDialogs$(userData.id)
-              .pipe(tap(dialogs => this.chatFacade.setDialogs(dialogs)));
+            this.chatFacade.setDialogs(dialogs);
           }),
         );
       }),
     );
   }
 
-  login$(credentials: LoginCredentials): Observable<Dialog[]> {
+  login$(credentials: LoginCredentials): Observable<User> {
     return this.authService.login$(credentials).pipe(
       switchMap(({ idToken, expiresIn }) => {
         this.setToken({ idToken, expiresIn });
 
         return this.userService.getUserData$(idToken).pipe(
-          switchMap(userData => {
+          tap(({ id, name, avatar, dialogs }) => {
             this.userFacade.setUser({
-              essentialData: { id: userData.id, name: userData.name },
-              avatar: userData.avatar,
+              essentialData: { id, name },
+              avatar,
             });
 
-            return this.chatService
-              .getUserDialogs$(userData.id)
-              .pipe(tap(dialogs => this.chatFacade.setDialogs(dialogs)));
+            this.chatFacade.setDialogs(dialogs);
           }),
         );
       }),

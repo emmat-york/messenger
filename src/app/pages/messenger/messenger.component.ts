@@ -7,26 +7,8 @@ import { AsideComponent } from './aside/aside.component';
 @Component({
   selector: 'app-messenger',
   standalone: true,
-  template: `
-    <app-aside class="aside"></app-aside>
-    <app-chat class="chat"></app-chat>
-  `,
-  styles: `$dialog-width: 348px;
-
-    :host {
-      display: flex;
-      height: 100%;
-      width: 100%;
-    }
-
-    .aside {
-      width: $dialog-width;
-      min-width: 312px;
-    }
-
-    .chat {
-      width: calc(100% - #{$dialog-width});
-    }`,
+  templateUrl: 'messenger.component.html',
+  styleUrl: 'messenger.component.scss',
   imports: [ChatComponent, AsideComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

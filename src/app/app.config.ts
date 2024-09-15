@@ -8,7 +8,7 @@ import { UserEffect } from './store/user/user.effect';
 import { ChatEffect } from './store/chat/chat.effect';
 import { provideHttpClient } from '@angular/common/http';
 import { AuthUserService } from './shared/services/app/auth-user/auth-user.service';
-import { catchError, EMPTY, Observable, switchMap, tap } from 'rxjs';
+import { catchError, EMPTY, Observable, tap } from 'rxjs';
 import { UserService } from './shared/services/api/user/user.service';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { UserFacade } from './store/user/user.facade';
@@ -18,33 +18,28 @@ import { CHAT_KEY, reducer as chatReducer } from './store/chat/chat.feature';
 import { reducer as userReducer, USER_KEY } from './store/user/user.feature';
 import { ChatSocket } from './shared/services/socket/chat.socket';
 import { ChatFacade } from './store/chat/chat.facade';
-import { ChatService } from './shared/services/api/chat/chat.service';
 import {
   reducer as settingsReducer,
   SETTINGS_KEY,
 } from './store/settings/settings.feature';
 import { SettingsFacade } from './store/settings/settings.facade';
-import { Dialog } from './shared/services/api/chat/chat-service.interface';
+import { User } from './shared/services/api/user/user-service.interface';
 
 function initializeAppFactory(
   authUserService: AuthUserService,
   userService: UserService,
-  chatService: ChatService,
   settingsFacade: SettingsFacade,
   userFacade: UserFacade,
   chatFacade: ChatFacade,
   authFacade: AuthFacade,
   chatSocket: ChatSocket,
-): () => Observable<Dialog[] | never> {
-  return (): Observable<Dialog[] | never> => {
+): () => Observable<User | never> {
+  return (): Observable<User | never> => {
     if (authUserService.isAuth) {
       return userService.getUserData$(authUserService.token).pipe(
-        switchMap(({ id, name, avatar, ...settings }) => {
+        tap(({ id, name, avatar, dialogs, ...settings }) => {
           userFacade.setUser({ essentialData: { id, name }, avatar });
           settingsFacade.setUserSettings(settings);
-          return chatService.getUserDialogs$(id);
-        }),
-        tap(dialogs => {
           chatFacade.setDialogs(dialogs);
           authFacade.setIsAuth(true);
           chatSocket.init();
@@ -75,7 +70,6 @@ export const appConfig: ApplicationConfig = {
       deps: [
         AuthUserService,
         UserService,
-        ChatService,
         SettingsFacade,
         UserFacade,
         ChatFacade,
