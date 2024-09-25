@@ -9,19 +9,19 @@ import {
 export const CHAT_KEY = 'chat';
 
 export interface ChatState {
-  input: string;
+  selectedDialog: Dialog | EssentialUserData | null;
   messages: Message[];
   isLoading: boolean;
-  selectedDialog: Dialog | EssentialUserData | null;
+  input: string;
 }
 
 // Контакт - это EssentialUserData, а диалог - это юзер, с которым у меня есть диалог
 
 const initialState: ChatState = {
-  input: '',
+  selectedDialog: null,
   messages: [],
   isLoading: true,
-  selectedDialog: null,
+  input: '',
 };
 
 export const { selectChatState, selectSelectedDialog, reducer } = createFeature({
