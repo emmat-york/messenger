@@ -1,10 +1,10 @@
-<ng-container *ngrxLet="vm$; let vm">
-  @if (vm.dialogs.length) {
+<ng-container *ngrxLet="{ user: userVm$, chat: chatVm$ }; let vm">
+  @if (vm.user.dialogs.length) {
   <ul #contactList class="contact-list">
-    @for (dialog of vm.dialogs; track dialog.name) {
-    <li class="contact" (click)="setSelectedDialog(vm.selectedDialog?.id, dialog)">
+    @for (dialog of vm.user.dialogs; track dialog.name) {
+    <li class="contact" (click)="setSelectedDialog(vm.chat.selectedDialog?.id, dialog)">
       <app-dialog
-        [class.selected]="dialog.id === vm.selectedDialog?.id"
+        [class.selected]="dialog.id === vm.chat.selectedDialog?.id"
         [dialog]="dialog"
       ></app-dialog>
     </li>

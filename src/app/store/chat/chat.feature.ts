@@ -1,31 +1,33 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import * as action from './chat.action';
 import { Message } from '../../pages/messenger/chat/chat.interface';
-import { Dialog } from '../../shared/services/api/chat/chat-service.interface';
+import {
+  Dialog,
+  EssentialUserData,
+} from '../../shared/services/api/chat/chat-service.interface';
 
 export const CHAT_KEY = 'chat';
 
 export interface ChatState {
   input: string;
   messages: Message[];
-  dialogs: Dialog[];
-  selectedDialog: Dialog | null;
   isLoading: boolean;
+  selectedDialog: Dialog | EssentialUserData | null;
 }
+
+// Контакт - это EssentialUserData, а диалог - это юзер, с которым у меня есть диалог
 
 const initialState: ChatState = {
   input: '',
   messages: [],
-  dialogs: [],
-  selectedDialog: null,
   isLoading: true,
+  selectedDialog: null,
 };
 
-export const { selectChatState, reducer } = createFeature({
+export const { selectChatState, selectSelectedDialog, reducer } = createFeature({
   name: CHAT_KEY,
   reducer: createReducer(
     initialState,
-    on(action.setDialogs, (state, { dialogs }): ChatState => ({ ...state, dialogs })),
     on(action.setSelectedDialog, (state, { selectedDialog }) => ({
       ...state,
       selectedDialog,
@@ -57,20 +59,5 @@ export const { selectChatState, reducer } = createFeature({
       action.setSelectedDialogFail,
       (state): ChatState => ({ ...state, messages: [], isLoading: false }),
     ),
-    on(action.setMessage, (state, { message, dialogId, withInputReset }) => ({
-      ...state,
-      messages: [...state.messages, message],
-      input: withInputReset ? '' : state.input,
-      dialogs: state.dialogs.map(dialog => {
-        if (dialog.id === dialogId) {
-          return {
-            ...dialog,
-            lastMessage: message,
-          };
-        }
-
-        return dialog;
-      }),
-    })),
   ),
 });

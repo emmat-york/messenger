@@ -17,30 +17,27 @@ import { AUTH_KEY, reducer as authReducer } from './store/auth/auth.feature';
 import { CHAT_KEY, reducer as chatReducer } from './store/chat/chat.feature';
 import { reducer as userReducer, USER_KEY } from './store/user/user.feature';
 import { ChatSocket } from './shared/services/socket/chat.socket';
-import { ChatFacade } from './store/chat/chat.facade';
 import {
   reducer as settingsReducer,
   SETTINGS_KEY,
 } from './store/settings/settings.feature';
 import { SettingsFacade } from './store/settings/settings.facade';
-import { User } from './shared/services/api/user/user-service.interface';
+import { FullCurrentUserData } from './shared/services/api/user/user-service.interface';
 
 function initializeAppFactory(
   authUserService: AuthUserService,
   userService: UserService,
   settingsFacade: SettingsFacade,
   userFacade: UserFacade,
-  chatFacade: ChatFacade,
   authFacade: AuthFacade,
   chatSocket: ChatSocket,
-): () => Observable<User | never> {
-  return (): Observable<User | never> => {
+): () => Observable<FullCurrentUserData | never> {
+  return (): Observable<FullCurrentUserData | never> => {
     if (authUserService.isAuth) {
       return userService.getUserData$(authUserService.token).pipe(
         tap(({ id, name, avatar, dialogs, ...settings }) => {
-          userFacade.setUser({ essentialData: { id, name }, avatar });
+          userFacade.setUser({ essentialData: { id, name, avatar }, dialogs });
           settingsFacade.setUserSettings(settings);
-          chatFacade.setDialogs(dialogs);
           authFacade.setIsAuth(true);
           chatSocket.init();
         }),
@@ -72,7 +69,6 @@ export const appConfig: ApplicationConfig = {
         UserService,
         SettingsFacade,
         UserFacade,
-        ChatFacade,
         AuthFacade,
         ChatSocket,
       ],

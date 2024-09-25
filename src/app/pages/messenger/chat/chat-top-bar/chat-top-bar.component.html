@@ -1,15 +1,18 @@
 <header class="header">
   <app-avatar
-    [safeName]="selectedDialog.name"
-    [src]="selectedDialog.avatar"
+    [safeName]="dialogOrEssentialUserData.name"
+    [src]="dialogOrEssentialUserData.avatar"
     variant="small"
     class="avatar"
   ></app-avatar>
 
   <div>
-    <h3 class="name">{{ selectedDialog.name }}</h3>
-    <span class="online-indicator" [class.online]="selectedDialog.isOnline">{{
-      selectedDialog.isOnline ? 'online' : 'offline'
-    }}</span>
+    <h3 class="name">{{ dialogOrEssentialUserData.name }}</h3>
+    <span
+      *ngIf="dialogOrEssentialUserData | dialogTypeGuard"
+      class="online-indicator"
+      [class.online]="dialogOrEssentialUserData.isOnline"
+      >{{ dialogOrEssentialUserData.isOnline ? 'online' : 'offline' }}</span
+    >
   </div>
 </header>

@@ -1,13 +1,13 @@
-import {Message} from '../../../../pages/messenger/chat/chat.interface';
+import { Message } from '../../../../pages/messenger/chat/chat.interface';
 
-/**
- * Dialog here equals to Contact
- * **/
-export interface Dialog {
+export interface EssentialUserData {
   id: number;
   name: string;
   avatar: string | null;
+}
+
+export interface Dialog extends EssentialUserData {
+  roomId: number;
   isOnline: boolean;
-  roomId: string | null;
   lastMessage: Message | null;
 }

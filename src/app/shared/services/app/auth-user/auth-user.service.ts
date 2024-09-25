@@ -6,9 +6,7 @@ import { Router } from '@angular/router';
 import { UserFacade } from '../../../../store/user/user.facade';
 import { UserService } from '../../api/user/user.service';
 import { AuthFacade } from '../../../../store/auth/auth.facade';
-import { ChatService } from '../../api/chat/chat.service';
-import { ChatFacade } from '../../../../store/chat/chat.facade';
-import { User } from '../../api/user/user-service.interface';
+import { FullCurrentUserData } from '../../api/user/user-service.interface';
 
 export const AUTH_TOKEN_KEY = 'AUTH_TOKEN_KEY';
 export const AUTH_TOKEN_EXPIRES_DATE_KEY = 'AUTH_TOKEN_EXPIRES_IN_KEY';
@@ -18,11 +16,9 @@ export const AUTH_TOKEN_EXPIRES_DATE_KEY = 'AUTH_TOKEN_EXPIRES_IN_KEY';
 })
 export class AuthUserService {
   constructor(
-    private readonly chatService: ChatService,
     private readonly authService: AuthService,
     private readonly userService: UserService,
     private readonly userFacade: UserFacade,
-    private readonly chatFacade: ChatFacade,
     private readonly authFacade: AuthFacade,
     private readonly router: Router,
   ) {}
@@ -51,7 +47,7 @@ export class AuthUserService {
     return token;
   }
 
-  registration$(credentials: RegistrationCredentials): Observable<User> {
+  registration$(credentials: RegistrationCredentials): Observable<FullCurrentUserData> {
     return this.authService.registration$(credentials).pipe(
       switchMap(({ idToken, expiresIn }) => {
         this.setToken({ idToken, expiresIn });
@@ -59,18 +55,16 @@ export class AuthUserService {
         return this.userService.getUserData$(idToken).pipe(
           tap(({ id, name, avatar, dialogs }) => {
             this.userFacade.setUser({
-              essentialData: { id, name },
-              avatar,
+              essentialData: { id, name, avatar },
+              dialogs,
             });
-
-            this.chatFacade.setDialogs(dialogs);
           }),
         );
       }),
     );
   }
 
-  login$(credentials: LoginCredentials): Observable<User> {
+  login$(credentials: LoginCredentials): Observable<FullCurrentUserData> {
     return this.authService.login$(credentials).pipe(
       switchMap(({ idToken, expiresIn }) => {
         this.setToken({ idToken, expiresIn });
@@ -78,11 +72,9 @@ export class AuthUserService {
         return this.userService.getUserData$(idToken).pipe(
           tap(({ id, name, avatar, dialogs }) => {
             this.userFacade.setUser({
-              essentialData: { id, name },
-              avatar,
+              essentialData: { id, name, avatar },
+              dialogs,
             });
-
-            this.chatFacade.setDialogs(dialogs);
           }),
         );
       }),

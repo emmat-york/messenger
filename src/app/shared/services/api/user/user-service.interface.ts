@@ -3,7 +3,7 @@ import {Dialog} from '../chat/chat-service.interface';
 /**
  * User here equals to init user data (your data)
  * **/
-export interface User {
+export interface FullCurrentUserData {
   id: number;
   name: string;
   avatar: string | null;

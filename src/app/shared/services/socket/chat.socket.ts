@@ -9,5 +9,5 @@ export class ChatSocket {
 
   subscribeToRoom(id: string): void {}
 
-  request(message: Message, roomId: string | null): void {}
+  request(message: Message, roomId?: number): void {}
 }

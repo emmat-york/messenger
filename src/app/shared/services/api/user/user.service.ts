@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { User } from './user-service.interface';
+import { FullCurrentUserData } from './user-service.interface';
 import { EmojiCategory } from '../../../../pages/messenger/chat/chat.enum';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  getUserData$(idToken: string | null): Observable<User> {
+  getUserData$(idToken: string | null): Observable<FullCurrentUserData> {
     return of({
       id: 1,
       name: 'Andrei Filimonchyk',
@@ -18,13 +18,13 @@ export class UserService {
           name: 'Pavel Filimonchyk  asdfasd fasdfasdfas dfasd fasdf',
           avatar: 'assets/icons/avatar.svg',
           isOnline: false,
-          roomId: 'room-1',
+          roomId: 1,
           lastMessage: {
             id: 1,
             uuid: 2,
             message: 'hello, mather fucker!',
             userName: 'Gvardiola',
-            roomId: 'room-1',
+            roomId: 1,
             creationDate: '01-01-2020',
             editDate: null,
             likes: [
@@ -46,7 +46,7 @@ export class UserService {
           name: 'Pavel Filimonchyk',
           avatar: null,
           isOnline: false,
-          roomId: 'room-2',
+          roomId: 2,
           lastMessage: {
             id: 1,
             uuid: 2,

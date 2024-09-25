@@ -10,7 +10,7 @@ import { EmojiCategory } from '../../../../pages/messenger/chat/chat.enum';
 export class ChatService {
   constructor(private readonly http: HttpClient) {}
 
-  getChatHistoryByRoomId$(roomId: string | null): Observable<Message[]> {
+  getChatHistoryByRoomId$(roomId: number): Observable<Message[]> {
     return of([
       {
         id: 1,

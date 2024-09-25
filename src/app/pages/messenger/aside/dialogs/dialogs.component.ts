@@ -18,6 +18,7 @@ import { IconPipe } from '../../../../shared/pipes/icon.pipe';
 import { ChatFacade } from '../../../../store/chat/chat.facade';
 import { ScrollEvent } from '../../chat/chat-body/chat-body.interface';
 import { Dialog } from '../../../../shared/services/api/chat/chat-service.interface';
+import { UserFacade } from '../../../../store/user/user.facade';
 
 @Component({
   selector: 'app-dialogs',
@@ -26,15 +27,16 @@ import { Dialog } from '../../../../shared/services/api/chat/chat-service.interf
   styleUrl: 'dialogs.component.scss',
   imports: [
     ScrollCircleComponent,
-    DialogComponent,
     NgOptimizedImage,
+    DialogComponent,
     LetDirective,
     IconPipe,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogsComponent implements AfterViewInit {
-  readonly vm$ = this.chatFacade.vm$;
+  readonly userVm$ = this.userFacade.vm$;
+  readonly chatVm$ = this.chatFacade.vm$;
 
   isScrollCircleShown = false;
 
@@ -44,6 +46,7 @@ export class DialogsComponent implements AfterViewInit {
   constructor(
     private readonly cdRef: ChangeDetectorRef,
     private readonly chatFacade: ChatFacade,
+    private readonly userFacade: UserFacade,
     private readonly destroyRef: DestroyRef,
     private readonly renderer2: Renderer2,
   ) {}

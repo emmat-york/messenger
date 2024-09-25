@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ChatState, selectChatState } from './chat.feature';
+import { ChatState, selectChatState, selectSelectedDialog } from './chat.feature';
 import * as action from './chat.action';
 import { Observable } from 'rxjs';
 import { Action, Store } from '@ngrx/store';
@@ -10,12 +10,9 @@ import { Dialog } from '../../shared/services/api/chat/chat-service.interface';
 })
 export class ChatFacade {
   readonly vm$: Observable<ChatState> = this.store.select(selectChatState);
+  readonly selectedDialog$ = this.store.select(selectSelectedDialog);
 
   constructor(private readonly store: Store) {}
-
-  setDialogs(dialogs: Dialog[]): void {
-    this.dispatch(action.setDialogs({ dialogs }));
-  }
 
   setSelectedDialog(selectedDialog: Dialog): void {
     this.dispatch(action.setSelectedDialog({ selectedDialog }));

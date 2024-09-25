@@ -54,7 +54,7 @@ export class ChatEffect {
             likes: [],
           };
 
-          this.chatSocket.request(message, chatVm.selectedDialog.roomId);
+          this.chatSocket.request(message);
           this.soundService.play();
 
           return action.setMessage({

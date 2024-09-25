@@ -9,7 +9,7 @@ import { ChatInputComponent } from './chat-input/chat-input.component';
 import { LetDirective } from '@ngrx/component';
 import { ChatTopBarComponent } from './chat-top-bar/chat-top-bar.component';
 import { NoSelectedContactComponent } from './no-selected-contact/no-selected-contact.component';
-import { distinctUntilChanged, filter, map } from 'rxjs';
+import { distinctUntilChanged, filter } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { UserFacade } from '../../../store/user/user.facade';
 import { ChatFacade } from '../../../store/chat/chat.facade';
@@ -52,14 +52,8 @@ export class ChatComponent implements OnInit {
   }
 
   private initSelectedDialogListener(): void {
-    // TODO: create separate selectedDialog selector for this code.
-    this.chatVm$
-      .pipe(
-        map(({ selectedDialog }) => selectedDialog?.roomId),
-        distinctUntilChanged(),
-        filter(Boolean),
-        takeUntilDestroyed(this.destroyRef),
-      )
+    this.chatFacade.selectedDialog$
+      .pipe(distinctUntilChanged(), filter(Boolean), takeUntilDestroyed(this.destroyRef))
       .subscribe(() => this.scrollDown());
   }
 }
