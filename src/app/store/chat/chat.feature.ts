@@ -9,13 +9,13 @@ import {
 export const CHAT_KEY = 'chat';
 
 export interface ChatState {
-  selectedDialog: Dialog | EssentialUserData | null;
+  selectedDialog: null | EssentialUserData | Dialog;
   messages: Message[];
   isLoading: boolean;
   input: string;
 }
 
-// Контакт - это EssentialUserData, а диалог - это юзер, с которым у меня есть диалог
+// Контакт - это EssentialUserData, а диалог - это EssentialUserData + диалоговые поля
 
 const initialState: ChatState = {
   selectedDialog: null,

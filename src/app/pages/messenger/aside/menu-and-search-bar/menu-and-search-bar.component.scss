@@ -28,3 +28,18 @@
   border-radius: 22px;
   background-color: var(--gray_light6);
 }
+
+.close-cross {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.search-mode {
+  & > .input {
+    background-color: var(--white1);
+    border: 1.5px solid var(--gray_light6);
+  }
+}

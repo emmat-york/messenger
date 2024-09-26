@@ -1,4 +1,8 @@
-<app-menu-and-search-bar (changeView)="onChangeView()"></app-menu-and-search-bar>
+<app-menu-and-search-bar
+  [view]="view"
+  (click)="onShowSearchPanel()"
+  (closeSearchPanel)="onShowDialogs()"
+></app-menu-and-search-bar>
 
 @switch (view) { @case ('dialogs') {
 <app-dialogs class="content"></app-dialogs>
