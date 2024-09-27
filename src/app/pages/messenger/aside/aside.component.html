@@ -1,11 +1,12 @@
 <app-menu-and-search-bar
   [view]="view"
-  (click)="onShowSearchPanel()"
-  (closeSearchPanel)="onShowDialogs()"
+  (changeView)="changeView($event)"
 ></app-menu-and-search-bar>
 
-@switch (view) { @case ('dialogs') {
-<app-dialogs class="content"></app-dialogs>
-} @case ('search-panel') {
-<app-search-panel class="content"></app-search-panel>
-} }
+<ng-container *ngrxLet="{ userVm: userVm$, chatVm: chatVm$ } as vm">
+  @switch (view) { @case ('dialogs') {
+  <app-dialogs [chatVm]="vm.chatVm" [userVm]="vm.userVm" class="content"></app-dialogs>
+  } @case ('search-panel') {
+  <app-search-panel class="content"></app-search-panel>
+  } }
+</ng-container>

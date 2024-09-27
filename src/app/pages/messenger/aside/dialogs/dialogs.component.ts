@@ -5,12 +5,12 @@ import {
   Component,
   DestroyRef,
   ElementRef,
+  Input,
   Renderer2,
   ViewChild,
 } from '@angular/core';
 import { DialogComponent } from './dialog/dialog.component';
 import { NgOptimizedImage } from '@angular/common';
-import { LetDirective } from '@ngrx/component';
 import { debounceTime, fromEvent } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ScrollCircleComponent } from '../../../../shared/components/scroll-circle/scroll-circle.component';
@@ -18,25 +18,20 @@ import { IconPipe } from '../../../../shared/pipes/icon.pipe';
 import { ChatFacade } from '../../../../store/chat/chat.facade';
 import { ScrollEvent } from '../../chat/chat-body/chat-body.interface';
 import { Dialog } from '../../../../shared/services/api/chat/chat-service.interface';
-import { UserFacade } from '../../../../store/user/user.facade';
+import { ChatState } from '../../../../store/chat/chat.feature';
+import { UserStoreState } from '../../../../store/user/user.feature';
 
 @Component({
   selector: 'app-dialogs',
   standalone: true,
   templateUrl: 'dialogs.component.html',
   styleUrl: 'dialogs.component.scss',
-  imports: [
-    ScrollCircleComponent,
-    NgOptimizedImage,
-    DialogComponent,
-    LetDirective,
-    IconPipe,
-  ],
+  imports: [ScrollCircleComponent, NgOptimizedImage, DialogComponent, IconPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogsComponent implements AfterViewInit {
-  readonly userVm$ = this.userFacade.vm$;
-  readonly chatVm$ = this.chatFacade.vm$;
+  @Input() userVm: UserStoreState;
+  @Input() chatVm: ChatState;
 
   isScrollCircleShown = false;
 
@@ -46,7 +41,6 @@ export class DialogsComponent implements AfterViewInit {
   constructor(
     private readonly cdRef: ChangeDetectorRef,
     private readonly chatFacade: ChatFacade,
-    private readonly userFacade: UserFacade,
     private readonly destroyRef: DestroyRef,
     private readonly renderer2: Renderer2,
   ) {}

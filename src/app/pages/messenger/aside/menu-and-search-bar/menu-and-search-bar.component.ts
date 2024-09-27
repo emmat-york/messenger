@@ -22,14 +22,19 @@ import { AsideView } from '../aside.interface';
 export class MenuAndSearchBarComponent {
   @Input() view: AsideView = 'dialogs';
 
-  @Output() private readonly closeSearchPanel = new EventEmitter<void>();
+  @Output() private readonly changeView = new EventEmitter<AsideView>();
 
   constructor(private readonly modalService: ModalService) {}
 
-  onCloseSearchPanel(event: Event): void {
+  onChangeView(event: Event, mode: AsideView): void {
     event.stopImmediatePropagation();
     event.preventDefault();
-    this.closeSearchPanel.emit();
+
+    if (this.view === 'search-panel' && mode === 'search-panel') {
+      return;
+    }
+
+    this.changeView.emit(mode);
   }
 
   openUserMenu(): void {

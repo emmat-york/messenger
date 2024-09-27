@@ -14,7 +14,13 @@
     width="16"
     height="16"
     alt="close"
-    (click)="onCloseSearchPanel($event)"
+    (click)="onChangeView($event, 'dialogs')"
   />
-  <input placeholder="Search" id="contact-search-input-bar" class="input" type="text" />
+  <input
+    placeholder="Search"
+    id="contact-search-input-bar"
+    class="input"
+    type="text"
+    (click)="onChangeView($event, 'search-panel')"
+  />
 </label>

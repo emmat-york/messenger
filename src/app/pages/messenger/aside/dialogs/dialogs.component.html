@@ -1,19 +1,15 @@
-<ng-container *ngrxLet="{ user: userVm$, chat: chatVm$ }; let vm">
-  @if (vm.user.dialogs.length) {
-  <ul #contactList class="contact-list">
-    @for (dialog of vm.user.dialogs; track dialog.name) {
-    <li class="contact" (click)="setSelectedDialog(vm.chat.selectedDialog?.id, dialog)">
-      <app-dialog
-        [class.selected]="dialog.id === vm.chat.selectedDialog?.id"
-        [dialog]="dialog"
-      ></app-dialog>
-    </li>
-    }
-  </ul>
+@if (userVm.dialogs.length) {
+<ul #contactList class="contact-list">
+  @for (dialog of userVm.dialogs; track dialog.name) {
+  <li class="contact" (click)="setSelectedDialog(chatVm.selectedDialog?.id, dialog)">
+    <app-dialog
+      [class.selected]="dialog.id === chatVm.selectedDialog?.id"
+      [dialog]="dialog"
+    ></app-dialog>
+  </li>
   }
-</ng-container>
-
-@if (isScrollCircleShown) {
+</ul>
+} @if (isScrollCircleShown) {
 <app-scroll-circle
   class="scroll-circle"
   type="down"
