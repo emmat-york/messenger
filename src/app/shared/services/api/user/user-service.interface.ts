@@ -1,4 +1,4 @@
-import {Dialog} from '../chat/chat-service.interface';
+import { Dialog } from '../chat/chat-service.interface';
 
 /**
  * User here equals to init user data (your data)
