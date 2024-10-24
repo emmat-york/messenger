@@ -18,13 +18,19 @@ import { ScrollEvent } from './chat-body.interface';
 import { MessageSkeletonComponent } from './message-skeleton/message-skeleton.component';
 import { ScrollCircleComponent } from '../../../../shared/components/scroll-circle/scroll-circle.component';
 import { Message } from '../chat.interface';
+import { NoDialogComponent } from './no-dialog-sticker/no-dialog-sticker.component';
 
 @Component({
   selector: 'app-chat-body',
   standalone: true,
   templateUrl: 'chat-body.component.html',
   styleUrl: 'chat-body.component.scss',
-  imports: [MessageComponent, ScrollCircleComponent, MessageSkeletonComponent],
+  imports: [
+    MessageComponent,
+    ScrollCircleComponent,
+    MessageSkeletonComponent,
+    NoDialogComponent,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChatBodyComponent implements OnChanges, OnInit, AfterViewInit {

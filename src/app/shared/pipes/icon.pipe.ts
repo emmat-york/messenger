@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { FileExtensions } from '../enums/file-extensions.enum';
 import { SrcBuilder } from '../utils/src-builder.util';
 
-export type Folders = 'system' | 'flags';
+export type Folders = 'stickers';
 
 @Pipe({
   name: 'icon',
@@ -15,8 +15,10 @@ export class IconPipe implements PipeTransform {
     }
 
     const foldersState: Record<Folders, SrcBuilder> = {
-      flags: new SrcBuilder().setFolderOne('flags').setExtension(FileExtensions.Svg),
-    } as Record<Folders, SrcBuilder>;
+      stickers: new SrcBuilder()
+        .setFolderOne('stickers')
+        .setExtension(FileExtensions.Svg),
+    };
 
     return foldersState[folder].setName(name).path;
   }

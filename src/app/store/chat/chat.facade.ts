@@ -3,7 +3,10 @@ import { ChatState, selectChatState, selectSelectedDialog } from './chat.feature
 import * as action from './chat.action';
 import { Observable } from 'rxjs';
 import { Action, Store } from '@ngrx/store';
-import { Dialog } from '../../shared/services/api/chat/chat-service.interface';
+import {
+  Dialog,
+  EssentialUserData,
+} from '../../shared/services/api/chat/chat-service.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +17,7 @@ export class ChatFacade {
 
   constructor(private readonly store: Store) {}
 
-  setSelectedDialog(selectedDialog: Dialog): void {
+  setSelectedDialog(selectedDialog: Dialog | EssentialUserData): void {
     this.dispatch(action.setSelectedDialog({ selectedDialog }));
   }
 

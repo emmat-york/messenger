@@ -1,6 +1,6 @@
 @if (isLoading) {
 <app-message-skeleton></app-message-skeleton>
-} @else {
+} @else { @if (messages.length) {
 <ul class="message-list">
   @for (message of messages; track message.id) {
   <li class="message" [class.your-message]="message.uuid === uuid">
@@ -11,7 +11,9 @@
   </li>
   }
 </ul>
-} @if (hasTheChatBottomBeenReached && !isLoading) {
+} @else {
+<app-no-dialog-sticker class="no-dialog-sticker"></app-no-dialog-sticker>
+} } @if (hasTheChatBottomBeenReached && !isLoading) {
 <app-scroll-circle
   class="scroll-circle"
   type="up"

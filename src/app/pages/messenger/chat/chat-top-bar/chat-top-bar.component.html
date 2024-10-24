@@ -10,8 +10,8 @@
     <h3 class="name">{{ dialogOrEssentialUserData.name }}</h3>
     <span
       *ngIf="dialogOrEssentialUserData | dialogTypeGuard"
-      class="online-indicator"
       [class.online]="dialogOrEssentialUserData.isOnline"
+      class="online-indicator"
       >{{ dialogOrEssentialUserData.isOnline ? 'online' : 'offline' }}</span
     >
   </div>

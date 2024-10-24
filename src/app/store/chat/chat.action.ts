@@ -1,10 +1,13 @@
 import { createAction, props } from '@ngrx/store';
 import { Message } from '../../pages/messenger/chat/chat.interface';
-import { Dialog } from '../../shared/services/api/chat/chat-service.interface';
+import {
+  Dialog,
+  EssentialUserData,
+} from '../../shared/services/api/chat/chat-service.interface';
 
 export const setSelectedDialog = createAction(
   '[CHAT] setSelectedDialog',
-  props<{ selectedDialog: Dialog }>(),
+  props<{ selectedDialog: Dialog | EssentialUserData }>(),
 );
 export const setSelectedDialogSuccess = createAction(
   '[CHAT] setSelectedDialogSuccess',

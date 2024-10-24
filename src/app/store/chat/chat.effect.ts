@@ -1,6 +1,6 @@
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
-import { catchError, filter, map, of, switchMap } from 'rxjs';
+import { catchError, map, of, switchMap } from 'rxjs';
 import { ChatService } from '../../shared/services/api/chat/chat.service';
 import * as action from './chat.action';
 import { ChatFacade } from './chat.facade';
@@ -8,6 +8,7 @@ import { UserFacade } from '../user/user.facade';
 import { ChatSocket } from '../../shared/services/socket/chat.socket';
 import { SoundService } from '../../shared/services/app/sound/sound.service';
 import { Message } from '../../pages/messenger/chat/chat.interface';
+import { dialogTypeGuard } from './chat.util';
 
 @Injectable()
 export class ChatEffect {
@@ -23,12 +24,14 @@ export class ChatEffect {
   setSelectedDialog$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(action.setSelectedDialog),
-      filter(({ selectedDialog: { roomId } }) => Boolean(roomId)),
       switchMap(({ selectedDialog }) => {
-        return this.chatService.getChatHistoryByRoomId$(selectedDialog.roomId);
+        return dialogTypeGuard(selectedDialog)
+          ? this.chatService.getChatHistoryByRoomId$(selectedDialog.roomId).pipe(
+              map(messages => action.setSelectedDialogSuccess({ messages })),
+              catchError(() => of(action.setSelectedDialogFail())),
+            )
+          : of(action.setSelectedDialogSuccess({ messages: [] }));
       }),
-      map(messages => action.setSelectedDialogSuccess({ messages })),
-      catchError(() => of(action.setSelectedDialogFail())),
     );
   });
 
@@ -39,16 +42,16 @@ export class ChatEffect {
         concatLatestFrom(() => [this.chatFacade.vm$, this.userFacade.vm$]),
       )
       .pipe(
-        map(([, chatVm, { essentialData }]) => {
-          if (!essentialData || !chatVm.selectedDialog) {
+        map(([, chatVm, userVm]) => {
+          if (!userVm.essentialData || !chatVm.selectedDialog) {
             throw new Error('Impossible to send message.');
           }
 
           const message: Message = {
             id: 11111123334,
-            uuid: essentialData.id,
+            uuid: userVm.essentialData.id,
             message: chatVm.input,
-            userName: essentialData.name,
+            userName: userVm.essentialData.name,
             creationDate: new Date().toUTCString(),
             editDate: null,
             likes: [],
@@ -58,9 +61,9 @@ export class ChatEffect {
           this.soundService.play();
 
           return action.setMessage({
-            message,
             dialogId: chatVm.selectedDialog.id,
             withInputReset: true,
+            message,
           });
         }),
         catchError(() => of(action.sendMessageFail())),
