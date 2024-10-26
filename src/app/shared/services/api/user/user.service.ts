@@ -11,12 +11,12 @@ export class UserService {
     return of({
       id: 1,
       name: 'Andrei Filimonchyk',
-      avatar: 'assets/icons/avatar.svg',
+      avatar: 'assets/icons/system/avatar.svg',
       dialogs: [
         {
           id: 2,
           name: 'Pavel Filimonchyk  asdfasd fasdfasdfas dfasd fasdf',
-          avatar: 'assets/icons/avatar.svg',
+          avatar: 'assets/icons/system/avatar.svg',
           isOnline: false,
           roomId: 1,
           lastMessage: {

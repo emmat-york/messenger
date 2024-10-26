@@ -11,6 +11,7 @@ export class ChatService {
   constructor(private readonly http: HttpClient) {}
 
   getChatHistoryByRoomId$(roomId: number): Observable<Message[]> {
+    return of([]);
     return of([
       {
         id: 1,
