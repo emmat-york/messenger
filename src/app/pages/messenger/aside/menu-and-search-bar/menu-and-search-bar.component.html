@@ -17,6 +17,7 @@
     (click)="onChangeView($event, 'dialogs')"
   />
   <input
+    [formControl]="searchControl"
     placeholder="Search"
     id="contact-search-input-bar"
     class="input"

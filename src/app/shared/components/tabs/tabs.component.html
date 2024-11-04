@@ -1,0 +1,31 @@
+<ul class="tabs">
+  <li
+    *ngFor="let tab of config"
+    [class.selected]="selectedTab?.key === tab.key"
+    class="tab"
+    (click)="setSelectedTab(tab)"
+  >
+    <ng-container
+      [ngTemplateOutlet]="(headerContentRefs | tabHeader: tab) ?? defaultHeader"
+      [ngTemplateOutletContext]="tab"
+    ></ng-container>
+
+    <ng-template #defaultHeader>{{ tab.text }}</ng-template>
+  </li>
+</ul>
+
+<div *ngIf="selectedTab?.description" class="description">
+  {{ selectedTab?.description }}
+</div>
+
+<section class="tabs-content">
+  <ng-container
+    [ngTemplateOutlet]="(tabContentRefs | tabContent: selectedTab) ?? defaultContent"
+    [ngTemplateOutletContext]="selectedTab"
+  ></ng-container>
+
+  <ng-template #defaultContent let-selectedTab>
+    There is no content for selected Tab [tab key: {{ selectedTab.key }}
+    ].
+  </ng-template>
+</section>

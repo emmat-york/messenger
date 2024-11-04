@@ -1,12 +1,13 @@
-<app-menu-and-search-bar
-  [view]="view"
-  (changeView)="changeView($event)"
-></app-menu-and-search-bar>
+<ng-container *ngrxLet="{ userVm: userVm$, chatVm: chatVm$, asideVm: asideVm$ } as vm">
+  <app-menu-and-search-bar [view]="vm.asideVm.viewType"></app-menu-and-search-bar>
 
-<ng-container *ngrxLet="{ userVm: userVm$, chatVm: chatVm$ } as vm">
-  @switch (view) { @case ('dialogs') {
+  @switch (vm.asideVm.viewType) { @case ('dialogs') {
   <app-dialogs [chatVm]="vm.chatVm" [userVm]="vm.userVm" class="content"></app-dialogs>
   } @case ('search-panel') {
-  <app-search-panel class="content"></app-search-panel>
+  <app-search-panel
+    class="content"
+    [searchRequest]="vm.asideVm.searchRequest"
+    [dialogs]="vm.userVm.dialogs"
+  ></app-search-panel>
   } }
 </ng-container>

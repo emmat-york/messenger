@@ -16,6 +16,7 @@ import { AuthFacade } from './store/auth/auth.facade';
 import { AUTH_KEY, reducer as authReducer } from './store/auth/auth.feature';
 import { CHAT_KEY, reducer as chatReducer } from './store/chat/chat.feature';
 import { reducer as userReducer, USER_KEY } from './store/user/user.feature';
+import { ASIDE_KEY, reducer as asideReducer } from './store/aside/aside.feature';
 import { ChatSocket } from './shared/services/socket/chat.socket';
 import {
   reducer as settingsReducer,
@@ -56,6 +57,7 @@ export const appConfig: ApplicationConfig = {
     provideState({ name: AUTH_KEY, reducer: authReducer }),
     provideState({ name: CHAT_KEY, reducer: chatReducer }),
     provideState({ name: USER_KEY, reducer: userReducer }),
+    provideState({ name: ASIDE_KEY, reducer: asideReducer }),
     provideState({ name: SETTINGS_KEY, reducer: settingsReducer }),
     provideStoreDevtools({ maxAge: 50, logOnly: !isDevMode() }),
     provideEffects([ChatEffect, UserEffect]),
