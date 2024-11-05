@@ -5,9 +5,8 @@ import {
 } from '../../../../shared/components/tabs/tabs.component';
 import { TabContentDirective } from '../../../../shared/components/tabs/directives/tab-content.directive';
 import { Dialog } from '../../../../shared/services/api/chat/chat-service.interface';
-import { NgForOf, NgIf } from '@angular/common';
-import { DialogComponent } from '../dialogs/dialog/dialog.component';
-import { ArrayFilterPipe } from '../../../../shared/pipes/array-filter.pipe';
+import { ContactsSearchBarComponent } from './contacts-search-bar/contacts-search-bar.component';
+import { ChatsSearchBarComponent } from './chats-search-bar/chats-search-bar.component';
 
 @Component({
   selector: 'app-search-panel',
@@ -15,12 +14,10 @@ import { ArrayFilterPipe } from '../../../../shared/pipes/array-filter.pipe';
   templateUrl: 'search-panel.component.html',
   styleUrl: 'search-panel.component.scss',
   imports: [
+    ContactsSearchBarComponent,
+    ChatsSearchBarComponent,
     TabContentDirective,
-    ArrayFilterPipe,
-    DialogComponent,
     TabsComponent,
-    NgForOf,
-    NgIf,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -32,12 +29,10 @@ export class SearchPanelComponent {
     {
       key: 'chats',
       text: 'Chats',
-      description: 'Find the chat you need',
     },
     {
       key: 'contacts',
       text: 'Contacts',
-      description: 'Find the contact you need',
     },
   ];
 }

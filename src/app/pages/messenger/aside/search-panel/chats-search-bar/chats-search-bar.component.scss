@@ -1,0 +1,23 @@
+:host {
+  display: block;
+}
+
+.description {
+  padding: 2px 12px;
+  font-size: 11px;
+  border-top: 1px solid var(--gray_light8);
+  border-bottom: 1px solid var(--gray_light8);
+  background-color: var(--gray_light6);
+  color: var(--steel-gray_dark13);
+}
+
+.no-search-results {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  font-size: 13px;
+  word-break: break-word;
+  color: var(--steel-gray_dark14);
+}

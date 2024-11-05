@@ -1,0 +1,15 @@
+<div class="description">Start looking for the chat you need</div>
+
+<ng-container
+  *ngIf="{ chats: dialogs | arrayFilter: searchRequest : 'name' } as extraData"
+>
+  @if (searchRequest && extraData.chats.length) {
+  <div *ngFor="let dialog of extraData.chats">
+    <app-dialog [dialog]="dialog"></app-dialog>
+  </div>
+  } @else if (searchRequest && !extraData.chats.length) {
+  <div class="no-search-results">No results found for '{{ searchRequest }}'</div>
+  } @else {
+  <div class="no-search-results">Start looking for the chat you need</div>
+  }
+</ng-container>

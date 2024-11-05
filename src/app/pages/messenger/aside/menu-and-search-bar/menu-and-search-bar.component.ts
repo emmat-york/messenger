@@ -47,6 +47,7 @@ export class MenuAndSearchBarComponent implements OnInit {
     }
 
     this.asideFacade.setViewType(mode);
+    this.asideFacade.setSearchRequest('');
     this.searchControl.setValue('', SLEEPY_OPTIONS);
   }
 

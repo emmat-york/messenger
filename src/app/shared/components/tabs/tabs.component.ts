@@ -15,7 +15,6 @@ import { TabHeaderPipe } from './pipes/tab-header.pipe';
 export interface TabConfig {
   key: string;
   text: string;
-  description?: string;
 }
 
 @Component({

@@ -14,10 +14,6 @@
   </li>
 </ul>
 
-<div *ngIf="selectedTab?.description" class="description">
-  {{ selectedTab?.description }}
-</div>
-
 <section class="tabs-content">
   <ng-container
     [ngTemplateOutlet]="(tabContentRefs | tabContent: selectedTab) ?? defaultContent"
