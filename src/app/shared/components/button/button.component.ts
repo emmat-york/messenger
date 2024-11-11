@@ -99,7 +99,7 @@ export type ButtonType = 'submit' | 'button' | 'reset';
         color: var(--red3);
 
         &:hover {
-          background-color: var(--steel-gray_light1);
+          background-color: var(--red0);
         }
       }
     }

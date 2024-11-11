@@ -3,8 +3,9 @@
     [disabled]="isDisabled"
     [ngModel]="value"
     [id]="checkboxId"
-    class="switcher"
+    class="toggle"
     type="checkbox"
     (ngModelChange)="onSwitcherChange($event)"
   />
+  <span class="slider"></span>
 </label>
