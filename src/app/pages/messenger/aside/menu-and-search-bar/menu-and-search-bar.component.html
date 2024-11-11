@@ -1,4 +1,9 @@
-<button class="menu-button" type="button" (click)="openUserMenu()">
+<button
+  *ngIf="view === 'dialogs'"
+  class="menu-button"
+  type="button"
+  (click)="openUserMenu()"
+>
   <img [ngSrc]="'menu' | icon" width="22" height="22" alt="menu" />
 </button>
 
