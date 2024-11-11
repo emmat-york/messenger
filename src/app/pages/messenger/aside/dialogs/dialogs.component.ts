@@ -20,18 +20,27 @@ import { ScrollEvent } from '../../chat/chat-body/chat-body.interface';
 import { Dialog } from '../../../../shared/services/api/chat/chat-service.interface';
 import { ChatState } from '../../../../store/chat/chat.feature';
 import { UserStoreState } from '../../../../store/user/user.feature';
+import { AsideState } from '../../../../store/aside/aside.feature';
+import { ArrayFilterPipe } from '../../../../shared/pipes/array-filter.pipe';
 
 @Component({
   selector: 'app-dialogs',
   standalone: true,
   templateUrl: 'dialogs.component.html',
   styleUrl: 'dialogs.component.scss',
-  imports: [ScrollCircleComponent, NgOptimizedImage, DialogComponent, IconPipe],
+  imports: [
+    ScrollCircleComponent,
+    NgOptimizedImage,
+    DialogComponent,
+    ArrayFilterPipe,
+    IconPipe,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogsComponent implements AfterViewInit {
   @Input() userVm: UserStoreState;
   @Input() chatVm: ChatState;
+  @Input() asideVm: AsideState;
 
   isScrollCircleShown = false;
 

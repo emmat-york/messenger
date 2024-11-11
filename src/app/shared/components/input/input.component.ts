@@ -36,7 +36,9 @@ export class InputComponent implements ControlValueAccessor {
   value = '';
 
   constructor(@Self() @Optional() readonly ngControl: NgControl) {
-    this.ngControl.valueAccessor = this;
+    if (this.ngControl) {
+      this.ngControl.valueAccessor = this;
+    }
   }
 
   private onChange(_: string): void {}

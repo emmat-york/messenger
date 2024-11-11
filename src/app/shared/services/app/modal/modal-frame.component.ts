@@ -13,6 +13,7 @@ import { Constructor } from '../../../interfaces/common.interface';
 import { NgClass } from '@angular/common';
 import { ModalSettings } from './modal.interface';
 import { ModalFrameTypePipe } from './modal-frame-type.pipe';
+import { ClickOutsideDirective } from '../../../directives/click-outside.directive';
 
 interface ModalFrame<ModalData, Action> {
   component: Constructor;
@@ -26,7 +27,7 @@ interface ModalFrame<ModalData, Action> {
   standalone: true,
   templateUrl: 'modal-frame.component.html',
   styleUrl: 'modal-frame.component.scss',
-  imports: [NgClass, ModalFrameTypePipe],
+  imports: [NgClass, ModalFrameTypePipe, ClickOutsideDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModalFrameComponent<ModalData extends object, Action>

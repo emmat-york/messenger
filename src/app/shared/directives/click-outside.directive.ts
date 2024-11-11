@@ -5,14 +5,14 @@ import { Directive, ElementRef, EventEmitter, HostListener, Output } from '@angu
   standalone: true,
 })
 export class ClickOutsideDirective {
-  @Output() clickOutside = new EventEmitter<void>();
+  @Output() clickOutside = new EventEmitter<Event>();
 
-  @HostListener('window:click', ['$event.target'])
-  handleWindowClicks(clickedElement: HTMLElement): void {
-    const isOutsideClick = !this.isClickInside(clickedElement);
-
-    if (isOutsideClick) {
-      this.clickOutside.emit();
+  @HostListener('window:mousedown', ['$event'])
+  handleWindowClicks(event: Event): void {
+    if (!this.isClickInside(event.target as HTMLElement)) {
+      event.stopImmediatePropagation();
+      event.preventDefault();
+      this.clickOutside.emit(event);
     }
   }
 

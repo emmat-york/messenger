@@ -1,0 +1,10 @@
+<label class="label" [for]="checkboxId">
+  <input
+    [disabled]="isDisabled"
+    [ngModel]="value"
+    [id]="checkboxId"
+    class="switcher"
+    type="checkbox"
+    (ngModelChange)="onSwitcherChange($event)"
+  />
+</label>

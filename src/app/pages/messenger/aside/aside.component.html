@@ -1,13 +1,10 @@
 <ng-container *ngrxLet="{ userVm: userVm$, chatVm: chatVm$, asideVm: asideVm$ } as vm">
   <app-menu-and-search-bar [view]="vm.asideVm.viewType"></app-menu-and-search-bar>
 
-  @switch (vm.asideVm.viewType) { @case ('dialogs') {
-  <app-dialogs [chatVm]="vm.chatVm" [userVm]="vm.userVm" class="content"></app-dialogs>
-  } @case ('search-panel') {
-  <app-search-panel
+  <app-dialogs
+    [asideVm]="vm.asideVm"
+    [chatVm]="vm.chatVm"
+    [userVm]="vm.userVm"
     class="content"
-    [searchRequest]="vm.asideVm.searchRequest"
-    [dialogs]="vm.userVm.dialogs"
-  ></app-search-panel>
-  } }
+  ></app-dialogs>
 </ng-container>
