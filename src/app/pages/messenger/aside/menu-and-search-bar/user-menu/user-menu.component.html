@@ -20,11 +20,6 @@
     </li>
 
     <li class="menu-item">
-      <img [ngSrc]="'bookmark' | icon" width="20" height="20" alt="bookmark" />
-      <span class="text">Saved Messages</span>
-    </li>
-
-    <li class="menu-item">
       <img [ngSrc]="'settings' | icon" width="20" height="20" alt="settings" />
       <span class="text">Settings</span>
     </li>
@@ -32,6 +27,15 @@
     <li class="menu-item">
       <img [ngSrc]="'dark-mode' | icon" width="20" height="20" alt="mode" />
       <span class="text">Night Mode</span>
+      <app-switcher
+        [formControl]="themeModeSwitcher"
+        checkboxId="night-mode-switcher-id"
+      ></app-switcher>
+    </li>
+
+    <li class="menu-item danger" (click)="openLogOut()">
+      <img [ngSrc]="'log-out-red' | icon" width="20" height="20" alt="logOut" />
+      <span class="text">Log Out</span>
     </li>
   </ul>
 

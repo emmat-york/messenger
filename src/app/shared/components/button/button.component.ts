@@ -1,7 +1,13 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { NgClass } from '@angular/common';
 
-export type ButtonVariant = 'regular' | 'line' | 'commerce' | 'publicLink' | 'text';
+export type ButtonVariant =
+  | 'regular'
+  | 'line'
+  | 'commerce'
+  | 'publicLink'
+  | 'text'
+  | 'danger';
 export type ButtonType = 'submit' | 'button' | 'reset';
 
 @Component({
@@ -83,6 +89,17 @@ export type ButtonType = 'submit' | 'button' | 'reset';
 
         &:hover:not(&:disabled) {
           opacity: var(--opacity);
+        }
+      }
+      
+      &-danger {
+        padding: var(--spacing_12);
+        border-radius: 4px;
+        background-color: transparent;
+        color: var(--red3);
+
+        &:hover {
+          background-color: var(--steel-gray_light1);
         }
       }
     }

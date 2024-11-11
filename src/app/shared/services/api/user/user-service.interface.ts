@@ -9,7 +9,7 @@ export interface FullCurrentUserData {
   avatar: string | null;
   dialogs: Dialog[];
   // Settings
-  theme: string;
+  isNightMode: boolean;
   versions: Version[];
   isNotificationSoundOn: boolean;
   languages: string[];

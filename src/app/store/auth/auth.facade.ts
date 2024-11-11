@@ -16,7 +16,11 @@ export class AuthFacade {
   }
 
   setErrorMsg(errorMsg: string): void {
-    this.store.dispatch(actions.setErrorMsg({ errorMsg }));
+    this.dispatch(actions.setErrorMsg({ errorMsg }));
+  }
+
+  logOut(): void {
+    this.dispatch(actions.logOut());
   }
 
   private dispatch(action: Action): void {

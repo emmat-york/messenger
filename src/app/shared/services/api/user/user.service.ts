@@ -15,7 +15,7 @@ export class UserService {
       dialogs: [
         {
           id: 2,
-          name: 'Pavel Filimonchyk  asdfasd fasdfasdfas dfasd fasdf',
+          name: 'Andrew Tate',
           avatar: 'assets/icons/system/avatar.svg',
           isOnline: false,
           roomId: 1,
@@ -70,7 +70,7 @@ export class UserService {
           },
         },
       ],
-      theme: 'day-app-mode',
+      isNightMode: false,
       versions: [
         {
           id: 1,

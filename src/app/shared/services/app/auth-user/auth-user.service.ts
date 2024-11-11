@@ -7,6 +7,7 @@ import { UserFacade } from '../../../../store/user/user.facade';
 import { UserService } from '../../api/user/user.service';
 import { AuthFacade } from '../../../../store/auth/auth.facade';
 import { FullCurrentUserData } from '../../api/user/user-service.interface';
+import { ModalService } from '../modal/modal.service';
 
 export const AUTH_TOKEN_KEY = 'AUTH_TOKEN_KEY';
 export const AUTH_TOKEN_EXPIRES_DATE_KEY = 'AUTH_TOKEN_EXPIRES_IN_KEY';
@@ -16,6 +17,7 @@ export const AUTH_TOKEN_EXPIRES_DATE_KEY = 'AUTH_TOKEN_EXPIRES_IN_KEY';
 })
 export class AuthUserService {
   constructor(
+    private readonly modalService: ModalService,
     private readonly authService: AuthService,
     private readonly userService: UserService,
     private readonly userFacade: UserFacade,
@@ -24,7 +26,7 @@ export class AuthUserService {
   ) {}
 
   get isAuth(): boolean {
-    return !!this.token;
+    return Boolean(this.token);
   }
 
   get token(): string | null {
@@ -84,6 +86,7 @@ export class AuthUserService {
   logOut(): void {
     this.removeToken();
     this.router.navigate(['login']);
+    this.modalService.dismissAll();
   }
 
   private setToken({ expiresIn, idToken }: { expiresIn: string; idToken: string }) {

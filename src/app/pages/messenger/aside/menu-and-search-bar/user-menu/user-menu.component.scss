@@ -38,10 +38,14 @@
   align-items: center;
   gap: 12px;
   padding: 10px 20px;
+  cursor: pointer;
+
+  &.danger {
+    color: var(--red3);
+  }
 
   &:hover {
     background-color: var(--gray_light2);
-    cursor: pointer;
   }
 }
 

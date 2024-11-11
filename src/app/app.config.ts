@@ -24,6 +24,8 @@ import {
 } from './store/settings/settings.feature';
 import { SettingsFacade } from './store/settings/settings.facade';
 import { FullCurrentUserData } from './shared/services/api/user/user-service.interface';
+import { SettingsEffect } from './store/settings/settings.effect';
+import { AuthEffects } from './store/auth/auth.effect';
 
 function initializeAppFactory(
   authUserService: AuthUserService,
@@ -60,7 +62,7 @@ export const appConfig: ApplicationConfig = {
     provideState({ name: ASIDE_KEY, reducer: asideReducer }),
     provideState({ name: SETTINGS_KEY, reducer: settingsReducer }),
     provideStoreDevtools({ maxAge: 50, logOnly: !isDevMode() }),
-    provideEffects([ChatEffect, UserEffect]),
+    provideEffects([ChatEffect, UserEffect, SettingsEffect, AuthEffects]),
     provideAnimationsAsync(),
     provideHttpClient(),
     {

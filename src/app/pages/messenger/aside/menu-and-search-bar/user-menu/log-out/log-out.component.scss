@@ -1,0 +1,38 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 454px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  background-color: var(--white1);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.close-image {
+  &:hover {
+    background-color: var(--gray_light3);
+    border-radius: 4px;
+    cursor: pointer;
+  }
+}
+
+.heading {
+  color: var(--red3);
+}
+
+.main-content {
+  font-size: 13px;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 12px;
+}

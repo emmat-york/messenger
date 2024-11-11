@@ -1,0 +1,19 @@
+<header class="header">
+  <h3 class="heading">Log out from session</h3>
+  <img
+    class="close-image"
+    [ngSrc]="'close' | icon"
+    width="24"
+    height="24"
+    alt="close"
+    (click)="closeAction()"
+  />
+</header>
+
+<article class="main-content">
+  Are you sure you want to log out from this session?
+</article>
+
+<footer class="footer">
+  <app-button variant="danger" (click)="onLogOut()">Log Out</app-button>
+</footer>

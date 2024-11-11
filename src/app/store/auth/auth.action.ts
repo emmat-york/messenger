@@ -5,3 +5,6 @@ export const setErrorMsg = createAction(
   '[AUTH] setErrorMsg',
   props<{ errorMsg: string }>(),
 );
+export const logOut = createAction('[AUTH] logOut');
+export const logOutSuccess = createAction('[AUTH] logOutSuccess');
+export const logOutFail = createAction('[AUTH] logOutFail');

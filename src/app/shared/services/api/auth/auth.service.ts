@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { LOGIN_PATH, REGISTRATION_PATH } from './auth.constant';
 import {
   LoginCredentials,
@@ -27,5 +27,9 @@ export class AuthService {
       ...credentials,
       returnSecureToken: true,
     });
+  }
+
+  logOut$(): Observable<void> {
+    return of(undefined);
   }
 }

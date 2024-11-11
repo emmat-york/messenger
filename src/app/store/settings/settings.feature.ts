@@ -5,7 +5,7 @@ import * as action from './settings.action';
 export const SETTINGS_KEY = 'settings';
 
 export interface UserSettingsStoreState {
-  theme: string;
+  isNightMode: boolean;
   versions: Version[];
   isNotificationSoundOn: boolean;
   languages: string[];
@@ -13,14 +13,14 @@ export interface UserSettingsStoreState {
 }
 
 const initialState: UserSettingsStoreState = {
-  theme: '',
+  isNightMode: false,
   versions: [],
   isNotificationSoundOn: true,
   languages: [],
   selectedLanguage: '',
 };
 
-export const { reducer, selectVersions } = createFeature({
+export const { reducer, selectVersions, selectIsNightMode } = createFeature({
   name: SETTINGS_KEY,
   reducer: createReducer(
     initialState,
@@ -30,10 +30,14 @@ export const { reducer, selectVersions } = createFeature({
         ...state,
         isNotificationSoundOn: payload.isNotificationSoundOn,
         selectedLanguage: payload.selectedLanguage,
+        isNightMode: payload.isNightMode,
         languages: payload.languages,
         versions: payload.versions,
-        theme: payload.theme,
       }),
     ),
+    on(action.setIsNightModeSuccess, (state, { isNightMode }) => ({
+      ...state,
+      isNightMode,
+    })),
   ),
 });
