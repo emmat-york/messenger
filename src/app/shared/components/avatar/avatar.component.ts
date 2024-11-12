@@ -18,11 +18,11 @@ export class AvatarComponent {
     } else if (variant === 'medium') {
       this.size = 40;
     } else {
-      this.size = 42;
+      this.size = 44;
     }
   }
 
-  size: 32 | 40 | 42 = 40;
+  size: 32 | 40 | 44 = 40;
 
   @Input() src: string | null = null;
   @Input() safeName = '';

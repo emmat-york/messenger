@@ -24,11 +24,15 @@
       <span class="text">Settings</span>
     </li>
 
-    <li class="menu-item">
-      <img [ngSrc]="'dark-mode' | icon" width="20" height="20" alt="mode" />
-      <span class="text">Night Mode</span>
+    <li class="menu-item mode-toggle" (click)="onModeChange()">
+      <div class="image-and-text-holder">
+        <img [ngSrc]="'dark-mode' | icon" width="20" height="20" alt="mode" />
+        <span class="text">Night Mode</span>
+      </div>
+
       <app-switcher
         [formControl]="themeModeSwitcher"
+        class="switcher"
         checkboxId="night-mode-switcher-id"
       ></app-switcher>
     </li>

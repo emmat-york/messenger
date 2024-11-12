@@ -18,9 +18,9 @@ import { UserFacade } from '../../../../../store/user/user.facade';
 import { SettingsFacade } from '../../../../../store/settings/settings.facade';
 import { SwitcherComponent } from '../../../../../shared/components/switcher/switcher.component';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { take } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { LogOutComponent } from './log-out/log-out.component';
+import { SLEEPY_OPTIONS } from '../../../../../shared/constants/form.constant';
 
 @Component({
   selector: 'app-user-menu',
@@ -44,7 +44,10 @@ export class UserMenuComponent implements OnInit, Modal {
   readonly versions$ = this.settingsFacade.versions$;
   readonly vm$ = this.userFacade.vm$;
 
-  readonly themeModeSwitcher = new FormControl(false, { nonNullable: true });
+  readonly themeModeSwitcher = new FormControl(
+    { value: false, disabled: true },
+    { nonNullable: true },
+  );
 
   constructor(
     private readonly settingsFacade: SettingsFacade,
@@ -54,8 +57,11 @@ export class UserMenuComponent implements OnInit, Modal {
   ) {}
 
   ngOnInit(): void {
-    this.setInitialModeSwitcherValue();
     this.subscribeToThemeModeSwitcher();
+  }
+
+  onModeChange(): void {
+    this.settingsFacade.setNightMode(!this.themeModeSwitcher.value);
   }
 
   openTelegramDesktop(): void {
@@ -74,15 +80,11 @@ export class UserMenuComponent implements OnInit, Modal {
     this.modalService.open({ component: LogOutComponent });
   }
 
-  private setInitialModeSwitcherValue(): void {
-    this.settingsFacade.isNightMode$
-      .pipe(take(1))
-      .subscribe(isNightMode => this.themeModeSwitcher.setValue(isNightMode));
-  }
-
   private subscribeToThemeModeSwitcher(): void {
-    this.themeModeSwitcher.valueChanges
+    this.settingsFacade.isNightMode$
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(isThemeMode => this.settingsFacade.setNightMode(isThemeMode));
+      .subscribe(isNightMode => {
+        this.themeModeSwitcher.setValue(isNightMode, SLEEPY_OPTIONS);
+      });
   }
 }

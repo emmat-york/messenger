@@ -42,11 +42,29 @@
 
   &.danger {
     color: var(--red3);
+
+    &:hover {
+      background-color: var(--red0);
+    }
+  }
+
+  &.mode-toggle {
+    justify-content: space-between;
   }
 
   &:hover {
     background-color: var(--gray_light2);
   }
+}
+
+.image-and-text-holder {
+  display: flex;
+  gap: 12px;
+}
+
+.switcher {
+  position: relative;
+  bottom: -1px;
 }
 
 .text {

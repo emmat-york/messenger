@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, Input, Optional, Self } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  Optional,
+  Self,
+} from '@angular/core';
 import { ControlValueAccessor, FormsModule, NgControl } from '@angular/forms';
 
 @Component({
@@ -16,7 +23,10 @@ export class SwitcherComponent implements ControlValueAccessor {
   isDisabled = false;
   value = false;
 
-  constructor(@Self() @Optional() readonly ngControl: NgControl) {
+  constructor(
+    @Self() @Optional() readonly ngControl: NgControl,
+    private readonly cdRef: ChangeDetectorRef,
+  ) {
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
     }
@@ -33,6 +43,7 @@ export class SwitcherComponent implements ControlValueAccessor {
 
   writeValue(value: boolean | null | undefined): void {
     this.value = Boolean(value);
+    this.cdRef.markForCheck();
   }
 
   registerOnChange(fn: (_: boolean) => void): void {
