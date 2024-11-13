@@ -1,4 +1,6 @@
 :host {
+  position: relative;
+  bottom: -1px;
   display: inline-block;
   width: 30px;
   height: 13px;
@@ -15,7 +17,7 @@
 .toggle {
   width: 0;
   height: 0;
-  opacity: 0;
+  appearance: none;
 
   &:checked + .slider {
     background-color: var(--blue_light5);
@@ -24,10 +26,6 @@
   &:checked + .slider:before {
     transform: translateX(11px);
     border: 2px solid var(--blue_light5);
-  }
-
-  &:focus + .slider {
-    box-shadow: 0 0 1px var(--blue_light5);
   }
 }
 

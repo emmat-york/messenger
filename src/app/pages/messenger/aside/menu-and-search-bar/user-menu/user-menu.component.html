@@ -16,30 +16,30 @@
   <ul class="menu-list">
     <li class="menu-item">
       <img [ngSrc]="'account-circle' | icon" width="20" height="20" alt="account" />
-      <span class="text">Contacts</span>
+      <span>Contacts</span>
     </li>
 
     <li class="menu-item">
       <img [ngSrc]="'settings' | icon" width="20" height="20" alt="settings" />
-      <span class="text">Settings</span>
+      <span>Settings</span>
     </li>
 
     <li class="menu-item mode-toggle" (click)="onModeChange()">
       <div class="image-and-text-holder">
         <img [ngSrc]="'dark-mode' | icon" width="20" height="20" alt="mode" />
-        <span class="text">Night Mode</span>
+        <span>Night Mode</span>
       </div>
 
       <app-switcher
         [formControl]="themeModeSwitcher"
-        class="switcher"
         checkboxId="night-mode-switcher-id"
+        class="switcher"
       ></app-switcher>
     </li>
 
     <li class="menu-item danger" (click)="openLogOut()">
       <img [ngSrc]="'log-out-red' | icon" width="20" height="20" alt="logOut" />
-      <span class="text">Log Out</span>
+      <span>Log Out</span>
     </li>
   </ul>
 

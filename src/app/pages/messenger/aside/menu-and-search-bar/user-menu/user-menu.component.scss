@@ -38,6 +38,7 @@
   align-items: center;
   gap: 12px;
   padding: 10px 20px;
+  font-size: 14px;
   cursor: pointer;
 
   &.danger {
@@ -60,15 +61,6 @@
 .image-and-text-holder {
   display: flex;
   gap: 12px;
-}
-
-.switcher {
-  position: relative;
-  bottom: -1px;
-}
-
-.text {
-  font-size: 14px;
 }
 
 .footer {

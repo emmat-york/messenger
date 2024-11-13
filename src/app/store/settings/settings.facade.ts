@@ -5,7 +5,7 @@ import {
   selectVersions,
   UserSettingsStoreState,
 } from './settings.feature';
-import { Observable } from 'rxjs';
+import { filter, Observable } from 'rxjs';
 import { Version } from '../../shared/services/api/user/user-service.interface';
 import * as action from './settings.action';
 
@@ -13,7 +13,9 @@ import * as action from './settings.action';
   providedIn: 'root',
 })
 export class SettingsFacade {
-  readonly versions$: Observable<Version[]> = this.store.select(selectVersions);
+  readonly versions$: Observable<Version[]> = this.store
+    .select(selectVersions)
+    .pipe(filter(versions => Boolean(versions.length)));
   readonly isNightMode$: Observable<boolean> = this.store.select(selectIsNightMode);
 
   constructor(private readonly store: Store) {}
