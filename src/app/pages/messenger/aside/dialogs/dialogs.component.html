@@ -12,7 +12,10 @@
 </ul>
 } @else {
 <div class="no-dialogs">You have no dialogs yet.</div>
-} @if (isScrollCircleShown) {
+}
+
+<!-- Scroll circle -->
+@if (isScrollCircleShown) {
 <app-scroll-circle
   class="scroll-circle"
   type="down"

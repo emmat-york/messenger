@@ -20,7 +20,7 @@
 .input {
   height: inherit;
   width: inherit;
-  padding: 0 28px 0 16px;
+  padding: 0 32px 0 16px;
   font-size: 13px;
   font-weight: 400;
   line-height: 18px;
@@ -30,7 +30,7 @@
 
 .close-cross {
   position: absolute;
-  right: 8px;
+  right: 12px;
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
@@ -38,7 +38,6 @@
 
 .search-mode {
   & > .input {
-    background-color: var(--white1);
-    border: 1.5px solid var(--gray_light6);
+    background-color: var(--gray_light8);
   }
 }
