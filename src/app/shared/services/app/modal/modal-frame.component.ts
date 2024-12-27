@@ -1,8 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
-  HostListener,
+  ElementRef, HostListener,
   Input,
   OnInit,
   Renderer2,
@@ -13,7 +12,6 @@ import { Constructor } from '../../../interfaces/common.interface';
 import { NgClass } from '@angular/common';
 import { ModalSettings } from './modal.interface';
 import { ModalFrameTypePipe } from './modal-frame-type.pipe';
-import { ClickOutsideDirective } from '../../../directives/click-outside.directive';
 
 interface ModalFrame<ModalData, Action> {
   component: Constructor;
@@ -27,7 +25,7 @@ interface ModalFrame<ModalData, Action> {
   standalone: true,
   templateUrl: 'modal-frame.component.html',
   styleUrl: 'modal-frame.component.scss',
-  imports: [NgClass, ModalFrameTypePipe, ClickOutsideDirective],
+  imports: [NgClass, ModalFrameTypePipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModalFrameComponent<ModalData extends object, Action>
@@ -38,11 +36,12 @@ export class ModalFrameComponent<ModalData extends object, Action>
   @Input() settings?: ModalSettings;
   @Input() modalData?: ModalData;
 
+  @ViewChild('modalContainer') private readonly modalContainer: ElementRef<HTMLDivElement>;
   @ViewChild('container', { static: true, read: ViewContainerRef })
-  private readonly container?: ViewContainerRef;
+  private readonly container: ViewContainerRef;
 
   constructor(
-    private readonly hostElement: ElementRef<HTMLElement>,
+    private readonly hostElementRef: ElementRef<HTMLElement>,
     private readonly renderer2: Renderer2,
   ) {}
 
@@ -51,27 +50,40 @@ export class ModalFrameComponent<ModalData extends object, Action>
   }
 
   ngOnInit(): void {
-    this.initModalComponent();
+    this.initComponent();
     this.setBackdrop();
   }
 
-  private initModalComponent(): void {
-    const modalRef = this.container?.createComponent(this.component);
-
-    if (!modalRef) {
-      throw new Error('modalRef not found.');
+  clickHandler(event: Event): void {
+    if (this.isClickInsideModalComponent(event.target as HTMLElement)) {
+      return;
     }
+
+    event.stopImmediatePropagation();
+    event.preventDefault();
+
+    this.closeAction();
+  }
+
+  private isClickInsideModalComponent(clickedElement: HTMLElement): boolean {
+    return (
+        clickedElement === this.modalContainer.nativeElement ||
+        this.modalContainer.nativeElement.contains(clickedElement)
+    );
+  }
+
+  private initComponent(): void {
+    const modalRef = this.container.createComponent(this.component);
+    modalRef.setInput('closeAction', this.closeAction);
 
     if (this.modalData) {
       modalRef.setInput('modalData', this.modalData);
     }
-
-    modalRef.setInput('closeAction', this.closeAction);
   }
 
   private setBackdrop(): void {
     this.renderer2.setStyle(
-      this.hostElement.nativeElement,
+      this.hostElementRef.nativeElement,
       'backgroundColor',
       this.settings?.noBackdrop ? null : 'rgba(0, 0, 0, 0.5)',
     );

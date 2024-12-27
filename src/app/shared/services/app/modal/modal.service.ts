@@ -13,8 +13,8 @@ import { ModalSettings } from './modal.interface';
   providedIn: 'root',
 })
 export class ModalService {
-  private modalRef: ComponentRef<ModalFrameComponent<object, any>> | undefined;
-  private viewRef: ViewContainerRef | undefined;
+  private modalRefs: ComponentRef<ModalFrameComponent<object, any>>[] = [];
+  private viewRef: ViewContainerRef;
 
   constructor(private readonly appRef: ApplicationRef) {
     requestAnimationFrame(() => {
@@ -23,7 +23,7 @@ export class ModalService {
   }
 
   get hasOpenedModal(): boolean {
-    return Boolean(this.modalRef);
+    return Boolean(this.modalRefs.length);
   }
 
   open<ModalData extends object, Action = undefined>({
@@ -35,31 +35,21 @@ export class ModalService {
     modalData?: ModalData;
     settings?: ModalSettings;
   }): Observable<Action> {
-    if (this.modalRef) {
-      this.dismissAll();
-    }
-
     const modalRef =
-      this.viewRef?.createComponent<ModalFrameComponent<ModalData, Action>>(
+      this.viewRef.createComponent<ModalFrameComponent<ModalData, Action>>(
         ModalFrameComponent,
       );
 
-    if (!modalRef) {
-      throw new Error(
-        'Modal component could not be created due to there is no viewRef for ModalService.',
-      );
-    }
-
-    this.modalRef = modalRef;
-
     const destroy$ = new Subject<Action>();
 
+    this.modalRefs.push(modalRef);
+
     modalRef.setInput('component', component);
-    modalRef.setInput('closeAction', (action?: Action) => {
-      destroy$.next(action as Action);
+    modalRef.setInput('closeAction', (action: Action) => {
+      this.modalRefs = this.modalRefs.filter((ref) => ref !== modalRef);
+      destroy$.next(action);
       destroy$.complete();
       modalRef.destroy();
-      this.modalRef = undefined;
     });
 
     if (modalData) {
@@ -74,6 +64,7 @@ export class ModalService {
   }
 
   dismissAll(): void {
-    this.modalRef?.instance.closeAction();
+    this.modalRefs.forEach((modalRef) => modalRef.instance.closeAction());
+    this.modalRefs = [];
   }
 }
