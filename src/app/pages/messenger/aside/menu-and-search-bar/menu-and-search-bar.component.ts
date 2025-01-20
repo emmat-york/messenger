@@ -6,7 +6,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { IconPipe } from '../../../../shared/pipes/icon.pipe';
-import { NgIf, NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import { ModalService } from '../../../../shared/services/app/modal/modal.service';
 import { UserMenuComponent } from './user-menu/user-menu.component';
 import { AsideView } from '../aside.interface';
@@ -20,13 +20,13 @@ import { SLEEPY_OPTIONS } from '../../../../shared/constants/form.constant';
   standalone: true,
   templateUrl: 'menu-and-search-bar.component.html',
   styleUrl: 'menu-and-search-bar.component.scss',
-  imports: [IconPipe, NgOptimizedImage, NgIf, ReactiveFormsModule],
+  imports: [IconPipe, NgOptimizedImage, ReactiveFormsModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MenuAndSearchBarComponent implements OnInit {
   @Input() view: AsideView = 'dialogs';
 
-  readonly searchControl = new FormControl('', { nonNullable: true });
+  readonly searchControl = new FormControl<string>('', { nonNullable: true });
 
   constructor(
     private readonly modalService: ModalService,

@@ -1,4 +1,4 @@
-import { Dialog } from '../chat/chat-service.interface';
+import { Dialog, EssentialUserData } from '../chat/chat-service.interface';
 
 /**
  * User here equals to init user data (your data)
@@ -8,6 +8,7 @@ export interface FullCurrentUserData {
   name: string;
   avatar: string | null;
   dialogs: Dialog[];
+  contacts: EssentialUserData[];
   // Settings
   isNightMode: boolean;
   versions: Version[];

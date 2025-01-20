@@ -1,14 +1,10 @@
-<button class="menu-button" type="button" (click)="openUserMenu()">
-  <img [ngSrc]="'menu' | icon" width="22" height="22" alt="menu" />
+<button (click)="openUserMenu()" class="menu-button" type="button">
+  <img [ngSrc]="'menu' | icon" alt="menu" height="22" width="22" />
 </button>
 
-<label
-  [class.search-mode]="view === 'search-panel'"
-  for="contact-search-input-bar"
-  class="label"
->
+<label class="label" for="contact-search-input-bar">
+  @if (view === 'search-panel') {
   <img
-    *ngIf="view === 'search-panel'"
     [ngSrc]="'close' | icon"
     class="close-cross"
     width="16"
@@ -16,12 +12,14 @@
     alt="close"
     (click)="onChangeView($event, 'dialogs')"
   />
+  }
+
   <input
-    [formControl]="searchControl"
-    placeholder="Search"
-    id="contact-search-input-bar"
-    class="input"
-    type="text"
     (click)="onChangeView($event, 'search-panel')"
+    [formControl]="searchControl"
+    class="input"
+    id="contact-search-input-bar"
+    placeholder="Search"
+    type="text"
   />
 </label>

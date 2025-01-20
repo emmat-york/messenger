@@ -21,6 +21,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { LogOutComponent } from './log-out/log-out.component';
 import { SLEEPY_OPTIONS } from '../../../../../shared/constants/form.constant';
+import { ContactsModalComponent } from './contacts/contacts.component';
 
 @Component({
   selector: 'app-user-menu',
@@ -58,6 +59,13 @@ export class UserMenuComponent implements OnInit, Modal {
 
   ngOnInit(): void {
     this.subscribeToThemeModeSwitcher();
+  }
+
+  onContactsModalOpen(): void {
+    this.modalService.open({
+      component: ContactsModalComponent,
+      settings: { multi: true },
+    });
   }
 
   onModeChange(): void {

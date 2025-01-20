@@ -1,7 +1,7 @@
 @if (userVm.dialogs.length) {
 <ul #contactList class="contact-list">
   @for (dialog of userVm.dialogs | arrayFilter: asideVm.searchRequest: 'name'; track
-  dialog.name) {
+  dialog.id) {
   <li class="contact" (click)="setSelectedDialog(chatVm.selectedDialog?.id, dialog)">
     <app-dialog
       [class.selected]="dialog.id === chatVm.selectedDialog?.id"

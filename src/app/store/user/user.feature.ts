@@ -10,21 +10,24 @@ export const USER_KEY = 'user';
 export interface UserStoreState {
   essentialData: EssentialUserData | null;
   dialogs: Dialog[];
+  contacts: EssentialUserData[];
 }
 
 const initialState: UserStoreState = {
   essentialData: null,
   dialogs: [],
+  contacts: [],
 };
 
-export const { selectUserState, reducer } = createFeature({
+export const { selectUserState, selectContacts, reducer } = createFeature({
   name: USER_KEY,
   reducer: createReducer(
     initialState,
-    on(action.setUser, (state, { payload: { essentialData, dialogs } }) => ({
+    on(action.setUser, (state, { payload: { essentialData, dialogs, contacts } }) => ({
       ...state,
       essentialData,
       dialogs,
+      contacts,
     })),
     on(action.updateDialogLastMessage, (state, { lastMessage, roomId }) => ({
       ...state,

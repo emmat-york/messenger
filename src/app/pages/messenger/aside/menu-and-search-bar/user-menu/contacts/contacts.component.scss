@@ -1,0 +1,29 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 408px;
+  width: 306px;
+  border-radius: 8px;
+  background-color: var(--white1);
+}
+
+.search-input {
+  padding: 12px 12px 0 12px;
+}
+
+.contact {
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--gray_light2);
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px;
+  border-top: 1px solid var(--unknown_gray);
+}

@@ -26,7 +26,7 @@ export class ModalService {
     return Boolean(this.modalRefs.length);
   }
 
-  open<ModalData extends object, Action = undefined>({
+  open<ModalData extends object, Action = unknown>({
     component,
     modalData,
     settings,
@@ -35,6 +35,10 @@ export class ModalService {
     modalData?: ModalData;
     settings?: ModalSettings;
   }): Observable<Action> {
+    if (!settings?.multi) {
+      this.dismissAll();
+    }
+
     const modalRef =
       this.viewRef.createComponent<ModalFrameComponent<ModalData, Action>>(
         ModalFrameComponent,
@@ -46,7 +50,7 @@ export class ModalService {
 
     modalRef.setInput('component', component);
     modalRef.setInput('closeAction', (action: Action) => {
-      this.modalRefs = this.modalRefs.filter((ref) => ref !== modalRef);
+      this.modalRefs = this.modalRefs.filter(ref => ref !== modalRef);
       destroy$.next(action);
       destroy$.complete();
       modalRef.destroy();
@@ -64,7 +68,7 @@ export class ModalService {
   }
 
   dismissAll(): void {
-    this.modalRefs.forEach((modalRef) => modalRef.instance.closeAction());
+    this.modalRefs.forEach(modalRef => modalRef.instance.closeAction());
     this.modalRefs = [];
   }
 }

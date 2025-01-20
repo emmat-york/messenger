@@ -1,6 +1,4 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
-import { IconPipe } from '../../../shared/pipes/icon.pipe';
 import { MenuAndSearchBarComponent } from './menu-and-search-bar/menu-and-search-bar.component';
 import { DialogsComponent } from './dialogs/dialogs.component';
 import { ChatFacade } from '../../../store/chat/chat.facade';
@@ -13,13 +11,7 @@ import { AsideFacade } from '../../../store/aside/aside.facade';
   standalone: true,
   templateUrl: 'aside.component.html',
   styleUrl: 'aside.component.scss',
-  imports: [
-    MenuAndSearchBarComponent,
-    NgOptimizedImage,
-    DialogsComponent,
-    LetDirective,
-    IconPipe,
-  ],
+  imports: [MenuAndSearchBarComponent, DialogsComponent, LetDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AsideComponent {

@@ -10,11 +10,9 @@ import {
   ViewChild,
 } from '@angular/core';
 import { DialogComponent } from './dialog/dialog.component';
-import { NgOptimizedImage } from '@angular/common';
 import { debounceTime, fromEvent } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ScrollCircleComponent } from '../../../../shared/components/scroll-circle/scroll-circle.component';
-import { IconPipe } from '../../../../shared/pipes/icon.pipe';
 import { ChatFacade } from '../../../../store/chat/chat.facade';
 import { ScrollEvent } from '../../chat/chat-body/chat-body.interface';
 import { Dialog } from '../../../../shared/services/api/chat/chat-service.interface';
@@ -28,13 +26,7 @@ import { ArrayFilterPipe } from '../../../../shared/pipes/array-filter.pipe';
   standalone: true,
   templateUrl: 'dialogs.component.html',
   styleUrl: 'dialogs.component.scss',
-  imports: [
-    ScrollCircleComponent,
-    NgOptimizedImage,
-    DialogComponent,
-    ArrayFilterPipe,
-    IconPipe,
-  ],
+  imports: [ScrollCircleComponent, DialogComponent, ArrayFilterPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogsComponent implements AfterViewInit {

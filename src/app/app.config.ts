@@ -38,13 +38,16 @@ function initializeAppFactory(
   return (): Observable<FullCurrentUserData | never> => {
     if (authUserService.isAuth) {
       return userService.getUserData$(authUserService.token).pipe(
-        tap(({ id, name, avatar, dialogs, ...settings }) => {
-          userFacade.setUser({ essentialData: { id, name, avatar }, dialogs });
+        tap(({ id, name, avatar, dialogs, contacts, ...settings }) => {
+          userFacade.setUser({ essentialData: { id, name, avatar }, dialogs, contacts });
           settingsFacade.setUserSettings(settings);
           authFacade.setIsAuth(true);
           chatSocket.init();
         }),
-        catchError(() => EMPTY),
+        catchError(() => {
+          console.error('Error while initializing user data!');
+          return EMPTY;
+        }),
       );
     }
 

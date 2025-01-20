@@ -1,0 +1,20 @@
+<section>
+  <app-input
+    class="search-input"
+    [formControl]="searchControl"
+    placeholder="search"
+  ></app-input>
+
+  <ul *ngrxLet="contacts$; let contacts">
+    @for (contact of contacts | arrayFilter: searchControl.value : 'name'; track 'id') {
+    <li class="contact">
+      <app-contact [contact]="contact"></app-contact>
+    </li>
+    }
+  </ul>
+</section>
+
+<footer class="footer">
+  <app-button variant="text" (click)="closeAction()">Add contact</app-button>
+  <app-button variant="text" (click)="closeAction()">Close</app-button>
+</footer>

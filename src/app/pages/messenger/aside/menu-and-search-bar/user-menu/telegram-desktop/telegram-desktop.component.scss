@@ -2,10 +2,23 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 338px;
+  width: 428px;
   padding: 12px 12px 12px 20px;
   border-radius: 8px;
   background-color: var(--white1);
+}
+
+.heading {
+  margin-bottom: 16px;
+}
+
+.info-paragraph {
+  font-size: 12px;
+  font-weight: 400;
+
+  & + & {
+    margin-top: 12px;
+  }
 }
 
 .footer {

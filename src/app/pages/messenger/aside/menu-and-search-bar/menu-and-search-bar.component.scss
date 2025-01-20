@@ -35,9 +35,3 @@
   transform: translateY(-50%);
   cursor: pointer;
 }
-
-.search-mode {
-  & > .input {
-    background-color: var(--gray_light8);
-  }
-}

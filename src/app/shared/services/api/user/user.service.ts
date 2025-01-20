@@ -686,6 +686,18 @@ export class UserService {
           },
         },
       ],
+      contacts: [
+        {
+          id: 101,
+          name: 'Feith Rauta Harconenn',
+          avatar: 'assets/icons/system/avatar.svg',
+        },
+        {
+          id: 102,
+          name: 'Mah Dee',
+          avatar: null,
+        },
+      ],
       isNightMode: false,
       versions: [
         {
@@ -701,6 +713,28 @@ export class UserService {
         {
           id: 2,
           version: '1.1.0',
+          releaseDate: '10-11-2024',
+          updates: [
+            'Highlight quoted parts in jump-to-message from replies.',
+            'Ctrl+Click on message field reply bar to jump to message.',
+            'Fix empty link preview displaying when generation failed.',
+            'Fix external replies in topic groups.',
+            'Allow enabling legacy tray icon on Windows.',
+          ],
+        },
+        {
+          id: 3,
+          version: '1.3.0',
+          releaseDate: '01-08-2024',
+          updates: [
+            'Support multiple boosts and reassignment.',
+            'Improve giveaway creation flow.',
+            'Fix crash in topics creation.',
+          ],
+        },
+        {
+          id: 4,
+          version: '1.4.0',
           releaseDate: '10-11-2024',
           updates: [
             'Highlight quoted parts in jump-to-message from replies.',
