@@ -6,21 +6,10 @@ import * as action from './chat.action';
 import { ChatFacade } from './chat.facade';
 import { UserFacade } from '../user/user.facade';
 import { ChatSocket } from '../../shared/services/socket/chat.socket';
-import { SoundService } from '../../shared/services/app/sound/sound.service';
-import { Message } from '../../pages/messenger/chat/chat.interface';
 import { dialogTypeGuard } from './chat.util';
 
 @Injectable()
 export class ChatEffect {
-  constructor(
-    private readonly soundService: SoundService,
-    private readonly chatService: ChatService,
-    private readonly chatFacade: ChatFacade,
-    private readonly userFacade: UserFacade,
-    private readonly chatSocket: ChatSocket,
-    private readonly actions$: Actions,
-  ) {}
-
   setSelectedDialog$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(action.setSelectedDialog),
@@ -35,38 +24,38 @@ export class ChatEffect {
     );
   });
 
-  sendMessage$ = createEffect(() => {
-    return this.actions$
-      .pipe(
+  sendMessage$ = createEffect(
+    () => {
+      return this.actions$.pipe(
         ofType(action.sendMessage),
         concatLatestFrom(() => [this.chatFacade.vm$, this.userFacade.vm$]),
-      )
-      .pipe(
         map(([, chatVm, userVm]) => {
           if (!userVm.essentialData || !chatVm.selectedDialog) {
-            throw new Error('Impossible to send message.');
+            throw new Error('Impossible to send message. There is user data!');
           }
 
-          const message: Message = {
-            id: 11111123334,
+          this.chatSocket.request({
             uuid: userVm.essentialData.id,
+            roomId: dialogTypeGuard(chatVm.selectedDialog)
+              ? chatVm.selectedDialog.roomId
+              : null,
             message: chatVm.input,
             userName: userVm.essentialData.name,
             creationDate: new Date().toUTCString(),
             editDate: null,
             likes: [],
-          };
-
-          this.chatSocket.request(message);
-          this.soundService.play();
-
-          return action.setMessage({
-            dialogId: chatVm.selectedDialog.id,
-            withInputReset: true,
-            message,
           });
         }),
-        catchError(() => of(action.sendMessageFail())),
       );
-  });
+    },
+    { dispatch: false },
+  );
+
+  constructor(
+    private readonly chatService: ChatService,
+    private readonly chatFacade: ChatFacade,
+    private readonly userFacade: UserFacade,
+    private readonly chatSocket: ChatSocket,
+    private readonly actions$: Actions,
+  ) {}
 }

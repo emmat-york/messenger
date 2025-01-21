@@ -14,3 +14,19 @@ export const setIsNightModeSuccess = createAction(
   props<{ isNightMode: boolean }>(),
 );
 export const setIsNightModeFail = createAction('[SETTINGS] setIsNightModeFail');
+
+export const setNotificationSoundState = createAction(
+  '[SETTINGS] setNotificationSoundState',
+  props<{
+    isNotificationSoundOn: boolean;
+  }>(),
+);
+export const setNotificationSoundStateSuccess = createAction(
+  '[SETTINGS] setNotificationSoundStateSuccess',
+  props<{
+    isNotificationSoundOn: boolean;
+  }>(),
+);
+export const setNotificationSoundStateFail = createAction(
+  '[SETTINGS] setNotificationSoundStateFail',
+);

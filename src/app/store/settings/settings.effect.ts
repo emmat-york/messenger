@@ -1,16 +1,11 @@
 import { Injectable } from '@angular/core';
-import { createEffect, Actions, ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as action from './settings.action';
 import { catchError, map, of, switchMap } from 'rxjs';
 import { SettingsService } from '../../shared/services/api/settings/settings.service';
 
 @Injectable()
 export class SettingsEffect {
-  constructor(
-    private readonly settingsService: SettingsService,
-    private readonly actins$: Actions,
-  ) {}
-
   setIsNightMode$ = createEffect(() => {
     return this.actins$.pipe(
       ofType(action.setIsNightMode),
@@ -22,4 +17,23 @@ export class SettingsEffect {
       }),
     );
   });
+
+  setNotificationSoundState$ = createEffect(() => {
+    return this.actins$.pipe(
+      ofType(action.setNotificationSoundState),
+      switchMap(({ isNotificationSoundOn }) => {
+        return this.settingsService
+          .setNotificationSoundState$(isNotificationSoundOn)
+          .pipe(
+            map(() => action.setNotificationSoundStateSuccess({ isNotificationSoundOn })),
+            catchError(() => of(action.setNotificationSoundStateFail())),
+          );
+      }),
+    );
+  });
+
+  constructor(
+    private readonly settingsService: SettingsService,
+    private readonly actins$: Actions,
+  ) {}
 }

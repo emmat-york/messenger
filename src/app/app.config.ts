@@ -17,7 +17,6 @@ import { AUTH_KEY, reducer as authReducer } from './store/auth/auth.feature';
 import { CHAT_KEY, reducer as chatReducer } from './store/chat/chat.feature';
 import { reducer as userReducer, USER_KEY } from './store/user/user.feature';
 import { ASIDE_KEY, reducer as asideReducer } from './store/aside/aside.feature';
-import { ChatSocket } from './shared/services/socket/chat.socket';
 import {
   reducer as settingsReducer,
   SETTINGS_KEY,
@@ -33,7 +32,6 @@ function initializeAppFactory(
   settingsFacade: SettingsFacade,
   userFacade: UserFacade,
   authFacade: AuthFacade,
-  chatSocket: ChatSocket,
 ): () => Observable<FullCurrentUserData | never> {
   return (): Observable<FullCurrentUserData | never> => {
     if (authUserService.isAuth) {
@@ -42,7 +40,6 @@ function initializeAppFactory(
           userFacade.setUser({ essentialData: { id, name, avatar }, dialogs, contacts });
           settingsFacade.setUserSettings(settings);
           authFacade.setIsAuth(true);
-          chatSocket.init();
         }),
         catchError(() => {
           console.error('Error while initializing user data!');
@@ -71,14 +68,7 @@ export const appConfig: ApplicationConfig = {
     {
       provide: APP_INITIALIZER,
       useFactory: initializeAppFactory,
-      deps: [
-        AuthUserService,
-        UserService,
-        SettingsFacade,
-        UserFacade,
-        AuthFacade,
-        ChatSocket,
-      ],
+      deps: [AuthUserService, UserService, SettingsFacade, UserFacade, AuthFacade],
       multi: true,
     },
   ],

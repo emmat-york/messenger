@@ -56,6 +56,14 @@ export const { selectChatState, selectSelectedDialog, reducer } = createFeature(
       }),
     ),
     on(
+      action.setMessage,
+      (state, { message, withInputReset }): ChatState => ({
+        ...state,
+        messages: [...state.messages, message],
+        input: '',
+      }),
+    ),
+    on(
       action.setSelectedDialogFail,
       (state): ChatState => ({ ...state, messages: [], isLoading: false }),
     ),

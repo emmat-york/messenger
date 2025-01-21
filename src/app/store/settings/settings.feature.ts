@@ -20,24 +20,29 @@ const initialState: UserSettingsStoreState = {
   selectedLanguage: '',
 };
 
-export const { reducer, selectVersions, selectIsNightMode } = createFeature({
-  name: SETTINGS_KEY,
-  reducer: createReducer(
-    initialState,
-    on(
-      action.setUserSettings,
-      (state, { payload }): UserSettingsStoreState => ({
+export const { reducer, selectVersions, selectIsNotificationSoundOn, selectIsNightMode } =
+  createFeature({
+    name: SETTINGS_KEY,
+    reducer: createReducer(
+      initialState,
+      on(
+        action.setUserSettings,
+        (state, { payload }): UserSettingsStoreState => ({
+          ...state,
+          isNotificationSoundOn: payload.isNotificationSoundOn,
+          selectedLanguage: payload.selectedLanguage,
+          isNightMode: payload.isNightMode,
+          languages: payload.languages,
+          versions: payload.versions,
+        }),
+      ),
+      on(action.setIsNightModeSuccess, (state, { isNightMode }) => ({
         ...state,
-        isNotificationSoundOn: payload.isNotificationSoundOn,
-        selectedLanguage: payload.selectedLanguage,
-        isNightMode: payload.isNightMode,
-        languages: payload.languages,
-        versions: payload.versions,
-      }),
+        isNightMode,
+      })),
+      on(action.setNotificationSoundStateSuccess, (state, { isNotificationSoundOn }) => ({
+        ...state,
+        isNotificationSoundOn,
+      })),
     ),
-    on(action.setIsNightModeSuccess, (state, { isNightMode }) => ({
-      ...state,
-      isNightMode,
-    })),
-  ),
-});
+  });

@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component, HostListener } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, OnInit } from '@angular/core';
 import { ChatFacade } from '../../store/chat/chat.facade';
 import { ModalService } from '../../shared/services/app/modal/modal.service';
 import { ChatComponent } from './chat/chat.component';
 import { AsideComponent } from './aside/aside.component';
+import { ChatSocket } from '../../shared/services/socket/chat.socket';
 
 @Component({
   selector: 'app-messenger',
@@ -12,11 +13,16 @@ import { AsideComponent } from './aside/aside.component';
   imports: [ChatComponent, AsideComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MessengerComponent {
+export class MessengerComponent implements OnInit {
   constructor(
-    private readonly chatFacade: ChatFacade,
     private readonly modalService: ModalService,
+    private readonly chatSocket: ChatSocket,
+    private readonly chatFacade: ChatFacade,
   ) {}
+
+  ngOnInit(): void {
+    this.chatSocket.init();
+  }
 
   @HostListener('document:keydown.escape') escapeKeyListener(): void {
     if (this.modalService.hasOpenedModal) {

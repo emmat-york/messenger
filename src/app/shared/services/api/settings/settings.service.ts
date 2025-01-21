@@ -11,4 +11,8 @@ export class SettingsService {
   setIsNightMode$(isNightMode: boolean): Observable<boolean> {
     return of(isNightMode);
   }
+
+  setNotificationSoundState$(state: boolean): Observable<boolean> {
+    return of(state);
+  }
 }

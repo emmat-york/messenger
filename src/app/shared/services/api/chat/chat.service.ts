@@ -11,14 +11,13 @@ export class ChatService {
   constructor(private readonly http: HttpClient) {}
 
   getChatHistoryByRoomId$(roomId: number): Observable<Message[]> {
-    return of([]);
     return of([
       {
         id: 1,
         uuid: 2,
         message: 'hello, mather fucker!',
         userName: 'Gvardiola',
-        roomId: 'room-1',
+        roomId: 1,
         creationDate: '01-01-2020',
         editDate: null,
         likes: [
@@ -39,7 +38,7 @@ export class ChatService {
         uuid: 2,
         message: 'hello, mather fucker!',
         userName: 'Gvardiola',
-        roomId: 'room-1',
+        roomId: 1,
         creationDate: '01-01-2020',
         editDate: null,
         likes: [
@@ -60,7 +59,7 @@ export class ChatService {
         uuid: 2,
         message: 'hello, mather fucker!',
         userName: 'Gvardiola',
-        roomId: 'room-1',
+        roomId: 1,
         creationDate: '01-01-2020',
         editDate: null,
         likes: [
@@ -81,7 +80,7 @@ export class ChatService {
         uuid: 2,
         message: 'hello, mather fucker!',
         userName: 'Gvardiola',
-        roomId: 'room-1',
+        roomId: 1,
         creationDate: '01-01-2020',
         editDate: null,
         likes: [
@@ -102,7 +101,7 @@ export class ChatService {
         uuid: 2,
         message: 'hello, mather fucker!',
         userName: 'Gvardiola',
-        roomId: 'room-1',
+        roomId: 1,
         creationDate: '01-01-2020',
         editDate: null,
         likes: [
@@ -123,7 +122,7 @@ export class ChatService {
         uuid: 2,
         message: 'hello, mather fucker!',
         userName: 'Gvardiola',
-        roomId: 'room-1',
+        roomId: 1,
         creationDate: '01-01-2020',
         editDate: null,
         likes: [
@@ -144,7 +143,7 @@ export class ChatService {
         uuid: 2,
         message: 'hello, mather fucker!',
         userName: 'Gvardiola',
-        roomId: 'room-1',
+        roomId: 1,
         creationDate: '01-01-2020',
         editDate: null,
         likes: [
@@ -165,7 +164,7 @@ export class ChatService {
         uuid: 2,
         message: 'hello, mather fucker!',
         userName: 'Gvardiola',
-        roomId: 'room-1',
+        roomId: 1,
         creationDate: '01-01-2020',
         editDate: null,
         likes: [
@@ -186,7 +185,7 @@ export class ChatService {
         uuid: 2,
         message: 'hello, mather fucker!',
         userName: 'Gvardiola',
-        roomId: 'room-1',
+        roomId: 1,
         creationDate: '01-01-2020',
         editDate: null,
         likes: [
@@ -207,7 +206,7 @@ export class ChatService {
         uuid: 2,
         message: 'hello, mather fucker!',
         userName: 'Gvardiola',
-        roomId: 'room-1',
+        roomId: 1,
         creationDate: '01-01-2020',
         editDate: null,
         likes: [
@@ -228,7 +227,7 @@ export class ChatService {
         uuid: 2,
         message: 'hello, mather fucker!',
         userName: 'Gvardiola',
-        roomId: 'room-1',
+        roomId: 1,
         creationDate: '01-01-2020',
         editDate: null,
         likes: [
@@ -249,7 +248,7 @@ export class ChatService {
         uuid: 2,
         message: 'hello, mather fucker!',
         userName: 'Gvardiola',
-        roomId: 'room-1',
+        roomId: 1,
         creationDate: '01-01-2020',
         editDate: null,
         likes: [
@@ -270,7 +269,7 @@ export class ChatService {
         uuid: 2,
         message: 'hello, mather fucker!',
         userName: 'Gvardiola',
-        roomId: 'room-1',
+        roomId: 1,
         creationDate: '01-01-2020',
         editDate: null,
         likes: [
@@ -291,7 +290,7 @@ export class ChatService {
         uuid: 2,
         message: 'hello, mather fucker!',
         userName: 'Gvardiola',
-        roomId: 'room-1',
+        roomId: 1,
         creationDate: '01-01-2020',
         editDate: null,
         likes: [
@@ -312,7 +311,7 @@ export class ChatService {
         uuid: 2,
         message: 'hello, mather fucker!',
         userName: 'Gvardiola',
-        roomId: 'room-1',
+        roomId: 1,
         creationDate: '01-01-2020',
         editDate: null,
         likes: [
@@ -333,7 +332,7 @@ export class ChatService {
         uuid: 2,
         message: 'hello, mather fucker!',
         userName: 'Gvardiola',
-        roomId: 'room-1',
+        roomId: 1,
         creationDate: '01-01-2020',
         editDate: null,
         likes: [
@@ -354,7 +353,7 @@ export class ChatService {
         uuid: 2,
         message: 'hello, mather fucker!',
         userName: 'Gvardiola',
-        roomId: 'room-1',
+        roomId: 1,
         creationDate: '01-01-2020',
         editDate: null,
         likes: [
@@ -375,7 +374,7 @@ export class ChatService {
         uuid: 2,
         message: 'hello, mather fucker!',
         userName: 'Gvardiola',
-        roomId: 'room-1',
+        roomId: 1,
         creationDate: '01-01-2020',
         editDate: null,
         likes: [
@@ -396,7 +395,7 @@ export class ChatService {
         uuid: 2,
         message: 'hello, mather fucker!',
         userName: 'Gvardiola',
-        roomId: 'room-1',
+        roomId: 1,
         creationDate: '01-01-2020',
         editDate: null,
         likes: [
@@ -417,7 +416,7 @@ export class ChatService {
         uuid: 2,
         message: 'hello, mather fucker!',
         userName: 'Gvardiola',
-        roomId: 'room-1',
+        roomId: 1,
         creationDate: '01-01-2020',
         editDate: null,
         likes: [
@@ -438,7 +437,7 @@ export class ChatService {
         uuid: 2,
         message: 'hello, mather fucker!',
         userName: 'Gvardiola',
-        roomId: 'room-1',
+        roomId: 1,
         creationDate: '01-01-2020',
         editDate: null,
         likes: [
@@ -459,7 +458,7 @@ export class ChatService {
         uuid: 2,
         message: 'hello, mather fucker!',
         userName: 'Gvardiola',
-        roomId: 'room-1',
+        roomId: 1,
         creationDate: '01-01-2020',
         editDate: null,
         likes: [
@@ -480,7 +479,7 @@ export class ChatService {
         uuid: 2,
         message: 'hello, mather fucker!',
         userName: 'Gvardiola',
-        roomId: 'room-1',
+        roomId: 1,
         creationDate: '01-01-2020',
         editDate: null,
         likes: [

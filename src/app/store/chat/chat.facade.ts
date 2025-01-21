@@ -7,6 +7,7 @@ import {
   Dialog,
   EssentialUserData,
 } from '../../shared/services/api/chat/chat-service.interface';
+import { Message } from '../../pages/messenger/chat/chat.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -31,6 +32,10 @@ export class ChatFacade {
 
   sendMessage(): void {
     this.dispatch(action.sendMessage());
+  }
+
+  setMessage(messageData: { message: Message; withInputReset?: boolean }): void {
+    this.dispatch(action.setMessage(messageData));
   }
 
   private dispatch(action: Action): void {

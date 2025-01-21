@@ -42,6 +42,7 @@ import { ContactsModalComponent } from './contacts/contacts.component';
 export class UserMenuComponent implements OnInit, Modal {
   @Input() closeAction: () => void;
 
+  readonly isNotificationSoundOn$ = this.settingsFacade.isNotificationSoundOn$;
   readonly versions$ = this.settingsFacade.versions$;
   readonly vm$ = this.userFacade.vm$;
 
@@ -68,24 +69,31 @@ export class UserMenuComponent implements OnInit, Modal {
     });
   }
 
+  setNotificationSoundState(currentState: boolean): void {
+    this.settingsFacade.setNotificationSoundState(!currentState);
+  }
+
   onModeChange(): void {
     this.settingsFacade.setNightMode(!this.themeModeSwitcher.value);
   }
 
   openTelegramDesktop(): void {
-    this.modalService.open({ component: TelegramDesktopComponent });
+    this.modalService.open({
+      component: TelegramDesktopComponent,
+      settings: { multi: true },
+    });
   }
 
   openVersion(): void {
-    this.modalService.open({ component: VersionComponent });
+    this.modalService.open({ component: VersionComponent, settings: { multi: true } });
   }
 
   openAbout(): void {
-    this.modalService.open({ component: AboutComponent });
+    this.modalService.open({ component: AboutComponent, settings: { multi: true } });
   }
 
   openLogOut(): void {
-    this.modalService.open({ component: LogOutComponent });
+    this.modalService.open({ component: LogOutComponent, settings: { multi: true } });
   }
 
   private subscribeToThemeModeSwitcher(): void {
