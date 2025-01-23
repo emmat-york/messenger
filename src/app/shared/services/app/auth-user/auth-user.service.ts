@@ -8,6 +8,9 @@ import { UserService } from '../../api/user/user.service';
 import { AuthFacade } from '../../../../store/auth/auth.facade';
 import { FullCurrentUserData } from '../../api/user/user-service.interface';
 import { ModalService } from '../modal/modal.service';
+import { AsideFacade } from '../../../../store/aside/aside.facade';
+import { ChatFacade } from '../../../../store/chat/chat.facade';
+import { SettingsFacade } from '../../../../store/settings/settings.facade';
 
 export const AUTH_TOKEN_KEY = 'AUTH_TOKEN_KEY';
 export const AUTH_TOKEN_EXPIRES_DATE_KEY = 'AUTH_TOKEN_EXPIRES_IN_KEY';
@@ -20,8 +23,11 @@ export class AuthUserService {
     private readonly modalService: ModalService,
     private readonly authService: AuthService,
     private readonly userService: UserService,
-    private readonly userFacade: UserFacade,
+    private readonly asideFacade: AsideFacade,
     private readonly authFacade: AuthFacade,
+    private readonly chatFacade: ChatFacade,
+    private readonly settingsFacade: SettingsFacade,
+    private readonly userFacade: UserFacade,
     private readonly router: Router,
   ) {}
 
@@ -87,6 +93,7 @@ export class AuthUserService {
 
   logOut(): void {
     this.removeToken();
+    this.resetStoreReducers();
     this.router.navigate(['login']);
     this.modalService.dismissAll();
   }
@@ -101,5 +108,13 @@ export class AuthUserService {
     localStorage.removeItem(AUTH_TOKEN_EXPIRES_DATE_KEY);
     localStorage.removeItem(AUTH_TOKEN_KEY);
     this.authFacade.setIsAuth(false);
+  }
+
+  private resetStoreReducers(): void {
+    this.asideFacade.resetAsideReducer();
+    this.authFacade.resetAuthReducer();
+    this.chatFacade.resetChatReducer();
+    this.settingsFacade.resetSettingsReducer();
+    this.userFacade.resetUserReducer();
   }
 }
