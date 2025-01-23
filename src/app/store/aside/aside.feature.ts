@@ -18,13 +18,20 @@ export const { selectAsideState, reducer } = createFeature({
   name: ASIDE_KEY,
   reducer: createReducer(
     initialState,
-    on(action.setViewType, (state, { viewType }) => ({
-      ...state,
-      viewType,
-    })),
-    on(action.setSearchRequest, (state, { searchRequest }) => ({
-      ...state,
-      searchRequest,
-    })),
+    on(
+      action.setViewType,
+      (state, { viewType }): AsideState => ({
+        ...state,
+        viewType,
+      }),
+    ),
+    on(
+      action.setSearchRequest,
+      (state, { searchRequest }): AsideState => ({
+        ...state,
+        searchRequest,
+      }),
+    ),
+    on(action.resetAsideReducer, (): AsideState => ({ ...initialState })),
   ),
 });

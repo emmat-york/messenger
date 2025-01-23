@@ -11,3 +11,5 @@ export const updateDialogLastMessage = createAction(
   '[USER] updateDialogLastMessage',
   props<{ lastMessage: Message; roomId: number }>(),
 );
+
+export const resetUserReducer = createAction('[USER] resetUserReducer');

@@ -8,3 +8,5 @@ export const setErrorMsg = createAction(
 export const logOut = createAction('[AUTH] logOut');
 export const logOutSuccess = createAction('[AUTH] logOutSuccess');
 export const logOutFail = createAction('[AUTH] logOutFail');
+
+export const resetAuthReducer = createAction('[AUTH] resetAuthReducer');

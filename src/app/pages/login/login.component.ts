@@ -19,7 +19,7 @@ import { catchError, EMPTY, finalize } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
 import { trim } from '../../shared/utils/form.util';
 import { HttpErrorResponse } from '@angular/common/http';
-import { getLoginErrorMessage } from '../../shared/services/app/auth-user/auth-user.helper';
+import { getLoginErrorMessage } from '../../shared/services/app/auth-user/auth-user.util';
 import { PushPipe } from '@ngrx/component';
 import { AuthFacade } from '../../store/auth/auth.facade';
 import { CustomValidators } from '../../shared/utils/validators.util';

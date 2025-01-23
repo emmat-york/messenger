@@ -23,24 +23,31 @@ export const { selectUserState, selectContacts, reducer } = createFeature({
   name: USER_KEY,
   reducer: createReducer(
     initialState,
-    on(action.setUser, (state, { payload: { essentialData, dialogs, contacts } }) => ({
-      ...state,
-      essentialData,
-      dialogs,
-      contacts,
-    })),
-    on(action.updateDialogLastMessage, (state, { lastMessage, roomId }) => ({
-      ...state,
-      dialogs: state.dialogs.map(dialog => {
-        if (dialog.roomId === roomId) {
-          return {
-            ...dialog,
-            lastMessage,
-          };
-        }
-
-        return dialog;
+    on(
+      action.setUser,
+      (state, { payload: { essentialData, dialogs, contacts } }): UserStoreState => ({
+        ...state,
+        essentialData,
+        dialogs,
+        contacts,
       }),
-    })),
+    ),
+    on(
+      action.updateDialogLastMessage,
+      (state, { lastMessage, roomId }): UserStoreState => ({
+        ...state,
+        dialogs: state.dialogs.map(dialog => {
+          if (dialog.roomId === roomId) {
+            return {
+              ...dialog,
+              lastMessage,
+            };
+          }
+
+          return dialog;
+        }),
+      }),
+    ),
+    on(action.resetUserReducer, (): UserStoreState => ({ ...initialState })),
   ),
 });

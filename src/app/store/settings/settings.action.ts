@@ -30,3 +30,5 @@ export const setNotificationSoundStateSuccess = createAction(
 export const setNotificationSoundStateFail = createAction(
   '[SETTINGS] setNotificationSoundStateFail',
 );
+
+export const resetSettingsReducer = createAction('[SETTINGS] resetSettingsReducer');

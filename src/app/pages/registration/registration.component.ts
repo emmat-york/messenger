@@ -19,7 +19,7 @@ import { catchError, EMPTY, finalize } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
 import { AuthUserService } from '../../shared/services/app/auth-user/auth-user.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { getRegistrationErrorMessage } from '../../shared/services/app/auth-user/auth-user.helper';
+import { getRegistrationErrorMessage } from '../../shared/services/app/auth-user/auth-user.util';
 import { PushPipe } from '@ngrx/component';
 import { AuthFacade } from '../../store/auth/auth.facade';
 import { trim } from '../../shared/utils/form.util';

@@ -19,6 +19,7 @@ export const { selectErrorMsg, reducer } = createFeature({
     initialState,
     on(action.setIsAuth, (state, { isAuth }): AuthState => ({ ...state, isAuth })),
     on(action.setErrorMsg, (state, { errorMsg }): AuthState => ({ ...state, errorMsg })),
-    on(action.logOutSuccess, state => ({ ...state, isAuth: false })),
+    on(action.logOutSuccess, (state): AuthState => ({ ...state, isAuth: false })),
+    on(action.resetAuthReducer, (): AuthState => ({ ...initialState })),
   ),
 });

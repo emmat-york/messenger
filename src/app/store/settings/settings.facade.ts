@@ -9,6 +9,7 @@ import {
 import { filter, Observable } from 'rxjs';
 import { Version } from '../../shared/services/api/user/user-service.interface';
 import * as action from './settings.action';
+import { resetSettingsReducer } from './settings.action';
 
 @Injectable({
   providedIn: 'root',
@@ -34,6 +35,10 @@ export class SettingsFacade {
 
   setNotificationSoundState(isNotificationSoundOn: boolean): void {
     this.dispatch(action.setNotificationSoundState({ isNotificationSoundOn }));
+  }
+
+  resetSettingsReducer(): void {
+    this.dispatch(resetSettingsReducer());
   }
 
   private dispatch(action: Action): void {

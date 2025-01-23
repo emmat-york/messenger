@@ -23,3 +23,5 @@ export const setMessage = createAction(
   '[CHAT] setMessage',
   props<{ message: Message; withInputReset?: boolean }>(),
 );
+
+export const resetChatReducer = createAction('[CHAT] resetChatReducer');

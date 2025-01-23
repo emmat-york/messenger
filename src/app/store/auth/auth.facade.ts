@@ -23,6 +23,10 @@ export class AuthFacade {
     this.dispatch(actions.logOut());
   }
 
+  resetAuthReducer(): void {
+    this.dispatch(actions.resetAuthReducer());
+  }
+
   private dispatch(action: Action): void {
     this.store.dispatch(action);
   }

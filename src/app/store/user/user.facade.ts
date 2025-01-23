@@ -18,6 +18,10 @@ export class UserFacade {
     this.dispatch(action.setUser({ payload }));
   }
 
+  resetUserReducer(): void {
+    this.dispatch(action.resetUserReducer());
+  }
+
   private dispatch(action: Action): void {
     this.store.dispatch(action);
   }

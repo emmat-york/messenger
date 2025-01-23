@@ -28,18 +28,24 @@ export const { selectChatState, selectSelectedDialog, reducer } = createFeature(
   name: CHAT_KEY,
   reducer: createReducer(
     initialState,
-    on(action.setSelectedDialog, (state, { selectedDialog }) => ({
-      ...state,
-      selectedDialog,
-      isLoading: true,
-      input: '',
-    })),
-    on(action.resetSelectedDialog, state => ({
-      ...state,
-      selectedDialog: null,
-      isLoading: true,
-      input: '',
-    })),
+    on(
+      action.setSelectedDialog,
+      (state, { selectedDialog }): ChatState => ({
+        ...state,
+        selectedDialog,
+        isLoading: true,
+        input: '',
+      }),
+    ),
+    on(
+      action.resetSelectedDialog,
+      (state): ChatState => ({
+        ...state,
+        selectedDialog: null,
+        isLoading: true,
+        input: '',
+      }),
+    ),
     on(
       action.setInput,
       (state, { input }): ChatState => ({
@@ -67,5 +73,6 @@ export const { selectChatState, selectSelectedDialog, reducer } = createFeature(
       action.setSelectedDialogFail,
       (state): ChatState => ({ ...state, messages: [], isLoading: false }),
     ),
+    on(action.resetChatReducer, (): ChatState => ({ ...initialState })),
   ),
 });

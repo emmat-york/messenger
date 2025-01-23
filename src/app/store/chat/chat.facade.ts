@@ -38,6 +38,10 @@ export class ChatFacade {
     this.dispatch(action.setMessage(messageData));
   }
 
+  resetChatReducer(): void {
+    this.dispatch(action.resetChatReducer());
+  }
+
   private dispatch(action: Action): void {
     this.store.dispatch(action);
   }

@@ -10,3 +10,5 @@ export const setSearchRequest = createAction(
   '[ASIDE] setSearchRequest',
   props<{ searchRequest: string }>(),
 );
+
+export const resetAsideReducer = createAction('[ASIDE] resetAsideReducer');

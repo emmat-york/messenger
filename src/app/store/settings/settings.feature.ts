@@ -36,13 +36,23 @@ export const { reducer, selectVersions, selectIsNotificationSoundOn, selectIsNig
           versions: payload.versions,
         }),
       ),
-      on(action.setIsNightModeSuccess, (state, { isNightMode }) => ({
-        ...state,
-        isNightMode,
-      })),
-      on(action.setNotificationSoundStateSuccess, (state, { isNotificationSoundOn }) => ({
-        ...state,
-        isNotificationSoundOn,
-      })),
+      on(
+        action.setIsNightModeSuccess,
+        (state, { isNightMode }): UserSettingsStoreState => ({
+          ...state,
+          isNightMode,
+        }),
+      ),
+      on(
+        action.setNotificationSoundStateSuccess,
+        (state, { isNotificationSoundOn }): UserSettingsStoreState => ({
+          ...state,
+          isNotificationSoundOn,
+        }),
+      ),
+      on(
+        action.resetSettingsReducer,
+        (): UserSettingsStoreState => ({ ...initialState }),
+      ),
     ),
   });
