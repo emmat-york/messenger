@@ -1,4 +1,9 @@
-import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import {
+  AbstractControl,
+  AsyncValidatorFn,
+  ValidationErrors,
+  ValidatorFn,
+} from '@angular/forms';
 import { ValidatorKeys } from '../enums/validator-keys.enum';
 
 export abstract class CustomValidators {
@@ -32,5 +37,9 @@ export abstract class CustomValidators {
 
       return null;
     };
+  }
+
+  static uniqueUserName(): AsyncValidatorFn {
+    return (): any => {};
   }
 }

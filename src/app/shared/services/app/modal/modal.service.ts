@@ -26,7 +26,7 @@ export class ModalService {
     return Boolean(this.modalRefs.length);
   }
 
-  open<ModalData extends object, Action = unknown>({
+  open<ModalData extends object, Action = undefined>({
     component,
     modalData,
     settings,
@@ -39,11 +39,7 @@ export class ModalService {
       this.dismissAll();
     }
 
-    const modalRef =
-      this.viewRef.createComponent<ModalFrameComponent<ModalData, Action>>(
-        ModalFrameComponent,
-      );
-
+    const modalRef = this.viewRef.createComponent(ModalFrameComponent);
     const destroy$ = new Subject<Action>();
 
     this.modalRefs.push(modalRef);

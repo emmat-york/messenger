@@ -5,7 +5,7 @@ import {
   DestroyRef,
   OnDestroy,
 } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonComponent } from '../../shared/components/button/button.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
@@ -54,7 +54,7 @@ export class LoginComponent implements OnDestroy {
     },
   };
 
-  readonly formGroup = this.fb.nonNullable.group({
+  readonly formGroup = this.formBuilder.group({
     [LoginFormKey.Email]: ['', [Validators.required, CustomValidators.email()]],
     [LoginFormKey.Password]: [
       '',
@@ -63,11 +63,11 @@ export class LoginComponent implements OnDestroy {
   });
 
   constructor(
+    private readonly formBuilder: NonNullableFormBuilder,
     private readonly authUserService: AuthUserService,
     private readonly cdRef: ChangeDetectorRef,
     private readonly destroyRef: DestroyRef,
     private readonly authFacade: AuthFacade,
-    private readonly fb: FormBuilder,
     private readonly router: Router,
   ) {}
 
@@ -80,13 +80,7 @@ export class LoginComponent implements OnDestroy {
       return;
     }
 
-    trim(
-      [
-        this.formGroup.controls[LoginFormKey.Email],
-        this.formGroup.controls[LoginFormKey.Password],
-      ],
-      SLEEPY_OPTIONS,
-    );
+    trim(Object.values(this.formGroup.controls), SLEEPY_OPTIONS);
 
     if (this.formGroup.invalid) {
       this.formGroup.markAllAsTouched();

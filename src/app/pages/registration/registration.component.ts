@@ -5,10 +5,11 @@ import {
   DestroyRef,
   OnDestroy,
 } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   MIN_PASSWORD_LENGTH,
+  MIN_USER_NAME_LENGTH,
   SLEEPY_OPTIONS,
   VALIDATION_MESSAGES,
 } from '../../shared/constants/form.constant';
@@ -27,6 +28,7 @@ import { ValidatorKeys } from '../../shared/enums/validator-keys.enum';
 
 export enum SignUpFormKey {
   Email = 'email',
+  UserName = 'userName',
   Password = 'password',
 }
 
@@ -47,6 +49,11 @@ export class RegistrationComponent implements OnDestroy {
       [ValidatorKeys.required]: VALIDATION_MESSAGES[ValidatorKeys.required],
       [ValidatorKeys.email]: VALIDATION_MESSAGES[ValidatorKeys.email],
     },
+    [SignUpFormKey.UserName]: {
+      [ValidatorKeys.required]: VALIDATION_MESSAGES[ValidatorKeys.required],
+      [ValidatorKeys.minlength]:
+        VALIDATION_MESSAGES[ValidatorKeys.minlength](MIN_USER_NAME_LENGTH),
+    },
     [SignUpFormKey.Password]: {
       [ValidatorKeys.required]: VALIDATION_MESSAGES[ValidatorKeys.required],
       [ValidatorKeys.password]: VALIDATION_MESSAGES[ValidatorKeys.password],
@@ -55,8 +62,12 @@ export class RegistrationComponent implements OnDestroy {
     },
   };
 
-  readonly formGroup = this.fb.nonNullable.group({
+  readonly formGroup = this.formBuilder.group({
     [SignUpFormKey.Email]: ['', [Validators.required, CustomValidators.email()]],
+    [SignUpFormKey.UserName]: [
+      '',
+      [Validators.required, Validators.minLength(MIN_USER_NAME_LENGTH)],
+    ],
     [SignUpFormKey.Password]: [
       '',
       [
@@ -68,11 +79,11 @@ export class RegistrationComponent implements OnDestroy {
   });
 
   constructor(
+    private readonly formBuilder: NonNullableFormBuilder,
     private readonly authUserService: AuthUserService,
     private readonly cdRef: ChangeDetectorRef,
     private readonly destroyRef: DestroyRef,
     private readonly authFacade: AuthFacade,
-    private readonly fb: FormBuilder,
     private readonly router: Router,
   ) {}
 
@@ -85,13 +96,7 @@ export class RegistrationComponent implements OnDestroy {
       return;
     }
 
-    trim(
-      [
-        this.formGroup.controls[SignUpFormKey.Email],
-        this.formGroup.controls[SignUpFormKey.Password],
-      ],
-      SLEEPY_OPTIONS,
-    );
+    trim(Object.values(this.formGroup.controls), SLEEPY_OPTIONS);
 
     if (this.formGroup.invalid) {
       this.formGroup.markAllAsTouched();

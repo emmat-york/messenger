@@ -1,4 +1,6 @@
 import { ResponseCode } from '../../../enums/response-code.enum';
+import { SignUpFormKey } from '../../../../pages/registration/registration.component';
+import { LoginFormKey } from '../../../../pages/login/login.component';
 
 // COMMON
 interface AuthErrorResponse<T> {
@@ -17,8 +19,9 @@ interface AuthErrorResponse<T> {
 
 // REGISTRATION
 export interface RegistrationCredentials {
-  email: string;
-  password: string;
+  [SignUpFormKey.Email]: string;
+  [SignUpFormKey.UserName]: string;
+  [SignUpFormKey.Password]: string;
 }
 
 export interface RegistrationResponse {
@@ -38,8 +41,8 @@ export type RegistrationErrorResponse = AuthErrorResponse<RegistrationErrorMessa
 
 // LOGIN
 export interface LoginCredentials {
-  email: string;
-  password: string;
+  [LoginFormKey.Email]: string;
+  [LoginFormKey.Password]: string;
 }
 
 export interface LoginResponse {

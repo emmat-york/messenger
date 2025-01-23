@@ -1,4 +1,4 @@
-<form class="form-group" [formGroup]="formGroup" (ngSubmit)="submit()">
+<form (ngSubmit)="submit()" [formGroup]="formGroup" class="form-group">
   <h2 class="heading">Registration</h2>
 
   @if (errorMsg$ | ngrxPush; as error) {
@@ -12,6 +12,13 @@
     [formControlName]="signUpFormKey.Email"
     [id]="signUpFormKey.Email"
     placeholder="Email"
+  ></app-input>
+
+  <app-input
+    [errorState]="errorState[signUpFormKey.UserName]"
+    [formControlName]="signUpFormKey.UserName"
+    [id]="signUpFormKey.UserName"
+    placeholder="User name"
   ></app-input>
 
   <app-input
@@ -35,6 +42,6 @@
     type="button"
     variant="text"
   >
-    <a class="link" [routerLink]="['/messenger']">Go to login</a>
+    <a [routerLink]="['/messenger']" class="link">Go to login</a>
   </app-button>
 </form>

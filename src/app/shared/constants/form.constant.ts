@@ -1,6 +1,7 @@
 import { ValidatorKeys } from '../enums/validator-keys.enum';
 
 export const MIN_PASSWORD_LENGTH = 12;
+export const MIN_USER_NAME_LENGTH = 6;
 
 export const SLEEPY_OPTIONS = {
   onlySelf: true,
