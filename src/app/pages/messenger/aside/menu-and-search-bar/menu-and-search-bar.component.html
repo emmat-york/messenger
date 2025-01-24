@@ -16,6 +16,7 @@
 
   <input
     (click)="onChangeView($event, 'search-panel')"
+    [class.on-search-mode]="view === 'search-panel'"
     [formControl]="searchControl"
     class="input"
     id="contact-search-input-bar"

@@ -4,6 +4,7 @@ import * as action from './user.action';
 import { Action, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { EssentialUserData } from '../../shared/services/api/chat/chat-service.interface';
+import { Message } from '../../pages/messenger/chat/chat.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +17,10 @@ export class UserFacade {
 
   setUser(payload: UserStoreState): void {
     this.dispatch(action.setUser({ payload }));
+  }
+
+  updateDialogLastMessage(message: Message): void {
+    this.dispatch(action.updateDialogLastMessage({ message }));
   }
 
   resetUserReducer(): void {

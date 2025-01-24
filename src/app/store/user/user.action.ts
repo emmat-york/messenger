@@ -9,7 +9,7 @@ export const setUser = createAction(
 
 export const updateDialogLastMessage = createAction(
   '[USER] updateDialogLastMessage',
-  props<{ lastMessage: Message; roomId: number }>(),
+  props<{ message: Message }>(),
 );
 
 export const resetUserReducer = createAction('[USER] resetUserReducer');

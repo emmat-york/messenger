@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, HostListener, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostListener,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { ChatFacade } from '../../store/chat/chat.facade';
 import { ModalService } from '../../shared/services/app/modal/modal.service';
 import { ChatComponent } from './chat/chat.component';
@@ -13,7 +19,7 @@ import { ChatSocket } from '../../shared/services/socket/chat.socket';
   imports: [ChatComponent, AsideComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MessengerComponent implements OnInit {
+export class MessengerComponent implements OnInit, OnDestroy {
   constructor(
     private readonly modalService: ModalService,
     private readonly chatSocket: ChatSocket,
@@ -22,6 +28,10 @@ export class MessengerComponent implements OnInit {
 
   ngOnInit(): void {
     this.chatSocket.init();
+  }
+
+  ngOnDestroy(): void {
+    this.chatSocket.disconnect();
   }
 
   @HostListener('document:keydown.escape') escapeKeyListener(): void {

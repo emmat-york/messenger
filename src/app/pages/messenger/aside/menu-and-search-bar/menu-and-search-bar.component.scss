@@ -26,6 +26,11 @@
   line-height: 18px;
   border-radius: 22px;
   background-color: var(--gray_light6);
+
+  &.on-search-mode {
+    border: 1px solid var(--gray_light6);
+    background-color: var(--white1);
+  }
 }
 
 .close-cross {

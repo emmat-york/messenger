@@ -34,13 +34,13 @@ export const { selectUserState, selectContacts, reducer } = createFeature({
     ),
     on(
       action.updateDialogLastMessage,
-      (state, { lastMessage, roomId }): UserStoreState => ({
+      (state, { message }): UserStoreState => ({
         ...state,
         dialogs: state.dialogs.map(dialog => {
-          if (dialog.roomId === roomId) {
+          if (dialog.roomId === message.roomId) {
             return {
               ...dialog,
-              lastMessage,
+              lastMessage: message,
             };
           }
 
