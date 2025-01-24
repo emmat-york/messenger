@@ -1,7 +1,8 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  ElementRef, HostListener,
+  ElementRef,
+  HostListener,
   Input,
   OnInit,
   Renderer2,
@@ -36,7 +37,8 @@ export class ModalFrameComponent<ModalData extends object, Action>
   @Input() settings?: ModalSettings;
   @Input() modalData?: ModalData;
 
-  @ViewChild('modalContainer') private readonly modalContainer: ElementRef<HTMLDivElement>;
+  @ViewChild('modalContainer')
+  private readonly modalContainer: ElementRef<HTMLDivElement>;
   @ViewChild('container', { static: true, read: ViewContainerRef })
   private readonly container: ViewContainerRef;
 
@@ -67,13 +69,16 @@ export class ModalFrameComponent<ModalData extends object, Action>
 
   private isClickInsideModalComponent(clickedElement: HTMLElement): boolean {
     return (
-        clickedElement === this.modalContainer.nativeElement ||
-        this.modalContainer.nativeElement.contains(clickedElement)
+      clickedElement === this.modalContainer.nativeElement ||
+      this.modalContainer.nativeElement.contains(clickedElement)
     );
   }
 
   private initComponent(): void {
-    const modalRef = this.container.createComponent(this.component);
+    const modalRef = this.container.createComponent(this.component, {
+      injector: this.settings?.injector,
+    });
+
     modalRef.setInput('closeAction', this.closeAction);
 
     if (this.modalData) {

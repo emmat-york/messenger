@@ -1,8 +1,8 @@
 <section>
   <app-input
-    class="search-input"
     [formControl]="searchControl"
-    placeholder="search"
+    class="search-input"
+    placeholder="Search"
   ></app-input>
 
   <ul *ngrxLet="contacts$; let contacts">
@@ -15,6 +15,6 @@
 </section>
 
 <footer class="footer">
-  <app-button variant="text" (click)="closeAction()">Add contact</app-button>
-  <app-button variant="text" (click)="closeAction()">Close</app-button>
+  <app-button (click)="closeAction()" variant="text">Add contact</app-button>
+  <app-button (click)="closeAction()" variant="text">Close</app-button>
 </footer>
