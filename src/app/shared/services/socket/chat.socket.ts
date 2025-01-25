@@ -1,6 +1,6 @@
 import { DestroyRef, Injectable, OnDestroy } from '@angular/core';
-import { Message, MessageToSend } from '../../../pages/messenger/chat/chat.interface';
-import { Subject, takeUntil } from 'rxjs';
+import { Message } from '../../../pages/messenger/chat/chat.interface';
+import { combineLatest, Subject, take } from 'rxjs';
 import { Dialog } from '../api/chat/chat-service.interface';
 import { SoundService } from '../app/sound/sound.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -9,13 +9,11 @@ import { messageTypeGuard } from './chat-socket.util';
 import { SettingsFacade } from '../../../store/settings/settings.facade';
 import { concatLatestFrom } from '@ngrx/effects';
 import { UserFacade } from '../../../store/user/user.facade';
+import { dialogTypeGuard } from '../../../store/chat/chat.util';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class ChatSocket implements OnDestroy {
   private readonly eventSource$ = new Subject<Message | Dialog>();
-  private readonly destroy$ = new Subject<void>();
 
   constructor(
     private readonly settingsFacade: SettingsFacade,
@@ -27,8 +25,6 @@ export class ChatSocket implements OnDestroy {
 
   ngOnDestroy(): void {
     this.eventSource$.complete();
-    this.destroy$.next();
-    this.destroy$.complete();
   }
 
   init(): void {
@@ -38,7 +34,6 @@ export class ChatSocket implements OnDestroy {
           this.settingsFacade.isNotificationSoundOn$,
           this.chatFacade.selectedDialog$,
         ]),
-        takeUntil(this.destroy$),
         takeUntilDestroyed(this.destroyRef),
       )
       .subscribe(([messageOrDialog, isNotificationSoundOn, selectedDialog]) => {
@@ -47,7 +42,7 @@ export class ChatSocket implements OnDestroy {
         }
 
         if (messageTypeGuard(messageOrDialog)) {
-          const currentDialog = selectedDialog as Dialog | null; // Message can only be added to existing dialog
+          const currentDialog = selectedDialog as Dialog | null;
           const msgToDialog = messageOrDialog.roomId === currentDialog?.roomId;
 
           if (msgToDialog) {
@@ -61,15 +56,30 @@ export class ChatSocket implements OnDestroy {
       });
   }
 
-  disconnect(): void {
-    this.destroy$.next();
-  }
+  sendMessage(): void {
+    combineLatest([
+      this.chatFacade.input$,
+      this.chatFacade.selectedDialog$,
+      this.userFacade.essentialData$,
+    ])
+      .pipe(take(1), takeUntilDestroyed(this.destroyRef))
+      .subscribe(([input, selectedDialog, essentialData]) => {
+        if (!essentialData || !selectedDialog) {
+          throw new Error('Impossible to send message. There is user data!');
+        }
 
-  request(message: MessageToSend): void {
-    this.eventSource$.next({
-      ...message,
-      roomId: message.roomId ?? Math.random(),
-      id: Math.random(),
-    });
+        this.eventSource$.next({
+          id: Math.random(),
+          roomId: dialogTypeGuard(selectedDialog)
+            ? selectedDialog.roomId
+            : null ?? Math.random(),
+          uuid: essentialData.id,
+          message: input,
+          userName: essentialData.name,
+          creationDate: new Date().toUTCString(),
+          editDate: null,
+          likes: [],
+        });
+      });
   }
 }

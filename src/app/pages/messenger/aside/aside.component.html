@@ -1,10 +1,4 @@
-<ng-container *ngrxLet="{ userVm: userVm$, chatVm: chatVm$, asideVm: asideVm$ } as vm">
-  <app-menu-and-search-bar [view]="vm.asideVm.viewType"></app-menu-and-search-bar>
-
-  <app-dialogs
-    [asideVm]="vm.asideVm"
-    [chatVm]="vm.chatVm"
-    [userVm]="vm.userVm"
-    class="content"
-  ></app-dialogs>
+<ng-container *ngrxLet="asideVm$; let asideVm">
+  <app-menu-and-search-bar [view]="asideVm.viewType"></app-menu-and-search-bar>
+  <app-dialogs [asideVm]="asideVm" class="content"></app-dialogs>
 </ng-container>

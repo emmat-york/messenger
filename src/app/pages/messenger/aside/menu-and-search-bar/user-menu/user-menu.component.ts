@@ -44,7 +44,7 @@ export class UserMenuComponent implements OnInit, Modal {
 
   readonly isNotificationSoundOn$ = this.settingsFacade.isNotificationSoundOn$;
   readonly versions$ = this.settingsFacade.versions$;
-  readonly vm$ = this.userFacade.vm$;
+  readonly essentialData$ = this.userFacade.essentialData$;
 
   readonly themeModeSwitcher = new FormControl(
     { value: false, disabled: true },

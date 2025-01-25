@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Action, Store } from '@ngrx/store';
 import {
   selectIsNightMode,
   selectIsNotificationSoundOn,
@@ -10,11 +9,12 @@ import { filter, Observable } from 'rxjs';
 import { Version } from '../../shared/services/api/user/user-service.interface';
 import * as action from './settings.action';
 import { resetSettingsReducer } from './settings.action';
+import { BaseStoreExtension } from '../base-store-extension';
 
 @Injectable({
   providedIn: 'root',
 })
-export class SettingsFacade {
+export class SettingsFacade extends BaseStoreExtension {
   readonly versions$: Observable<Version[]> = this.store
     .select(selectVersions)
     .pipe(filter(versions => Boolean(versions.length)));
@@ -22,8 +22,6 @@ export class SettingsFacade {
   readonly isNotificationSoundOn$: Observable<boolean> = this.store.select(
     selectIsNotificationSoundOn,
   );
-
-  constructor(private readonly store: Store) {}
 
   setUserSettings(payload: UserSettingsStoreState) {
     this.dispatch(action.setUserSettings({ payload }));
@@ -39,9 +37,5 @@ export class SettingsFacade {
 
   resetSettingsReducer(): void {
     this.dispatch(resetSettingsReducer());
-  }
-
-  private dispatch(action: Action): void {
-    this.store.dispatch(action);
   }
 }

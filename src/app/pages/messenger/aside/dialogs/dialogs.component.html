@@ -1,24 +1,26 @@
-@if (userVm.dialogs.length) {
-<ul #contactList class="contact-list">
-  @for (dialog of userVm.dialogs | arrayFilter: asideVm.searchRequest: 'name'; track
-  dialog.id) {
-  <li class="contact" (click)="setSelectedDialog(chatVm.selectedDialog?.id, dialog)">
-    <app-dialog
-      [class.selected]="dialog.id === chatVm.selectedDialog?.id"
-      [dialog]="dialog"
-    ></app-dialog>
-  </li>
+<ng-container *ngrxLet="{ dialogs: dialogs$, selectedDialog: selectedDialog$ }; let vm">
+  @if (vm.dialogs.length) {
+  <ul #contactList class="contact-list">
+    @for (dialog of vm.dialogs | arrayFilter: asideVm.searchRequest: 'name'; track
+    dialog.id) {
+    <li class="contact" (click)="setSelectedDialog(vm.selectedDialog?.id, dialog)">
+      <app-dialog
+        [class.selected]="dialog.id === vm.selectedDialog?.id"
+        [dialog]="dialog"
+      ></app-dialog>
+    </li>
+    }
+  </ul>
+  } @else {
+  <div class="no-dialogs">You have no dialogs yet.</div>
   }
-</ul>
-} @else {
-<div class="no-dialogs">You have no dialogs yet.</div>
-}
 
-<!-- Scroll circle -->
-@if (isScrollCircleShown) {
-<app-scroll-circle
-  class="scroll-circle"
-  type="down"
-  (click)="onScrollUp()"
-></app-scroll-circle>
-}
+  <!-- Scroll circle -->
+  @if (isScrollCircleShown) {
+  <app-scroll-circle
+    class="scroll-circle"
+    type="down"
+    (click)="onScrollUp()"
+  ></app-scroll-circle>
+  }
+</ng-container>

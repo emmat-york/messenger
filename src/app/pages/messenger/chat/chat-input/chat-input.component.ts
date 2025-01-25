@@ -14,6 +14,7 @@ import { INITIAL_INPUT_HEIGHT } from './chat-input.constant';
 import { IconPipe } from '../../../../shared/pipes/icon.pipe';
 import { ChatFacade } from '../../../../store/chat/chat.facade';
 import { getTrimmedString } from '../../../../shared/utils/form.util';
+import { ChatSocket } from '../../../../shared/services/socket/chat.socket';
 
 @Component({
   selector: 'app-chat-input',
@@ -35,7 +36,10 @@ export class ChatInputComponent {
 
   private previousInputHeight = INITIAL_INPUT_HEIGHT;
 
-  constructor(private readonly chatFacade: ChatFacade) {}
+  constructor(
+    private readonly chatFacade: ChatFacade,
+    private readonly chatSocket: ChatSocket,
+  ) {}
 
   setInput(input: string): void {
     const currentInputHeight = this.chatInputRef.nativeElement.clientHeight;
@@ -62,7 +66,7 @@ export class ChatInputComponent {
       return;
     }
 
-    this.chatFacade.sendMessage();
+    this.chatSocket.sendMessage();
     this.chatInputRef.nativeElement.focus();
   }
 

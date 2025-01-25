@@ -16,23 +16,24 @@ import { ScrollCircleComponent } from '../../../../shared/components/scroll-circ
 import { ChatFacade } from '../../../../store/chat/chat.facade';
 import { ScrollEvent } from '../../chat/chat-body/chat-body.interface';
 import { Dialog } from '../../../../shared/services/api/chat/chat-service.interface';
-import { ChatState } from '../../../../store/chat/chat.feature';
-import { UserStoreState } from '../../../../store/user/user.feature';
 import { AsideState } from '../../../../store/aside/aside.feature';
 import { ArrayFilterPipe } from '../../../../shared/pipes/array-filter.pipe';
+import { UserFacade } from '../../../../store/user/user.facade';
+import { LetDirective } from '@ngrx/component';
 
 @Component({
   selector: 'app-dialogs',
   standalone: true,
   templateUrl: 'dialogs.component.html',
   styleUrl: 'dialogs.component.scss',
-  imports: [ScrollCircleComponent, DialogComponent, ArrayFilterPipe],
+  imports: [ScrollCircleComponent, DialogComponent, ArrayFilterPipe, LetDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogsComponent implements AfterViewInit {
-  @Input() userVm: UserStoreState;
-  @Input() chatVm: ChatState;
   @Input() asideVm: AsideState;
+
+  readonly selectedDialog$ = this.chatFacade.selectedDialog$;
+  readonly dialogs$ = this.userFacade.dialogs$;
 
   isScrollCircleShown = false;
 
@@ -42,6 +43,7 @@ export class DialogsComponent implements AfterViewInit {
   constructor(
     private readonly cdRef: ChangeDetectorRef,
     private readonly chatFacade: ChatFacade,
+    private readonly userFacade: UserFacade,
     private readonly destroyRef: DestroyRef,
     private readonly renderer2: Renderer2,
   ) {}

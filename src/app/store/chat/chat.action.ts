@@ -18,7 +18,6 @@ export const setSelectedDialogFail = createAction('[CHAT] setSelectedDialogFail'
 export const resetSelectedDialog = createAction('[CHAT] resetSelectedDialog');
 export const setInput = createAction('[CHAT] setInput', props<{ input: string }>());
 
-export const sendMessage = createAction('[CHAT] sendMessage');
 export const setMessage = createAction(
   '[CHAT] setMessage',
   props<{ message: Message; withInputReset?: boolean }>(),

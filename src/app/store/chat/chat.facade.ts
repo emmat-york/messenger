@@ -1,22 +1,28 @@
 import { Injectable } from '@angular/core';
-import { ChatState, selectChatState, selectSelectedDialog } from './chat.feature';
+import {
+  selectInput,
+  selectIsLoading,
+  selectMessages,
+  selectSelectedDialog,
+} from './chat.feature';
 import * as action from './chat.action';
-import { Observable } from 'rxjs';
-import { Action, Store } from '@ngrx/store';
 import {
   Dialog,
   EssentialUserData,
 } from '../../shared/services/api/chat/chat-service.interface';
 import { Message } from '../../pages/messenger/chat/chat.interface';
+import { selectChatVm } from './chat.selector';
+import { BaseStoreExtension } from '../base-store-extension';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ChatFacade {
-  readonly vm$: Observable<ChatState> = this.store.select(selectChatState);
+export class ChatFacade extends BaseStoreExtension {
   readonly selectedDialog$ = this.store.select(selectSelectedDialog);
-
-  constructor(private readonly store: Store) {}
+  readonly isLoading$ = this.store.select(selectIsLoading);
+  readonly messages$ = this.store.select(selectMessages);
+  readonly input$ = this.store.select(selectInput);
+  readonly vm$ = this.store.select(selectChatVm);
 
   setSelectedDialog(selectedDialog: Dialog | EssentialUserData): void {
     this.dispatch(action.setSelectedDialog({ selectedDialog }));
@@ -30,19 +36,11 @@ export class ChatFacade {
     this.dispatch(action.setInput({ input }));
   }
 
-  sendMessage(): void {
-    this.dispatch(action.sendMessage());
-  }
-
   setMessage(messageData: { message: Message; withInputReset?: boolean }): void {
     this.dispatch(action.setMessage(messageData));
   }
 
   resetChatReducer(): void {
     this.dispatch(action.resetChatReducer());
-  }
-
-  private dispatch(action: Action): void {
-    this.store.dispatch(action);
   }
 }

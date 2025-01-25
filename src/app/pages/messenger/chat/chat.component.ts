@@ -30,7 +30,7 @@ import { ChatBodyComponent } from './chat-body/chat-body.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChatComponent implements OnInit {
-  readonly userVm$ = this.userFacade.vm$;
+  readonly essentialData$ = this.userFacade.essentialData$;
   readonly chatVm$ = this.chatFacade.vm$;
 
   @ViewChild(ChatBodyComponent) private readonly chatBodyComponent:

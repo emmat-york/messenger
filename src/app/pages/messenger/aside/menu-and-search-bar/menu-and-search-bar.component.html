@@ -4,14 +4,9 @@
 
 <label class="label" for="contact-search-input-bar">
   @if (view === 'search-panel') {
-  <img
-    [ngSrc]="'close' | icon"
-    class="close-cross"
-    width="16"
-    height="16"
-    alt="close"
-    (click)="onChangeView($event, 'dialogs')"
-  />
+  <div class="close-cross-wrapper" (click)="onChangeView($event, 'dialogs')">
+    <img [ngSrc]="'close' | icon" width="16" height="16" alt="close" />
+  </div>
   }
 
   <input

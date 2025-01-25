@@ -1,19 +1,23 @@
-import { selectContacts, selectUserState, UserStoreState } from './user.feature';
+import {
+  selectContacts,
+  selectDialogs,
+  selectEssentialData,
+  UserStoreState,
+} from './user.feature';
 import { Injectable } from '@angular/core';
 import * as action from './user.action';
-import { Action, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { EssentialUserData } from '../../shared/services/api/chat/chat-service.interface';
 import { Message } from '../../pages/messenger/chat/chat.interface';
+import { BaseStoreExtension } from '../base-store-extension';
+import { Observable } from 'rxjs';
+import { Dialog } from '../../shared/services/api/chat/chat-service.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UserFacade {
-  readonly vm$: Observable<UserStoreState> = this.store.select(selectUserState);
-  readonly contacts$: Observable<EssentialUserData[]> = this.store.select(selectContacts);
-
-  constructor(private readonly store: Store) {}
+export class UserFacade extends BaseStoreExtension {
+  readonly essentialData$ = this.store.select(selectEssentialData);
+  readonly dialogs$: Observable<Dialog[]> = this.store.select(selectDialogs);
+  readonly contacts$ = this.store.select(selectContacts);
 
   setUser(payload: UserStoreState): void {
     this.dispatch(action.setUser({ payload }));
@@ -25,9 +29,5 @@ export class UserFacade {
 
   resetUserReducer(): void {
     this.dispatch(action.resetUserReducer());
-  }
-
-  private dispatch(action: Action): void {
-    this.store.dispatch(action);
   }
 }
