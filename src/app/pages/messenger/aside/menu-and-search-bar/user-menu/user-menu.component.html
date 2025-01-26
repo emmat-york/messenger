@@ -29,7 +29,7 @@
       <span>Contacts</span>
     </li>
 
-    <li class="menu-item">
+    <li (click)="onSettingsModalOpen()" class="menu-item">
       <img [ngSrc]="'settings' | icon" alt="settings" height="20" width="20" />
       <span>Settings</span>
     </li>

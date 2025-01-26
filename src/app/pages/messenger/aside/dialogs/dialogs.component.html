@@ -2,10 +2,10 @@
   @if (vm.dialogs.length) {
   <ul #contactList class="contact-list">
     @for (dialog of vm.dialogs | arrayFilter: asideVm.searchRequest: 'name'; track
-    dialog.id) {
-    <li class="contact" (click)="setSelectedDialog(vm.selectedDialog?.id, dialog)">
+    dialog.uuid) {
+    <li class="contact" (click)="setSelectedDialog(vm.selectedDialog?.uuid, dialog)">
       <app-dialog
-        [class.selected]="dialog.id === vm.selectedDialog?.id"
+        [class.selected]="dialog.uuid === vm.selectedDialog?.uuid"
         [dialog]="dialog"
       ></app-dialog>
     </li>

@@ -53,7 +53,7 @@ export class DialogsComponent implements AfterViewInit {
   }
 
   setSelectedDialog(selectedDialogId: number | undefined, dialog: Dialog): void {
-    if (selectedDialogId === dialog.id) {
+    if (selectedDialogId === dialog.uuid) {
       return;
     }
 

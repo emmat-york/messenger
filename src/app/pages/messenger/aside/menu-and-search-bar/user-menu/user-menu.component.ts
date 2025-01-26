@@ -22,6 +22,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { LogOutComponent } from './log-out/log-out.component';
 import { SLEEPY_OPTIONS } from '../../../../../shared/constants/form.constant';
 import { ContactsModalComponent } from './contacts/contacts.component';
+import { SettingsComponent } from './settings/settings.component';
 
 @Component({
   selector: 'app-user-menu',
@@ -65,8 +66,11 @@ export class UserMenuComponent implements OnInit, Modal {
   onContactsModalOpen(): void {
     this.modalService.open({
       component: ContactsModalComponent,
-      settings: { multi: true },
     });
+  }
+
+  onSettingsModalOpen(): void {
+    this.modalService.open({ component: SettingsComponent });
   }
 
   setNotificationSoundState(currentState: boolean): void {

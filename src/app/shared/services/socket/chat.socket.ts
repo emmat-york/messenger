@@ -73,7 +73,7 @@ export class ChatSocket implements OnDestroy {
           roomId: dialogTypeGuard(selectedDialog)
             ? selectedDialog.roomId
             : null ?? Math.random(),
-          uuid: essentialData.id,
+          uuid: essentialData.uuid,
           message: input,
           userName: essentialData.name,
           creationDate: new Date().toUTCString(),

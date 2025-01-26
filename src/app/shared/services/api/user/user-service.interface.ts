@@ -4,7 +4,7 @@ import { Dialog, EssentialUserData } from '../chat/chat-service.interface';
  * User here equals to init user data (your data)
  * **/
 export interface FullCurrentUserData {
-  id: number;
+  uuid: number;
   name: string;
   avatar: string | null;
   dialogs: Dialog[];

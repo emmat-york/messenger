@@ -1,7 +1,7 @@
 import { Message } from '../../../../pages/messenger/chat/chat.interface';
 
 export interface EssentialUserData {
-  id: number;
+  uuid: number;
   name: string;
   avatar: string | null;
 }

@@ -7,6 +7,11 @@ import { UserFacade } from '../../../../../../store/user/user.facade';
 import { LetDirective } from '@ngrx/component';
 import { ContactComponent } from './contact/contact.component';
 import { ArrayFilterPipe } from '../../../../../../shared/pipes/array-filter.pipe';
+import {
+  Dialog,
+  EssentialUserData,
+} from '../../../../../../shared/services/api/chat/chat-service.interface';
+import { ChatFacade } from '../../../../../../store/chat/chat.facade';
 
 @Component({
   selector: 'app-contacts',
@@ -27,8 +32,18 @@ export class ContactsModalComponent implements Modal {
   @Input() closeAction: () => void;
 
   readonly contacts$ = this.userFacade.contacts$;
+  readonly dialogs$ = this.userFacade.dialogs$;
 
-  readonly searchControl = new FormControl('', { nonNullable: true });
+  readonly searchControl = new FormControl<string>('', { nonNullable: true });
 
-  constructor(private readonly userFacade: UserFacade) {}
+  constructor(
+    private readonly userFacade: UserFacade,
+    private readonly chatFacade: ChatFacade,
+  ) {}
+
+  onContactSelect(contact: EssentialUserData, dialogs: Dialog[]): void {
+    const dialogByContact = dialogs.find(dialog => dialog.uuid === contact.uuid);
+    this.chatFacade.setSelectedDialog(dialogByContact ? dialogByContact : contact);
+    this.closeAction();
+  }
 }

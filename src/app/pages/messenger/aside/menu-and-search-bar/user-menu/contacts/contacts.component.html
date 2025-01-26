@@ -5,9 +5,10 @@
     placeholder="Search"
   ></app-input>
 
-  <ul *ngrxLet="contacts$; let contacts">
-    @for (contact of contacts | arrayFilter: searchControl.value : 'name'; track 'id') {
-    <li class="contact">
+  <ul *ngrxLet="{ contacts: contacts$, dialogs: dialogs$ }; let vm">
+    @for (contact of vm.contacts | arrayFilter: searchControl.value : 'name'; track 'id')
+    {
+    <li class="contact" (click)="onContactSelect(contact, vm.dialogs)">
       <app-contact [contact]="contact"></app-contact>
     </li>
     }

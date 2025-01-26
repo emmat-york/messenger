@@ -9,12 +9,12 @@ import { EmojiCategory } from '../../../../pages/messenger/chat/chat.enum';
 export class UserService {
   getUserData$(idToken: string | null): Observable<FullCurrentUserData> {
     return of({
-      id: 1,
+      uuid: 1,
       name: 'Andrei Filimonchyk',
       avatar: 'assets/icons/system/avatar.svg',
       dialogs: [
         {
-          id: 2,
+          uuid: 2,
           name: 'Andrew Tate',
           avatar: 'assets/icons/system/avatar.svg',
           isOnline: false,
@@ -42,7 +42,7 @@ export class UserService {
           },
         },
         {
-          id: 3,
+          uuid: 3,
           name: 'Pavel Filimonchyk',
           avatar: null,
           isOnline: false,
@@ -72,12 +72,12 @@ export class UserService {
       ],
       contacts: [
         {
-          id: 101,
-          name: 'Feith Rauta Harconenn',
+          uuid: 2,
+          name: 'Andrew Tate',
           avatar: 'assets/icons/system/avatar.svg',
         },
         {
-          id: 102,
+          uuid: 102,
           name: 'Mah Dee',
           avatar: null,
         },
