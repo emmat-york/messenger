@@ -14,6 +14,8 @@ import { NgClass } from '@angular/common';
 import { ModalSettings } from './modal.interface';
 import { ModalFrameTypePipe } from './modal-frame-type.pipe';
 
+const MODAL_BACKDROP_COLOR = 'rgba(0, 0, 0, 0.5)';
+
 interface ModalFrame<ModalData, Action> {
   component: Constructor;
   closeAction: (action?: Action) => void;
@@ -90,7 +92,7 @@ export class ModalFrameComponent<ModalData extends object, Action>
     this.renderer2.setStyle(
       this.hostElementRef.nativeElement,
       'backgroundColor',
-      this.settings?.noBackdrop ? null : 'rgba(0, 0, 0, 0.5)',
+      this.settings?.noBackdrop ? null : MODAL_BACKDROP_COLOR,
     );
   }
 }
