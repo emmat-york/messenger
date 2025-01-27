@@ -31,6 +31,7 @@ import { ChatFacade } from '../../../../../../store/chat/chat.facade';
 export class ContactsModalComponent implements Modal {
   @Input() closeAction: () => void;
 
+  readonly selectedDialog$ = this.chatFacade.selectedDialog$;
   readonly contacts$ = this.userFacade.contacts$;
   readonly dialogs$ = this.userFacade.dialogs$;
 
@@ -41,8 +42,18 @@ export class ContactsModalComponent implements Modal {
     private readonly chatFacade: ChatFacade,
   ) {}
 
-  onContactSelect(contact: EssentialUserData, dialogs: Dialog[]): void {
+  onContactSelect(
+    contact: EssentialUserData,
+    dialogs: Dialog[],
+    selectedDialog: Dialog | EssentialUserData | null,
+  ): void {
     const dialogByContact = dialogs.find(dialog => dialog.uuid === contact.uuid);
+
+    if (selectedDialog?.uuid === dialogByContact?.uuid) {
+      this.closeAction();
+      return;
+    }
+
     this.chatFacade.setSelectedDialog(dialogByContact ? dialogByContact : contact);
     this.closeAction();
   }
