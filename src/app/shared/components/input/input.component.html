@@ -5,17 +5,18 @@
   [placeholder]="placeholder"
   [disabled]="disabled"
   [ngClass]="{
-    invalid: ngControl.invalid && ngControl.touched,
-    valid: ngControl.valid && ngControl.touched
+    invalid: errorState && ngControl.invalid && ngControl.touched,
+    valid: errorState && ngControl.valid && ngControl.touched
   }"
   [ngModel]="value"
   [type]="type"
   [id]="inputId"
   class="input"
+  autocomplete="off"
   (ngModelChange)="onInputChange($event)"
   (blur)="onInputBlur()"
 />
-} @if (ngControl && ngControl.errors && ngControl.touched) {
+} @if (errorState && ngControl && ngControl.errors && ngControl.touched) {
 <app-error-message
   [controlErrors]="ngControl.errors"
   [errorState]="errorState"

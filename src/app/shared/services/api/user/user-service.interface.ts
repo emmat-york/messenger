@@ -9,6 +9,8 @@ export interface FullCurrentUserData {
   avatar: string | null;
   dialogs: Dialog[];
   contacts: EssentialUserData[];
+  isYou: true;
+  isYourContact: false;
   // Settings
   isNightMode: boolean;
   versions: Version[];

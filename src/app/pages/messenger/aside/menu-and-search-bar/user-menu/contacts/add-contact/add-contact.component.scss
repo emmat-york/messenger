@@ -1,0 +1,50 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 348px;
+  border-radius: 8px;
+  background-color: var(--white1);
+}
+
+.heading {
+  padding: 12px 12px 0 12px;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px 0 12px;
+}
+
+.contact-list {
+  flex: 1 1 auto;
+  height: 186px;
+  overflow-y: auto;
+}
+
+.contact {
+  cursor: pointer;
+
+  &:hover:not(.selected) {
+    background-color: var(--gray_light2);
+  }
+}
+
+.selected {
+  background-color: var(--gray_light4);
+}
+
+.disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 6px;
+  padding: 6px;
+}

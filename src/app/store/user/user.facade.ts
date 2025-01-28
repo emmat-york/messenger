@@ -31,6 +31,10 @@ export class UserFacade extends BaseStoreExtension {
     this.dispatch(action.updateDialogLastMessage({ message }));
   }
 
+  addContact(contact: EssentialUserData): void {
+    this.dispatch(action.addContact({ contact }));
+  }
+
   resetUserReducer(): void {
     this.dispatch(action.resetUserReducer());
   }

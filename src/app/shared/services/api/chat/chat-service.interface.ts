@@ -4,6 +4,8 @@ export interface EssentialUserData {
   uuid: number;
   name: string;
   avatar: string | null;
+  isYourContact: boolean;
+  isYou: boolean;
 }
 
 export interface Dialog extends EssentialUserData {

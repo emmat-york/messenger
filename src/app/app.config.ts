@@ -36,15 +36,26 @@ function initializeAppFactory(
   return (): Observable<FullCurrentUserData | never> => {
     if (authUserService.isAuth) {
       return userService.getUserData$(authUserService.token).pipe(
-        tap(({ uuid, name, avatar, dialogs, contacts, ...settings }) => {
-          userFacade.setUser({
-            essentialData: { uuid, name, avatar },
+        tap(
+          ({
+            uuid,
+            name,
+            avatar,
             dialogs,
             contacts,
-          });
-          settingsFacade.setUserSettings(settings);
-          authFacade.setIsAuth(true);
-        }),
+            isYou,
+            isYourContact,
+            ...settings
+          }) => {
+            userFacade.setUser({
+              essentialData: { uuid, name, avatar, isYou, isYourContact },
+              dialogs,
+              contacts,
+            });
+            settingsFacade.setUserSettings(settings);
+            authFacade.setIsAuth(true);
+          },
+        ),
         catchError(() => {
           console.error('Error while initializing user data!');
           return EMPTY;

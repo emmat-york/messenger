@@ -5,32 +5,24 @@ import {
   NgControl,
   ValidationErrors,
 } from '@angular/forms';
-import { NgClass, NgOptimizedImage } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { LabelComponent } from '../label/label.component';
 import { ErrorMessageComponent } from '../error-message/error-message.component';
-import { IconPipe } from '../../pipes/icon.pipe';
 
 @Component({
   selector: 'app-input',
   standalone: true,
   templateUrl: 'input.component.html',
   styleUrls: ['input.component.scss'],
-  imports: [
-    ErrorMessageComponent,
-    NgOptimizedImage,
-    LabelComponent,
-    FormsModule,
-    IconPipe,
-    NgClass,
-  ],
+  imports: [ErrorMessageComponent, LabelComponent, FormsModule, NgClass],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputComponent implements ControlValueAccessor {
-  @Input() errorState: ValidationErrors = {};
   @Input() type: 'text' | 'password' = 'text';
   @Input() placeholder = '';
   @Input() label = '';
   @Input() inputId = '';
+  @Input() errorState?: ValidationErrors;
 
   disabled = false;
   value = '';
@@ -40,10 +32,6 @@ export class InputComponent implements ControlValueAccessor {
       this.ngControl.valueAccessor = this;
     }
   }
-
-  private onChange(_: string): void {}
-
-  private onBlur(): void {}
 
   onInputChange(value: string): void {
     this.value = value;
@@ -55,7 +43,7 @@ export class InputComponent implements ControlValueAccessor {
   }
 
   writeValue(value: string | null | undefined): void {
-    this.value = value || '';
+    this.value = value ?? '';
   }
 
   setDisabledState(disabled: boolean): void {
@@ -69,4 +57,8 @@ export class InputComponent implements ControlValueAccessor {
   registerOnTouched(fn: any): void {
     this.onBlur = fn;
   }
+
+  private onChange(_: string): void {}
+
+  private onBlur(): void {}
 }

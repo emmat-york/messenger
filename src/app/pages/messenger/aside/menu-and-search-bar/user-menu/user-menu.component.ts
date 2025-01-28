@@ -66,6 +66,7 @@ export class UserMenuComponent implements OnInit, Modal {
   onContactsModalOpen(): void {
     this.modalService.open({
       component: ContactsModalComponent,
+      settings: { multi: true },
     });
   }
 

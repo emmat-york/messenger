@@ -10,6 +10,7 @@
       { contacts: contacts$, dialogs: dialogs$, selectedDialog: selectedDialog$ };
       let vm
     "
+    class="contact-list"
   >
     @for (contact of vm.contacts | arrayFilter: searchControl.value : 'name'; track 'id')
     {
@@ -21,6 +22,6 @@
 </section>
 
 <footer class="footer">
-  <app-button (click)="closeAction()" variant="text">Add contact</app-button>
+  <app-button (click)="onAddContact()" variant="text">Add contact</app-button>
   <app-button (click)="closeAction()" variant="text">Close</app-button>
 </footer>

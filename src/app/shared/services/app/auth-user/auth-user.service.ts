@@ -61,9 +61,9 @@ export class AuthUserService {
         this.setToken({ idToken, expiresIn });
 
         return this.userService.getUserData$(idToken).pipe(
-          tap(({ uuid, name, avatar, dialogs, contacts }) => {
+          tap(({ uuid, name, avatar, dialogs, isYou, isYourContact, contacts }) => {
             this.userFacade.setUser({
-              essentialData: { uuid, name, avatar },
+              essentialData: { uuid, name, avatar, isYou, isYourContact },
               dialogs,
               contacts,
             });
@@ -79,9 +79,9 @@ export class AuthUserService {
         this.setToken({ idToken, expiresIn });
 
         return this.userService.getUserData$(idToken).pipe(
-          tap(({ uuid, name, avatar, dialogs, contacts }) => {
+          tap(({ uuid, name, avatar, dialogs, isYou, isYourContact, contacts }) => {
             this.userFacade.setUser({
-              essentialData: { uuid, name, avatar },
+              essentialData: { uuid, name, avatar, isYou, isYourContact },
               dialogs,
               contacts,
             });

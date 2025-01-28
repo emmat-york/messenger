@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Modal } from '../../../../../../shared/services/app/modal/modal.interface';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { ButtonComponent } from '../../../../../../shared/components/button/button.component';
 import { InputComponent } from '../../../../../../shared/components/input/input.component';
 import { UserFacade } from '../../../../../../store/user/user.facade';
@@ -12,6 +12,8 @@ import {
   EssentialUserData,
 } from '../../../../../../shared/services/api/chat/chat-service.interface';
 import { ChatFacade } from '../../../../../../store/chat/chat.facade';
+import { ModalService } from '../../../../../../shared/services/app/modal/modal.service';
+import { AddContactComponent } from './add-contact/add-contact.component';
 
 @Component({
   selector: 'app-contacts',
@@ -35,12 +37,18 @@ export class ContactsModalComponent implements Modal {
   readonly contacts$ = this.userFacade.contacts$;
   readonly dialogs$ = this.userFacade.dialogs$;
 
-  readonly searchControl = new FormControl<string>('', { nonNullable: true });
+  readonly searchControl = this.formBuilder.control<string>('');
 
   constructor(
+    private readonly formBuilder: NonNullableFormBuilder,
+    private readonly modalService: ModalService,
     private readonly userFacade: UserFacade,
     private readonly chatFacade: ChatFacade,
   ) {}
+
+  onAddContact(): void {
+    this.modalService.open({ component: AddContactComponent, settings: { multi: true } });
+  }
 
   onContactSelect(
     contact: EssentialUserData,
@@ -50,11 +58,11 @@ export class ContactsModalComponent implements Modal {
     const dialogByContact = dialogs.find(dialog => dialog.uuid === contact.uuid);
 
     if (selectedDialog?.uuid === dialogByContact?.uuid) {
-      this.closeAction();
+      this.modalService.dismissAll();
       return;
     }
 
     this.chatFacade.setSelectedDialog(dialogByContact ? dialogByContact : contact);
-    this.closeAction();
+    this.modalService.dismissAll();
   }
 }

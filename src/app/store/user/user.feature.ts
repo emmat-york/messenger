@@ -49,6 +49,13 @@ export const { selectContacts, selectEssentialData, selectDialogs, reducer } =
           }),
         }),
       ),
+      on(
+        action.addContactSuccess,
+        (state, { contact }): UserStoreState => ({
+          ...state,
+          contacts: [...state.contacts, contact],
+        }),
+      ),
       on(action.resetUserReducer, (): UserStoreState => ({ ...initialState })),
     ),
   });

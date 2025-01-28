@@ -12,6 +12,8 @@ export class UserService {
       uuid: 1,
       name: 'Andrei Filimonchyk',
       avatar: 'assets/icons/system/avatar.svg',
+      isYou: true,
+      isYourContact: false,
       dialogs: [
         {
           uuid: 2,
@@ -19,6 +21,8 @@ export class UserService {
           avatar: 'assets/icons/system/avatar.svg',
           isOnline: false,
           roomId: 1,
+          isYou: false,
+          isYourContact: true,
           lastMessage: {
             id: 1,
             uuid: 2,
@@ -47,9 +51,11 @@ export class UserService {
           avatar: null,
           isOnline: false,
           roomId: 2,
+          isYou: false,
+          isYourContact: false,
           lastMessage: {
             id: 1,
-            uuid: 2,
+            uuid: 3,
             message: 'hello, mather fucker!',
             userName: 'Gvardiola',
             roomId: 2,
@@ -75,11 +81,15 @@ export class UserService {
           uuid: 2,
           name: 'Andrew Tate',
           avatar: 'assets/icons/system/avatar.svg',
+          isYou: false,
+          isYourContact: true,
         },
         {
           uuid: 102,
           name: 'Mah Dee',
           avatar: null,
+          isYou: false,
+          isYourContact: false,
         },
       ],
       isNightMode: false,

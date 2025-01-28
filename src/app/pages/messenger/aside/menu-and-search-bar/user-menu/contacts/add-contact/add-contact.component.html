@@ -1,0 +1,33 @@
+<header>
+  <h4 class="heading">New Contact</h4>
+
+  <div class="input-container">
+    <img [ngSrc]="'add-contact' | icon" alt="add-contact" height="24" width="24" />
+
+    <app-input
+      [formControl]="searchControl"
+      inputId="search-contact-input"
+      placeholder="example@mail.com"
+    ></app-input>
+  </div>
+</header>
+
+<ul *ngrxLet="foundContacts$; let foundContacts" class="contact-list">
+  @for (contact of foundContacts; track 'id') {
+  <li
+    class="contact"
+    [class.selected]="contact.uuid === selectedContact?.uuid"
+    [class.disabled]="contact.isYourContact || contact.isYou"
+    (click)="onSelectContact(contact)"
+  >
+    <app-contact [contact]="contact"></app-contact>
+  </li>
+  }
+</ul>
+
+<footer class="footer">
+  <app-button (click)="closeAction()" variant="text">Cancel</app-button>
+  <app-button (click)="onAdd()" [disabled]="!selectedContact" variant="text"
+    >Add contact
+  </app-button>
+</footer>
