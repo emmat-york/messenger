@@ -9,7 +9,6 @@ import { LetDirective } from '@ngrx/component';
 import { NgIf, NgOptimizedImage } from '@angular/common';
 import { AboutComponent } from './about/about.component';
 import { VersionComponent } from './version/version.component';
-import { TelegramDesktopComponent } from './telegram-desktop/telegram-desktop.component';
 import { IconPipe } from '../../../../../shared/pipes/icon.pipe';
 import { AvatarComponent } from '../../../../../shared/components/avatar/avatar.component';
 import { Modal } from '../../../../../shared/services/app/modal/modal.interface';
@@ -80,13 +79,6 @@ export class UserMenuComponent implements OnInit, Modal {
 
   onModeChange(): void {
     this.settingsFacade.setNightMode(!this.themeModeSwitcher.value);
-  }
-
-  openTelegramDesktop(): void {
-    this.modalService.open({
-      component: TelegramDesktopComponent,
-      settings: { multi: true },
-    });
   }
 
   openVersion(): void {

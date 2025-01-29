@@ -58,7 +58,7 @@ export class ChatBodyComponent implements OnChanges, OnInit, AfterViewInit {
       return;
     }
 
-    const isLastMessageYours = this.uuid === currentValue[currentValue.length - 1].uuid;
+    const isLastMessageYours = this.uuid === currentValue[currentValue.length - 1]?.uuid;
 
     if (
       isLastMessageYours ||

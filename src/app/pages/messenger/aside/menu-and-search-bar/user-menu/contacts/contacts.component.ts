@@ -57,7 +57,7 @@ export class ContactsModalComponent implements Modal {
   ): void {
     const dialogByContact = dialogs.find(dialog => dialog.uuid === contact.uuid);
 
-    if (selectedDialog?.uuid === dialogByContact?.uuid) {
+    if (selectedDialog && selectedDialog.uuid === dialogByContact?.uuid) {
       this.modalService.dismissAll();
       return;
     }

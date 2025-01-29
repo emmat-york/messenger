@@ -68,7 +68,9 @@
   </ul>
 
   <footer class="footer">
-    <div (click)="openTelegramDesktop()" class="telegram-desktop">Telegram Desktop</div>
+    <a class="telegram-desktop" href="https://telegram.org/" target="_blank"
+      >Telegram Desktop</a
+    >
 
     <div class="telegram-info">
       <span (click)="openVersion()" *ngIf="vm.versions.length" class="telegram-info-text"
