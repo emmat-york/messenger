@@ -9,6 +9,7 @@
   width: 100%;
   border: none;
   border-bottom: 1.5px solid var(--unknown_gray);
+  background-color: transparent;
   color: var(--black1);
 
   &.valid:not(&.invalid, &:focus, &:disabled) {
