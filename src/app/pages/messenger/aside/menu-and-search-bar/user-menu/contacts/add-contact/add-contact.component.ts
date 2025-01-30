@@ -18,6 +18,7 @@ import { ContactComponent } from '../contact/contact.component';
 import { NgOptimizedImage } from '@angular/common';
 import { IconPipe } from '../../../../../../../shared/pipes/icon.pipe';
 import { UserFacade } from '../../../../../../../store/user/user.facade';
+import { ContactIdentificationPipe } from './contact-identification.pipe';
 
 @Component({
   selector: 'app-add-contact',
@@ -32,6 +33,7 @@ import { UserFacade } from '../../../../../../../store/user/user.facade';
     ContactComponent,
     NgOptimizedImage,
     IconPipe,
+    ContactIdentificationPipe,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -68,7 +70,7 @@ export class AddContactComponent implements OnInit, Modal {
     this.selectedContact = this.selectedContact?.uuid === contact.uuid ? null : contact;
   }
 
-  onAdd(): void {
+  onAddContact(): void {
     if (
       !this.selectedContact ||
       this.selectedContact.isYourContact ||

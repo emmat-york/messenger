@@ -14,7 +14,7 @@
 
 .version-list {
   min-height: 288px;
-  max-height: 460px;
+  max-height: 408px;
   overflow-y: auto;
 }
 
@@ -41,6 +41,7 @@
 }
 
 .update {
+  font-size: 13px;
   list-style: disc;
 
   &::marker {

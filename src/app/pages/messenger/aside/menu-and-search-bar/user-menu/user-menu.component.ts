@@ -82,11 +82,11 @@ export class UserMenuComponent implements OnInit, Modal {
   }
 
   openVersion(): void {
-    this.modalService.open({ component: VersionComponent, settings: { multi: true } });
+    this.modalService.open({ component: VersionComponent });
   }
 
   openAbout(): void {
-    this.modalService.open({ component: AboutComponent, settings: { multi: true } });
+    this.modalService.open({ component: AboutComponent });
   }
 
   openLogOut(): void {

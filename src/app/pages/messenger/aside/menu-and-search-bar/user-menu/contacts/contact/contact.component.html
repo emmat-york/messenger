@@ -1,6 +1,18 @@
-<app-avatar [src]="contact.avatar" [safeName]="contact.name" variant="small"></app-avatar>
+<div class="contact-container">
+  <app-avatar
+    [safeName]="contact.name"
+    [src]="contact.avatar"
+    variant="small"
+  ></app-avatar>
 
-<div>
-  <h4 class="name">{{ contact.name }}</h4>
-  <div class="info-text">last seen recently</div>
+  <div>
+    <h4 class="name">{{ contact.name }}</h4>
+    <div class="info-text">last seen recently</div>
+  </div>
 </div>
+
+@switch (identification) { @case ('you') {
+<span class="identifier">You</span>
+} @case ('your-contact') {
+<span class="identifier">Your contact</span>
+} }

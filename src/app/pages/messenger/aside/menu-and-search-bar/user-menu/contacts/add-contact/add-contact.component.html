@@ -20,14 +20,17 @@
     [class.disabled]="contact.isYourContact || contact.isYou"
     (click)="onSelectContact(contact)"
   >
-    <app-contact [contact]="contact"></app-contact>
+    <app-contact
+      [identification]="contact.isYou | contactIdentification: contact.isYourContact"
+      [contact]="contact"
+    ></app-contact>
   </li>
   }
 </ul>
 
 <footer class="footer">
   <app-button (click)="closeAction()" variant="text">Cancel</app-button>
-  <app-button (click)="onAdd()" [disabled]="!selectedContact" variant="text"
+  <app-button (click)="onAddContact()" [disabled]="!selectedContact" variant="text"
     >Add contact
   </app-button>
 </footer>
