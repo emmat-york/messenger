@@ -2,8 +2,8 @@
   <app-avatar
     [safeName]="dialogOrEssentialUserData.name"
     [src]="dialogOrEssentialUserData.avatar"
-    variant="small"
     class="avatar"
+    variant="small"
   ></app-avatar>
 
   <div>
@@ -16,3 +16,7 @@
     >
   </div>
 </header>
+
+<div (click)="onMoreOptions()" class="img-container">
+  <img [ngSrc]="'more-vert' | icon" alt="advanced-options" height="22" width="22" />
+</div>
