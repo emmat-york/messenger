@@ -20,7 +20,7 @@
 .input {
   height: inherit;
   width: inherit;
-  padding: 0 32px 0 16px;
+  padding: 0 32px 0 32px;
   font-size: 13px;
   font-weight: 400;
   line-height: 18px;
@@ -30,7 +30,16 @@
 
   &.on-search-mode {
     background-color: var(--white1);
+    padding-left: 16px;
   }
+}
+
+.search-img {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.8;
 }
 
 .close-cross-wrapper {

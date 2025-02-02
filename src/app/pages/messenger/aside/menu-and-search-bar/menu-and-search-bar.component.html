@@ -3,7 +3,9 @@
 </button>
 
 <label class="label" for="contact-search-input-bar">
-  @if (view === 'search-panel') {
+  @if (view === 'dialogs') {
+  <img class="search-img" [ngSrc]="'search' | icon" width="18" height="18" alt="search" />
+  } @else {
   <span class="close-cross-wrapper" (click)="onChangeView($event, 'dialogs')">
     <img [ngSrc]="'close' | icon" width="16" height="16" alt="close" />
   </span>
