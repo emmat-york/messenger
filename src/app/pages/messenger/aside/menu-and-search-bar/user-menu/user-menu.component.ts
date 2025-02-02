@@ -16,7 +16,7 @@ import { ModalService } from '../../../../../shared/services/app/modal/modal.ser
 import { UserFacade } from '../../../../../store/user/user.facade';
 import { SettingsFacade } from '../../../../../store/settings/settings.facade';
 import { SwitcherComponent } from '../../../../../shared/components/switcher/switcher.component';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { LogOutComponent } from './log-out/log-out.component';
 import { SLEEPY_OPTIONS } from '../../../../../shared/constants/form.constant';
@@ -29,13 +29,17 @@ import { SettingsComponent } from './settings/settings.component';
   templateUrl: 'user-menu.component.html',
   styleUrl: 'user-menu.component.scss',
   imports: [
-    LetDirective,
-    NgOptimizedImage,
-    IconPipe,
-    AvatarComponent,
-    NgIf,
-    SwitcherComponent,
+    // Modules
     ReactiveFormsModule,
+    // Components
+    SwitcherComponent,
+    AvatarComponent,
+    // Directives
+    NgOptimizedImage,
+    LetDirective,
+    // Pipes
+    IconPipe,
+    NgIf,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -43,15 +47,13 @@ export class UserMenuComponent implements OnInit, Modal {
   @Input() closeAction: () => void;
 
   readonly isNotificationSoundOn$ = this.settingsFacade.isNotificationSoundOn$;
-  readonly versions$ = this.settingsFacade.versions$;
   readonly essentialData$ = this.userFacade.essentialData$;
+  readonly versions$ = this.settingsFacade.versions$;
 
-  readonly themeModeSwitcher = new FormControl(
-    { value: false, disabled: true },
-    { nonNullable: true },
-  );
+  readonly themeModeSwitcher = this.formBuilder.control({ value: false, disabled: true });
 
   constructor(
+    private readonly formBuilder: NonNullableFormBuilder,
     private readonly settingsFacade: SettingsFacade,
     private readonly modalService: ModalService,
     private readonly userFacade: UserFacade,

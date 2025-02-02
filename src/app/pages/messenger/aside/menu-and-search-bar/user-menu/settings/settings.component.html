@@ -1,7 +1,22 @@
-<header>
+<header class="header">
   <h3 class="heading">Settings</h3>
 
-  <app-button>
-    <img alt="close" src="" />
-  </app-button>
+  <img
+    (click)="closeAction()"
+    [ngSrc]="'close' | icon"
+    alt="close"
+    height="18"
+    width="18"
+  />
 </header>
+
+<ul class="settings-list">
+  @for (setting of settingsOptions; track 'type') {
+  <li class="setting" (click)="onSetting(setting.type)">
+    <img height="18" width="18" [ngSrc]="setting.icon | icon" [alt]="setting.text" />
+    <span>{{ setting.text }}</span>
+  </li>
+  }
+</ul>
+
+<footer></footer>

@@ -1,9 +1,40 @@
 :host {
   display: flex;
   flex-direction: column;
+  width: 326px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  background-color: var(--gray_light2);
+}
+
+.header {
+  display: flex;
   justify-content: space-between;
-  max-width: 454px;
-  padding: 12px 20px;
-  border-radius: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+  padding: 12px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
   background-color: var(--white1);
+}
+
+.settings-list {
+  background-color: var(--white1);
+}
+
+.setting {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+
+  &.mode-toggle-item {
+    justify-content: space-between;
+  }
+
+  &:hover {
+    background-color: var(--gray_light2);
+  }
 }
