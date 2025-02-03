@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 import * as action from './user.action';
 import { Message } from '../../pages/messenger/chat/chat.interface';
 import { BaseStoreExtension } from '../base-store-extension';
-import { Observable } from 'rxjs';
+import { filter, Observable } from 'rxjs';
 import {
   Dialog,
   EssentialUserData,
@@ -18,8 +18,9 @@ import {
   providedIn: 'root',
 })
 export class UserFacade extends BaseStoreExtension {
-  readonly essentialData$: Observable<EssentialUserData | null> =
-    this.store.select(selectEssentialData);
+  readonly essentialData$: Observable<EssentialUserData> = this.store
+    .select(selectEssentialData)
+    .pipe(filter(Boolean));
   readonly dialogs$: Observable<Dialog[]> = this.store.select(selectDialogs);
   readonly contacts$: Observable<EssentialUserData[]> = this.store.select(selectContacts);
 

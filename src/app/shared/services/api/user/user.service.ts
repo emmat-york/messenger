@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { FullCurrentUserData } from './user-service.interface';
 import { EmojiCategory } from '../../../../pages/messenger/chat/chat.enum';
+import { Language } from '../../../enums/languages.enum';
 
 @Injectable({
   providedIn: 'root',
@@ -140,8 +141,8 @@ export class UserService {
         },
       ],
       isNotificationSoundOn: true,
-      languages: [],
-      selectedLanguage: '',
+      languages: Object.values(Language),
+      selectedLanguage: Language.En,
     });
   }
 }

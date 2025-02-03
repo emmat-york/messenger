@@ -1,22 +1,45 @@
-<header class="header">
-  <h3 class="heading">Settings</h3>
+<ng-container
+  *ngrxLet="
+    { essentialData: essentialData$, selectedLanguage: selectSelectedLanguage$ };
+    let vm
+  "
+>
+  <header class="header">
+    <div class="top-heading">
+      <h2 class="heading">Settings</h2>
 
-  <img
-    (click)="closeAction()"
-    [ngSrc]="'close' | icon"
-    alt="close"
-    height="18"
-    width="18"
-  />
-</header>
+      <div (click)="closeAction()" class="close-icon-container">
+        <img [ngSrc]="'close' | icon" alt="close" height="20" width="20" />
+      </div>
+    </div>
 
-<ul class="settings-list">
-  @for (setting of settingsOptions; track 'type') {
-  <li class="setting" (click)="onSetting(setting.type)">
-    <img height="18" width="18" [ngSrc]="setting.icon | icon" [alt]="setting.text" />
-    <span>{{ setting.text }}</span>
-  </li>
-  }
-</ul>
+    <div class="bottom-heading">
+      <app-avatar
+        [safeName]="vm.essentialData.name"
+        [src]="vm.essentialData.avatar"
+        variant="extra-large"
+      ></app-avatar>
 
-<footer></footer>
+      <div class="user-data">
+        <h5>{{ vm.essentialData.name }}</h5>
+        <p class="email">{{ 'example@email.com' }}</p>
+      </div>
+    </div>
+  </header>
+
+  <ul class="settings-list">
+    @for (setting of settingsOptions; track 'type') {
+    <li class="setting" (click)="onSetting(setting.type)">
+      <img height="18" width="18" [ngSrc]="setting.icon | icon" [alt]="setting.text" />
+      <span>{{ setting.text }}</span>
+      @if (setting.type === 'Language') {
+      <span class="language">{{ vm.selectedLanguage | languageMap }}</span>
+      }
+    </li>
+    }
+  </ul>
+
+  <footer class="footer">
+    <app-button (click)="closeAction()" variant="text">Close</app-button>
+  </footer>
+</ng-container>

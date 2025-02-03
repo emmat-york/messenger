@@ -1,4 +1,5 @@
 import { Dialog, EssentialUserData } from '../chat/chat-service.interface';
+import { Language } from '../../../enums/languages.enum';
 
 /**
  * User here equals to init user data (your data)
@@ -15,8 +16,8 @@ export interface FullCurrentUserData {
   isNightMode: boolean;
   versions: Version[];
   isNotificationSoundOn: boolean;
-  languages: string[];
-  selectedLanguage: string;
+  languages: Language[];
+  selectedLanguage: Language;
 }
 
 export interface Version {
