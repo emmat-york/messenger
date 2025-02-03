@@ -27,7 +27,7 @@ export class ContactsService {
       },
     ]);
   }
-  
+
   addContact$(contact: EssentialUserData): Observable<EssentialUserData> {
     return of({ ...contact, isYourContact: true });
   }

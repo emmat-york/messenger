@@ -1,4 +1,8 @@
-<div class="modal-frame-container" [ngClass]="settings?.type | modalFrameType" (click)="clickHandler($event)">
+<div
+  class="modal-frame-container"
+  [ngClass]="settings?.type | modalFrameType"
+  (click)="clickHandler($event)"
+>
   <div #modalContainer>
     <ng-container #container></ng-container>
   </div>
