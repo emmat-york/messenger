@@ -55,16 +55,18 @@
 }
 
 // Style for modes
-:host-context([mode="night"]) {
+:host-context([mode='night']) {
   :host {
     background-color: var(--dark-mode-2);
   }
 
-  .version-and-release-date, .version-release-date {
+  .version-and-release-date,
+  .version-release-date {
     color: var(--steel-gray_light12);
   }
 
-  .update, .heading, {
+  .update,
+  .heading {
     color: var(--gray_light8);
   }
 }

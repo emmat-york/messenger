@@ -9,6 +9,6 @@ $search-height: 56px;
 }
 
 // Style for modes
-:host-context([mode="night"]) {
+:host-context([mode='night']) {
   background-color: var(--dark-mode-2);
 }

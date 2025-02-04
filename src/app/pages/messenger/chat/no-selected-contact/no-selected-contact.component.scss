@@ -15,6 +15,6 @@
   pointer-events: none;
 }
 
-:host-context([mode="night"]) {
+:host-context([mode='night']) {
   background-color: var(--gray_dark13);
 }

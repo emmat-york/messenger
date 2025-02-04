@@ -9,7 +9,7 @@
 }
 
 // Style for modes
-:host-context([mode="night"]) {
+:host-context([mode='night']) {
   :host {
     background-image: url('../../../../assets/images/dark-background-2.jpg');
   }

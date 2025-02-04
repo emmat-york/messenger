@@ -61,7 +61,7 @@
 }
 
 // Style for modes
-:host-context([mode="night"]) {
+:host-context([mode='night']) {
   .input {
     border-color: var(--steel-gray_light8);
     background-color: var(--dark-mode-1);

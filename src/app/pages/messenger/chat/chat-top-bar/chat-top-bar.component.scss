@@ -49,7 +49,7 @@
 }
 
 // Style for modes
-:host-context([mode="night"]) {
+:host-context([mode='night']) {
   :host {
     border-color: var(--gray_dark10);
     background-color: var(--dark-mode-2);

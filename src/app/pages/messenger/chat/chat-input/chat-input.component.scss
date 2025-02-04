@@ -43,7 +43,7 @@ $indent: 20px;
 }
 
 // Style for modes
-:host-context([mode="night"]) {
+:host-context([mode='night']) {
   :host {
     border-color: var(--steel-gray_light10);
     background-color: var(--dark-mode-2);

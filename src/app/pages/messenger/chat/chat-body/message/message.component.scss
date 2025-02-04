@@ -45,7 +45,7 @@ $date-width: 52px;
   background-color: var(--green_light1);
 }
 
-:host-context([mode="night"]) {
+:host-context([mode='night']) {
   :host {
     background-color: var(--gray_dark13);
   }

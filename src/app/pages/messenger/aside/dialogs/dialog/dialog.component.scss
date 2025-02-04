@@ -75,7 +75,7 @@ $date-width: 64px;
 }
 
 // Style for modes
-:host-context([mode="night"]) {
+:host-context([mode='night']) {
   .user-name {
     color: var(--white1);
   }
