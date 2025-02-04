@@ -44,3 +44,17 @@ $date-width: 52px;
 :host-context(.your-message) {
   background-color: var(--green_light1);
 }
+
+:host-context([mode="night"]) {
+  :host {
+    background-color: var(--gray_dark13);
+  }
+
+  .message {
+    color: var(--white1);
+  }
+
+  .message-date {
+    color: var(--white1);
+  }
+}

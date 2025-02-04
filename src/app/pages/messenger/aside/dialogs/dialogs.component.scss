@@ -30,3 +30,26 @@
   font-style: normal;
   color: var(--gray_light10);
 }
+
+// Style for modes
+:host-context([mode="night"]) {
+  .contact:hover:not(.selected) {
+    background-color: var(--dark-mode-1);
+  }
+
+  .selected {
+    position: relative;
+    background-color: transparent;
+
+    &::before {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      content: "";
+      height: 30px;
+      width: 3px;
+      background-color: var(--blue_light8);
+    }
+  }
+}

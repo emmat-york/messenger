@@ -14,3 +14,7 @@
   background-color: rgba(0, 0, 0, 0.2);
   pointer-events: none;
 }
+
+:host-context([mode="night"]) {
+  background-color: var(--gray_dark13);
+}

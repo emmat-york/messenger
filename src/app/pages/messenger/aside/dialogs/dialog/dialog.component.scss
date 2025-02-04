@@ -73,3 +73,18 @@ $date-width: 64px;
     color: var(--white1);
   }
 }
+
+// Style for modes
+:host-context([mode="night"]) {
+  .user-name {
+    color: var(--white1);
+  }
+
+  .date {
+    color: var(--white1);
+  }
+
+  .message {
+    color: var(--steel-gray_light12);
+  }
+}

@@ -47,3 +47,19 @@
     cursor: pointer;
   }
 }
+
+// Style for modes
+:host-context([mode="night"]) {
+  :host {
+    border-color: var(--gray_dark10);
+    background-color: var(--dark-mode-2);
+  }
+
+  .name {
+    color: var(--white1);
+  }
+
+  .online-indicator {
+    color: var(--steel-gray_light12);
+  }
+}

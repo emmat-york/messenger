@@ -7,3 +7,10 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+// Style for modes
+:host-context([mode="night"]) {
+  :host {
+    background-image: url('../../../../assets/images/dark-background-2.jpg');
+  }
+}

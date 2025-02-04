@@ -19,3 +19,14 @@
   align-items: center;
   gap: 8px;
 }
+
+// Style for modes
+:host-context([mode="night"]) {
+  :host {
+    background-color: var(--dark-mode-2);
+  }
+
+  .main-content {
+    color: var(--white1);
+  }
+}

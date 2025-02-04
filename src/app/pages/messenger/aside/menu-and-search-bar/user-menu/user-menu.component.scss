@@ -92,3 +92,26 @@
     text-decoration: underline;
   }
 }
+
+// Style for modes
+:host-context([mode="night"]) {
+  :host {
+    background-color: var(--dark-mode-2);
+  }
+  
+  .user-name {
+    color: var(--gray_light10);
+  }
+
+  .menu-item {
+    color: var(--gray_light10);
+
+    &:hover {
+      background-color: var(--dark-mode-1);
+    }
+  }
+
+  .telegram-desktop, .telegram-info-text {
+    color: var(--gray_light10);
+  }
+}
