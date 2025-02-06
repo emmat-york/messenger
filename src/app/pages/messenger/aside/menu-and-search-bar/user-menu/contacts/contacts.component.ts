@@ -21,11 +21,15 @@ import { AddContactComponent } from './add-contact/add-contact.component';
   templateUrl: 'contacts.component.html',
   styleUrl: 'contacts.component.scss',
   imports: [
+    // Modules
+    ReactiveFormsModule,
+    // Components
+    ContactComponent,
     ButtonComponent,
     InputComponent,
-    ReactiveFormsModule,
+    // Directives
     LetDirective,
-    ContactComponent,
+    // Pipes
     ArrayFilterPipe,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,

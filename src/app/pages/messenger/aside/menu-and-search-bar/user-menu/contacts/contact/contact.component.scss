@@ -32,3 +32,14 @@
 .identifier {
   font-size: 11px;
 }
+
+// Style for modes
+:host-context([mode='night']) {
+  .name {
+    color: var(--white1);
+  }
+
+  .identifier {
+    color: var(--gray_light8);
+  }
+}

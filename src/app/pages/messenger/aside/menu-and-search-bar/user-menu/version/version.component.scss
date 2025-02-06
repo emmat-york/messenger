@@ -15,6 +15,7 @@
 .version-list {
   min-height: 288px;
   max-height: 408px;
+  margin-bottom: 12px;
   overflow-y: auto;
 }
 
@@ -30,8 +31,12 @@
   margin-bottom: 8px;
 }
 
+.version-number {
+  text-decoration: underline;
+}
+
 .version-release-date {
-  font-size: 14px;
+  font-size: 10px;
   color: var(--gray_dark1);
 }
 

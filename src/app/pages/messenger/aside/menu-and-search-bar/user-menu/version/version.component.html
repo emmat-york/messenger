@@ -4,7 +4,7 @@
   @for (version of versions; track version.id) {
   <li class="version">
     <div class="version-and-release-date">
-      <span>{{ version.version }}</span>
+      <span class="version-number">{{ version.version }}</span>
       <span class="version-release-date">{{
         version.releaseDate | date: 'MM.dd.yy'
       }}</span>
@@ -20,5 +20,5 @@
 </ul>
 
 <footer class="footer">
-  <app-button variant="text" (click)="closeAction()">Close</app-button>
+  <app-button (click)="closeAction()" variant="text">Close</app-button>
 </footer>

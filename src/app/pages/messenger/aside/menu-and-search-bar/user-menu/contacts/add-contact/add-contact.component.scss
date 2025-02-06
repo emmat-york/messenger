@@ -47,3 +47,24 @@
   gap: 6px;
   padding: 6px;
 }
+
+// Style for modes
+:host-context([mode='night']) {
+  :host {
+    background-color: var(--dark-mode-2);
+  }
+
+  .heading {
+    color: var(--gray_light8);
+  }
+
+  .contact {
+    &:hover:not(.selected) {
+      background-color: var(--dark-mode-1);
+    }
+  }
+
+  .selected {
+    background-color: var(--dark-mode-1);
+  }
+}

@@ -20,7 +20,7 @@ export class UserService {
           uuid: 2,
           name: 'Andrew Tate',
           avatar: 'assets/icons/system/avatar.svg',
-          isOnline: false,
+          isOnline: true,
           roomId: 1,
           isYou: false,
           isYourContact: true,

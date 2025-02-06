@@ -12,8 +12,8 @@
     "
     class="contact-list"
   >
-    @for (contact of vm.contacts | arrayFilter: searchControl.value : 'name'; track 'id')
-    {
+    @for (contact of vm.contacts | arrayFilter: searchControl.value : 'name'; track
+    contact.uuid) {
     <li class="contact" (click)="onContactSelect(contact, vm.dialogs, vm.selectedDialog)">
       <app-contact [contact]="contact"></app-contact>
     </li>

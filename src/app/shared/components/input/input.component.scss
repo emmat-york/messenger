@@ -28,3 +28,14 @@
     cursor: not-allowed;
   }
 }
+
+// Style for modes
+:host-context([mode='night']) {
+  .input {
+    color: var(--gray_light8);
+
+    &::placeholder {
+      color: var(--steel-gray_light8);
+    }
+  }
+}

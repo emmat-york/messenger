@@ -26,14 +26,18 @@ import { ContactIdentificationPipe } from './contact-identification.pipe';
   templateUrl: 'add-contact.component.html',
   styleUrl: 'add-contact.component.scss',
   imports: [
-    InputComponent,
+    // Modules
     ReactiveFormsModule,
-    ButtonComponent,
-    LetDirective,
+    // Components
     ContactComponent,
+    ButtonComponent,
+    InputComponent,
+    // Directives
     NgOptimizedImage,
-    IconPipe,
+    LetDirective,
+    // Pipes
     ContactIdentificationPipe,
+    IconPipe,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

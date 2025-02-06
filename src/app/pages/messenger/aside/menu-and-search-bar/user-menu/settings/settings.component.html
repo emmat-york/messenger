@@ -21,7 +21,7 @@
       ></app-avatar>
 
       <div class="user-data">
-        <h5>{{ vm.essentialData.name }}</h5>
+        <h5 class="user-name">{{ vm.essentialData.name }}</h5>
         <p class="email">{{ 'example@email.com' }}</p>
       </div>
     </div>
@@ -31,7 +31,7 @@
     @for (setting of settingsOptions; track 'type') {
     <li class="setting" (click)="onSetting(setting.type)">
       <img height="18" width="18" [ngSrc]="setting.icon | icon" [alt]="setting.text" />
-      <span>{{ setting.text }}</span>
+      <span class="settings-name">{{ setting.text }}</span>
       @if (setting.type === 'Language') {
       <span class="language">{{ vm.selectedLanguage | languageMap }}</span>
       }

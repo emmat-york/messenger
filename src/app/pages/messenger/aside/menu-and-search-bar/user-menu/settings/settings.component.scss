@@ -94,3 +94,26 @@
   border-bottom-right-radius: 8px;
   background-color: var(--white1);
 }
+
+// Style for modes
+:host-context([mode='night']) {
+  :host {
+    background-color: var(--dark-mode-1);
+  }
+
+  .header,
+  .settings-list,
+  .footer {
+    background-color: var(--dark-mode-2);
+  }
+
+  .heading,
+  .user-name,
+  .settings-name {
+    color: var(--white1);
+  }
+
+  .setting:hover {
+    background-color: var(--dark-mode-1);
+  }
+}
